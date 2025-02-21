@@ -158,14 +158,17 @@ def test_sponsor_asset(
 ) -> None:
     dm_client = digital_marketplace_client.clone(default_sender=seller.address)
 
-    # FIXME: Assert available balance here.
+    balance_before_call = dm_client.state.local_state(seller.address).deposited
 
     dm_client.send.sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
 
-    # FIXME: Assert available balance here.
+    assert (
+        dm_client.state.local_state(seller.address).deposited - balance_before_call
+        == -AlgoAmount.from_micro_algo(100_000).micro_algo
+    )
 
 
 def test_open_sale(

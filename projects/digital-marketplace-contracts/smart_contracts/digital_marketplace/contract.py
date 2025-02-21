@@ -37,7 +37,6 @@ class DigitalMarketplace(ARC4Contract):
     def __init__(self) -> None:
         self.deposited = LocalState(UInt64)
 
-
         self.sales = BoxMap(SaleKey, Sale)
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
