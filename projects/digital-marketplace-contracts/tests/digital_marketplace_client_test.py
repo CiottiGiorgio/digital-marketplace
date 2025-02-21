@@ -3,25 +3,62 @@ import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
+    PaymentParams,
     SigningAccount,
 )
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
+    DepositArgs,
     DigitalMarketplaceClient,
     DigitalMarketplaceFactory,
 )
 
+AMOUNT_TO_FUND = 10
+AMOUNT_TO_DEPOSIT = 8
+assert AMOUNT_TO_DEPOSIT > 1
 
-@pytest.fixture()
+
+@pytest.fixture(scope="session")
 def deployer(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.from_environment("DEPLOYER")
     algorand_client.account.ensure_funded_from_environment(
-        account_to_fund=account.address, min_spending_balance=AlgoAmount.from_algo(10)
+        account_to_fund=account.address,
+        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
     )
     return account
 
 
-@pytest.fixture()
+@pytest.fixture(scope="session")
+def seller(algorand_client: AlgorandClient) -> SigningAccount:
+    account = algorand_client.account.random()
+    algorand_client.account.ensure_funded_from_environment(
+        account_to_fund=account.address,
+        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
+    )
+    return account
+
+
+@pytest.fixture(scope="session")
+def buyer(algorand_client: AlgorandClient) -> SigningAccount:
+    account = algorand_client.account.random()
+    algorand_client.account.ensure_funded_from_environment(
+        account_to_fund=account.address,
+        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
+    )
+    return account
+
+
+@pytest.fixture(scope="session")
+def bidder(algorand_client: AlgorandClient) -> SigningAccount:
+    account = algorand_client.account.random()
+    algorand_client.account.ensure_funded_from_environment(
+        account_to_fund=account.address,
+        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
+    )
+    return account
+
+
+@pytest.fixture(scope="session")
 def digital_marketplace_client(
     algorand_client: AlgorandClient, deployer: SigningAccount
 ) -> DigitalMarketplaceClient:
@@ -36,20 +73,61 @@ def digital_marketplace_client(
     return client
 
 
-def test_says_hello(digital_marketplace_client: DigitalMarketplaceClient) -> None:
-    result = digital_marketplace_client.send.hello(args=("World",))
-    assert result.abi_return == "Hello, World"
-
-
-def test_simulate_says_hello_with_correct_budget_consumed(
+@pytest.mark.parametrize("actor", ["seller", "buyer", "bidder"])
+def test_opt_in_deposit(
     digital_marketplace_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    actor: str,
+    request: pytest.FixtureRequest,
 ) -> None:
-    result = (
-        digital_marketplace_client.new_group()
-        .hello(args=("World",))
-        .hello(args=("Jane",))
-        .simulate()
+    actor_fixture: SigningAccount = request.getfixturevalue(actor)
+
+    dm_client = digital_marketplace_client.clone(default_sender=actor_fixture.address)
+    result = dm_client.send.opt_in.deposit(
+        DepositArgs(
+            payment=algorand_client.create_transaction.payment(
+                PaymentParams(
+                    sender=actor_fixture.address,
+                    signer=actor_fixture.signer,
+                    receiver=dm_client.app_address,
+                    amount=AlgoAmount.from_algo(1),
+                )
+            )
+        )
     )
-    assert result.returns[0].value == "Hello, World"
-    assert result.returns[1].value == "Hello, Jane"
-    assert result.simulate_response["txn-groups"][0]["app-budget-consumed"] < 100
+    assert result.confirmation
+
+    assert (
+        dm_client.state.local_state(actor_fixture.address).deposited
+        == AlgoAmount.from_algo(1).micro_algo
+    )
+
+
+@pytest.mark.parametrize("actor", ["seller", "buyer", "bidder"])
+def test_noop_deposit(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    actor: str,
+    request: pytest.FixtureRequest,
+) -> None:
+    actor_fixture: SigningAccount = request.getfixturevalue(actor)
+
+    dm_client = digital_marketplace_client.clone(default_sender=actor_fixture.address)
+    result = dm_client.send.deposit(
+        DepositArgs(
+            payment=algorand_client.create_transaction.payment(
+                PaymentParams(
+                    sender=actor_fixture.address,
+                    signer=actor_fixture.signer,
+                    receiver=dm_client.app_address,
+                    amount=AlgoAmount.from_algo(AMOUNT_TO_DEPOSIT - 1),
+                )
+            )
+        )
+    )
+    assert result.confirmation
+
+    assert (
+        dm_client.state.local_state(actor_fixture.address).deposited
+        == AlgoAmount.from_algo(AMOUNT_TO_DEPOSIT).micro_algo
+    )

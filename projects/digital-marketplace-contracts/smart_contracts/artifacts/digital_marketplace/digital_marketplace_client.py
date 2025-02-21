@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "string", "name": "name"}], "name": "hello", "returns": {"type": "string"}, "events": [], "readonly": false, "recommendations": {}}], "name": "DigitalMarketplace", "state": {"keys": {"box": {}, "global": {}, "local": {}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 0}}}, "structs": {}, "byteCode": {"approval": "CjEbQQA0gAQCvs4RNhoAjgEAA4EAQzEZFEQxGEQ2GgFXAgCIACBJFRZXBgJMUIAEFR98dUxQsIEBQzEZQP/UMRgURIEBQ4oBAYAHSGVsbG8sIIv/UIk=", "clear": "CoEBQw=="}, "compilerInfo": {"compiler": "puya", "compilerVersion": {"major": 4, "minor": 4, "patch": 0}}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuYXBwcm92YWxfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjUKICAgIC8vIGNsYXNzIERpZ2l0YWxNYXJrZXRwbGFjZShBUkM0Q29udHJhY3QpOgogICAgdHhuIE51bUFwcEFyZ3MKICAgIGJ6IG1haW5fYmFyZV9yb3V0aW5nQDYKICAgIHB1c2hieXRlcyAweDAyYmVjZTExIC8vIG1ldGhvZCAiaGVsbG8oc3RyaW5nKXN0cmluZyIKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDAKICAgIG1hdGNoIG1haW5faGVsbG9fcm91dGVAMwoKbWFpbl9hZnRlcl9pZl9lbHNlQDEwOgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NQogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICBwdXNoaW50IDAgLy8gMAogICAgcmV0dXJuCgptYWluX2hlbGxvX3JvdXRlQDM6CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo2CiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gaXMgbm90IE5vT3AKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIG5vdCBjcmVhdGluZwogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NQogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAxCiAgICBleHRyYWN0IDIgMAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NgogICAgLy8gQGFiaW1ldGhvZCgpCiAgICBjYWxsc3ViIGhlbGxvCiAgICBkdXAKICAgIGxlbgogICAgaXRvYgogICAgZXh0cmFjdCA2IDIKICAgIHN3YXAKICAgIGNvbmNhdAogICAgcHVzaGJ5dGVzIDB4MTUxZjdjNzUKICAgIHN3YXAKICAgIGNvbmNhdAogICAgbG9nCiAgICBwdXNoaW50IDEgLy8gMQogICAgcmV0dXJuCgptYWluX2JhcmVfcm91dGluZ0A2OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NQogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICBibnogbWFpbl9hZnRlcl9pZl9lbHNlQDEwCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBjcmVhdGluZwogICAgcHVzaGludCAxIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5kaWdpdGFsX21hcmtldHBsYWNlLmNvbnRyYWN0LkRpZ2l0YWxNYXJrZXRwbGFjZS5oZWxsbyhuYW1lOiBieXRlcykgLT4gYnl0ZXM6CmhlbGxvOgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6Ni03CiAgICAvLyBAYWJpbWV0aG9kKCkKICAgIC8vIGRlZiBoZWxsbyhzZWxmLCBuYW1lOiBTdHJpbmcpIC0+IFN0cmluZzoKICAgIHByb3RvIDEgMQogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6OAogICAgLy8gcmV0dXJuICJIZWxsbywgIiArIG5hbWUKICAgIHB1c2hieXRlcyAiSGVsbG8sICIKICAgIGZyYW1lX2RpZyAtMQogICAgY29uY2F0CiAgICByZXRzdWIK", "clear": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [25], "errorMessage": "OnCompletion is not NoOp"}, {"pc": [66], "errorMessage": "can only call when creating"}, {"pc": [28], "errorMessage": "can only call when not creating"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
+_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp", "OptIn"], "create": []}, "args": [{"type": "pay", "name": "payment"}], "name": "deposit", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}], "name": "DigitalMarketplace", "state": {"keys": {"box": {}, "global": {}, "local": {"deposited": {"key": "ZGVwb3NpdGVk", "keyType": "AVMString", "valueType": "AVMUint64"}}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 1}}}, "structs": {}, "byteCode": {"approval": "CiACAQAmAQlkZXBvc2l0ZWQxG0EAKYAENiXk6zYaAI4BAAIjQyIxGZCBAxpEMRhEMRYiCUk4ECISRIgADSJDMRlA/98xGBREIkOKAQCL/zgAMQASRIv/OAcyChJEMQAjKGMjTgJNi/84CDEATgIIKExmiQ==", "clear": "CoEBQw=="}, "compilerInfo": {"compiler": "puya", "compilerVersion": {"major": 4, "minor": 4, "patch": 0}}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBzbWFydF9jb250cmFjdHMuZGlnaXRhbF9tYXJrZXRwbGFjZS5jb250cmFjdC5EaWdpdGFsTWFya2V0cGxhY2UuX19hbGdvcHlfZW50cnlwb2ludF93aXRoX2luaXQoKSAtPiB1aW50NjQ6Cm1haW46CiAgICBpbnRjYmxvY2sgMSAwCiAgICBieXRlY2Jsb2NrICJkZXBvc2l0ZWQiCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX2JhcmVfcm91dGluZ0A2CiAgICBwdXNoYnl0ZXMgMHgzNjI1ZTRlYiAvLyBtZXRob2QgImRlcG9zaXQocGF5KXZvaWQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBtYWluX2RlcG9zaXRfcm91dGVANQoKbWFpbl9hZnRlcl9pZl9lbHNlQDg6CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIGludGNfMSAvLyAwCiAgICByZXR1cm4KCm1haW5fZGVwb3NpdF9yb3V0ZUA1OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6OQogICAgLy8gQGFiaW1ldGhvZChhbGxvd19hY3Rpb25zPVsiTm9PcCIsICJPcHRJbiJdKQogICAgaW50Y18wIC8vIDEKICAgIHR4biBPbkNvbXBsZXRpb24KICAgIHNobAogICAgcHVzaGludCAzIC8vIDMKICAgICYKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gaXMgbm90IG9uZSBvZiBOb09wLCBPcHRJbgogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgIGFzc2VydCAvLyBjYW4gb25seSBjYWxsIHdoZW4gbm90IGNyZWF0aW5nCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIHR4biBHcm91cEluZGV4CiAgICBpbnRjXzAgLy8gMQogICAgLQogICAgZHVwCiAgICBndHhucyBUeXBlRW51bQogICAgaW50Y18wIC8vIHBheQogICAgPT0KICAgIGFzc2VydCAvLyB0cmFuc2FjdGlvbiB0eXBlIGlzIHBheQogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6OQogICAgLy8gQGFiaW1ldGhvZChhbGxvd19hY3Rpb25zPVsiTm9PcCIsICJPcHRJbiJdKQogICAgY2FsbHN1YiBkZXBvc2l0CiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgptYWluX2JhcmVfcm91dGluZ0A2OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NQogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICBibnogbWFpbl9hZnRlcl9pZl9lbHNlQDgKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAhCiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIGNyZWF0aW5nCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmRpZ2l0YWxfbWFya2V0cGxhY2UuY29udHJhY3QuRGlnaXRhbE1hcmtldHBsYWNlLmRlcG9zaXQocGF5bWVudDogdWludDY0KSAtPiB2b2lkOgpkZXBvc2l0OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6OS0xMAogICAgLy8gQGFiaW1ldGhvZChhbGxvd19hY3Rpb25zPVsiTm9PcCIsICJPcHRJbiJdKQogICAgLy8gZGVmIGRlcG9zaXQoc2VsZiwgcGF5bWVudDogZ3R4bi5QYXltZW50VHJhbnNhY3Rpb24pIC0+IE5vbmU6CiAgICBwcm90byAxIDAKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjExCiAgICAvLyBhc3NlcnQgcGF5bWVudC5zZW5kZXIgPT0gVHhuLnNlbmRlcgogICAgZnJhbWVfZGlnIC0xCiAgICBndHhucyBTZW5kZXIKICAgIHR4biBTZW5kZXIKICAgID09CiAgICBhc3NlcnQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjEyCiAgICAvLyBhc3NlcnQgcGF5bWVudC5yZWNlaXZlciA9PSBHbG9iYWwuY3VycmVudF9hcHBsaWNhdGlvbl9hZGRyZXNzCiAgICBmcmFtZV9kaWcgLTEKICAgIGd0eG5zIFJlY2VpdmVyCiAgICBnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwogICAgPT0KICAgIGFzc2VydAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6MTUKICAgIC8vIHNlbGYuZGVwb3NpdGVkLmdldChUeG4uc2VuZGVyLCBVSW50NjQoMCkpICsgcGF5bWVudC5hbW91bnQKICAgIHR4biBTZW5kZXIKICAgIGludGNfMSAvLyAwCiAgICBieXRlY18wIC8vICJkZXBvc2l0ZWQiCiAgICBhcHBfbG9jYWxfZ2V0X2V4CiAgICBpbnRjXzEgLy8gMAogICAgY292ZXIgMgogICAgc2VsZWN0CiAgICBmcmFtZV9kaWcgLTEKICAgIGd0eG5zIEFtb3VudAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6MTQKICAgIC8vIHNlbGYuZGVwb3NpdGVkW1R4bi5zZW5kZXJdID0gKAogICAgdHhuIFNlbmRlcgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6MTUKICAgIC8vIHNlbGYuZGVwb3NpdGVkLmdldChUeG4uc2VuZGVyLCBVSW50NjQoMCkpICsgcGF5bWVudC5hbW91bnQKICAgIGNvdmVyIDIKICAgICsKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjE0CiAgICAvLyBzZWxmLmRlcG9zaXRlZFtUeG4uc2VuZGVyXSA9ICgKICAgIGJ5dGVjXzAgLy8gImRlcG9zaXRlZCIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjE0LTE2CiAgICAvLyBzZWxmLmRlcG9zaXRlZFtUeG4uc2VuZGVyXSA9ICgKICAgIC8vICAgICBzZWxmLmRlcG9zaXRlZC5nZXQoVHhuLnNlbmRlciwgVUludDY0KDApKSArIHBheW1lbnQuYW1vdW50CiAgICAvLyApCiAgICBzd2FwCiAgICBhcHBfbG9jYWxfcHV0CiAgICByZXRzdWIK", "clear": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [44], "errorMessage": "OnCompletion is not one of NoOp, OptIn"}, {"pc": [71], "errorMessage": "can only call when creating"}, {"pc": [47], "errorMessage": "can only call when not creating"}, {"pc": [57], "errorMessage": "transaction type is pay"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -65,29 +65,60 @@ def _init_dataclass(cls: type, data: dict) -> object:
     return cls(**field_values)
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
-class HelloArgs:
-    """Dataclass for hello arguments"""
-    name: str
+class DepositArgs:
+    """Dataclass for deposit arguments"""
+    payment: algokit_utils.AppMethodCallTransactionArgument
 
     @property
     def abi_method_signature(self) -> str:
-        return "hello(string)string"
+        return "deposit(pay)void"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class DepositArgs:
+    """Dataclass for deposit arguments"""
+    payment: algokit_utils.AppMethodCallTransactionArgument
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "deposit(pay)void"
+
+
+class _DigitalMarketplaceOptIn:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+
+    def deposit(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.opt_in(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "deposit(pay)void",
+            "args": method_args,
+        }))
 
 
 class DigitalMarketplaceParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def hello(
+    @property
+    def opt_in(self) -> "_DigitalMarketplaceOptIn":
+        return _DigitalMarketplaceOptIn(self.app_client)
+
+    def deposit(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.AppCallMethodCallParams:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "hello(string)string",
+            "method": "deposit(pay)void",
             "args": method_args,
         }))
 
@@ -102,20 +133,42 @@ class DigitalMarketplaceParams:
         )
 
 
+class _DigitalMarketplaceOptInTransaction:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+
+    def deposit(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.opt_in(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "deposit(pay)void",
+            "args": method_args,
+        }))
+
+
 class DigitalMarketplaceCreateTransactionParams:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def hello(
+    @property
+    def opt_in(self) -> "_DigitalMarketplaceOptInTransaction":
+        return _DigitalMarketplaceOptInTransaction(self.app_client)
+
+    def deposit(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> algokit_utils.BuiltTransactions:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "hello(string)string",
+            "method": "deposit(pay)void",
             "args": method_args,
         }))
 
@@ -130,25 +183,50 @@ class DigitalMarketplaceCreateTransactionParams:
         )
 
 
+class _DigitalMarketplaceOptInSend:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+
+    def deposit(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[None]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.opt_in(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "deposit(pay)void",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
+
+
 class DigitalMarketplaceSend:
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
 
-    def hello(
+    @property
+    def opt_in(self) -> "_DigitalMarketplaceOptInSend":
+        return _DigitalMarketplaceOptInSend(self.app_client)
+
+    def deposit(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
         params: algokit_utils.CommonAppCallParams | None = None,
         send_params: algokit_utils.SendParams | None = None
-    ) -> algokit_utils.SendAppTransactionResult[str]:
+    ) -> algokit_utils.SendAppTransactionResult[None]:
         method_args = _parse_abi_args(args)
         params = params or algokit_utils.CommonAppCallParams()
         response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
-            "method": "hello(string)string",
+            "method": "deposit(pay)void",
             "args": method_args,
         }), send_params=send_params)
         parsed_response = response
-        return typing.cast(algokit_utils.SendAppTransactionResult[str], parsed_response)
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
 
     def clear_state(
         self,
@@ -161,11 +239,52 @@ class DigitalMarketplaceSend:
         )
 
 
+class LocalStateValue(typing.TypedDict):
+    """Shape of local_state state key values"""
+    deposited: int
+
 class DigitalMarketplaceState:
     """Methods to access state for the current DigitalMarketplace app"""
 
     def __init__(self, app_client: algokit_utils.AppClient):
         self.app_client = app_client
+
+    def local_state(
+        self, address: str
+    ) -> "_LocalState":
+            """Methods to access local_state for the current app"""
+            return _LocalState(self.app_client, address)
+
+class _LocalState:
+    def __init__(self, app_client: algokit_utils.AppClient, address: str):
+        self.app_client = app_client
+        self.address = address
+        # Pre-generated mapping of value types to their struct classes
+        self._struct_classes: dict[str, typing.Type[typing.Any]] = {}
+
+    def get_all(self) -> LocalStateValue:
+        """Get all current keyed values from local_state state"""
+        result = self.app_client.state.local_state(self.address).get_all()
+        if not result:
+            return typing.cast(LocalStateValue, {})
+
+        converted = {}
+        for key, value in result.items():
+            key_info = self.app_client.app_spec.state.keys.local_state.get(key)
+            struct_class = self._struct_classes.get(key_info.value_type) if key_info else None
+            converted[key] = (
+                _init_dataclass(struct_class, value) if struct_class and isinstance(value, dict)
+                else value
+            )
+        return typing.cast(LocalStateValue, converted)
+
+    @property
+    def deposited(self) -> int:
+        """Get the current value of the deposited key in local_state state"""
+        value = self.app_client.state.local_state(self.address).get_value("deposited")
+        if isinstance(value, dict) and "AVMUint64" in self._struct_classes:
+            return _init_dataclass(self._struct_classes["AVMUint64"], value)  # type: ignore
+        return typing.cast(int, value)
 
 class DigitalMarketplaceClient:
     """Client for interacting with DigitalMarketplace smart contract"""
@@ -313,9 +432,15 @@ class DigitalMarketplaceClient:
     @typing.overload
     def decode_return_value(
         self,
-        method: typing.Literal["hello(string)string"],
+        method: typing.Literal["deposit(pay)void"],
         return_value: algokit_utils.ABIReturn | None
-    ) -> str | None: ...
+    ) -> None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["deposit(pay)void"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> None: ...
     @typing.overload
     def decode_return_value(
         self,
@@ -327,7 +452,7 @@ class DigitalMarketplaceClient:
         self,
         method: str,
         return_value: algokit_utils.ABIReturn | None
-    ) -> algokit_utils.ABIValue | algokit_utils.ABIStruct | None | str:
+    ) -> algokit_utils.ABIValue | algokit_utils.ABIStruct | None:
         """Decode ABI return value for the given method."""
         if return_value is None:
             return None
@@ -498,20 +623,40 @@ class DigitalMarketplaceFactoryCreateParams:
             algokit_utils.AppFactoryCreateParams(**dataclasses.asdict(params)),
             compilation_params=compilation_params)
 
-    def hello(
+    def deposit(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
         *,
         params: algokit_utils.CommonAppCallCreateParams | None = None,
         compilation_params: algokit_utils.AppClientCompilationParams | None = None
     ) -> algokit_utils.AppCreateMethodCallParams:
-        """Creates a new instance using the hello(string)string ABI method"""
+        """Creates a new instance using the deposit(pay)void ABI method"""
         params = params or algokit_utils.CommonAppCallCreateParams()
         return self.app_factory.params.create(
             algokit_utils.AppFactoryCreateMethodCallParams(
                 **{
                 **dataclasses.asdict(params),
-                "method": "hello(string)string",
+                "method": "deposit(pay)void",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+    def deposit(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the deposit(pay)void ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "deposit(pay)void",
                 "args": _parse_abi_args(args),
                 }
             ),
@@ -611,6 +756,29 @@ class DigitalMarketplaceFactorySendCreate:
         return DigitalMarketplaceClient(result[0]), result[1]
 
 
+class _DigitalMarketplaceOpt_inComposer:
+    def __init__(self, composer: "DigitalMarketplaceComposer"):
+        self.composer = composer
+    def deposit(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "DigitalMarketplaceComposer":
+        self.composer._composer.add_app_call_method_call(
+            self.composer.client.params.opt_in.deposit(
+                args=args,
+                params=params,
+                
+            )
+        )
+        self.composer._result_mappers.append(
+            lambda v: self.composer.client.decode_return_value(
+                "deposit(pay)void", v
+            )
+        )
+        return self.composer
+
+
 class DigitalMarketplaceComposer:
     """Composer for creating transaction groups for DigitalMarketplace contract calls"""
 
@@ -619,20 +787,24 @@ class DigitalMarketplaceComposer:
         self._composer = client.algorand.new_group()
         self._result_mappers: list[typing.Callable[[algokit_utils.ABIReturn | None], object] | None] = []
 
-    def hello(
+    @property
+    def opt_in(self) -> "_DigitalMarketplaceOpt_inComposer":
+        return _DigitalMarketplaceOpt_inComposer(self)
+
+    def deposit(
         self,
-        args: tuple[str] | HelloArgs,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
         params: algokit_utils.CommonAppCallParams | None = None
     ) -> "DigitalMarketplaceComposer":
         self._composer.add_app_call_method_call(
-            self.client.params.hello(
+            self.client.params.deposit(
                 args=args,
                 params=params,
             )
         )
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
-                "hello(string)string", v
+                "deposit(pay)void", v
             )
         )
         return self
