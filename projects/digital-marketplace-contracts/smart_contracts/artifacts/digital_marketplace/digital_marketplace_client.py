@@ -19,7 +19,7 @@ from algosdk.v2client.models import SimulateTraceConfig
 import algokit_utils
 from algokit_utils import AlgorandClient as _AlgoKitAlgorandClient
 
-_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp", "OptIn"], "create": []}, "args": [{"type": "pay", "name": "payment"}], "name": "deposit", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}], "name": "DigitalMarketplace", "state": {"keys": {"box": {}, "global": {}, "local": {"deposited": {"key": "ZGVwb3NpdGVk", "keyType": "AVMString", "valueType": "AVMUint64"}}}, "maps": {"box": {}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 1}}}, "structs": {}, "byteCode": {"approval": "CiACAQAmAQlkZXBvc2l0ZWQxG0EAKYAENiXk6zYaAI4BAAIjQyIxGZCBAxpEMRhEMRYiCUk4ECISRIgADSJDMRlA/98xGBREIkOKAQCL/zgAMQASRIv/OAcyChJEMQAjKGMjTgJNi/84CDEATgIIKExmiQ==", "clear": "CoEBQw=="}, "compilerInfo": {"compiler": "puya", "compilerVersion": {"major": 4, "minor": 4, "patch": 0}}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBzbWFydF9jb250cmFjdHMuZGlnaXRhbF9tYXJrZXRwbGFjZS5jb250cmFjdC5EaWdpdGFsTWFya2V0cGxhY2UuX19hbGdvcHlfZW50cnlwb2ludF93aXRoX2luaXQoKSAtPiB1aW50NjQ6Cm1haW46CiAgICBpbnRjYmxvY2sgMSAwCiAgICBieXRlY2Jsb2NrICJkZXBvc2l0ZWQiCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX2JhcmVfcm91dGluZ0A2CiAgICBwdXNoYnl0ZXMgMHgzNjI1ZTRlYiAvLyBtZXRob2QgImRlcG9zaXQocGF5KXZvaWQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBtYWluX2RlcG9zaXRfcm91dGVANQoKbWFpbl9hZnRlcl9pZl9lbHNlQDg6CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIGludGNfMSAvLyAwCiAgICByZXR1cm4KCm1haW5fZGVwb3NpdF9yb3V0ZUA1OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6OQogICAgLy8gQGFiaW1ldGhvZChhbGxvd19hY3Rpb25zPVsiTm9PcCIsICJPcHRJbiJdKQogICAgaW50Y18wIC8vIDEKICAgIHR4biBPbkNvbXBsZXRpb24KICAgIHNobAogICAgcHVzaGludCAzIC8vIDMKICAgICYKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gaXMgbm90IG9uZSBvZiBOb09wLCBPcHRJbgogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgIGFzc2VydCAvLyBjYW4gb25seSBjYWxsIHdoZW4gbm90IGNyZWF0aW5nCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIHR4biBHcm91cEluZGV4CiAgICBpbnRjXzAgLy8gMQogICAgLQogICAgZHVwCiAgICBndHhucyBUeXBlRW51bQogICAgaW50Y18wIC8vIHBheQogICAgPT0KICAgIGFzc2VydCAvLyB0cmFuc2FjdGlvbiB0eXBlIGlzIHBheQogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6OQogICAgLy8gQGFiaW1ldGhvZChhbGxvd19hY3Rpb25zPVsiTm9PcCIsICJPcHRJbiJdKQogICAgY2FsbHN1YiBkZXBvc2l0CiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgptYWluX2JhcmVfcm91dGluZ0A2OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NQogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICBibnogbWFpbl9hZnRlcl9pZl9lbHNlQDgKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICAhCiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIGNyZWF0aW5nCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgoKLy8gc21hcnRfY29udHJhY3RzLmRpZ2l0YWxfbWFya2V0cGxhY2UuY29udHJhY3QuRGlnaXRhbE1hcmtldHBsYWNlLmRlcG9zaXQocGF5bWVudDogdWludDY0KSAtPiB2b2lkOgpkZXBvc2l0OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6OS0xMAogICAgLy8gQGFiaW1ldGhvZChhbGxvd19hY3Rpb25zPVsiTm9PcCIsICJPcHRJbiJdKQogICAgLy8gZGVmIGRlcG9zaXQoc2VsZiwgcGF5bWVudDogZ3R4bi5QYXltZW50VHJhbnNhY3Rpb24pIC0+IE5vbmU6CiAgICBwcm90byAxIDAKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjExCiAgICAvLyBhc3NlcnQgcGF5bWVudC5zZW5kZXIgPT0gVHhuLnNlbmRlcgogICAgZnJhbWVfZGlnIC0xCiAgICBndHhucyBTZW5kZXIKICAgIHR4biBTZW5kZXIKICAgID09CiAgICBhc3NlcnQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjEyCiAgICAvLyBhc3NlcnQgcGF5bWVudC5yZWNlaXZlciA9PSBHbG9iYWwuY3VycmVudF9hcHBsaWNhdGlvbl9hZGRyZXNzCiAgICBmcmFtZV9kaWcgLTEKICAgIGd0eG5zIFJlY2VpdmVyCiAgICBnbG9iYWwgQ3VycmVudEFwcGxpY2F0aW9uQWRkcmVzcwogICAgPT0KICAgIGFzc2VydAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6MTUKICAgIC8vIHNlbGYuZGVwb3NpdGVkLmdldChUeG4uc2VuZGVyLCBVSW50NjQoMCkpICsgcGF5bWVudC5hbW91bnQKICAgIHR4biBTZW5kZXIKICAgIGludGNfMSAvLyAwCiAgICBieXRlY18wIC8vICJkZXBvc2l0ZWQiCiAgICBhcHBfbG9jYWxfZ2V0X2V4CiAgICBpbnRjXzEgLy8gMAogICAgY292ZXIgMgogICAgc2VsZWN0CiAgICBmcmFtZV9kaWcgLTEKICAgIGd0eG5zIEFtb3VudAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6MTQKICAgIC8vIHNlbGYuZGVwb3NpdGVkW1R4bi5zZW5kZXJdID0gKAogICAgdHhuIFNlbmRlcgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6MTUKICAgIC8vIHNlbGYuZGVwb3NpdGVkLmdldChUeG4uc2VuZGVyLCBVSW50NjQoMCkpICsgcGF5bWVudC5hbW91bnQKICAgIGNvdmVyIDIKICAgICsKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjE0CiAgICAvLyBzZWxmLmRlcG9zaXRlZFtUeG4uc2VuZGVyXSA9ICgKICAgIGJ5dGVjXzAgLy8gImRlcG9zaXRlZCIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjE0LTE2CiAgICAvLyBzZWxmLmRlcG9zaXRlZFtUeG4uc2VuZGVyXSA9ICgKICAgIC8vICAgICBzZWxmLmRlcG9zaXRlZC5nZXQoVHhuLnNlbmRlciwgVUludDY0KDApKSArIHBheW1lbnQuYW1vdW50CiAgICAvLyApCiAgICBzd2FwCiAgICBhcHBfbG9jYWxfcHV0CiAgICByZXRzdWIK", "clear": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [44], "errorMessage": "OnCompletion is not one of NoOp, OptIn"}, {"pc": [71], "errorMessage": "can only call when creating"}, {"pc": [47], "errorMessage": "can only call when not creating"}, {"pc": [57], "errorMessage": "transaction type is pay"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
+_APP_SPEC_JSON = r"""{"arcs": [22, 28], "bareActions": {"call": [], "create": ["NoOp"]}, "methods": [{"actions": {"call": ["NoOp", "OptIn"], "create": []}, "args": [{"type": "pay", "name": "payment"}], "name": "deposit", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "asset", "name": "asset"}], "name": "sponsor_asset", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}, {"actions": {"call": ["NoOp"], "create": []}, "args": [{"type": "axfer", "name": "asset_deposit"}, {"type": "uint64", "name": "cost"}], "name": "open_sale", "returns": {"type": "void"}, "events": [], "readonly": false, "recommendations": {}}], "name": "DigitalMarketplace", "state": {"keys": {"box": {}, "global": {}, "local": {"deposited": {"key": "ZGVwb3NpdGVk", "keyType": "AVMString", "valueType": "AVMUint64"}}}, "maps": {"box": {"sales": {"keyType": "SaleKey", "valueType": "Sale", "prefix": "c2FsZXM="}}, "global": {}, "local": {}}, "schema": {"global": {"bytes": 0, "ints": 0}, "local": {"bytes": 0, "ints": 1}}}, "structs": {"Sale": [{"name": "cost", "type": "uint64"}, {"name": "bid", "type": "(address,uint64)[]"}], "SaleKey": [{"name": "owner", "type": "address"}, {"name": "asset", "type": "uint64"}]}, "byteCode": {"approval": "CiADAQAEJgEJZGVwb3NpdGVkMRtBAGOCAwQ2JeTrBBMACpQEppIAZjYaAI4DAC0AGwACI0MxGRREMRhEMRYiCUk4ECQSRDYaAYgAkCJDMRkURDEYRDYaARfAMIgAUCJDIjEZkIEDGkQxGEQxFiIJSTgQIhJEiAANIkMxGUD/tDEYFEQiQ4oBAIv/OAAxABJEi/84BzIKEkQxACMoYyNOAk2L/zgIMQBOAggoTGaJigEAMgqL/3AARQEURDEASSMoY0QyEAkoTGaxMgojshKyFIv/shEkshAjsgGziYoCAIv+OAAxABJEi/44FDIKEkSL/4ACAApQgAIAAFAxAIv+OBEWUIAFc2FsZXNMUEm8SEy/iQ==", "clear": "CoEBQw=="}, "compilerInfo": {"compiler": "puya", "compilerVersion": {"major": 4, "minor": 4, "patch": 0}}, "events": [], "networks": {}, "source": {"approval": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBzbWFydF9jb250cmFjdHMuZGlnaXRhbF9tYXJrZXRwbGFjZS5jb250cmFjdC5EaWdpdGFsTWFya2V0cGxhY2UuX19hbGdvcHlfZW50cnlwb2ludF93aXRoX2luaXQoKSAtPiB1aW50NjQ6Cm1haW46CiAgICBpbnRjYmxvY2sgMSAwIDQKICAgIGJ5dGVjYmxvY2sgImRlcG9zaXRlZCIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjM2CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIHR4biBOdW1BcHBBcmdzCiAgICBieiBtYWluX2JhcmVfcm91dGluZ0A4CiAgICBwdXNoYnl0ZXNzIDB4MzYyNWU0ZWIgMHgxMzAwMGE5NCAweGE2OTIwMDY2IC8vIG1ldGhvZCAiZGVwb3NpdChwYXkpdm9pZCIsIG1ldGhvZCAic3BvbnNvcl9hc3NldChhc3NldCl2b2lkIiwgbWV0aG9kICJvcGVuX3NhbGUoYXhmZXIsdWludDY0KXZvaWQiCiAgICB0eG5hIEFwcGxpY2F0aW9uQXJncyAwCiAgICBtYXRjaCBtYWluX2RlcG9zaXRfcm91dGVANSBtYWluX3Nwb25zb3JfYXNzZXRfcm91dGVANiBtYWluX29wZW5fc2FsZV9yb3V0ZUA3CgptYWluX2FmdGVyX2lmX2Vsc2VAMTA6CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTozNgogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICBpbnRjXzEgLy8gMAogICAgcmV0dXJuCgptYWluX29wZW5fc2FsZV9yb3V0ZUA3OgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NjMKICAgIC8vIEBhYmltZXRob2QKICAgIHR4biBPbkNvbXBsZXRpb24KICAgICEKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gaXMgbm90IE5vT3AKICAgIHR4biBBcHBsaWNhdGlvbklECiAgICBhc3NlcnQgLy8gY2FuIG9ubHkgY2FsbCB3aGVuIG5vdCBjcmVhdGluZwogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6MzYKICAgIC8vIGNsYXNzIERpZ2l0YWxNYXJrZXRwbGFjZShBUkM0Q29udHJhY3QpOgogICAgdHhuIEdyb3VwSW5kZXgKICAgIGludGNfMCAvLyAxCiAgICAtCiAgICBkdXAKICAgIGd0eG5zIFR5cGVFbnVtCiAgICBpbnRjXzIgLy8gYXhmZXIKICAgID09CiAgICBhc3NlcnQgLy8gdHJhbnNhY3Rpb24gdHlwZSBpcyBheGZlcgogICAgdHhuYSBBcHBsaWNhdGlvbkFyZ3MgMQogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NjMKICAgIC8vIEBhYmltZXRob2QKICAgIGNhbGxzdWIgb3Blbl9zYWxlCiAgICBpbnRjXzAgLy8gMQogICAgcmV0dXJuCgptYWluX3Nwb25zb3JfYXNzZXRfcm91dGVANjoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjUxCiAgICAvLyBAYWJpbWV0aG9kCiAgICB0eG4gT25Db21wbGV0aW9uCiAgICAhCiAgICBhc3NlcnQgLy8gT25Db21wbGV0aW9uIGlzIG5vdCBOb09wCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBub3QgY3JlYXRpbmcKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjM2CiAgICAvLyBjbGFzcyBEaWdpdGFsTWFya2V0cGxhY2UoQVJDNENvbnRyYWN0KToKICAgIHR4bmEgQXBwbGljYXRpb25BcmdzIDEKICAgIGJ0b2kKICAgIHR4bmFzIEFzc2V0cwogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NTEKICAgIC8vIEBhYmltZXRob2QKICAgIGNhbGxzdWIgc3BvbnNvcl9hc3NldAogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKbWFpbl9kZXBvc2l0X3JvdXRlQDU6CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo0MgogICAgLy8gQGFiaW1ldGhvZChhbGxvd19hY3Rpb25zPVsiTm9PcCIsICJPcHRJbiJdKQogICAgaW50Y18wIC8vIDEKICAgIHR4biBPbkNvbXBsZXRpb24KICAgIHNobAogICAgcHVzaGludCAzIC8vIDMKICAgICYKICAgIGFzc2VydCAvLyBPbkNvbXBsZXRpb24gaXMgbm90IG9uZSBvZiBOb09wLCBPcHRJbgogICAgdHhuIEFwcGxpY2F0aW9uSUQKICAgIGFzc2VydCAvLyBjYW4gb25seSBjYWxsIHdoZW4gbm90IGNyZWF0aW5nCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTozNgogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICB0eG4gR3JvdXBJbmRleAogICAgaW50Y18wIC8vIDEKICAgIC0KICAgIGR1cAogICAgZ3R4bnMgVHlwZUVudW0KICAgIGludGNfMCAvLyBwYXkKICAgID09CiAgICBhc3NlcnQgLy8gdHJhbnNhY3Rpb24gdHlwZSBpcyBwYXkKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjQyCiAgICAvLyBAYWJpbWV0aG9kKGFsbG93X2FjdGlvbnM9WyJOb09wIiwgIk9wdEluIl0pCiAgICBjYWxsc3ViIGRlcG9zaXQKICAgIGludGNfMCAvLyAxCiAgICByZXR1cm4KCm1haW5fYmFyZV9yb3V0aW5nQDg6CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTozNgogICAgLy8gY2xhc3MgRGlnaXRhbE1hcmtldHBsYWNlKEFSQzRDb250cmFjdCk6CiAgICB0eG4gT25Db21wbGV0aW9uCiAgICBibnogbWFpbl9hZnRlcl9pZl9lbHNlQDEwCiAgICB0eG4gQXBwbGljYXRpb25JRAogICAgIQogICAgYXNzZXJ0IC8vIGNhbiBvbmx5IGNhbGwgd2hlbiBjcmVhdGluZwogICAgaW50Y18wIC8vIDEKICAgIHJldHVybgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5kaWdpdGFsX21hcmtldHBsYWNlLmNvbnRyYWN0LkRpZ2l0YWxNYXJrZXRwbGFjZS5kZXBvc2l0KHBheW1lbnQ6IHVpbnQ2NCkgLT4gdm9pZDoKZGVwb3NpdDoKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjQyLTQzCiAgICAvLyBAYWJpbWV0aG9kKGFsbG93X2FjdGlvbnM9WyJOb09wIiwgIk9wdEluIl0pCiAgICAvLyBkZWYgZGVwb3NpdChzZWxmLCBwYXltZW50OiBndHhuLlBheW1lbnRUcmFuc2FjdGlvbikgLT4gTm9uZToKICAgIHByb3RvIDEgMAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NDQKICAgIC8vIGFzc2VydCBwYXltZW50LnNlbmRlciA9PSBUeG4uc2VuZGVyCiAgICBmcmFtZV9kaWcgLTEKICAgIGd0eG5zIFNlbmRlcgogICAgdHhuIFNlbmRlcgogICAgPT0KICAgIGFzc2VydAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NDUKICAgIC8vIGFzc2VydCBwYXltZW50LnJlY2VpdmVyID09IEdsb2JhbC5jdXJyZW50X2FwcGxpY2F0aW9uX2FkZHJlc3MKICAgIGZyYW1lX2RpZyAtMQogICAgZ3R4bnMgUmVjZWl2ZXIKICAgIGdsb2JhbCBDdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCiAgICA9PQogICAgYXNzZXJ0CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo0OAogICAgLy8gc2VsZi5kZXBvc2l0ZWQuZ2V0KFR4bi5zZW5kZXIsIGRlZmF1bHQ9VUludDY0KDApKSArIHBheW1lbnQuYW1vdW50CiAgICB0eG4gU2VuZGVyCiAgICBpbnRjXzEgLy8gMAogICAgYnl0ZWNfMCAvLyAiZGVwb3NpdGVkIgogICAgYXBwX2xvY2FsX2dldF9leAogICAgaW50Y18xIC8vIDAKICAgIGNvdmVyIDIKICAgIHNlbGVjdAogICAgZnJhbWVfZGlnIC0xCiAgICBndHhucyBBbW91bnQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjQ3CiAgICAvLyBzZWxmLmRlcG9zaXRlZFtUeG4uc2VuZGVyXSA9ICgKICAgIHR4biBTZW5kZXIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjQ4CiAgICAvLyBzZWxmLmRlcG9zaXRlZC5nZXQoVHhuLnNlbmRlciwgZGVmYXVsdD1VSW50NjQoMCkpICsgcGF5bWVudC5hbW91bnQKICAgIGNvdmVyIDIKICAgICsKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjQ3CiAgICAvLyBzZWxmLmRlcG9zaXRlZFtUeG4uc2VuZGVyXSA9ICgKICAgIGJ5dGVjXzAgLy8gImRlcG9zaXRlZCIKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjQ3LTQ5CiAgICAvLyBzZWxmLmRlcG9zaXRlZFtUeG4uc2VuZGVyXSA9ICgKICAgIC8vICAgICBzZWxmLmRlcG9zaXRlZC5nZXQoVHhuLnNlbmRlciwgZGVmYXVsdD1VSW50NjQoMCkpICsgcGF5bWVudC5hbW91bnQKICAgIC8vICkKICAgIHN3YXAKICAgIGFwcF9sb2NhbF9wdXQKICAgIHJldHN1YgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5kaWdpdGFsX21hcmtldHBsYWNlLmNvbnRyYWN0LkRpZ2l0YWxNYXJrZXRwbGFjZS5zcG9uc29yX2Fzc2V0KGFzc2V0OiB1aW50NjQpIC0+IHZvaWQ6CnNwb25zb3JfYXNzZXQ6CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1MS01MgogICAgLy8gQGFiaW1ldGhvZAogICAgLy8gZGVmIHNwb25zb3JfYXNzZXQoc2VsZiwgYXNzZXQ6IEFzc2V0KSAtPiBOb25lOgogICAgcHJvdG8gMSAwCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1MwogICAgLy8gYXNzZXJ0IG5vdCBHbG9iYWwuY3VycmVudF9hcHBsaWNhdGlvbl9hZGRyZXNzLmlzX29wdGVkX2luKGFzc2V0KQogICAgZ2xvYmFsIEN1cnJlbnRBcHBsaWNhdGlvbkFkZHJlc3MKICAgIGZyYW1lX2RpZyAtMQogICAgYXNzZXRfaG9sZGluZ19nZXQgQXNzZXRCYWxhbmNlCiAgICBidXJ5IDEKICAgICEKICAgIGFzc2VydAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NTUKICAgIC8vIHNlbGYuZGVwb3NpdGVkW1R4bi5zZW5kZXJdIC09IEdsb2JhbC5hc3NldF9vcHRfaW5fbWluX2JhbGFuY2UKICAgIHR4biBTZW5kZXIKICAgIGR1cAogICAgaW50Y18xIC8vIDAKICAgIGJ5dGVjXzAgLy8gImRlcG9zaXRlZCIKICAgIGFwcF9sb2NhbF9nZXRfZXgKICAgIGFzc2VydCAvLyBjaGVjayBzZWxmLmRlcG9zaXRlZCBleGlzdHMgZm9yIGFjY291bnQKICAgIGdsb2JhbCBBc3NldE9wdEluTWluQmFsYW5jZQogICAgLQogICAgYnl0ZWNfMCAvLyAiZGVwb3NpdGVkIgogICAgc3dhcAogICAgYXBwX2xvY2FsX3B1dAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NTctNjEKICAgIC8vIGl0eG4uQXNzZXRUcmFuc2ZlcigKICAgIC8vICAgICB4ZmVyX2Fzc2V0PWFzc2V0LAogICAgLy8gICAgIGFzc2V0X3JlY2VpdmVyPUdsb2JhbC5jdXJyZW50X2FwcGxpY2F0aW9uX2FkZHJlc3MsCiAgICAvLyAgICAgYXNzZXRfYW1vdW50PTAsCiAgICAvLyApLnN1Ym1pdCgpCiAgICBpdHhuX2JlZ2luCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1OQogICAgLy8gYXNzZXRfcmVjZWl2ZXI9R2xvYmFsLmN1cnJlbnRfYXBwbGljYXRpb25fYWRkcmVzcywKICAgIGdsb2JhbCBDdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo2MAogICAgLy8gYXNzZXRfYW1vdW50PTAsCiAgICBpbnRjXzEgLy8gMAogICAgaXR4bl9maWVsZCBBc3NldEFtb3VudAogICAgaXR4bl9maWVsZCBBc3NldFJlY2VpdmVyCiAgICBmcmFtZV9kaWcgLTEKICAgIGl0eG5fZmllbGQgWGZlckFzc2V0CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo1NwogICAgLy8gaXR4bi5Bc3NldFRyYW5zZmVyKAogICAgaW50Y18yIC8vIGF4ZmVyCiAgICBpdHhuX2ZpZWxkIFR5cGVFbnVtCiAgICBpbnRjXzEgLy8gMAogICAgaXR4bl9maWVsZCBGZWUKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjU3LTYxCiAgICAvLyBpdHhuLkFzc2V0VHJhbnNmZXIoCiAgICAvLyAgICAgeGZlcl9hc3NldD1hc3NldCwKICAgIC8vICAgICBhc3NldF9yZWNlaXZlcj1HbG9iYWwuY3VycmVudF9hcHBsaWNhdGlvbl9hZGRyZXNzLAogICAgLy8gICAgIGFzc2V0X2Ftb3VudD0wLAogICAgLy8gKS5zdWJtaXQoKQogICAgaXR4bl9zdWJtaXQKICAgIHJldHN1YgoKCi8vIHNtYXJ0X2NvbnRyYWN0cy5kaWdpdGFsX21hcmtldHBsYWNlLmNvbnRyYWN0LkRpZ2l0YWxNYXJrZXRwbGFjZS5vcGVuX3NhbGUoYXNzZXRfZGVwb3NpdDogdWludDY0LCBjb3N0OiBieXRlcykgLT4gdm9pZDoKb3Blbl9zYWxlOgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NjMtNjYKICAgIC8vIEBhYmltZXRob2QKICAgIC8vIGRlZiBvcGVuX3NhbGUoCiAgICAvLyAgICAgc2VsZiwgYXNzZXRfZGVwb3NpdDogZ3R4bi5Bc3NldFRyYW5zZmVyVHJhbnNhY3Rpb24sIGNvc3Q6IGFyYzQuVUludDY0CiAgICAvLyApIC0+IE5vbmU6CiAgICBwcm90byAyIDAKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjY3CiAgICAvLyBhc3NlcnQgYXNzZXRfZGVwb3NpdC5zZW5kZXIgPT0gVHhuLnNlbmRlcgogICAgZnJhbWVfZGlnIC0yCiAgICBndHhucyBTZW5kZXIKICAgIHR4biBTZW5kZXIKICAgID09CiAgICBhc3NlcnQKICAgIC8vIHNtYXJ0X2NvbnRyYWN0cy9kaWdpdGFsX21hcmtldHBsYWNlL2NvbnRyYWN0LnB5OjY4CiAgICAvLyBhc3NlcnQgYXNzZXRfZGVwb3NpdC5hc3NldF9yZWNlaXZlciA9PSBHbG9iYWwuY3VycmVudF9hcHBsaWNhdGlvbl9hZGRyZXNzCiAgICBmcmFtZV9kaWcgLTIKICAgIGd0eG5zIEFzc2V0UmVjZWl2ZXIKICAgIGdsb2JhbCBDdXJyZW50QXBwbGljYXRpb25BZGRyZXNzCiAgICA9PQogICAgYXNzZXJ0CiAgICAvLyBzbWFydF9jb250cmFjdHMvZGlnaXRhbF9tYXJrZXRwbGFjZS9jb250cmFjdC5weTo3MgogICAgLy8gXSA9IFNhbGUoY29zdCwgYXJjNC5EeW5hbWljQXJyYXlbQmlkXSgpKQogICAgZnJhbWVfZGlnIC0xCiAgICBwdXNoYnl0ZXMgMHgwMDBhCiAgICBjb25jYXQKICAgIHB1c2hieXRlcyAweDAwMDAKICAgIGNvbmNhdAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NzEKICAgIC8vIFNhbGVLZXkoYXJjNC5BZGRyZXNzKFR4bi5zZW5kZXIpLCBhcmM0LlVJbnQ2NChhc3NldF9kZXBvc2l0LnhmZXJfYXNzZXQuaWQpKQogICAgdHhuIFNlbmRlcgogICAgZnJhbWVfZGlnIC0yCiAgICBndHhucyBYZmVyQXNzZXQKICAgIGl0b2IKICAgIGNvbmNhdAogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NzAKICAgIC8vIHNlbGYuc2FsZXNbCiAgICBwdXNoYnl0ZXMgInNhbGVzIgogICAgLy8gc21hcnRfY29udHJhY3RzL2RpZ2l0YWxfbWFya2V0cGxhY2UvY29udHJhY3QucHk6NzAtNzIKICAgIC8vIHNlbGYuc2FsZXNbCiAgICAvLyAgICAgU2FsZUtleShhcmM0LkFkZHJlc3MoVHhuLnNlbmRlciksIGFyYzQuVUludDY0KGFzc2V0X2RlcG9zaXQueGZlcl9hc3NldC5pZCkpCiAgICAvLyBdID0gU2FsZShjb3N0LCBhcmM0LkR5bmFtaWNBcnJheVtCaWRdKCkpCiAgICBzd2FwCiAgICBjb25jYXQKICAgIGR1cAogICAgYm94X2RlbAogICAgcG9wCiAgICBzd2FwCiAgICBib3hfcHV0CiAgICByZXRzdWIK", "clear": "I3ByYWdtYSB2ZXJzaW9uIDEwCiNwcmFnbWEgdHlwZXRyYWNrIGZhbHNlCgovLyBhbGdvcHkuYXJjNC5BUkM0Q29udHJhY3QuY2xlYXJfc3RhdGVfcHJvZ3JhbSgpIC0+IHVpbnQ2NDoKbWFpbjoKICAgIHB1c2hpbnQgMSAvLyAxCiAgICByZXR1cm4K"}, "sourceInfo": {"approval": {"pcOffsetMethod": "none", "sourceInfo": [{"pc": [56, 81], "errorMessage": "OnCompletion is not NoOp"}, {"pc": [103], "errorMessage": "OnCompletion is not one of NoOp, OptIn"}, {"pc": [130], "errorMessage": "can only call when creating"}, {"pc": [59, 84, 106], "errorMessage": "can only call when not creating"}, {"pc": [193], "errorMessage": "check self.deposited exists for account"}, {"pc": [69], "errorMessage": "transaction type is axfer"}, {"pc": [116], "errorMessage": "transaction type is pay"}]}, "clear": {"pcOffsetMethod": "none", "sourceInfo": []}}, "templateVariables": {}}"""
 APP_SPEC = algokit_utils.Arc56Contract.from_json(_APP_SPEC_JSON)
 
 def _parse_abi_args(args: object | None = None) -> list[object] | None:
@@ -64,6 +64,19 @@ def _init_dataclass(cls: type, data: dict) -> object:
             field_values[field.name] = field_value
     return cls(**field_values)
 
+@dataclasses.dataclass(frozen=True)
+class Sale:
+    """Struct for Sale"""
+    cost: int
+    bid: list[tuple[str, int]]
+
+@dataclasses.dataclass(frozen=True)
+class SaleKey:
+    """Struct for SaleKey"""
+    owner: str
+    asset: int
+
+
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class DepositArgs:
     """Dataclass for deposit arguments"""
@@ -72,6 +85,25 @@ class DepositArgs:
     @property
     def abi_method_signature(self) -> str:
         return "deposit(pay)void"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class SponsorAssetArgs:
+    """Dataclass for sponsor_asset arguments"""
+    asset: int
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "sponsor_asset(asset)void"
+
+@dataclasses.dataclass(frozen=True, kw_only=True)
+class OpenSaleArgs:
+    """Dataclass for open_sale arguments"""
+    asset_deposit: algokit_utils.AppMethodCallTransactionArgument
+    cost: int
+
+    @property
+    def abi_method_signature(self) -> str:
+        return "open_sale(axfer,uint64)void"
 
 @dataclasses.dataclass(frozen=True, kw_only=True)
 class DepositArgs:
@@ -122,6 +154,32 @@ class DigitalMarketplaceParams:
             "args": method_args,
         }))
 
+    def sponsor_asset(
+        self,
+        args: tuple[int] | SponsorAssetArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "sponsor_asset(asset)void",
+            "args": method_args,
+        }))
+
+    def open_sale(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument, int] | OpenSaleArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.AppCallMethodCallParams:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.params.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "open_sale(axfer,uint64)void",
+            "args": method_args,
+        }))
+
     def clear_state(
         self,
         params: algokit_utils.AppClientBareCallParams | None = None,
@@ -169,6 +227,32 @@ class DigitalMarketplaceCreateTransactionParams:
         return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
             **dataclasses.asdict(params),
             "method": "deposit(pay)void",
+            "args": method_args,
+        }))
+
+    def sponsor_asset(
+        self,
+        args: tuple[int] | SponsorAssetArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "sponsor_asset(asset)void",
+            "args": method_args,
+        }))
+
+    def open_sale(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument, int] | OpenSaleArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> algokit_utils.BuiltTransactions:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        return self.app_client.create_transaction.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "open_sale(axfer,uint64)void",
             "args": method_args,
         }))
 
@@ -228,6 +312,38 @@ class DigitalMarketplaceSend:
         parsed_response = response
         return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
 
+    def sponsor_asset(
+        self,
+        args: tuple[int] | SponsorAssetArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[None]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "sponsor_asset(asset)void",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
+
+    def open_sale(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument, int] | OpenSaleArgs,
+        params: algokit_utils.CommonAppCallParams | None = None,
+        send_params: algokit_utils.SendParams | None = None
+    ) -> algokit_utils.SendAppTransactionResult[None]:
+        method_args = _parse_abi_args(args)
+        params = params or algokit_utils.CommonAppCallParams()
+        response = self.app_client.send.call(algokit_utils.AppClientMethodCallParams(**{
+            **dataclasses.asdict(params),
+            "method": "open_sale(axfer,uint64)void",
+            "args": method_args,
+        }), send_params=send_params)
+        parsed_response = response
+        return typing.cast(algokit_utils.SendAppTransactionResult[None], parsed_response)
+
     def clear_state(
         self,
         params: algokit_utils.AppClientBareCallParams | None = None,
@@ -254,6 +370,13 @@ class DigitalMarketplaceState:
     ) -> "_LocalState":
             """Methods to access local_state for the current app"""
             return _LocalState(self.app_client, address)
+
+    @property
+    def box(
+        self
+    ) -> "_BoxState":
+            """Methods to access box for the current app"""
+            return _BoxState(self.app_client)
 
 class _LocalState:
     def __init__(self, app_client: algokit_utils.AppClient, address: str):
@@ -285,6 +408,75 @@ class _LocalState:
         if isinstance(value, dict) and "AVMUint64" in self._struct_classes:
             return _init_dataclass(self._struct_classes["AVMUint64"], value)  # type: ignore
         return typing.cast(int, value)
+
+class _BoxState:
+    def __init__(self, app_client: algokit_utils.AppClient):
+        self.app_client = app_client
+        
+        # Pre-generated mapping of value types to their struct classes
+        self._struct_classes: dict[str, typing.Type[typing.Any]] = {
+            "Sale": Sale
+        }
+
+    def get_all(self) -> dict[str, typing.Any]:
+        """Get all current keyed values from box state"""
+        result = self.app_client.state.box.get_all()
+        if not result:
+            return {}
+
+        converted = {}
+        for key, value in result.items():
+            key_info = self.app_client.app_spec.state.keys.box.get(key)
+            struct_class = self._struct_classes.get(key_info.value_type) if key_info else None
+            converted[key] = (
+                _init_dataclass(struct_class, value) if struct_class and isinstance(value, dict)
+                else value
+            )
+        return converted
+
+    @property
+    def sales(self) -> "_MapState[SaleKey, Sale]":
+        """Get values from the sales map in box state"""
+        return _MapState(
+            self.app_client.state.box,
+            "sales",
+            self._struct_classes.get("Sale")
+        )
+
+_KeyType = typing.TypeVar("_KeyType")
+_ValueType = typing.TypeVar("_ValueType")
+
+class _AppClientStateMethodsProtocol(typing.Protocol):
+    def get_map(self, map_name: str) -> dict[typing.Any, typing.Any]:
+        ...
+    def get_map_value(self, map_name: str, key: typing.Any) -> typing.Any | None:
+        ...
+
+class _MapState(typing.Generic[_KeyType, _ValueType]):
+    """Generic class for accessing state maps with strongly typed keys and values"""
+
+    def __init__(self, state_accessor: _AppClientStateMethodsProtocol, map_name: str,
+                struct_class: typing.Type[_ValueType] | None = None):
+        self._state_accessor = state_accessor
+        self._map_name = map_name
+        self._struct_class = struct_class
+
+    def get_map(self) -> dict[_KeyType, _ValueType]:
+        """Get all current values in the map"""
+        result = self._state_accessor.get_map(self._map_name)
+        if self._struct_class and result:
+            return {k: _init_dataclass(self._struct_class, v) if isinstance(v, dict) else v
+                    for k, v in result.items()}  # type: ignore
+        return typing.cast(dict[_KeyType, _ValueType], result or {})
+
+    def get_value(self, key: _KeyType) -> _ValueType | None:
+        """Get a value from the map by key"""
+        key_value = dataclasses.asdict(key) if dataclasses.is_dataclass(key) else key  # type: ignore
+        value = self._state_accessor.get_map_value(self._map_name, key_value)
+        if value is not None and self._struct_class and isinstance(value, dict):
+            return _init_dataclass(self._struct_class, value)  # type: ignore
+        return typing.cast(_ValueType | None, value)
+
 
 class DigitalMarketplaceClient:
     """Client for interacting with DigitalMarketplace smart contract"""
@@ -433,6 +625,18 @@ class DigitalMarketplaceClient:
     def decode_return_value(
         self,
         method: typing.Literal["deposit(pay)void"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["sponsor_asset(asset)void"],
+        return_value: algokit_utils.ABIReturn | None
+    ) -> None: ...
+    @typing.overload
+    def decode_return_value(
+        self,
+        method: typing.Literal["open_sale(axfer,uint64)void"],
         return_value: algokit_utils.ABIReturn | None
     ) -> None: ...
     @typing.overload
@@ -643,6 +847,46 @@ class DigitalMarketplaceFactoryCreateParams:
             compilation_params=compilation_params
         )
 
+    def sponsor_asset(
+        self,
+        args: tuple[int] | SponsorAssetArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the sponsor_asset(asset)void ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "sponsor_asset(asset)void",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
+    def open_sale(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument, int] | OpenSaleArgs,
+        *,
+        params: algokit_utils.CommonAppCallCreateParams | None = None,
+        compilation_params: algokit_utils.AppClientCompilationParams | None = None
+    ) -> algokit_utils.AppCreateMethodCallParams:
+        """Creates a new instance using the open_sale(axfer,uint64)void ABI method"""
+        params = params or algokit_utils.CommonAppCallCreateParams()
+        return self.app_factory.params.create(
+            algokit_utils.AppFactoryCreateMethodCallParams(
+                **{
+                **dataclasses.asdict(params),
+                "method": "open_sale(axfer,uint64)void",
+                "args": _parse_abi_args(args),
+                }
+            ),
+            compilation_params=compilation_params
+        )
+
     def deposit(
         self,
         args: tuple[algokit_utils.AppMethodCallTransactionArgument] | DepositArgs,
@@ -805,6 +1049,42 @@ class DigitalMarketplaceComposer:
         self._result_mappers.append(
             lambda v: self.client.decode_return_value(
                 "deposit(pay)void", v
+            )
+        )
+        return self
+
+    def sponsor_asset(
+        self,
+        args: tuple[int] | SponsorAssetArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "DigitalMarketplaceComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.sponsor_asset(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "sponsor_asset(asset)void", v
+            )
+        )
+        return self
+
+    def open_sale(
+        self,
+        args: tuple[algokit_utils.AppMethodCallTransactionArgument, int] | OpenSaleArgs,
+        params: algokit_utils.CommonAppCallParams | None = None
+    ) -> "DigitalMarketplaceComposer":
+        self._composer.add_app_call_method_call(
+            self.client.params.open_sale(
+                args=args,
+                params=params,
+            )
+        )
+        self._result_mappers.append(
+            lambda v: self.client.decode_return_value(
+                "open_sale(axfer,uint64)void", v
             )
         )
         return self

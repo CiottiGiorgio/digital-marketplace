@@ -3,7 +3,11 @@ import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
+    AssetCreateParams,
+    AssetTransferParams,
+    CommonAppCallParams,
     PaymentParams,
+    SendParams,
     SigningAccount,
 )
 
@@ -11,11 +15,18 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
     DepositArgs,
     DigitalMarketplaceClient,
     DigitalMarketplaceFactory,
+    OpenSaleArgs,
+    Sale,
+    SaleKey,
+    SponsorAssetArgs,
 )
 
 AMOUNT_TO_FUND = 10
 AMOUNT_TO_DEPOSIT = 8
 assert AMOUNT_TO_DEPOSIT > 1
+
+AMOUNT_TO_SELL = 2_000
+COST_TO_BUY = 5
 
 
 @pytest.fixture(scope="session")
@@ -56,6 +67,14 @@ def bidder(algorand_client: AlgorandClient) -> SigningAccount:
         min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
     )
     return account
+
+
+@pytest.fixture(scope="session")
+def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> int:
+    result = algorand_client.send.asset_create(
+        AssetCreateParams(sender=seller.address, total=100_000, decimals=3)
+    )
+    return result.asset_id
 
 
 @pytest.fixture(scope="session")
@@ -118,7 +137,6 @@ def test_noop_deposit(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
                     sender=actor_fixture.address,
-                    signer=actor_fixture.signer,
                     receiver=dm_client.app_address,
                     amount=AlgoAmount.from_algo(AMOUNT_TO_DEPOSIT - 1),
                 )
@@ -131,3 +149,48 @@ def test_noop_deposit(
         dm_client.state.local_state(actor_fixture.address).deposited
         == AlgoAmount.from_algo(AMOUNT_TO_DEPOSIT).micro_algo
     )
+
+
+def test_sponsor_asset(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    dm_client = digital_marketplace_client.clone(default_sender=seller.address)
+
+    # FIXME: Assert available balance here.
+
+    dm_client.send.sponsor_asset(
+        SponsorAssetArgs(asset=asset_to_sell),
+        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+    )
+
+    # FIXME: Assert available balance here.
+
+
+def test_open_sale(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    dm_client = digital_marketplace_client.clone(default_sender=seller.address)
+
+    dm_client.send.open_sale(
+        OpenSaleArgs(
+            asset_deposit=algorand_client.create_transaction.asset_transfer(
+                AssetTransferParams(
+                    sender=seller.address,
+                    asset_id=asset_to_sell,
+                    receiver=dm_client.app_address,
+                    amount=AMOUNT_TO_SELL,
+                )
+            ),
+            cost=AlgoAmount.from_algo(COST_TO_BUY).micro_algo,
+        ),
+        send_params=SendParams(populate_app_call_resources=True),
+    )
+
+    assert dm_client.state.box.sales.get_value(
+        SaleKey(owner=seller.address, asset=asset_to_sell)
+    ) == Sale(AlgoAmount.from_algo(COST_TO_BUY).micro_algo, [])
