@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.vscode/**'
+      - '.idea/**'
+
+permissions:
+  contents: read
+  packages: read
+
+jobs:
+  digital-marketplace-contracts-validate:
+    name: Run digital-marketplace-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/digital-marketplace-contracts-ci.yaml
+
+  digital-marketplace-contracts-release:
+    name: Run digital-marketplace-contracts release
+    secrets: inherit
+    uses: ./.github/workflows/digital-marketplace-contracts-cd.yaml
+    needs: digital-marketplace-contracts-validate
+
+  digital-marketplace-frontend-validate:
+    name: Run digital-marketplace-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/digital-marketplace-frontend-ci.yaml
+
+  digital-marketplace-frontend-release:
+    name: Run digital-marketplace-frontend release
+    secrets: inherit
+    uses: ./.github/workflows/digital-marketplace-frontend-cd.yaml
+    needs: digital-marketplace-frontend-validate

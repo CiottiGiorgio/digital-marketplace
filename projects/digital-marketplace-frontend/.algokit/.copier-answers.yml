@@ -1,0 +1,9 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 1.0.13
+_src_path: gh:algorandfoundation/algokit-react-frontend-template
+author_email: my@mail.com
+author_name: John Doe
+cloud_provider: none
+preset_name: production
+project_name: digital-marketplace-frontend
+
