@@ -24,6 +24,7 @@ class Bid(arc4.Struct):
 
 
 class Sale(arc4.Struct):
+    amount: arc4.UInt64
     cost: arc4.UInt64
     # Ideally we'd like to write:
     #  bid: Optional[Bid]
@@ -67,8 +68,28 @@ class DigitalMarketplace(ARC4Contract):
         assert asset_deposit.sender == Txn.sender
         assert asset_deposit.asset_receiver == Global.current_application_address
 
+        # FIXME: Subtract from self.deposited the amount to be locked for this box.
+
         self.sales[
             SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id))
-        ] = Sale(cost, arc4.DynamicArray[Bid]())
+        ] = Sale(
+            arc4.UInt64(asset_deposit.asset_amount), cost, arc4.DynamicArray[Bid]()
+        )
+
+    @abimethod
+    def close_sale(self, sale_key: SaleKey) -> None:
+        assert sale_key.owner.native == Txn.sender
+
+        # FIXME: Add to self.deposited the amount locked for this box.
+
+        sale = self.sales[sale_key].copy()
+
+        itxn.AssetTransfer(
+            xfer_asset=sale_key.asset.native,
+            asset_receiver=Txn.sender,
+            asset_amount=sale.amount.native,
+        ).submit()
+
+        del self.sales[sale_key]
 
     # TODO: Write a readonly method that returns the encumbered and unencumbered bids.

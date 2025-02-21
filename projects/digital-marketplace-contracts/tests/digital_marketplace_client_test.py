@@ -12,6 +12,7 @@ from algokit_utils import (
 )
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
+    CloseSaleArgs,
     DepositArgs,
     DigitalMarketplaceClient,
     DigitalMarketplaceFactory,
@@ -25,7 +26,9 @@ AMOUNT_TO_FUND = 10
 AMOUNT_TO_DEPOSIT = 8
 assert AMOUNT_TO_DEPOSIT > 1
 
-AMOUNT_TO_SELL = 2_000
+ASA_AMOUNT_TO_CREATE = 100_000
+ASA_DECIMALS = 3
+ASA_AMOUNT_TO_SELL = 2_000
 COST_TO_BUY = 5
 
 
@@ -72,7 +75,9 @@ def bidder(algorand_client: AlgorandClient) -> SigningAccount:
 @pytest.fixture(scope="session")
 def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> int:
     result = algorand_client.send.asset_create(
-        AssetCreateParams(sender=seller.address, total=100_000, decimals=3)
+        AssetCreateParams(
+            sender=seller.address, total=ASA_AMOUNT_TO_CREATE, decimals=ASA_DECIMALS
+        )
     )
     return result.asset_id
 
@@ -186,7 +191,7 @@ def test_open_sale(
                     sender=seller.address,
                     asset_id=asset_to_sell,
                     receiver=dm_client.app_address,
-                    amount=AMOUNT_TO_SELL,
+                    amount=ASA_AMOUNT_TO_SELL,
                 )
             ),
             cost=AlgoAmount.from_algo(COST_TO_BUY).micro_algo,
@@ -196,4 +201,24 @@ def test_open_sale(
 
     assert dm_client.state.box.sales.get_value(
         SaleKey(owner=seller.address, asset=asset_to_sell)
-    ) == Sale(AlgoAmount.from_algo(COST_TO_BUY).micro_algo, [])
+    ) == Sale(ASA_AMOUNT_TO_SELL, AlgoAmount.from_algo(COST_TO_BUY).micro_algo, [])
+
+
+def test_close_sale(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    dm_client = digital_marketplace_client.clone(default_sender=seller.address)
+
+    dm_client.send.close_sale(
+        CloseSaleArgs(sale_key=SaleKey(owner=seller.address, asset=asset_to_sell)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        send_params=SendParams(populate_app_call_resources=True),
+    )
+
+    asa_balances = algorand_client.account.get_information(seller.address).assets
+    assert len(asa_balances) == 1
+    assert asa_balances[0]["asset-id"] == asset_to_sell
+    assert asa_balances[0]["amount"] == ASA_AMOUNT_TO_CREATE
