@@ -9,6 +9,7 @@ from algopy import (
     arc4,
     gtxn,
     itxn,
+    subroutine,
 )
 from algopy.arc4 import abimethod
 
@@ -40,6 +41,28 @@ class DigitalMarketplace(ARC4Contract):
 
         self.sales = BoxMap(SaleKey, Sale)
 
+    @subroutine
+    def sales_box_mbr(self) -> UInt64:
+        # fmt: off
+        return 2_500 + 400 * (
+            # Domain separator
+            self.sales.key_prefix.length +
+            # SaleKey
+            32 + 8 +
+            # Sale
+            # Since the Sale type contains one dynamic type,
+            #  it's got a 2 byte prefix pointing to that dynamic type
+            2 +
+            # amount & cost fields
+            8 + 8 +
+            # bid field is a dynamic array and so it has got a length prefix plus
+            #  one Bid type at most
+            2 +
+            # One optional Bid type
+            (32 + 8)
+        )
+        # fmt: on
+
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def deposit(self, payment: gtxn.PaymentTransaction) -> None:
         assert payment.sender == Txn.sender
@@ -68,7 +91,7 @@ class DigitalMarketplace(ARC4Contract):
         assert asset_deposit.sender == Txn.sender
         assert asset_deposit.asset_receiver == Global.current_application_address
 
-        # FIXME: Subtract from self.deposited the amount to be locked for this box.
+        self.deposited[Txn.sender] -= self.sales_box_mbr()
 
         self.sales[
             SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id))
@@ -76,11 +99,13 @@ class DigitalMarketplace(ARC4Contract):
             arc4.UInt64(asset_deposit.asset_amount), cost, arc4.DynamicArray[Bid]()
         )
 
-    @abimethod
+    @abimethod(allow_actions=["NoOp", "OptIn"])
     def close_sale(self, sale_key: SaleKey) -> None:
         assert sale_key.owner.native == Txn.sender
 
-        # FIXME: Add to self.deposited the amount locked for this box.
+        self.deposited[Txn.sender] = (
+            self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
+        )
 
         sale = self.sales[sale_key].copy()
 
