@@ -1,9 +1,8 @@
-import algokit_utils
+import consts as cst
 import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
-    AssetCreateParams,
     AssetTransferParams,
     CommonAppCallParams,
     PaymentParams,
@@ -15,86 +14,11 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
     CloseSaleArgs,
     DepositArgs,
     DigitalMarketplaceClient,
-    DigitalMarketplaceFactory,
     OpenSaleArgs,
     Sale,
     SaleKey,
     SponsorAssetArgs,
 )
-
-AMOUNT_TO_FUND = 10
-AMOUNT_TO_DEPOSIT = 8
-assert AMOUNT_TO_DEPOSIT > 1
-
-ASA_AMOUNT_TO_CREATE = 100_000
-ASA_DECIMALS = 3
-ASA_AMOUNT_TO_SELL = 2_000
-COST_TO_BUY = 5
-
-
-@pytest.fixture(scope="session")
-def deployer(algorand_client: AlgorandClient) -> SigningAccount:
-    account = algorand_client.account.from_environment("DEPLOYER")
-    algorand_client.account.ensure_funded_from_environment(
-        account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
-    )
-    return account
-
-
-@pytest.fixture(scope="session")
-def seller(algorand_client: AlgorandClient) -> SigningAccount:
-    account = algorand_client.account.random()
-    algorand_client.account.ensure_funded_from_environment(
-        account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
-    )
-    return account
-
-
-@pytest.fixture(scope="session")
-def buyer(algorand_client: AlgorandClient) -> SigningAccount:
-    account = algorand_client.account.random()
-    algorand_client.account.ensure_funded_from_environment(
-        account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
-    )
-    return account
-
-
-@pytest.fixture(scope="session")
-def bidder(algorand_client: AlgorandClient) -> SigningAccount:
-    account = algorand_client.account.random()
-    algorand_client.account.ensure_funded_from_environment(
-        account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(AMOUNT_TO_FUND),
-    )
-    return account
-
-
-@pytest.fixture(scope="session")
-def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> int:
-    result = algorand_client.send.asset_create(
-        AssetCreateParams(
-            sender=seller.address, total=ASA_AMOUNT_TO_CREATE, decimals=ASA_DECIMALS
-        )
-    )
-    return result.asset_id
-
-
-@pytest.fixture(scope="session")
-def digital_marketplace_client(
-    algorand_client: AlgorandClient, deployer: SigningAccount
-) -> DigitalMarketplaceClient:
-    factory = algorand_client.client.get_typed_app_factory(
-        DigitalMarketplaceFactory, default_sender=deployer.address
-    )
-
-    client, _ = factory.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
-        on_update=algokit_utils.OnUpdate.AppendApp,
-    )
-    return client
 
 
 @pytest.mark.parametrize("actor", ["seller", "buyer", "bidder"])
@@ -143,7 +67,7 @@ def test_noop_deposit(
                 PaymentParams(
                     sender=actor_fixture.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(AMOUNT_TO_DEPOSIT - 1),
+                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT - 1),
                 )
             )
         )
@@ -152,7 +76,7 @@ def test_noop_deposit(
 
     assert (
         dm_client.state.local_state(actor_fixture.address).deposited
-        == AlgoAmount.from_algo(AMOUNT_TO_DEPOSIT).micro_algo
+        == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
     )
 
 
@@ -202,10 +126,10 @@ def test_open_sale(
                     sender=seller.address,
                     asset_id=asset_to_sell,
                     receiver=dm_client.app_address,
-                    amount=ASA_AMOUNT_TO_SELL,
+                    amount=cst.ASA_AMOUNT_TO_SELL,
                 )
             ),
-            cost=AlgoAmount.from_algo(COST_TO_BUY).micro_algo,
+            cost=AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo,
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
@@ -224,7 +148,7 @@ def test_open_sale(
     ).min_balance.micro_algo - mbr_before_call.micro_algo == 2_500 + 400 * (
         5 + 32 + 8 + 2 + 8 + 8 + 2
     )
-    assert asa_balance - asa_balance_before_call == ASA_AMOUNT_TO_SELL
+    assert asa_balance - asa_balance_before_call == cst.ASA_AMOUNT_TO_SELL
     assert dm_client.state.local_state(
         seller.address
     ).deposited - deposited_before_call == -(
@@ -233,7 +157,9 @@ def test_open_sale(
 
     assert dm_client.state.box.sales.get_value(
         SaleKey(owner=seller.address, asset=asset_to_sell)
-    ) == Sale(ASA_AMOUNT_TO_SELL, AlgoAmount.from_algo(COST_TO_BUY).micro_algo, [])
+    ) == Sale(
+        cst.ASA_AMOUNT_TO_SELL, AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo, []
+    )
 
 
 def test_close_sale(
@@ -275,7 +201,7 @@ def test_close_sale(
     ).min_balance.micro_algo - mbr_before_call.micro_algo == -(
         2_500 + 400 * (5 + 32 + 8 + 2 + 8 + 8 + 2)
     )
-    assert asa_balance - asa_balance_before_call == -ASA_AMOUNT_TO_SELL
+    assert asa_balance - asa_balance_before_call == -cst.ASA_AMOUNT_TO_SELL
     assert dm_client.state.local_state(
         seller.address
     ).deposited - deposited_before_call == 2_500 + 400 * (
