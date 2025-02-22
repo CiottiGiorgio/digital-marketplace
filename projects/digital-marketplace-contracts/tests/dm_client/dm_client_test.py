@@ -21,22 +21,22 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 )
 
 
-@pytest.mark.parametrize("actor", ["seller", "buyer", "bidder"])
+@pytest.mark.parametrize("actor_name", ["seller", "buyer", "bidder"])
 def test_opt_in_deposit(
     digital_marketplace_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
-    actor: str,
+    actor_name: str,
     request: pytest.FixtureRequest,
 ) -> None:
-    actor_fixture: SigningAccount = request.getfixturevalue(actor)
+    actor: SigningAccount = request.getfixturevalue(actor_name)
 
-    dm_client = digital_marketplace_client.clone(default_sender=actor_fixture.address)
+    dm_client = digital_marketplace_client.clone(default_sender=actor.address)
     result = dm_client.send.opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
-                    sender=actor_fixture.address,
-                    signer=actor_fixture.signer,
+                    sender=actor.address,
+                    signer=actor.signer,
                     receiver=dm_client.app_address,
                     amount=AlgoAmount.from_algo(1),
                 )
@@ -46,26 +46,26 @@ def test_opt_in_deposit(
     assert result.confirmation
 
     assert (
-        dm_client.state.local_state(actor_fixture.address).deposited
+        dm_client.state.local_state(actor.address).deposited
         == AlgoAmount.from_algo(1).micro_algo
     )
 
 
-@pytest.mark.parametrize("actor", ["seller", "buyer", "bidder"])
+@pytest.mark.parametrize("actor_name", ["seller", "buyer", "bidder"])
 def test_noop_deposit(
     digital_marketplace_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
-    actor: str,
+    actor_name: str,
     request: pytest.FixtureRequest,
 ) -> None:
-    actor_fixture: SigningAccount = request.getfixturevalue(actor)
+    actor: SigningAccount = request.getfixturevalue(actor_name)
 
-    dm_client = digital_marketplace_client.clone(default_sender=actor_fixture.address)
+    dm_client = digital_marketplace_client.clone(default_sender=actor.address)
     result = dm_client.send.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
-                    sender=actor_fixture.address,
+                    sender=actor.address,
                     receiver=dm_client.app_address,
                     amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT - 1),
                 )
@@ -75,7 +75,7 @@ def test_noop_deposit(
     assert result.confirmation
 
     assert (
-        dm_client.state.local_state(actor_fixture.address).deposited
+        dm_client.state.local_state(actor.address).deposited
         == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
     )
 
