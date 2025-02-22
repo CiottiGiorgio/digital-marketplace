@@ -19,7 +19,7 @@ def deployer(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def seller(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
@@ -29,7 +29,7 @@ def seller(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def buyer(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
@@ -39,7 +39,7 @@ def buyer(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def bidder(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
@@ -49,7 +49,7 @@ def bidder(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> int:
     result = algorand_client.send.asset_create(
         AssetCreateParams(
