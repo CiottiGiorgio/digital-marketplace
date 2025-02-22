@@ -13,6 +13,8 @@ from algopy import (
 )
 from algopy.arc4 import abimethod
 
+import smart_contracts.digital_marketplace.errors as err
+
 
 class SaleKey(arc4.Struct):
     owner: arc4.Address
@@ -65,7 +67,7 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def deposit(self, payment: gtxn.PaymentTransaction) -> None:
-        assert payment.sender == Txn.sender
+        assert payment.sender == Txn.sender, err.DIFFERENT_SENDER
         assert payment.receiver == Global.current_application_address
 
         self.deposited[Txn.sender] = (
@@ -88,7 +90,7 @@ class DigitalMarketplace(ARC4Contract):
     def open_sale(
         self, asset_deposit: gtxn.AssetTransferTransaction, cost: arc4.UInt64
     ) -> None:
-        assert asset_deposit.sender == Txn.sender
+        assert asset_deposit.sender == Txn.sender, err.DIFFERENT_SENDER
         assert asset_deposit.asset_receiver == Global.current_application_address
 
         self.deposited[Txn.sender] -= self.sales_box_mbr()
@@ -101,7 +103,7 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def close_sale(self, sale_key: SaleKey) -> None:
-        assert sale_key.owner.native == Txn.sender
+        assert sale_key.owner.native == Txn.sender, err.UNAUTHORIZED
 
         self.deposited[Txn.sender] = (
             self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
@@ -117,7 +119,7 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod
     def buy(self, sale_key: SaleKey, payment: gtxn.PaymentTransaction) -> None:
-        assert payment.sender == Txn.sender
+        assert payment.sender == Txn.sender, err.DIFFERENT_SENDER
         assert payment.receiver == Global.current_application_address
         assert payment.amount == self.sales[sale_key].cost
 

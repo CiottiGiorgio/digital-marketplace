@@ -9,6 +9,7 @@ from algokit_utils import (
 )
 from algosdk.atomic_transaction_composer import TransactionWithSigner
 
+import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     DepositArgs,
     DigitalMarketplaceClient,
@@ -38,8 +39,7 @@ def test_fail_opt_in_deposit(
     generic_actor: SigningAccount,
     random_account: SigningAccount,
 ) -> None:
-    # TODO: Define contract errors and match them here.
-    with pytest.raises(LogicError):
+    with pytest.raises(LogicError, match=err.DIFFERENT_SENDER):
         dm_client.send.opt_in.deposit(
             DepositArgs(
                 payment=TransactionWithSigner(
