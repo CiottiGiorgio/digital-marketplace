@@ -1,6 +1,13 @@
 import consts as cst
 import pytest
-from algokit_utils import AlgoAmount, AlgorandClient, PaymentParams, SigningAccount
+from algokit_utils import (
+    AlgoAmount,
+    AlgorandClient,
+    LogicError,
+    PaymentParams,
+    SigningAccount,
+)
+from algosdk.atomic_transaction_composer import TransactionWithSigner
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     DepositArgs,
@@ -19,21 +26,46 @@ def generic_actor(algorand_client: AlgorandClient) -> SigningAccount:
 
 
 @pytest.fixture(scope="module")
-def dm_client(digital_marketplace_client: DigitalMarketplaceClient, generic_actor: SigningAccount) -> DigitalMarketplaceClient:
+def dm_client(
+    digital_marketplace_client: DigitalMarketplaceClient, generic_actor: SigningAccount
+) -> DigitalMarketplaceClient:
     return digital_marketplace_client.clone(default_sender=generic_actor.address)
 
 
-def test_opt_in_deposit(
+def test_fail_opt_in_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
-    generic_actor: SigningAccount
+    generic_actor: SigningAccount,
+    random_account: SigningAccount,
+) -> None:
+    # TODO: Define contract errors and match them here.
+    with pytest.raises(LogicError):
+        dm_client.send.opt_in.deposit(
+            DepositArgs(
+                payment=TransactionWithSigner(
+                    txn=algorand_client.create_transaction.payment(
+                        PaymentParams(
+                            sender=random_account.address,
+                            receiver=dm_client.app_address,
+                            amount=AlgoAmount.from_algo(1),
+                        )
+                    ),
+                    signer=random_account.signer,
+                )
+            ),
+        )
+
+
+def test_pass_opt_in_deposit(
+    dm_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    generic_actor: SigningAccount,
 ) -> None:
     result = dm_client.send.opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
                     sender=generic_actor.address,
-                    signer=generic_actor.signer,
                     receiver=dm_client.app_address,
                     amount=AlgoAmount.from_algo(1),
                 )
@@ -48,10 +80,10 @@ def test_opt_in_deposit(
     )
 
 
-def test_noop_deposit(
+def test_pass_noop_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
-    generic_actor: SigningAccount
+    generic_actor: SigningAccount,
 ) -> None:
     result = dm_client.send.deposit(
         DepositArgs(

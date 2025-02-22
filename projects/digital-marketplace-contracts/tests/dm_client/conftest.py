@@ -49,6 +49,16 @@ def bidder(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
+@pytest.fixture(scope="function")
+def random_account(algorand_client: AlgorandClient) -> SigningAccount:
+    account = algorand_client.account.random()
+    algorand_client.account.ensure_funded_from_environment(
+        account_to_fund=account.address,
+        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+    )
+    return account
+
+
 @pytest.fixture(scope="module")
 def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> int:
     result = algorand_client.send.asset_create(

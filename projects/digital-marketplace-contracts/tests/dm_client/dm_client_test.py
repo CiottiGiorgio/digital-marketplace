@@ -23,7 +23,9 @@ def test_sponsor_asset(
     seller: SigningAccount,
     asset_to_sell: int,
 ) -> None:
-    digital_marketplace_client = digital_marketplace_client.clone(default_sender=seller.address)
+    digital_marketplace_client = digital_marketplace_client.clone(
+        default_sender=seller.address
+    )
 
     deposited_before_call = dm_client.state.local_state(seller.address).deposited
 
@@ -44,7 +46,9 @@ def test_open_sale(
     seller: SigningAccount,
     asset_to_sell: int,
 ) -> None:
-    digital_marketplace_client = digital_marketplace_client.clone(default_sender=seller.address)
+    digital_marketplace_client = digital_marketplace_client.clone(
+        default_sender=seller.address
+    )
 
     mbr_before_call = algorand_client.account.get_information(
         dm_client.app_address
@@ -106,7 +110,9 @@ def test_close_sale(
     seller: SigningAccount,
     asset_to_sell: int,
 ) -> None:
-    digital_marketplace_client = digital_marketplace_client.clone(default_sender=seller.address)
+    digital_marketplace_client = digital_marketplace_client.clone(
+        default_sender=seller.address
+    )
 
     mbr_before_call = algorand_client.account.get_information(
         dm_client.app_address
