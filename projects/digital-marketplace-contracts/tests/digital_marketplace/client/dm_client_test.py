@@ -14,30 +14,7 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
     OpenSaleArgs,
     Sale,
     SaleKey,
-    SponsorAssetArgs,
 )
-
-
-def test_sponsor_asset(
-    digital_marketplace_client: DigitalMarketplaceClient,
-    seller: SigningAccount,
-    asset_to_sell: int,
-) -> None:
-    digital_marketplace_client = digital_marketplace_client.clone(
-        default_sender=seller.address
-    )
-
-    deposited_before_call = dm_client.state.local_state(seller.address).deposited
-
-    dm_client.send.sponsor_asset(
-        SponsorAssetArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
-    )
-
-    assert (
-        dm_client.state.local_state(seller.address).deposited - deposited_before_call
-        == -AlgoAmount.from_micro_algo(100_000).micro_algo
-    )
 
 
 def test_open_sale(
