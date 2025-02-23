@@ -1,3 +1,5 @@
+from typing import Callable
+
 import consts as cst
 import pytest
 from algokit_utils import (
@@ -45,7 +47,7 @@ def deposit_into_dm(
 
 def test_fail_already_opted_into_sponsor_asset(
     dm_client: DigitalMarketplaceClient,
-    deposit_into_dm,
+    deposit_into_dm: Callable,
     random_account: SigningAccount,
     asset_to_sell: int,
 ) -> None:
@@ -92,7 +94,7 @@ def test_fail_not_enough_deposited_sponsor_asset(
 
 def test_pass_sponsor_asset(
     dm_client: DigitalMarketplaceClient,
-    deposit_into_dm,
+    deposit_into_dm: Callable,
     algorand_client: AlgorandClient,
     random_account: SigningAccount,
     asset_to_sell: int,
