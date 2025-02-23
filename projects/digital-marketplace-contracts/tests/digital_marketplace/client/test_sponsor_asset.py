@@ -93,6 +93,7 @@ def test_fail_not_enough_deposited_sponsor_asset(
 def test_pass_sponsor_asset(
     dm_client: DigitalMarketplaceClient,
     deposit_into_dm,
+    algorand_client: AlgorandClient,
     random_account: SigningAccount,
     asset_to_sell: int,
 ) -> None:
@@ -111,4 +112,11 @@ def test_pass_sponsor_asset(
         dm_client.state.local_state(random_account.address).deposited
         - deposited_before_call
         == -AlgoAmount.from_micro_algo(100_000).micro_algo
+    )
+
+    assert next(
+        filter(
+            lambda x: x["asset-id"] == asset_to_sell,
+            algorand_client.account.get_information(dm_client.app_address).assets,
+        )
     )
