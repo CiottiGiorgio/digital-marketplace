@@ -26,14 +26,14 @@ def generic_actor(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="function")
 def dm_client(
     digital_marketplace_client: DigitalMarketplaceClient, generic_actor: SigningAccount
 ) -> DigitalMarketplaceClient:
     return digital_marketplace_client.clone(default_sender=generic_actor.address)
 
 
-def test_fail_opt_in_deposit(
+def test_fail_diff_sender_opt_in_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
     generic_actor: SigningAccount,
@@ -56,7 +56,29 @@ def test_fail_opt_in_deposit(
         )
 
 
-def test_pass_opt_in_deposit(
+def test_fail_wrong_receiver_opt_in_deposit(
+    dm_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    generic_actor: SigningAccount,
+) -> None:
+    with pytest.raises(LogicError, match=err.WRONG_RECEIVER):
+        dm_client.send.opt_in.deposit(
+            DepositArgs(
+                payment=TransactionWithSigner(
+                    txn=algorand_client.create_transaction.payment(
+                        PaymentParams(
+                            sender=generic_actor.address,
+                            receiver=generic_actor.address,
+                            amount=AlgoAmount.from_algo(1),
+                        )
+                    ),
+                    signer=generic_actor.signer,
+                )
+            ),
+        )
+
+
+def test_pass_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
     generic_actor: SigningAccount,
@@ -79,12 +101,6 @@ def test_pass_opt_in_deposit(
         == AlgoAmount.from_algo(1).micro_algo
     )
 
-
-def test_pass_noop_deposit(
-    dm_client: DigitalMarketplaceClient,
-    algorand_client: AlgorandClient,
-    generic_actor: SigningAccount,
-) -> None:
     result = dm_client.send.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(

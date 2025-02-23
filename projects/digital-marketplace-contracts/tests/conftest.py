@@ -17,4 +17,6 @@ config.configure(
 @pytest.fixture(scope="session")
 def algorand_client() -> AlgorandClient:
     # by default we are using localnet algod
-    return AlgorandClient.from_environment()
+    client = AlgorandClient.from_environment()
+    client.set_suggested_params_cache_timeout(0)
+    return client

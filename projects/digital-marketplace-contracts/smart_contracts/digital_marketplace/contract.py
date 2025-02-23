@@ -68,7 +68,9 @@ class DigitalMarketplace(ARC4Contract):
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def deposit(self, payment: gtxn.PaymentTransaction) -> None:
         assert payment.sender == Txn.sender, err.DIFFERENT_SENDER
-        assert payment.receiver == Global.current_application_address
+        assert (
+            payment.receiver == Global.current_application_address
+        ), err.WRONG_RECEIVER
 
         self.deposited[Txn.sender] = (
             self.deposited.get(Txn.sender, default=UInt64(0)) + payment.amount
@@ -76,7 +78,9 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod
     def sponsor_asset(self, asset: Asset) -> None:
-        assert not Global.current_application_address.is_opted_in(asset)
+        assert not Global.current_application_address.is_opted_in(
+            asset
+        ), err.ALREADY_OPTED_IN
 
         self.deposited[Txn.sender] -= Global.asset_opt_in_min_balance
 
@@ -91,7 +95,9 @@ class DigitalMarketplace(ARC4Contract):
         self, asset_deposit: gtxn.AssetTransferTransaction, cost: arc4.UInt64
     ) -> None:
         assert asset_deposit.sender == Txn.sender, err.DIFFERENT_SENDER
-        assert asset_deposit.asset_receiver == Global.current_application_address
+        assert (
+            asset_deposit.asset_receiver == Global.current_application_address
+        ), err.WRONG_RECEIVER
 
         self.deposited[Txn.sender] -= self.sales_box_mbr()
 
@@ -120,7 +126,9 @@ class DigitalMarketplace(ARC4Contract):
     @abimethod
     def buy(self, sale_key: SaleKey, payment: gtxn.PaymentTransaction) -> None:
         assert payment.sender == Txn.sender, err.DIFFERENT_SENDER
-        assert payment.receiver == Global.current_application_address
+        assert (
+            payment.receiver == Global.current_application_address
+        ), err.WRONG_RECEIVER
         assert payment.amount == self.sales[sale_key].cost
 
         self.deposited[sale_key.owner.native] += payment.amount

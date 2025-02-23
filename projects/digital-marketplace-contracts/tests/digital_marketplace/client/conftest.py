@@ -1,4 +1,3 @@
-import algokit_utils
 import consts as cst
 import pytest
 from algokit_utils import AlgoAmount, AlgorandClient, AssetCreateParams, SigningAccount
@@ -19,7 +18,7 @@ def deployer(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def seller(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
@@ -29,7 +28,7 @@ def seller(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def buyer(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
@@ -39,7 +38,7 @@ def buyer(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def bidder(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
@@ -59,7 +58,7 @@ def random_account(algorand_client: AlgorandClient) -> SigningAccount:
     return account
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> int:
     result = algorand_client.send.asset_create(
         AssetCreateParams(
@@ -71,7 +70,7 @@ def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> in
     return result.asset_id
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="function")
 def digital_marketplace_client(
     algorand_client: AlgorandClient, deployer: SigningAccount
 ) -> DigitalMarketplaceClient:
@@ -79,8 +78,5 @@ def digital_marketplace_client(
         DigitalMarketplaceFactory, default_sender=deployer.address
     )
 
-    client, _ = factory.deploy(
-        on_schema_break=algokit_utils.OnSchemaBreak.AppendApp,
-        on_update=algokit_utils.OnUpdate.AppendApp,
-    )
+    client, _ = factory.send.create.bare()
     return client
