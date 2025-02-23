@@ -76,6 +76,12 @@ class DigitalMarketplace(ARC4Contract):
             self.deposited.get(Txn.sender, default=UInt64(0)) + payment.amount
         )
 
+    @abimethod(allow_actions=["NoOp", "CloseOut"])
+    def withdraw(self, amount: arc4.UInt64) -> None:
+        self.deposited[Txn.sender] -= amount.native
+
+        itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
+
     @abimethod
     def sponsor_asset(self, asset: Asset) -> None:
         assert not Global.current_application_address.is_opted_in(
