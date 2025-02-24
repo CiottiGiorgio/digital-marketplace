@@ -63,7 +63,7 @@ def sponsor_asset_to_sell(
     seller: SigningAccount,
     asset_to_sell: int,
 ) -> None:
-    dm_client.send.opt_in.deposit(
+    dm_client.new_group().opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
@@ -73,12 +73,10 @@ def sponsor_asset_to_sell(
                 )
             )
         )
-    )
-
-    dm_client.send.sponsor_asset(
+    ).sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
-    )
+    ).send()
 
 
 def test_fail_diff_sender_open_sale(

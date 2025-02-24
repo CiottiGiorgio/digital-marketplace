@@ -78,6 +78,7 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod(allow_actions=["NoOp", "CloseOut"])
     def withdraw(self, amount: arc4.UInt64) -> None:
+        # FIXME: We want to prevent closing out if there's still balance
         self.deposited[Txn.sender] -= amount.native
 
         itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
@@ -114,18 +115,18 @@ class DigitalMarketplace(ARC4Contract):
         )
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
-    def close_sale(self, sale_key: SaleKey) -> None:
-        assert sale_key.owner.native == Txn.sender, err.UNAUTHORIZED
+    def close_sale(self, asset: Asset) -> None:
+        sale_key = SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset.id))
+
+        itxn.AssetTransfer(
+            xfer_asset=asset,
+            asset_receiver=Txn.sender,
+            asset_amount=self.sales[sale_key].amount.native,
+        ).submit()
 
         self.deposited[Txn.sender] = (
             self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
         )
-
-        itxn.AssetTransfer(
-            xfer_asset=sale_key.asset.native,
-            asset_receiver=Txn.sender,
-            asset_amount=self.sales[sale_key].amount.native,
-        ).submit()
 
         del self.sales[sale_key]
 
