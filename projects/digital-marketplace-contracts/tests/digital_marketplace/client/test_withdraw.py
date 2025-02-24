@@ -1,6 +1,5 @@
 from typing import Callable
 
-from algosdk.error import AlgodHTTPError
 import consts as cst
 import pytest
 from algokit_utils import (
@@ -11,19 +10,13 @@ from algokit_utils import (
     PaymentParams,
     SigningAccount,
 )
+from algosdk.error import AlgodHTTPError
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     DepositArgs,
     DigitalMarketplaceClient,
     WithdrawArgs,
 )
-
-
-@pytest.fixture(scope="function")
-def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, random_account: SigningAccount
-) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=random_account.address)
 
 
 @pytest.fixture(scope="function")
@@ -82,7 +75,9 @@ def test_pass_withdraw(
     ).deposited
 
     dm_client.send.withdraw(
-        WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2),
+        WithdrawArgs(
+            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2
+        ),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
 
@@ -103,7 +98,9 @@ def test_pass_withdraw(
     ).amount
 
     dm_client.send.close_out.withdraw(
-        WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2),
+        WithdrawArgs(
+            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2
+        ),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
 

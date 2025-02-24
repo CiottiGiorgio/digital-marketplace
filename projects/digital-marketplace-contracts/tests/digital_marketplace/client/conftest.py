@@ -79,4 +79,16 @@ def digital_marketplace_client(
     )
 
     client, _ = factory.send.create.bare()
+    algorand_client.account.ensure_funded(
+        client.app_address,
+        dispenser_account=algorand_client.account.dispenser_from_environment(),
+        min_spending_balance=AlgoAmount.from_algo(0),
+    )
     return client
+
+
+@pytest.fixture(scope="function")
+def dm_client(
+    digital_marketplace_client: DigitalMarketplaceClient, random_account: SigningAccount
+) -> DigitalMarketplaceClient:
+    return digital_marketplace_client.clone(default_sender=random_account.address)

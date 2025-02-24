@@ -20,13 +20,6 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 
 
 @pytest.fixture(scope="function")
-def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, random_account: SigningAccount
-) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=random_account.address)
-
-
-@pytest.fixture(scope="function")
 def deposit_into_dm(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
