@@ -78,7 +78,7 @@ def test_fail_close_out_with_balance_withdraw(
         )
 
 
-def test_pass_noop_withdraw(
+def test_pass_noop_partial_withdraw(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
     deposit_into_dm: Callable,
@@ -92,9 +92,36 @@ def test_pass_noop_withdraw(
     ).deposited
 
     dm_client.send.withdraw(
-        WithdrawArgs(
-            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
-        ),
+        WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo - 1),
+        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+    )
+
+    assert (
+        algorand_client.account.get_information(random_account.address).amount
+        - balance_before_call
+        == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
+        - 1
+        - AlgoAmount.from_micro_algo(2_000).micro_algo
+    )
+    assert dm_client.state.local_state(
+        random_account.address
+    ).deposited - deposited_before_call == -(
+        AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo - 1
+    )
+
+
+def test_pass_noop_full_withdraw(
+    dm_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    deposit_into_dm: Callable,
+    random_account: SigningAccount,
+) -> None:
+    balance_before_call = algorand_client.account.get_information(
+        random_account.address
+    ).amount
+
+    dm_client.send.withdraw(
+        WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
 
@@ -104,11 +131,7 @@ def test_pass_noop_withdraw(
         == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
-    assert (
-        dm_client.state.local_state(random_account.address).deposited
-        - deposited_before_call
-        == -AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
-    )
+    assert dm_client.state.local_state(random_account.address).deposited == 0
 
 
 def test_pass_close_out_withdraw(
@@ -122,9 +145,7 @@ def test_pass_close_out_withdraw(
     ).amount
 
     dm_client.send.close_out.withdraw(
-        WithdrawArgs(
-            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
-        ),
+        WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
 
