@@ -1,6 +1,7 @@
 from typing import Callable
 
 import consts as cst
+import helpers
 import pytest
 from algokit_utils import (
     AlgoAmount,
@@ -182,12 +183,11 @@ def test_pass_open_sale(
     mbr_before_call = algorand_client.account.get_information(
         dm_client.app_address
     ).min_balance
-    asa_balance_before_call = next(
-        filter(
-            lambda x: x["asset-id"] == asset_to_sell,
-            algorand_client.account.get_information(dm_client.app_address).assets,
-        )
-    )["amount"]
+    asa_balance_before_call = helpers.asa_amount(
+        algorand_client,
+        dm_client.app_address,
+        asset_to_sell,
+    )
     deposited_before_call = dm_client.state.local_state(seller.address).deposited
 
     dm_client.send.open_sale(
@@ -205,12 +205,11 @@ def test_pass_open_sale(
         send_params=SendParams(populate_app_call_resources=True),
     )
 
-    asa_balance = next(
-        filter(
-            lambda x: x["asset-id"] == asset_to_sell,
-            algorand_client.account.get_information(dm_client.app_address).assets,
-        )
-    )["amount"]
+    asa_balance = helpers.asa_amount(
+        algorand_client,
+        dm_client.app_address,
+        asset_to_sell,
+    )
 
     # The created box does not contain a bid yet.
     # The mbr does not raise as much as the subtracted amount from the deposit.

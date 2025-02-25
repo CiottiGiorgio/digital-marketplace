@@ -1,6 +1,7 @@
 from typing import Callable
 
 import consts as cst
+import helpers
 import pytest
 from algokit_utils import (
     AlgoAmount,
@@ -109,9 +110,11 @@ def test_pass_sponsor_asset(
         == -AlgoAmount.from_micro_algo(100_000).micro_algo
     )
 
-    assert next(
-        filter(
-            lambda x: x["asset-id"] == asset_to_sell,
-            algorand_client.account.get_information(dm_client.app_address).assets,
+    assert (
+        helpers.asa_amount(
+            algorand_client,
+            dm_client.app_address,
+            asset_to_sell,
         )
+        == 0
     )
