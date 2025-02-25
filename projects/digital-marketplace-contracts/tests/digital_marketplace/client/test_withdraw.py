@@ -12,6 +12,7 @@ from algokit_utils import (
 )
 from algosdk.error import AlgodHTTPError
 
+import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     DepositArgs,
     DigitalMarketplaceClient,
@@ -61,7 +62,23 @@ def test_fail_overdraft_withdraw(
         dm_client.send.withdraw(WithdrawArgs(amount=AlgoAmount.from_algo(1).micro_algo))
 
 
-def test_pass_withdraw(
+def test_fail_close_out_with_balance_withdraw(
+    dm_client: DigitalMarketplaceClient,
+    deposit_into_dm: Callable,
+    algorand_client: AlgorandClient,
+    random_account: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    with pytest.raises(LogicError, match=err.BALANCE_NOT_EMPTY):
+        dm_client.send.close_out.withdraw(
+            WithdrawArgs(
+                amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo - 1
+            ),
+            params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        )
+
+
+def test_pass_noop_withdraw(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
     deposit_into_dm: Callable,
@@ -76,7 +93,7 @@ def test_pass_withdraw(
 
     dm_client.send.withdraw(
         WithdrawArgs(
-            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2
+            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         ),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
@@ -84,22 +101,29 @@ def test_pass_withdraw(
     assert (
         algorand_client.account.get_information(random_account.address).amount
         - balance_before_call
-        == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2
+        == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
     assert (
         dm_client.state.local_state(random_account.address).deposited
         - deposited_before_call
-        == -AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2
+        == -AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
     )
 
+
+def test_pass_close_out_withdraw(
+    dm_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    deposit_into_dm: Callable,
+    random_account: SigningAccount,
+) -> None:
     balance_before_call = algorand_client.account.get_information(
         random_account.address
     ).amount
 
     dm_client.send.close_out.withdraw(
         WithdrawArgs(
-            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2
+            amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         ),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
@@ -107,7 +131,7 @@ def test_pass_withdraw(
     assert (
         algorand_client.account.get_information(random_account.address).amount
         - balance_before_call
-        == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo // 2
+        == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
     with pytest.raises(AlgodHTTPError, match="account application info not found"):

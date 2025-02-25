@@ -4,6 +4,7 @@ from algopy import (
     BoxMap,
     Global,
     LocalState,
+    OnCompleteAction,
     Txn,
     UInt64,
     arc4,
@@ -78,7 +79,9 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod(allow_actions=["NoOp", "CloseOut"])
     def withdraw(self, amount: arc4.UInt64) -> None:
-        # FIXME: We want to prevent closing out if there's still balance
+        if Txn.on_completion == OnCompleteAction.CloseOut:
+            assert self.deposited[Txn.sender] == amount.native, err.BALANCE_NOT_EMPTY
+
         self.deposited[Txn.sender] -= amount.native
 
         itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
