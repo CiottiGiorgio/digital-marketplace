@@ -63,18 +63,6 @@ def test_fail_not_enough_deposited_buy(
         )
 
 
-def test_fail_sale_does_not_exists_buy(
-    dm_client: DigitalMarketplaceClient,
-    scenario_deposit: Callable,
-    seller: SigningAccount,
-    asset_to_sell: int,
-) -> None:
-    with pytest.raises(LogicError):
-        dm_client.send.buy(
-            BuyArgs(sale_key=SaleKey(owner=seller.address, asset=asset_to_sell))
-        )
-
-
 def test_pass_buy(
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,

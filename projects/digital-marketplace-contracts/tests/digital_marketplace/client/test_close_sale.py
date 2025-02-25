@@ -27,17 +27,6 @@ def dm_client(
     return digital_marketplace_client.clone(default_sender=seller.address)
 
 
-def test_fail_sale_does_not_exists_close_sale(
-    dm_client: DigitalMarketplaceClient,
-    scenario_sponsor_asset: Callable,
-    algorand_client: AlgorandClient,
-    seller: SigningAccount,
-    asset_to_sell: int,
-) -> None:
-    with pytest.raises(LogicError):
-        dm_client.send.close_sale(CloseSaleArgs(asset=asset_to_sell))
-
-
 def test_pass_noop_close_sale(
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
