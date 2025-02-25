@@ -21,22 +21,10 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 
 
 @pytest.fixture(scope="function")
-def deposit_into_dm(
-    dm_client: DigitalMarketplaceClient,
-    algorand_client: AlgorandClient,
-    random_account: SigningAccount,
-) -> None:
-    dm_client.send.opt_in.deposit(
-        DepositArgs(
-            payment=algorand_client.create_transaction.payment(
-                PaymentParams(
-                    sender=random_account.address,
-                    receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
-                )
-            )
-        )
-    )
+def dm_client(
+    digital_marketplace_client: DigitalMarketplaceClient, seller: SigningAccount
+) -> DigitalMarketplaceClient:
+    return digital_marketplace_client.clone(default_sender=seller.address)
 
 
 def test_fail_overdraft_withdraw(
@@ -54,7 +42,8 @@ def test_fail_overdraft_withdraw(
                     amount=AlgoAmount.from_algo(0),
                 )
             )
-        )
+        ),
+        params=CommonAppCallParams(sender=random_account.address),
     )
 
     # FIXME: We need to catch a more granular error here.
@@ -64,10 +53,7 @@ def test_fail_overdraft_withdraw(
 
 def test_fail_close_out_with_balance_withdraw(
     dm_client: DigitalMarketplaceClient,
-    deposit_into_dm: Callable,
-    algorand_client: AlgorandClient,
-    random_account: SigningAccount,
-    asset_to_sell: int,
+    scenario_deposit: Callable,
 ) -> None:
     with pytest.raises(LogicError, match=err.BALANCE_NOT_EMPTY):
         dm_client.send.close_out.withdraw(
@@ -80,16 +66,12 @@ def test_fail_close_out_with_balance_withdraw(
 
 def test_pass_noop_partial_withdraw(
     dm_client: DigitalMarketplaceClient,
+    scenario_deposit: Callable,
     algorand_client: AlgorandClient,
-    deposit_into_dm: Callable,
-    random_account: SigningAccount,
+    seller: SigningAccount,
 ) -> None:
-    balance_before_call = algorand_client.account.get_information(
-        random_account.address
-    ).amount
-    deposited_before_call = dm_client.state.local_state(
-        random_account.address
-    ).deposited
+    balance_before_call = algorand_client.account.get_information(seller.address).amount
+    deposited_before_call = dm_client.state.local_state(seller.address).deposited
 
     dm_client.send.withdraw(
         WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo - 1),
@@ -97,14 +79,14 @@ def test_pass_noop_partial_withdraw(
     )
 
     assert (
-        algorand_client.account.get_information(random_account.address).amount
+        algorand_client.account.get_information(seller.address).amount
         - balance_before_call
         == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         - 1
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
     assert dm_client.state.local_state(
-        random_account.address
+        seller.address
     ).deposited - deposited_before_call == -(
         AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo - 1
     )
@@ -112,13 +94,11 @@ def test_pass_noop_partial_withdraw(
 
 def test_pass_noop_full_withdraw(
     dm_client: DigitalMarketplaceClient,
+    scenario_deposit: Callable,
     algorand_client: AlgorandClient,
-    deposit_into_dm: Callable,
-    random_account: SigningAccount,
+    seller: SigningAccount,
 ) -> None:
-    balance_before_call = algorand_client.account.get_information(
-        random_account.address
-    ).amount
+    balance_before_call = algorand_client.account.get_information(seller.address).amount
 
     dm_client.send.withdraw(
         WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo),
@@ -126,23 +106,21 @@ def test_pass_noop_full_withdraw(
     )
 
     assert (
-        algorand_client.account.get_information(random_account.address).amount
+        algorand_client.account.get_information(seller.address).amount
         - balance_before_call
         == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
-    assert dm_client.state.local_state(random_account.address).deposited == 0
+    assert dm_client.state.local_state(seller.address).deposited == 0
 
 
 def test_pass_close_out_withdraw(
     dm_client: DigitalMarketplaceClient,
+    scenario_deposit: Callable,
     algorand_client: AlgorandClient,
-    deposit_into_dm: Callable,
-    random_account: SigningAccount,
+    seller: SigningAccount,
 ) -> None:
-    balance_before_call = algorand_client.account.get_information(
-        random_account.address
-    ).amount
+    balance_before_call = algorand_client.account.get_information(seller.address).amount
 
     dm_client.send.close_out.withdraw(
         WithdrawArgs(amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo),
@@ -150,10 +128,10 @@ def test_pass_close_out_withdraw(
     )
 
     assert (
-        algorand_client.account.get_information(random_account.address).amount
+        algorand_client.account.get_information(seller.address).amount
         - balance_before_call
         == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
     with pytest.raises(AlgodHTTPError, match="account application info not found"):
-        _ = dm_client.state.local_state(random_account.address).deposited
+        _ = dm_client.state.local_state(seller.address).deposited

@@ -1,10 +1,25 @@
+from typing import Callable
+
 import consts as cst
 import pytest
-from algokit_utils import AlgoAmount, AlgorandClient, AssetCreateParams, SigningAccount
+from algokit_utils import (
+    AlgoAmount,
+    AlgorandClient,
+    AssetCreateParams,
+    AssetOptInParams,
+    AssetTransferParams,
+    CommonAppCallParams,
+    PaymentParams,
+    SendParams,
+    SigningAccount,
+)
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
+    DepositArgs,
     DigitalMarketplaceClient,
     DigitalMarketplaceFactory,
+    OpenSaleArgs,
+    SponsorAssetArgs,
 )
 
 
@@ -59,7 +74,12 @@ def random_account(algorand_client: AlgorandClient) -> SigningAccount:
 
 
 @pytest.fixture(scope="session")
-def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> int:
+def asset_to_sell(
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    buyer: SigningAccount,
+    bidder: SigningAccount,
+) -> int:
     result = algorand_client.send.asset_create(
         AssetCreateParams(
             sender=seller.address,
@@ -67,6 +87,12 @@ def asset_to_sell(algorand_client: AlgorandClient, seller: SigningAccount) -> in
             decimals=cst.ASA_DECIMALS,
         )
     )
+    algorand_client.new_group().add_asset_opt_in(
+        AssetOptInParams(sender=buyer.address, asset_id=result.asset_id)
+    ).add_asset_opt_in(
+        AssetOptInParams(sender=bidder.address, asset_id=result.asset_id)
+    ).send()
+
     return result.asset_id
 
 
@@ -88,7 +114,65 @@ def digital_marketplace_client(
 
 
 @pytest.fixture(scope="function")
-def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, random_account: SigningAccount
-) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=random_account.address)
+def scenario_deposit(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    buyer: SigningAccount,
+    bidder: SigningAccount,
+) -> None:
+    deposit_group = digital_marketplace_client.new_group()
+    for account in [seller, buyer, bidder]:
+        deposit_group = deposit_group.opt_in.deposit(
+            DepositArgs(
+                payment=algorand_client.create_transaction.payment(
+                    PaymentParams(
+                        sender=account.address,
+                        receiver=digital_marketplace_client.app_address,
+                        amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
+                    )
+                )
+            ),
+            params=CommonAppCallParams(sender=account.address),
+        )
+    deposit_group.send()
+
+
+@pytest.fixture(scope="function")
+def scenario_sponsor_asset(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    scenario_deposit: Callable,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    digital_marketplace_client.send.sponsor_asset(
+        SponsorAssetArgs(asset=asset_to_sell),
+        params=CommonAppCallParams(
+            extra_fee=AlgoAmount.from_micro_algo(1_000), sender=seller.address
+        ),
+    )
+
+
+@pytest.fixture(scope="function")
+def scenario_open_sale(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    scenario_sponsor_asset: Callable,
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    digital_marketplace_client.send.open_sale(
+        OpenSaleArgs(
+            asset_deposit=algorand_client.create_transaction.asset_transfer(
+                AssetTransferParams(
+                    sender=seller.address,
+                    asset_id=asset_to_sell,
+                    amount=cst.ASA_AMOUNT_TO_SELL,
+                    receiver=digital_marketplace_client.app_address,
+                )
+            ),
+            cost=AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo,
+        ),
+        params=CommonAppCallParams(sender=seller.address),
+        send_params=SendParams(populate_app_call_resources=True),
+    )

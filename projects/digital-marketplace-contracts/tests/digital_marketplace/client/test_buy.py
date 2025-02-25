@@ -1,6 +1,5 @@
 from typing import Callable
 
-from algosdk.error import AlgodHTTPError
 import consts as cst
 import helpers
 import pytest
@@ -14,6 +13,7 @@ from algokit_utils import (
     SendParams,
     SigningAccount,
 )
+from algosdk.error import AlgodHTTPError
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     BuyArgs,
@@ -32,65 +32,9 @@ def dm_client(
     return digital_marketplace_client.clone(default_sender=buyer.address)
 
 
-@pytest.fixture(scope="function")
-def open_a_sale_and_buyer_deposit(
-    dm_client: DigitalMarketplaceClient,
-    algorand_client: AlgorandClient,
-    seller: SigningAccount,
-    buyer: SigningAccount,
-    asset_to_sell: int,
-) -> None:
-    seller_dm_client = dm_client.clone(default_sender=seller.address)
-
-    seller_dm_client.new_group().opt_in.deposit(
-        DepositArgs(
-            payment=algorand_client.create_transaction.payment(
-                PaymentParams(
-                    sender=seller.address,
-                    receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
-                )
-            )
-        )
-    ).sponsor_asset(
-        SponsorAssetArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
-    ).open_sale(
-        OpenSaleArgs(
-            asset_deposit=algorand_client.create_transaction.asset_transfer(
-                AssetTransferParams(
-                    sender=seller.address,
-                    asset_id=asset_to_sell,
-                    amount=cst.ASA_AMOUNT_TO_SELL,
-                    receiver=dm_client.app_address,
-                )
-            ),
-            cost=AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo,
-        )
-    ).send(
-        send_params=SendParams(populate_app_call_resources=True)
-    )
-
-    dm_client.new_group().opt_in.deposit(
-        DepositArgs(
-            payment=algorand_client.create_transaction.payment(
-                PaymentParams(
-                    sender=buyer.address,
-                    receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
-                )
-            )
-        )
-    ).add_transaction(
-        txn=algorand_client.create_transaction.asset_opt_in(
-            AssetOptInParams(sender=buyer.address, asset_id=asset_to_sell)
-        )
-    ).send()
-
-
 def test_pass_buy(
     dm_client: DigitalMarketplaceClient,
-    open_a_sale_and_buyer_deposit: Callable,
+    scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
     buyer: SigningAccount,
     seller: SigningAccount,

@@ -27,7 +27,7 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 )
 
 
-@pytest.fixture(scope="function")
+@pytest.fixture(scope="module")
 def asset_holder(
     algorand_client: AlgorandClient, seller: SigningAccount, asset_to_sell: int
 ) -> SigningAccount:
@@ -57,32 +57,9 @@ def dm_client(
     return digital_marketplace_client.clone(default_sender=seller.address)
 
 
-@pytest.fixture(scope="function")
-def sponsor_asset_to_sell(
-    dm_client: DigitalMarketplaceClient,
-    algorand_client: AlgorandClient,
-    seller: SigningAccount,
-    asset_to_sell: int,
-) -> None:
-    dm_client.new_group().opt_in.deposit(
-        DepositArgs(
-            payment=algorand_client.create_transaction.payment(
-                PaymentParams(
-                    sender=seller.address,
-                    receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
-                )
-            )
-        )
-    ).sponsor_asset(
-        SponsorAssetArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
-    ).send()
-
-
 def test_fail_diff_sender_open_sale(
     dm_client: DigitalMarketplaceClient,
-    sponsor_asset_to_sell: Callable,
+    scenario_sponsor_asset: Callable,
     algorand_client: AlgorandClient,
     seller: SigningAccount,
     asset_holder: SigningAccount,
@@ -109,7 +86,7 @@ def test_fail_diff_sender_open_sale(
 
 def test_fail_wrong_receiver_open_sale(
     dm_client: DigitalMarketplaceClient,
-    sponsor_asset_to_sell: Callable,
+    scenario_sponsor_asset: Callable,
     algorand_client: AlgorandClient,
     seller: SigningAccount,
     asset_holder: SigningAccount,
@@ -175,7 +152,7 @@ def test_fail_not_enough_deposited_open_sale(
 
 def test_pass_open_sale(
     dm_client: DigitalMarketplaceClient,
-    sponsor_asset_to_sell: Callable,
+    scenario_sponsor_asset: Callable,
     algorand_client: AlgorandClient,
     seller: SigningAccount,
     asset_to_sell: int,
