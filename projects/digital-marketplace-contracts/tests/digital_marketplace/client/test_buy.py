@@ -7,7 +7,10 @@ from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
     CommonAppCallParams,
+    AssetOptInParams,
     SendParams,
+    PaymentParams,
+    LogicError,
     SigningAccount,
 )
 from algosdk.error import AlgodHTTPError
@@ -16,7 +19,10 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
     BuyArgs,
     DigitalMarketplaceClient,
     SaleKey,
+    DepositArgs,
 )
+from tests.conftest import algorand_client
+from tests.digital_marketplace.client.conftest import asset_to_sell
 
 
 @pytest.fixture(scope="function")
@@ -24,6 +30,49 @@ def dm_client(
     digital_marketplace_client: DigitalMarketplaceClient, buyer: SigningAccount
 ) -> DigitalMarketplaceClient:
     return digital_marketplace_client.clone(default_sender=buyer.address)
+
+
+def test_fail_not_enough_deposited_buy(
+    dm_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    random_account: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    dm_client.new_group().add_transaction(
+        algorand_client.create_transaction.asset_opt_in(
+            AssetOptInParams(sender=random_account.address, asset_id=asset_to_sell)
+        )
+    ).opt_in.deposit(
+        DepositArgs(
+            payment=algorand_client.create_transaction.payment(
+                PaymentParams(
+                    sender=random_account.address,
+                    receiver=dm_client.app_address,
+                    amount=AlgoAmount.from_algo(0),
+                )
+            )
+        ),
+        params=CommonAppCallParams(sender=random_account.address),
+    ).send()
+
+    with pytest.raises(LogicError):
+        dm_client.send.buy(
+            BuyArgs(sale_key=SaleKey(owner=seller.address, asset=asset_to_sell))
+        )
+
+
+def test_fail_sale_does_not_exists_buy(
+    dm_client: DigitalMarketplaceClient,
+    scenario_deposit: Callable,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    with pytest.raises(LogicError):
+        dm_client.send.buy(
+            BuyArgs(sale_key=SaleKey(owner=seller.address, asset=asset_to_sell))
+        )
 
 
 def test_pass_buy(
