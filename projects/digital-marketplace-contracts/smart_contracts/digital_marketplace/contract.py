@@ -58,8 +58,7 @@ class DigitalMarketplace(ARC4Contract):
             2 +
             # amount & cost fields
             8 + 8 +
-            # bid field is a dynamic array and so it has got a length prefix plus
-            #  one Bid type at most
+            # bid field is a dynamic array and so it has got a length prefix
             2 +
             # One optional Bid type
             (32 + 8)
