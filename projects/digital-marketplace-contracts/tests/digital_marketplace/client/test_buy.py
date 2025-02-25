@@ -6,10 +6,7 @@ import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
-    AssetOptInParams,
-    AssetTransferParams,
     CommonAppCallParams,
-    PaymentParams,
     SendParams,
     SigningAccount,
 )
@@ -17,11 +14,8 @@ from algosdk.error import AlgodHTTPError
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     BuyArgs,
-    DepositArgs,
     DigitalMarketplaceClient,
-    OpenSaleArgs,
     SaleKey,
-    SponsorAssetArgs,
 )
 
 
