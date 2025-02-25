@@ -7,7 +7,6 @@ from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
     CommonAppCallParams,
-    LogicError,
     SendParams,
     SigningAccount,
 )
@@ -61,13 +60,12 @@ def test_pass_noop_close_sale(
     assert algorand_client.account.get_information(
         dm_client.app_address
     ).min_balance.micro_algo - mbr_before_call.micro_algo == -(
-        2_500 + 400 * (5 + 32 + 8 + 2 + 8 + 8 + 2)
+        cst.SALES_BOX_MBR - 400 * (32 + 8)
     )
     assert asa_balance - asa_balance_before_call == -cst.ASA_AMOUNT_TO_SELL
-    assert dm_client.state.local_state(
-        seller.address
-    ).deposited - deposited_before_call == 2_500 + 400 * (
-        5 + 32 + 8 + 2 + 8 + 8 + 2 + 32 + 8
+    assert (
+        dm_client.state.local_state(seller.address).deposited - deposited_before_call
+        == cst.SALES_BOX_MBR
     )
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
@@ -111,12 +109,10 @@ def test_pass_opt_in_close_sale(
     assert algorand_client.account.get_information(
         dm_client.app_address
     ).min_balance.micro_algo - mbr_before_call.micro_algo == -(
-        2_500 + 400 * (5 + 32 + 8 + 2 + 8 + 8 + 2)
+        cst.SALES_BOX_MBR - 400 * (32 + 8)
     )
     assert asa_balance - asa_balance_before_call == -cst.ASA_AMOUNT_TO_SELL
-    assert dm_client.state.local_state(seller.address).deposited == 2_500 + 400 * (
-        5 + 32 + 8 + 2 + 8 + 8 + 2 + 32 + 8
-    )
+    assert dm_client.state.local_state(seller.address).deposited == cst.SALES_BOX_MBR
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
         dm_client.state.box.sales.get_value(

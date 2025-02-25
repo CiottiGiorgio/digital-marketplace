@@ -6,23 +6,21 @@ import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
-    CommonAppCallParams,
     AssetOptInParams,
-    SendParams,
-    PaymentParams,
+    CommonAppCallParams,
     LogicError,
+    PaymentParams,
+    SendParams,
     SigningAccount,
 )
 from algosdk.error import AlgodHTTPError
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     BuyArgs,
+    DepositArgs,
     DigitalMarketplaceClient,
     SaleKey,
-    DepositArgs,
 )
-from tests.conftest import algorand_client
-from tests.digital_marketplace.client.conftest import asset_to_sell
 
 
 @pytest.fixture(scope="function")
@@ -90,7 +88,7 @@ def test_pass_buy(
     assert (
         dm_client.state.local_state(seller.address).deposited
         - seller_deposited_before_call
-        == AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo
+        == AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo + cst.SALES_BOX_MBR
     )
     assert (
         dm_client.state.local_state(buyer.address).deposited

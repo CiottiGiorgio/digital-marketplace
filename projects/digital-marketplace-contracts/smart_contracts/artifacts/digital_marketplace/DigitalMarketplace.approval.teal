@@ -3,107 +3,125 @@
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.__algopy_entrypoint_with_init() -> uint64:
 main:
-    intcblock 0 1 4 3 44500
-    bytecblock "deposited" "sales"
-    // smart_contracts/digital_marketplace/contract.py:41
+    intcblock 0 1 8 4
+    bytecblock "deposited" "placed_bids" "sales" 0x0000
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txn NumAppArgs
-    bz main_bare_routing@11
-    pushbytess 0x3625e4eb 0x21f1ddff 0x13000a94 0xa6920066 0x09544810 0xd49ac60e // method "deposit(pay)void", method "withdraw(uint64)void", method "sponsor_asset(asset)void", method "open_sale(axfer,uint64)void", method "close_sale(asset)void", method "buy((address,uint64))void"
+    bz main_bare_routing@12
+    pushbytess 0x3625e4eb 0x21f1ddff 0x13000a94 0xa6920066 0x09544810 0xd49ac60e 0xa18f1ffc // method "deposit(pay)void", method "withdraw(uint64)void", method "sponsor_asset(asset)void", method "open_sale(axfer,uint64)void", method "close_sale(asset)void", method "buy((address,uint64))void", method "bid((address,uint64),uint64)void"
     txna ApplicationArgs 0
-    match main_deposit_route@5 main_withdraw_route@6 main_sponsor_asset_route@7 main_open_sale_route@8 main_close_sale_route@9 main_buy_route@10
+    match main_deposit_route@5 main_withdraw_route@6 main_sponsor_asset_route@7 main_open_sale_route@8 main_close_sale_route@9 main_buy_route@10 main_bid_route@11
 
-main_after_if_else@13:
-    // smart_contracts/digital_marketplace/contract.py:41
+main_after_if_else@14:
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     intc_0 // 0
     return
 
-main_buy_route@10:
-    // smart_contracts/digital_marketplace/contract.py:136
+main_bid_route@11:
+    // smart_contracts/digital_marketplace/contract.py:139
     // @abimethod
     txn OnCompletion
     !
     assert // OnCompletion is not NoOp
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/digital_marketplace/contract.py:41
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txna ApplicationArgs 1
-    // smart_contracts/digital_marketplace/contract.py:136
+    txna ApplicationArgs 2
+    // smart_contracts/digital_marketplace/contract.py:139
+    // @abimethod
+    callsub bid
+    intc_1 // 1
+    return
+
+main_buy_route@10:
+    // smart_contracts/digital_marketplace/contract.py:124
+    // @abimethod
+    txn OnCompletion
+    !
+    assert // OnCompletion is not NoOp
+    txn ApplicationID
+    assert // can only call when not creating
+    // smart_contracts/digital_marketplace/contract.py:50
+    // class DigitalMarketplace(ARC4Contract):
+    txna ApplicationArgs 1
+    // smart_contracts/digital_marketplace/contract.py:124
     // @abimethod
     callsub buy
     intc_1 // 1
     return
 
 main_close_sale_route@9:
-    // smart_contracts/digital_marketplace/contract.py:120
+    // smart_contracts/digital_marketplace/contract.py:108
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     intc_1 // 1
     txn OnCompletion
     shl
-    intc_3 // 3
+    pushint 3 // 3
     &
     assert // OnCompletion is not one of NoOp, OptIn
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/digital_marketplace/contract.py:41
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txna ApplicationArgs 1
     btoi
     txnas Assets
-    // smart_contracts/digital_marketplace/contract.py:120
+    // smart_contracts/digital_marketplace/contract.py:108
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     callsub close_sale
     intc_1 // 1
     return
 
 main_open_sale_route@8:
-    // smart_contracts/digital_marketplace/contract.py:103
+    // smart_contracts/digital_marketplace/contract.py:91
     // @abimethod
     txn OnCompletion
     !
     assert // OnCompletion is not NoOp
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/digital_marketplace/contract.py:41
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txn GroupIndex
     intc_1 // 1
     -
     dup
     gtxns TypeEnum
-    intc_2 // axfer
+    intc_3 // axfer
     ==
     assert // transaction type is axfer
     txna ApplicationArgs 1
-    // smart_contracts/digital_marketplace/contract.py:103
+    // smart_contracts/digital_marketplace/contract.py:91
     // @abimethod
     callsub open_sale
     intc_1 // 1
     return
 
 main_sponsor_asset_route@7:
-    // smart_contracts/digital_marketplace/contract.py:89
+    // smart_contracts/digital_marketplace/contract.py:77
     // @abimethod
     txn OnCompletion
     !
     assert // OnCompletion is not NoOp
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/digital_marketplace/contract.py:41
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txna ApplicationArgs 1
     btoi
     txnas Assets
-    // smart_contracts/digital_marketplace/contract.py:89
+    // smart_contracts/digital_marketplace/contract.py:77
     // @abimethod
     callsub sponsor_asset
     intc_1 // 1
     return
 
 main_withdraw_route@6:
-    // smart_contracts/digital_marketplace/contract.py:80
+    // smart_contracts/digital_marketplace/contract.py:68
     // @abimethod(allow_actions=["NoOp", "CloseOut"])
     intc_1 // 1
     txn OnCompletion
@@ -113,27 +131,27 @@ main_withdraw_route@6:
     assert // OnCompletion is not one of NoOp, CloseOut
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/digital_marketplace/contract.py:41
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txna ApplicationArgs 1
-    // smart_contracts/digital_marketplace/contract.py:80
+    // smart_contracts/digital_marketplace/contract.py:68
     // @abimethod(allow_actions=["NoOp", "CloseOut"])
     callsub withdraw
     intc_1 // 1
     return
 
 main_deposit_route@5:
-    // smart_contracts/digital_marketplace/contract.py:69
+    // smart_contracts/digital_marketplace/contract.py:57
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     intc_1 // 1
     txn OnCompletion
     shl
-    intc_3 // 3
+    pushint 3 // 3
     &
     assert // OnCompletion is not one of NoOp, OptIn
     txn ApplicationID
     assert // can only call when not creating
-    // smart_contracts/digital_marketplace/contract.py:41
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txn GroupIndex
     intc_1 // 1
@@ -143,17 +161,17 @@ main_deposit_route@5:
     intc_1 // pay
     ==
     assert // transaction type is pay
-    // smart_contracts/digital_marketplace/contract.py:69
+    // smart_contracts/digital_marketplace/contract.py:57
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     callsub deposit
     intc_1 // 1
     return
 
-main_bare_routing@11:
-    // smart_contracts/digital_marketplace/contract.py:41
+main_bare_routing@12:
+    // smart_contracts/digital_marketplace/contract.py:50
     // class DigitalMarketplace(ARC4Contract):
     txn OnCompletion
-    bnz main_after_if_else@13
+    bnz main_after_if_else@14
     txn ApplicationID
     !
     assert // can only call when creating
@@ -161,31 +179,198 @@ main_bare_routing@11:
     return
 
 
+// smart_contracts.digital_marketplace.subroutines.sales_box_mbr(prefix_length: uint64) -> uint64:
+sales_box_mbr:
+    // smart_contracts/digital_marketplace/subroutines.py:6-7
+    // @subroutine
+    // def sales_box_mbr(prefix_length: UInt64) -> UInt64:
+    proto 1 1
+    // smart_contracts/digital_marketplace/subroutines.py:10-13
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    frame_dig -1
+    // smart_contracts/digital_marketplace/subroutines.py:12-13
+    // # SaleKey
+    // 32 + 8 +
+    pushint 32 // 32
+    // smart_contracts/digital_marketplace/subroutines.py:10-13
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    +
+    // smart_contracts/digital_marketplace/subroutines.py:12-13
+    // # SaleKey
+    // 32 + 8 +
+    intc_2 // 8
+    // smart_contracts/digital_marketplace/subroutines.py:10-13
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    +
+    // smart_contracts/digital_marketplace/subroutines.py:14-17
+    // # Sale
+    // # Since the Sale type contains one dynamic type,
+    // #  it's got a 2 byte prefix pointing to that dynamic type
+    // 2 +
+    pushint 2 // 2
+    // smart_contracts/digital_marketplace/subroutines.py:10-17
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    // # Sale
+    // # Since the Sale type contains one dynamic type,
+    // #  it's got a 2 byte prefix pointing to that dynamic type
+    // 2 +
+    +
+    // smart_contracts/digital_marketplace/subroutines.py:18-19
+    // # amount & cost fields
+    // 8 + 8 +
+    intc_2 // 8
+    // smart_contracts/digital_marketplace/subroutines.py:10-19
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    // # Sale
+    // # Since the Sale type contains one dynamic type,
+    // #  it's got a 2 byte prefix pointing to that dynamic type
+    // 2 +
+    // # amount & cost fields
+    // 8 + 8 +
+    +
+    // smart_contracts/digital_marketplace/subroutines.py:18-19
+    // # amount & cost fields
+    // 8 + 8 +
+    intc_2 // 8
+    // smart_contracts/digital_marketplace/subroutines.py:10-19
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    // # Sale
+    // # Since the Sale type contains one dynamic type,
+    // #  it's got a 2 byte prefix pointing to that dynamic type
+    // 2 +
+    // # amount & cost fields
+    // 8 + 8 +
+    +
+    // smart_contracts/digital_marketplace/subroutines.py:20-21
+    // # bid field is a dynamic array and so it has got a length prefix
+    // 2 +
+    pushint 2 // 2
+    // smart_contracts/digital_marketplace/subroutines.py:10-21
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    // # Sale
+    // # Since the Sale type contains one dynamic type,
+    // #  it's got a 2 byte prefix pointing to that dynamic type
+    // 2 +
+    // # amount & cost fields
+    // 8 + 8 +
+    // # bid field is a dynamic array and so it has got a length prefix
+    // 2 +
+    +
+    // smart_contracts/digital_marketplace/subroutines.py:22-23
+    // # One optional Bid type
+    // (32 + 8)
+    pushint 40 // 40
+    // smart_contracts/digital_marketplace/subroutines.py:10-23
+    // # Domain separator
+    // prefix_length +
+    // # SaleKey
+    // 32 + 8 +
+    // # Sale
+    // # Since the Sale type contains one dynamic type,
+    // #  it's got a 2 byte prefix pointing to that dynamic type
+    // 2 +
+    // # amount & cost fields
+    // 8 + 8 +
+    // # bid field is a dynamic array and so it has got a length prefix
+    // 2 +
+    // # One optional Bid type
+    // (32 + 8)
+    +
+    // smart_contracts/digital_marketplace/subroutines.py:8-9
+    // # fmt: off
+    // return 2_500 + 400 * (
+    pushint 400 // 400
+    // smart_contracts/digital_marketplace/subroutines.py:8-24
+    // # fmt: off
+    // return 2_500 + 400 * (
+    //     # Domain separator
+    //     prefix_length +
+    //     # SaleKey
+    //     32 + 8 +
+    //     # Sale
+    //     # Since the Sale type contains one dynamic type,
+    //     #  it's got a 2 byte prefix pointing to that dynamic type
+    //     2 +
+    //     # amount & cost fields
+    //     8 + 8 +
+    //     # bid field is a dynamic array and so it has got a length prefix
+    //     2 +
+    //     # One optional Bid type
+    //     (32 + 8)
+    // )
+    *
+    // smart_contracts/digital_marketplace/subroutines.py:8-9
+    // # fmt: off
+    // return 2_500 + 400 * (
+    pushint 2500 // 2500
+    // smart_contracts/digital_marketplace/subroutines.py:8-24
+    // # fmt: off
+    // return 2_500 + 400 * (
+    //     # Domain separator
+    //     prefix_length +
+    //     # SaleKey
+    //     32 + 8 +
+    //     # Sale
+    //     # Since the Sale type contains one dynamic type,
+    //     #  it's got a 2 byte prefix pointing to that dynamic type
+    //     2 +
+    //     # amount & cost fields
+    //     8 + 8 +
+    //     # bid field is a dynamic array and so it has got a length prefix
+    //     2 +
+    //     # One optional Bid type
+    //     (32 + 8)
+    // )
+    +
+    retsub
+
+
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.deposit(payment: uint64) -> void:
 deposit:
-    // smart_contracts/digital_marketplace/contract.py:69-70
+    // smart_contracts/digital_marketplace/contract.py:57-58
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     // def deposit(self, payment: gtxn.PaymentTransaction) -> None:
     proto 1 0
-    // smart_contracts/digital_marketplace/contract.py:71
+    // smart_contracts/digital_marketplace/contract.py:59
     // assert payment.sender == Txn.sender, err.DIFFERENT_SENDER
     frame_dig -1
     gtxns Sender
     txn Sender
     ==
     assert // Different sender
-    // smart_contracts/digital_marketplace/contract.py:73
+    // smart_contracts/digital_marketplace/contract.py:61
     // payment.receiver == Global.current_application_address
     frame_dig -1
     gtxns Receiver
     global CurrentApplicationAddress
     ==
-    // smart_contracts/digital_marketplace/contract.py:72-74
+    // smart_contracts/digital_marketplace/contract.py:60-62
     // assert (
     //     payment.receiver == Global.current_application_address
     // ), err.WRONG_RECEIVER
     assert // Wrong receiver
-    // smart_contracts/digital_marketplace/contract.py:77
+    // smart_contracts/digital_marketplace/contract.py:65
     // self.deposited.get(Txn.sender, default=UInt64(0)) + payment.amount
     txn Sender
     intc_0 // 0
@@ -196,17 +381,17 @@ deposit:
     select
     frame_dig -1
     gtxns Amount
-    // smart_contracts/digital_marketplace/contract.py:76
+    // smart_contracts/digital_marketplace/contract.py:64
     // self.deposited[Txn.sender] = (
     txn Sender
-    // smart_contracts/digital_marketplace/contract.py:77
+    // smart_contracts/digital_marketplace/contract.py:65
     // self.deposited.get(Txn.sender, default=UInt64(0)) + payment.amount
     cover 2
     +
-    // smart_contracts/digital_marketplace/contract.py:76
+    // smart_contracts/digital_marketplace/contract.py:64
     // self.deposited[Txn.sender] = (
     bytec_0 // "deposited"
-    // smart_contracts/digital_marketplace/contract.py:76-78
+    // smart_contracts/digital_marketplace/contract.py:64-66
     // self.deposited[Txn.sender] = (
     //     self.deposited.get(Txn.sender, default=UInt64(0)) + payment.amount
     // )
@@ -217,17 +402,17 @@ deposit:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.withdraw(amount: bytes) -> void:
 withdraw:
-    // smart_contracts/digital_marketplace/contract.py:80-81
+    // smart_contracts/digital_marketplace/contract.py:68-69
     // @abimethod(allow_actions=["NoOp", "CloseOut"])
     // def withdraw(self, amount: arc4.UInt64) -> None:
     proto 1 0
-    // smart_contracts/digital_marketplace/contract.py:82
+    // smart_contracts/digital_marketplace/contract.py:70
     // if Txn.on_completion == OnCompleteAction.CloseOut:
     txn OnCompletion
     pushint 2 // CloseOut
     ==
     bz withdraw_after_if_else@2
-    // smart_contracts/digital_marketplace/contract.py:83
+    // smart_contracts/digital_marketplace/contract.py:71
     // assert self.deposited[Txn.sender] == amount.native, err.BALANCE_NOT_EMPTY
     txn Sender
     intc_0 // 0
@@ -240,7 +425,7 @@ withdraw:
     assert // Balance not empty
 
 withdraw_after_if_else@2:
-    // smart_contracts/digital_marketplace/contract.py:85
+    // smart_contracts/digital_marketplace/contract.py:73
     // self.deposited[Txn.sender] -= amount.native
     txn Sender
     dup
@@ -257,7 +442,7 @@ withdraw_after_if_else@2:
     bytec_0 // "deposited"
     uncover 2
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:87
+    // smart_contracts/digital_marketplace/contract.py:75
     // itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
     itxn_begin
     txn Sender
@@ -273,14 +458,14 @@ withdraw_after_if_else@2:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.sponsor_asset(asset: uint64) -> void:
 sponsor_asset:
-    // smart_contracts/digital_marketplace/contract.py:89-90
+    // smart_contracts/digital_marketplace/contract.py:77-78
     // @abimethod
     // def sponsor_asset(self, asset: Asset) -> None:
     proto 1 0
-    // smart_contracts/digital_marketplace/contract.py:91
+    // smart_contracts/digital_marketplace/contract.py:79
     // assert not Global.current_application_address.is_opted_in(
     global CurrentApplicationAddress
-    // smart_contracts/digital_marketplace/contract.py:91-93
+    // smart_contracts/digital_marketplace/contract.py:79-81
     // assert not Global.current_application_address.is_opted_in(
     //     asset
     // ), err.ALREADY_OPTED_IN
@@ -289,7 +474,7 @@ sponsor_asset:
     bury 1
     !
     assert // Already opted in
-    // smart_contracts/digital_marketplace/contract.py:95
+    // smart_contracts/digital_marketplace/contract.py:83
     // self.deposited[Txn.sender] -= Global.asset_opt_in_min_balance
     txn Sender
     dup
@@ -302,30 +487,30 @@ sponsor_asset:
     bytec_0 // "deposited"
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:97-101
+    // smart_contracts/digital_marketplace/contract.py:85-89
     // itxn.AssetTransfer(
     //     xfer_asset=asset,
     //     asset_receiver=Global.current_application_address,
     //     asset_amount=0,
     // ).submit()
     itxn_begin
-    // smart_contracts/digital_marketplace/contract.py:99
+    // smart_contracts/digital_marketplace/contract.py:87
     // asset_receiver=Global.current_application_address,
     global CurrentApplicationAddress
-    // smart_contracts/digital_marketplace/contract.py:100
+    // smart_contracts/digital_marketplace/contract.py:88
     // asset_amount=0,
     intc_0 // 0
     itxn_field AssetAmount
     itxn_field AssetReceiver
     frame_dig -1
     itxn_field XferAsset
-    // smart_contracts/digital_marketplace/contract.py:97
+    // smart_contracts/digital_marketplace/contract.py:85
     // itxn.AssetTransfer(
-    intc_2 // axfer
+    intc_3 // axfer
     itxn_field TypeEnum
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/digital_marketplace/contract.py:97-101
+    // smart_contracts/digital_marketplace/contract.py:85-89
     // itxn.AssetTransfer(
     //     xfer_asset=asset,
     //     asset_receiver=Global.current_application_address,
@@ -337,70 +522,50 @@ sponsor_asset:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.open_sale(asset_deposit: uint64, cost: bytes) -> void:
 open_sale:
-    // smart_contracts/digital_marketplace/contract.py:103-106
+    // smart_contracts/digital_marketplace/contract.py:91-94
     // @abimethod
     // def open_sale(
     //     self, asset_deposit: gtxn.AssetTransferTransaction, cost: arc4.UInt64
     // ) -> None:
     proto 2 0
-    // smart_contracts/digital_marketplace/contract.py:107
+    // smart_contracts/digital_marketplace/contract.py:95
     // assert asset_deposit.sender == Txn.sender, err.DIFFERENT_SENDER
     frame_dig -2
     gtxns Sender
     txn Sender
     ==
     assert // Different sender
-    // smart_contracts/digital_marketplace/contract.py:109
+    // smart_contracts/digital_marketplace/contract.py:97
     // asset_deposit.asset_receiver == Global.current_application_address
     frame_dig -2
     gtxns AssetReceiver
     global CurrentApplicationAddress
     ==
-    // smart_contracts/digital_marketplace/contract.py:108-110
+    // smart_contracts/digital_marketplace/contract.py:96-98
     // assert (
     //     asset_deposit.asset_receiver == Global.current_application_address
     // ), err.WRONG_RECEIVER
     assert // Wrong receiver
-    // smart_contracts/digital_marketplace/contract.py:112
-    // self.deposited[Txn.sender] -= self.sales_box_mbr()
+    // smart_contracts/digital_marketplace/contract.py:100
+    // self.deposited[Txn.sender] -= sales_box_mbr(self.sales.key_prefix.length)
     txn Sender
     dup
     intc_0 // 0
     bytec_0 // "deposited"
     app_local_get_ex
     assert // check self.deposited exists for account
-    // smart_contracts/digital_marketplace/contract.py:49-66
-    // # fmt: off
-    // return 2_500 + 400 * (
-    //     # Domain separator
-    //     self.sales.key_prefix.length +
-    //     # SaleKey
-    //     32 + 8 +
-    //     # Sale
-    //     # Since the Sale type contains one dynamic type,
-    //     #  it's got a 2 byte prefix pointing to that dynamic type
-    //     2 +
-    //     # amount & cost fields
-    //     8 + 8 +
-    //     # bid field is a dynamic array and so it has got a length prefix plus
-    //     #  one Bid type at most
-    //     2 +
-    //     # One optional Bid type
-    //     (32 + 8)
-    // )
-    intc 4 // 44500
-    // smart_contracts/digital_marketplace/contract.py:112
-    // self.deposited[Txn.sender] -= self.sales_box_mbr()
+    pushint 5 // 5
+    callsub sales_box_mbr
     -
     bytec_0 // "deposited"
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:117
+    // smart_contracts/digital_marketplace/contract.py:105
     // arc4.UInt64(asset_deposit.asset_amount), cost, arc4.DynamicArray[Bid]()
     frame_dig -2
     gtxns AssetAmount
     itob
-    // smart_contracts/digital_marketplace/contract.py:116-118
+    // smart_contracts/digital_marketplace/contract.py:104-106
     // ] = Sale(
     //     arc4.UInt64(asset_deposit.asset_amount), cost, arc4.DynamicArray[Bid]()
     // )
@@ -408,31 +573,31 @@ open_sale:
     concat
     pushbytes 0x0012
     concat
-    // smart_contracts/digital_marketplace/contract.py:117
+    // smart_contracts/digital_marketplace/contract.py:105
     // arc4.UInt64(asset_deposit.asset_amount), cost, arc4.DynamicArray[Bid]()
-    pushbytes 0x0000
-    // smart_contracts/digital_marketplace/contract.py:116-118
+    bytec_3 // 0x0000
+    // smart_contracts/digital_marketplace/contract.py:104-106
     // ] = Sale(
     //     arc4.UInt64(asset_deposit.asset_amount), cost, arc4.DynamicArray[Bid]()
     // )
     concat
-    // smart_contracts/digital_marketplace/contract.py:115
+    // smart_contracts/digital_marketplace/contract.py:103
     // SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id))
     txn Sender
     frame_dig -2
     gtxns XferAsset
     itob
     concat
-    // smart_contracts/digital_marketplace/contract.py:114
+    // smart_contracts/digital_marketplace/contract.py:102
     // self.sales[
-    bytec_1 // "sales"
-    // smart_contracts/digital_marketplace/contract.py:114-116
+    bytec_2 // "sales"
+    // smart_contracts/digital_marketplace/contract.py:102-104
     // self.sales[
     //     SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id))
     // ] = Sale(
     swap
     concat
-    // smart_contracts/digital_marketplace/contract.py:114-118
+    // smart_contracts/digital_marketplace/contract.py:102-106
     // self.sales[
     //     SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id))
     // ] = Sale(
@@ -448,29 +613,29 @@ open_sale:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.close_sale(asset: uint64) -> void:
 close_sale:
-    // smart_contracts/digital_marketplace/contract.py:120-121
+    // smart_contracts/digital_marketplace/contract.py:108-109
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     // def close_sale(self, asset: Asset) -> None:
     proto 1 0
-    // smart_contracts/digital_marketplace/contract.py:122
+    // smart_contracts/digital_marketplace/contract.py:110
     // sale_key = SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset.id))
     txn Sender
     frame_dig -1
     itob
     concat
-    // smart_contracts/digital_marketplace/contract.py:124-128
+    // smart_contracts/digital_marketplace/contract.py:112-116
     // itxn.AssetTransfer(
     //     xfer_asset=asset,
     //     asset_receiver=Txn.sender,
     //     asset_amount=self.sales[sale_key].amount.native,
     // ).submit()
     itxn_begin
-    // smart_contracts/digital_marketplace/contract.py:126
+    // smart_contracts/digital_marketplace/contract.py:114
     // asset_receiver=Txn.sender,
     txn Sender
-    // smart_contracts/digital_marketplace/contract.py:127
+    // smart_contracts/digital_marketplace/contract.py:115
     // asset_amount=self.sales[sale_key].amount.native,
-    bytec_1 // "sales"
+    bytec_2 // "sales"
     uncover 2
     concat
     dup
@@ -483,67 +648,67 @@ close_sale:
     itxn_field AssetReceiver
     frame_dig -1
     itxn_field XferAsset
-    // smart_contracts/digital_marketplace/contract.py:124
+    // smart_contracts/digital_marketplace/contract.py:112
     // itxn.AssetTransfer(
-    intc_2 // axfer
+    intc_3 // axfer
     itxn_field TypeEnum
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/digital_marketplace/contract.py:124-128
+    // smart_contracts/digital_marketplace/contract.py:112-116
     // itxn.AssetTransfer(
     //     xfer_asset=asset,
     //     asset_receiver=Txn.sender,
     //     asset_amount=self.sales[sale_key].amount.native,
     // ).submit()
     itxn_submit
-    // smart_contracts/digital_marketplace/contract.py:131
-    // self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
+    // smart_contracts/digital_marketplace/contract.py:119
+    // Txn.sender, default=UInt64(0)
     txn Sender
+    // smart_contracts/digital_marketplace/contract.py:118-120
+    // self.deposited[Txn.sender] = self.deposited.get(
+    //     Txn.sender, default=UInt64(0)
+    // ) + sales_box_mbr(self.sales.key_prefix.length)
     intc_0 // 0
+    // smart_contracts/digital_marketplace/contract.py:118
+    // self.deposited[Txn.sender] = self.deposited.get(
     bytec_0 // "deposited"
+    // smart_contracts/digital_marketplace/contract.py:118-120
+    // self.deposited[Txn.sender] = self.deposited.get(
+    //     Txn.sender, default=UInt64(0)
+    // ) + sales_box_mbr(self.sales.key_prefix.length)
     app_local_get_ex
+    // smart_contracts/digital_marketplace/contract.py:119
+    // Txn.sender, default=UInt64(0)
     intc_0 // 0
+    // smart_contracts/digital_marketplace/contract.py:118-120
+    // self.deposited[Txn.sender] = self.deposited.get(
+    //     Txn.sender, default=UInt64(0)
+    // ) + sales_box_mbr(self.sales.key_prefix.length)
     cover 2
     select
-    // smart_contracts/digital_marketplace/contract.py:130
-    // self.deposited[Txn.sender] = (
+    // smart_contracts/digital_marketplace/contract.py:120
+    // ) + sales_box_mbr(self.sales.key_prefix.length)
+    pushint 5 // 5
+    callsub sales_box_mbr
+    // smart_contracts/digital_marketplace/contract.py:118
+    // self.deposited[Txn.sender] = self.deposited.get(
     txn Sender
-    // smart_contracts/digital_marketplace/contract.py:131
-    // self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
-    swap
-    // smart_contracts/digital_marketplace/contract.py:49-66
-    // # fmt: off
-    // return 2_500 + 400 * (
-    //     # Domain separator
-    //     self.sales.key_prefix.length +
-    //     # SaleKey
-    //     32 + 8 +
-    //     # Sale
-    //     # Since the Sale type contains one dynamic type,
-    //     #  it's got a 2 byte prefix pointing to that dynamic type
-    //     2 +
-    //     # amount & cost fields
-    //     8 + 8 +
-    //     # bid field is a dynamic array and so it has got a length prefix plus
-    //     #  one Bid type at most
-    //     2 +
-    //     # One optional Bid type
-    //     (32 + 8)
-    // )
-    intc 4 // 44500
-    // smart_contracts/digital_marketplace/contract.py:131
-    // self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
+    // smart_contracts/digital_marketplace/contract.py:118-120
+    // self.deposited[Txn.sender] = self.deposited.get(
+    //     Txn.sender, default=UInt64(0)
+    // ) + sales_box_mbr(self.sales.key_prefix.length)
+    cover 2
     +
-    // smart_contracts/digital_marketplace/contract.py:130
-    // self.deposited[Txn.sender] = (
+    // smart_contracts/digital_marketplace/contract.py:118
+    // self.deposited[Txn.sender] = self.deposited.get(
     bytec_0 // "deposited"
-    // smart_contracts/digital_marketplace/contract.py:130-132
-    // self.deposited[Txn.sender] = (
-    //     self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
-    // )
+    // smart_contracts/digital_marketplace/contract.py:118-120
+    // self.deposited[Txn.sender] = self.deposited.get(
+    //     Txn.sender, default=UInt64(0)
+    // ) + sales_box_mbr(self.sales.key_prefix.length)
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:134
+    // smart_contracts/digital_marketplace/contract.py:122
     // del self.sales[sale_key]
     box_del
     pop
@@ -552,11 +717,11 @@ close_sale:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.buy(sale_key: bytes) -> void:
 buy:
-    // smart_contracts/digital_marketplace/contract.py:136-137
+    // smart_contracts/digital_marketplace/contract.py:124-125
     // @abimethod
     // def buy(self, sale_key: SaleKey) -> None:
     proto 1 0
-    // smart_contracts/digital_marketplace/contract.py:138
+    // smart_contracts/digital_marketplace/contract.py:126
     // self.deposited[Txn.sender] -= self.sales[sale_key].cost.native
     txn Sender
     dup
@@ -564,13 +729,13 @@ buy:
     bytec_0 // "deposited"
     app_local_get_ex
     assert // check self.deposited exists for account
-    bytec_1 // "sales"
+    bytec_2 // "sales"
     frame_dig -1
     concat
     dup
     box_get
     assert // check self.sales entry exists
-    pushint 8 // 8
+    intc_2 // 8
     extract_uint64
     uncover 2
     swap
@@ -579,8 +744,8 @@ buy:
     bytec_0 // "deposited"
     uncover 2
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:139
-    // self.deposited[sale_key.owner.native] += self.sales[sale_key].cost.native
+    // smart_contracts/digital_marketplace/contract.py:127
+    // self.deposited[sale_key.owner.native] += self.sales[
     frame_dig -1
     extract 0 32 // on error: Index access is out of bounds
     dup
@@ -588,31 +753,50 @@ buy:
     bytec_0 // "deposited"
     app_local_get_ex
     assert // check self.deposited exists for account
+    // smart_contracts/digital_marketplace/contract.py:127-129
+    // self.deposited[sale_key.owner.native] += self.sales[
+    //     sale_key
+    // ].cost.native + sales_box_mbr(self.sales.key_prefix.length)
     dig 2
     box_get
     assert // check self.sales entry exists
-    pushint 8 // 8
+    intc_2 // 8
     extract_uint64
+    // smart_contracts/digital_marketplace/contract.py:129
+    // ].cost.native + sales_box_mbr(self.sales.key_prefix.length)
+    pushint 5 // 5
+    callsub sales_box_mbr
+    // smart_contracts/digital_marketplace/contract.py:127-129
+    // self.deposited[sale_key.owner.native] += self.sales[
+    //     sale_key
+    // ].cost.native + sales_box_mbr(self.sales.key_prefix.length)
     +
+    +
+    // smart_contracts/digital_marketplace/contract.py:127
+    // self.deposited[sale_key.owner.native] += self.sales[
     bytec_0 // "deposited"
+    // smart_contracts/digital_marketplace/contract.py:127-129
+    // self.deposited[sale_key.owner.native] += self.sales[
+    //     sale_key
+    // ].cost.native + sales_box_mbr(self.sales.key_prefix.length)
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:141-145
+    // smart_contracts/digital_marketplace/contract.py:131-135
     // itxn.AssetTransfer(
     //     xfer_asset=sale_key.asset.native,
     //     asset_receiver=Txn.sender,
     //     asset_amount=self.sales[sale_key].amount.native,
     // ).submit()
     itxn_begin
-    // smart_contracts/digital_marketplace/contract.py:142
+    // smart_contracts/digital_marketplace/contract.py:132
     // xfer_asset=sale_key.asset.native,
     frame_dig -1
     pushint 32 // 32
     extract_uint64
-    // smart_contracts/digital_marketplace/contract.py:143
+    // smart_contracts/digital_marketplace/contract.py:133
     // asset_receiver=Txn.sender,
     txn Sender
-    // smart_contracts/digital_marketplace/contract.py:144
+    // smart_contracts/digital_marketplace/contract.py:134
     // asset_amount=self.sales[sale_key].amount.native,
     dig 2
     box_get
@@ -622,21 +806,364 @@ buy:
     itxn_field AssetAmount
     itxn_field AssetReceiver
     itxn_field XferAsset
-    // smart_contracts/digital_marketplace/contract.py:141
+    // smart_contracts/digital_marketplace/contract.py:131
     // itxn.AssetTransfer(
-    intc_2 // axfer
+    intc_3 // axfer
     itxn_field TypeEnum
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/digital_marketplace/contract.py:141-145
+    // smart_contracts/digital_marketplace/contract.py:131-135
     // itxn.AssetTransfer(
     //     xfer_asset=sale_key.asset.native,
     //     asset_receiver=Txn.sender,
     //     asset_amount=self.sales[sale_key].amount.native,
     // ).submit()
     itxn_submit
-    // smart_contracts/digital_marketplace/contract.py:147
+    // smart_contracts/digital_marketplace/contract.py:137
     // del self.sales[sale_key]
     box_del
     pop
     retsub
+
+
+// smart_contracts.digital_marketplace.contract.DigitalMarketplace.bid(sale_key: bytes, new_bid_amount: bytes) -> void:
+bid:
+    // smart_contracts/digital_marketplace/contract.py:139-140
+    // @abimethod
+    // def bid(self, sale_key: SaleKey, new_bid_amount: arc4.UInt64) -> None:
+    proto 2 0
+    intc_0 // 0
+    pushbytes ""
+    dupn 2
+    // smart_contracts/digital_marketplace/contract.py:141
+    // maybe_best_bid = self.sales[sale_key].bid.copy()
+    bytec_2 // "sales"
+    frame_dig -2
+    concat
+    dup
+    box_get
+    assert // check self.sales entry exists
+    dup
+    pushint 16 // 16
+    extract_uint16
+    dig 1
+    len
+    substring3
+    dup
+    cover 2
+    // smart_contracts/digital_marketplace/contract.py:142
+    // if maybe_best_bid:
+    bytec_3 // 0x0000
+    !=
+    bz bid_else_body@2
+    // smart_contracts/digital_marketplace/contract.py:143
+    // assert maybe_best_bid[0].amount.native < new_bid_amount.native
+    frame_dig 4
+    extract 2 40
+    pushint 32 // 32
+    extract_uint64
+    frame_dig -1
+    btoi
+    <
+    assert
+    // smart_contracts/digital_marketplace/contract.py:146
+    // bidder=arc4.Address(Txn.sender), amount=new_bid_amount
+    txn Sender
+    // smart_contracts/digital_marketplace/contract.py:145-147
+    // self.sales[sale_key].bid[0] = Bid(
+    //     bidder=arc4.Address(Txn.sender), amount=new_bid_amount
+    // )
+    frame_dig -1
+    concat
+    // smart_contracts/digital_marketplace/contract.py:145
+    // self.sales[sale_key].bid[0] = Bid(
+    dig 1
+    box_get
+    assert // check self.sales entry exists
+    dup
+    pushint 16 // 16
+    extract_uint16
+    dig 1
+    len
+    dig 2
+    dig 2
+    uncover 2
+    substring3
+    // smart_contracts/digital_marketplace/contract.py:145-147
+    // self.sales[sale_key].bid[0] = Bid(
+    //     bidder=arc4.Address(Txn.sender), amount=new_bid_amount
+    // )
+    dup
+    intc_0 // 0
+    extract_uint16
+    assert // Index access is out of bounds
+    uncover 3
+    replace2 2
+    uncover 2
+    intc_0 // 0
+    uncover 3
+    extract3
+    swap
+    concat
+    dig 1
+    box_del
+    pop
+    box_put
+
+bid_after_if_else@3:
+    // smart_contracts/digital_marketplace/contract.py:153
+    // self.deposited[Txn.sender] -= new_bid_amount.native
+    txn Sender
+    dup
+    intc_0 // 0
+    bytec_0 // "deposited"
+    app_local_get_ex
+    assert // check self.deposited exists for account
+    frame_dig -1
+    btoi
+    -
+    bytec_0 // "deposited"
+    swap
+    app_local_put
+    // smart_contracts/digital_marketplace/contract.py:155
+    // if self.placed_bids.maybe(arc4.Address(Txn.sender))[1]:
+    bytec_1 // "placed_bids"
+    txn Sender
+    concat
+    box_get
+    bury 1
+    bz bid_else_body@8
+    // smart_contracts/digital_marketplace/contract.py:157
+    // self.placed_bids[arc4.Address(Txn.sender)].copy(), sale_key.copy()
+    bytec_1 // "placed_bids"
+    txn Sender
+    concat
+    box_get
+    swap
+    dup
+    cover 2
+    frame_bury 0
+    assert // check self.placed_bids entry exists
+    // smart_contracts/digital_marketplace/subroutines.py:45
+    // for i in urange(placed_bids.length):
+    intc_0 // 0
+    extract_uint16
+    frame_bury 3
+    intc_0 // 0
+    frame_bury 1
+
+bid_for_header@13:
+    // smart_contracts/digital_marketplace/subroutines.py:45
+    // for i in urange(placed_bids.length):
+    frame_dig 1
+    frame_dig 3
+    <
+    bz bid_after_for@17
+    // smart_contracts/digital_marketplace/subroutines.py:46
+    // if placed_bids[i].sale_key == key:
+    frame_dig 0
+    extract 2 0
+    frame_dig 1
+    pushint 48 // 48
+    *
+    pushint 48 // 48
+    extract3 // on error: Index access is out of bounds
+    extract 0 40 // on error: Index access is out of bounds
+    frame_dig -2
+    ==
+    bz bid_after_if_else@16
+    // smart_contracts/digital_marketplace/subroutines.py:47
+    // return True, i
+    intc_1 // 1
+    frame_dig 1
+    frame_bury 2
+
+bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18:
+    // smart_contracts/digital_marketplace/contract.py:159
+    // if found:
+    bz bid_else_body@6
+    // smart_contracts/digital_marketplace/contract.py:160-162
+    // self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
+    //     sale_key.copy(), new_bid_amount
+    // )
+    frame_dig -2
+    frame_dig -1
+    concat
+    // smart_contracts/digital_marketplace/contract.py:160
+    // self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
+    bytec_1 // "placed_bids"
+    txn Sender
+    concat
+    dup
+    box_get
+    assert // check self.placed_bids entry exists
+    // smart_contracts/digital_marketplace/contract.py:160-162
+    // self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
+    //     sale_key.copy(), new_bid_amount
+    // )
+    dup
+    intc_0 // 0
+    extract_uint16
+    frame_dig 2
+    dup
+    uncover 2
+    <
+    assert // Index access is out of bounds
+    pushint 48 // 48
+    *
+    pushint 2 // 2
+    +
+    uncover 3
+    replace3
+    dig 1
+    box_del
+    pop
+    box_put
+    retsub
+
+bid_else_body@6:
+    // smart_contracts/digital_marketplace/contract.py:164
+    // self.placed_bids[arc4.Address(Txn.sender)].append(
+    bytec_1 // "placed_bids"
+    txn Sender
+    concat
+    dup
+    box_get
+    assert // check self.placed_bids entry exists
+    // smart_contracts/digital_marketplace/contract.py:164-166
+    // self.placed_bids[arc4.Address(Txn.sender)].append(
+    //     PlacedBid(sale_key.copy(), new_bid_amount)
+    // )
+    extract 2 0
+    // smart_contracts/digital_marketplace/contract.py:165
+    // PlacedBid(sale_key.copy(), new_bid_amount)
+    frame_dig -2
+    frame_dig -1
+    concat
+    // smart_contracts/digital_marketplace/contract.py:164-166
+    // self.placed_bids[arc4.Address(Txn.sender)].append(
+    //     PlacedBid(sale_key.copy(), new_bid_amount)
+    // )
+    concat
+    dup
+    len
+    pushint 48 // 48
+    /
+    itob
+    extract 6 2
+    swap
+    concat
+    dig 1
+    box_del
+    pop
+    box_put
+    retsub
+
+bid_after_if_else@16:
+    // smart_contracts/digital_marketplace/subroutines.py:45
+    // for i in urange(placed_bids.length):
+    frame_dig 1
+    intc_1 // 1
+    +
+    frame_bury 1
+    b bid_for_header@13
+
+bid_after_for@17:
+    // smart_contracts/digital_marketplace/subroutines.py:48
+    // return False, UInt64(0)
+    intc_0 // 0
+    dup
+    frame_bury 2
+    // smart_contracts/digital_marketplace/contract.py:156-158
+    // found, index = find_placed_bid(
+    //     self.placed_bids[arc4.Address(Txn.sender)].copy(), sale_key.copy()
+    // )
+    b bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18
+
+bid_else_body@8:
+    // smart_contracts/digital_marketplace/contract.py:168
+    // self.deposited[Txn.sender] -= placed_bids_box_mbr()
+    txn Sender
+    dup
+    intc_0 // 0
+    bytec_0 // "deposited"
+    app_local_get_ex
+    assert // check self.deposited exists for account
+    // smart_contracts/digital_marketplace/subroutines.py:30-38
+    // return UInt64(
+    //     2_500
+    //     + 400
+    //     * (
+    //         # assuming it's possible to fill an entire box
+    //         64
+    //         + 32768
+    //     )
+    // )
+    pushint 13135300 // 13135300
+    // smart_contracts/digital_marketplace/contract.py:168
+    // self.deposited[Txn.sender] -= placed_bids_box_mbr()
+    -
+    bytec_0 // "deposited"
+    swap
+    app_local_put
+    // smart_contracts/digital_marketplace/contract.py:169
+    // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid]()
+    bytec_1 // "placed_bids"
+    txn Sender
+    concat
+    dup
+    box_del
+    pop
+    bytec_3 // 0x0000
+    box_put
+    retsub
+
+bid_else_body@2:
+    // smart_contracts/digital_marketplace/contract.py:149
+    // self.sales[sale_key].bid.append(
+    dup
+    box_get
+    assert // check self.sales entry exists
+    dup
+    pushint 16 // 16
+    extract_uint16
+    dig 1
+    len
+    dig 2
+    dig 2
+    uncover 2
+    substring3
+    // smart_contracts/digital_marketplace/contract.py:149-151
+    // self.sales[sale_key].bid.append(
+    //     Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
+    // )
+    extract 2 0
+    // smart_contracts/digital_marketplace/contract.py:150
+    // Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
+    txn Sender
+    frame_dig -1
+    concat
+    // smart_contracts/digital_marketplace/contract.py:149-151
+    // self.sales[sale_key].bid.append(
+    //     Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
+    // )
+    concat
+    dup
+    len
+    pushint 40 // 40
+    /
+    itob
+    extract 6 2
+    swap
+    concat
+    uncover 2
+    intc_0 // 0
+    uncover 3
+    extract3
+    swap
+    concat
+    dig 1
+    box_del
+    pop
+    box_put
+    b bid_after_if_else@3

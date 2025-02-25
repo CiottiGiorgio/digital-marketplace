@@ -122,7 +122,7 @@ def scenario_deposit(
     bidder: SigningAccount,
 ) -> None:
     deposit_group = digital_marketplace_client.new_group()
-    for account in [seller, buyer, bidder]:
+    for account in [seller, buyer]:
         deposit_group = deposit_group.opt_in.deposit(
             DepositArgs(
                 payment=algorand_client.create_transaction.payment(
@@ -135,7 +135,18 @@ def scenario_deposit(
             ),
             params=CommonAppCallParams(sender=account.address),
         )
-    deposit_group.send()
+    deposit_group.opt_in.deposit(
+        DepositArgs(
+            payment=algorand_client.create_transaction.payment(
+                PaymentParams(
+                    sender=bidder.address,
+                    receiver=digital_marketplace_client.app_address,
+                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
+                )
+            )
+        ),
+        params=CommonAppCallParams(sender=bidder.address),
+    ).send(send_params=SendParams(populate_app_call_resources=True))
 
 
 @pytest.fixture(scope="function")

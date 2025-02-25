@@ -10,11 +10,15 @@ from algopy import (
     arc4,
     gtxn,
     itxn,
-    subroutine,
 )
 from algopy.arc4 import abimethod
 
 import smart_contracts.digital_marketplace.errors as err
+from smart_contracts.digital_marketplace.subroutines import (
+    find_placed_bid,
+    placed_bids_box_mbr,
+    sales_box_mbr,
+)
 
 
 class SaleKey(arc4.Struct):
@@ -38,32 +42,17 @@ class Sale(arc4.Struct):
     bid: arc4.DynamicArray[Bid]
 
 
+class PlacedBid(arc4.Struct):
+    sale_key: SaleKey
+    bid_amount: arc4.UInt64
+
+
 class DigitalMarketplace(ARC4Contract):
     def __init__(self) -> None:
         self.deposited = LocalState(UInt64)
 
         self.sales = BoxMap(SaleKey, Sale)
-
-    @subroutine
-    def sales_box_mbr(self) -> UInt64:
-        # fmt: off
-        return 2_500 + 400 * (
-            # Domain separator
-            self.sales.key_prefix.length +
-            # SaleKey
-            32 + 8 +
-            # Sale
-            # Since the Sale type contains one dynamic type,
-            #  it's got a 2 byte prefix pointing to that dynamic type
-            2 +
-            # amount & cost fields
-            8 + 8 +
-            # bid field is a dynamic array and so it has got a length prefix
-            2 +
-            # One optional Bid type
-            (32 + 8)
-        )
-        # fmt: on
+        self.placed_bids = BoxMap(arc4.Address, arc4.DynamicArray[PlacedBid])
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def deposit(self, payment: gtxn.PaymentTransaction) -> None:
@@ -108,7 +97,7 @@ class DigitalMarketplace(ARC4Contract):
             asset_deposit.asset_receiver == Global.current_application_address
         ), err.WRONG_RECEIVER
 
-        self.deposited[Txn.sender] -= self.sales_box_mbr()
+        self.deposited[Txn.sender] -= sales_box_mbr(self.sales.key_prefix.length)
 
         self.sales[
             SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id))
@@ -126,16 +115,18 @@ class DigitalMarketplace(ARC4Contract):
             asset_amount=self.sales[sale_key].amount.native,
         ).submit()
 
-        self.deposited[Txn.sender] = (
-            self.deposited.get(Txn.sender, default=UInt64(0)) + self.sales_box_mbr()
-        )
+        self.deposited[Txn.sender] = self.deposited.get(
+            Txn.sender, default=UInt64(0)
+        ) + sales_box_mbr(self.sales.key_prefix.length)
 
         del self.sales[sale_key]
 
     @abimethod
     def buy(self, sale_key: SaleKey) -> None:
         self.deposited[Txn.sender] -= self.sales[sale_key].cost.native
-        self.deposited[sale_key.owner.native] += self.sales[sale_key].cost.native
+        self.deposited[sale_key.owner.native] += self.sales[
+            sale_key
+        ].cost.native + sales_box_mbr(self.sales.key_prefix.length)
 
         itxn.AssetTransfer(
             xfer_asset=sale_key.asset.native,
@@ -145,4 +136,37 @@ class DigitalMarketplace(ARC4Contract):
 
         del self.sales[sale_key]
 
+    @abimethod
+    def bid(self, sale_key: SaleKey, new_bid_amount: arc4.UInt64) -> None:
+        maybe_best_bid = self.sales[sale_key].bid.copy()
+        if maybe_best_bid:
+            assert maybe_best_bid[0].amount.native < new_bid_amount.native
+
+            self.sales[sale_key].bid[0] = Bid(
+                bidder=arc4.Address(Txn.sender), amount=new_bid_amount
+            )
+        else:
+            self.sales[sale_key].bid.append(
+                Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
+            )
+
+        self.deposited[Txn.sender] -= new_bid_amount.native
+
+        if self.placed_bids.maybe(arc4.Address(Txn.sender))[1]:
+            found, index = find_placed_bid(
+                self.placed_bids[arc4.Address(Txn.sender)].copy(), sale_key.copy()
+            )
+            if found:
+                self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
+                    sale_key.copy(), new_bid_amount
+                )
+            else:
+                self.placed_bids[arc4.Address(Txn.sender)].append(
+                    PlacedBid(sale_key.copy(), new_bid_amount)
+                )
+        else:
+            self.deposited[Txn.sender] -= placed_bids_box_mbr()
+            self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid]()
+
     # TODO: Write a readonly method that returns the encumbered and unencumbered bids.
+    # TODO: Write a way to get back the placed_bids mbr
