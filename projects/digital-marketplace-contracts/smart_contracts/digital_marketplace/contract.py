@@ -134,14 +134,9 @@ class DigitalMarketplace(ARC4Contract):
         del self.sales[sale_key]
 
     @abimethod
-    def buy(self, sale_key: SaleKey, payment: gtxn.PaymentTransaction) -> None:
-        assert payment.sender == Txn.sender, err.DIFFERENT_SENDER
-        assert (
-            payment.receiver == Global.current_application_address
-        ), err.WRONG_RECEIVER
-        assert payment.amount == self.sales[sale_key].cost
-
-        self.deposited[sale_key.owner.native] += payment.amount
+    def buy(self, sale_key: SaleKey) -> None:
+        self.deposited[Txn.sender] -= self.sales[sale_key].cost.native
+        self.deposited[sale_key.owner.native] += self.sales[sale_key].cost.native
 
         itxn.AssetTransfer(
             xfer_asset=sale_key.asset.native,
