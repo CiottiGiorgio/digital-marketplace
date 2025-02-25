@@ -166,7 +166,9 @@ class DigitalMarketplace(ARC4Contract):
                 )
         else:
             self.deposited[Txn.sender] -= placed_bids_box_mbr()
-            self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid]()
+            self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
+                PlacedBid(sale_key.copy(), new_bid_amount)
+            )
 
     # TODO: Write a readonly method that returns the encumbered and unencumbered bids.
     # TODO: Write a way to get back the placed_bids mbr

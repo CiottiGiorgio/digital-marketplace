@@ -1106,15 +1106,31 @@ bid_else_body@8:
     bytec_0 // "deposited"
     swap
     app_local_put
+    // smart_contracts/digital_marketplace/contract.py:170
+    // PlacedBid(sale_key.copy(), new_bid_amount)
+    frame_dig -2
+    frame_dig -1
+    concat
+    // smart_contracts/digital_marketplace/contract.py:169-171
+    // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
+    //     PlacedBid(sale_key.copy(), new_bid_amount)
+    // )
+    pushbytes 0x0001
+    swap
+    concat
     // smart_contracts/digital_marketplace/contract.py:169
-    // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid]()
+    // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
     bytec_1 // "placed_bids"
     txn Sender
     concat
+    // smart_contracts/digital_marketplace/contract.py:169-171
+    // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
+    //     PlacedBid(sale_key.copy(), new_bid_amount)
+    // )
     dup
     box_del
     pop
-    bytec_3 // 0x0000
+    swap
     box_put
     retsub
 
