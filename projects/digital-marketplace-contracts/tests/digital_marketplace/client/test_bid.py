@@ -64,27 +64,23 @@ def test_pass_first_placed_bid_first_bid(
     bidder: SigningAccount,
     asset_to_sell: int,
 ) -> None:
-    assert (
-        dm_client.state.box.sales.get_value(
-            SaleKey(owner=seller.address, asset=asset_to_sell)
-        ).bid
-        == []
-    )
+    sale_key = SaleKey(owner=seller.address, asset=asset_to_sell)
+    assert dm_client.state.box.sales.get_value(sale_key).bid == []
     with pytest.raises(AlgodHTTPError, match="box not found"):
         _ = dm_client.state.box.placed_bids.get_value(bidder.address)
     deposited_before_call = dm_client.state.local_state(bidder.address).deposited
 
     dm_client.send.bid(
         BidArgs(
-            sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
+            sale_key=sale_key,
             new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
-    assert dm_client.state.box.sales.get_value(
-        SaleKey(owner=seller.address, asset=asset_to_sell)
-    ).bid == [[bidder.address, cst.AMOUNT_TO_BID.micro_algo]]
+    assert dm_client.state.box.sales.get_value(sale_key).bid == [
+        [bidder.address, cst.AMOUNT_TO_BID.micro_algo]
+    ]
     assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
         [
             [seller.address, asset_to_sell],
@@ -107,33 +103,35 @@ def test_pass_first_placed_bid_better_bid(
     scenario_random_account_bid: Callable,
     asset_to_sell: int,
 ) -> None:
-    assert dm_client.state.box.sales.get_value(
-        SaleKey(owner=seller.address, asset=asset_to_sell)
-    ).bid == [[random_account.address, cst.AMOUNT_TO_BID.micro_algo]]
+    sale_key = SaleKey(owner=seller.address, asset=asset_to_sell)
+    assert dm_client.state.box.sales.get_value(sale_key).bid == [
+        [random_account.address, cst.AMOUNT_TO_BID.micro_algo]
+    ]
     with pytest.raises(AlgodHTTPError, match="box not found"):
         _ = dm_client.state.box.placed_bids.get_value(bidder.address)
     deposited_before_call = dm_client.state.local_state(bidder.address).deposited
 
     dm_client.send.bid(
         BidArgs(
-            sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
+            sale_key=sale_key,
             new_bid_amount=cst.AMOUNT_TO_BID.micro_algo + 1,
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
-    assert dm_client.state.box.sales.get_value(
-        SaleKey(owner=seller.address, asset=asset_to_sell)
-    ).bid == [[bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]]
+    assert dm_client.state.box.sales.get_value(sale_key).bid == [
+        [bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]
+    ]
     assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
         [
             [seller.address, asset_to_sell],
             cst.AMOUNT_TO_BID.micro_algo + 1,
         ]
     ]
-    assert (
-        dm_client.state.local_state(bidder.address).deposited - deposited_before_call
-        == -((cst.PLACED_BIDS_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo + 1)
+    assert dm_client.state.local_state(
+        bidder.address
+    ).deposited - deposited_before_call == -(
+        (cst.PLACED_BIDS_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo + 1
     )
 
 
@@ -149,6 +147,23 @@ def test_fail_worse_bid(
             BidArgs(
                 sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
                 new_bid_amount=cst.AMOUNT_TO_BID.micro_algo - 1,
+            ),
+            send_params=SendParams(populate_app_call_resources=True),
+        )
+
+
+def test_fail_same_bid(
+    dm_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+    scenario_random_account_bid: Callable,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    with pytest.raises(LogicError, match=err.WORSE_BID):
+        dm_client.send.bid(
+            BidArgs(
+                sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
+                new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
             ),
             send_params=SendParams(populate_app_call_resources=True),
         )
