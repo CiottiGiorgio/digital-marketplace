@@ -10,6 +10,7 @@ from algopy import (
     arc4,
     gtxn,
     itxn,
+    urange,
 )
 from algopy.arc4 import abimethod
 
@@ -175,5 +176,23 @@ class DigitalMarketplace(ARC4Contract):
                 PlacedBid(sale_key.copy(), new_bid_amount)
             )
 
-    # TODO: Write a readonly method that returns the encumbered and unencumbered bids.
-    # TODO: Write a way to get back the placed_bids mbr
+    @abimethod(allow_actions=["NoOp", "OptIn"])
+    def claim_unencumbered_bids(self) -> None:
+        placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
+        self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid]()
+
+        for i in urange(placed_bids.length):
+            if (
+                not self.sales.maybe(placed_bids[i].sale_key)[1]
+                or not self.sales.maybe(placed_bids[i].sale_key)[0].bid
+                or not self.sales.maybe(placed_bids[i].sale_key)[0].bid[0].bidder.native
+                == Txn.sender
+            ):
+                self.deposited[Txn.sender] = (
+                    self.deposited.get(Txn.sender, UInt64(0))
+                    + placed_bids[i].bid_amount.native
+                )
+            else:
+                self.placed_bids[arc4.Address(Txn.sender)].append(placed_bids[i].copy())
+
+        # TODO: Is we emptied all placed bids we can return the related box mbr

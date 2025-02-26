@@ -25,9 +25,9 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 
 @pytest.fixture(scope="function")
 def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, bidder: SigningAccount
+    digital_marketplace_client: DigitalMarketplaceClient, first_bidder: SigningAccount
 ) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=bidder.address)
+    return digital_marketplace_client.clone(default_sender=first_bidder.address)
 
 
 @pytest.fixture(scope="function")
@@ -115,14 +115,14 @@ def test_pass_first_placed_bid_first_bid(
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
     seller: SigningAccount,
-    bidder: SigningAccount,
+    first_bidder: SigningAccount,
     asset_to_sell: int,
 ) -> None:
     sale_key = SaleKey(owner=seller.address, asset=asset_to_sell)
     assert dm_client.state.box.sales.get_value(sale_key).bid == []
     with pytest.raises(AlgodHTTPError, match="box not found"):
-        _ = dm_client.state.box.placed_bids.get_value(bidder.address)
-    deposited_before_call = dm_client.state.local_state(bidder.address).deposited
+        _ = dm_client.state.box.placed_bids.get_value(first_bidder.address)
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
 
     dm_client.send.bid(
         BidArgs(
@@ -133,16 +133,16 @@ def test_pass_first_placed_bid_first_bid(
     )
 
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [bidder.address, cst.AMOUNT_TO_BID.micro_algo]
+        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
     ]
-    assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
+    assert dm_client.state.box.placed_bids.get_value(first_bidder.address) == [
         [
             [seller.address, asset_to_sell],
             cst.AMOUNT_TO_BID.micro_algo,
         ]
     ]
     assert (
-        dm_client.state.local_state(bidder.address).deposited - deposited_before_call
+        dm_client.state.local_state(first_bidder.address).deposited - deposited_before_call
         == -(cst.PLACED_BIDS_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo
     )
 
@@ -152,7 +152,7 @@ def test_pass_first_placed_bid_better_bid(
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
     seller: SigningAccount,
-    bidder: SigningAccount,
+    first_bidder: SigningAccount,
     random_account: SigningAccount,
     scenario_random_account_bid: Callable,
     asset_to_sell: int,
@@ -162,8 +162,8 @@ def test_pass_first_placed_bid_better_bid(
         [random_account.address, cst.AMOUNT_TO_BID.micro_algo]
     ]
     with pytest.raises(AlgodHTTPError, match="box not found"):
-        _ = dm_client.state.box.placed_bids.get_value(bidder.address)
-    deposited_before_call = dm_client.state.local_state(bidder.address).deposited
+        _ = dm_client.state.box.placed_bids.get_value(first_bidder.address)
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
 
     dm_client.send.bid(
         BidArgs(
@@ -174,16 +174,16 @@ def test_pass_first_placed_bid_better_bid(
     )
 
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]
+        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]
     ]
-    assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
+    assert dm_client.state.box.placed_bids.get_value(first_bidder.address) == [
         [
             [seller.address, asset_to_sell],
             cst.AMOUNT_TO_BID.micro_algo + 1,
         ]
     ]
     assert dm_client.state.local_state(
-        bidder.address
+        first_bidder.address
     ).deposited - deposited_before_call == -(
         (cst.PLACED_BIDS_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo + 1
     )
@@ -229,7 +229,7 @@ def test_pass_multiple_placed_bid(
     scenario_random_account_open_sale: Callable,
     algorand_client: AlgorandClient,
     seller: SigningAccount,
-    bidder: SigningAccount,
+    first_bidder: SigningAccount,
     random_account: SigningAccount,
     asset_to_sell: int,
 ) -> None:
@@ -239,9 +239,9 @@ def test_pass_multiple_placed_bid(
     assert dm_client.state.box.sales.get_value(random_account_sale_key).bid == []
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
-        _ = dm_client.state.box.placed_bids.get_value(bidder.address)
+        _ = dm_client.state.box.placed_bids.get_value(first_bidder.address)
 
-    deposited_before_call = dm_client.state.local_state(bidder.address).deposited
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
 
     dm_client.new_group().bid(
         BidArgs(
@@ -258,17 +258,17 @@ def test_pass_multiple_placed_bid(
     )
 
     assert dm_client.state.box.sales.get_value(seller_sale_key).bid == [
-        [bidder.address, cst.AMOUNT_TO_BID.micro_algo]
+        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
     ]
     assert dm_client.state.box.sales.get_value(random_account_sale_key).bid == [
-        [bidder.address, cst.AMOUNT_TO_BID.micro_algo]
+        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
     ]
-    assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
+    assert dm_client.state.box.placed_bids.get_value(first_bidder.address) == [
         [[seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
         [[random_account.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
     ]
     assert dm_client.state.local_state(
-        bidder.address
+        first_bidder.address
     ).deposited - deposited_before_call == -(
         2 * cst.AMOUNT_TO_BID.micro_algo + cst.PLACED_BIDS_BOX_MBR.micro_algo
     )
@@ -279,7 +279,7 @@ def test_pass_repeatedly_placed_bid(
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
     seller: SigningAccount,
-    bidder: SigningAccount,
+    first_bidder: SigningAccount,
     asset_to_sell: int,
 ) -> None:
     sale_key = SaleKey(owner=seller.address, asset=asset_to_sell)
@@ -294,14 +294,14 @@ def test_pass_repeatedly_placed_bid(
 
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
         [
-            bidder.address,
+            first_bidder.address,
             cst.AMOUNT_TO_BID.micro_algo,
         ]
     ]
-    assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
+    assert dm_client.state.box.placed_bids.get_value(first_bidder.address) == [
         [[seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
     ]
-    deposited_before_call = dm_client.state.local_state(bidder.address).deposited
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
 
     dm_client.send.bid(
         BidArgs(
@@ -312,12 +312,12 @@ def test_pass_repeatedly_placed_bid(
     )
 
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]
+        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]
     ]
-    assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
+    assert dm_client.state.box.placed_bids.get_value(first_bidder.address) == [
         [[seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo + 1],
     ]
     assert (
-        dm_client.state.local_state(bidder.address).deposited - deposited_before_call
+        dm_client.state.local_state(first_bidder.address).deposited - deposited_before_call
         == -1
     )
