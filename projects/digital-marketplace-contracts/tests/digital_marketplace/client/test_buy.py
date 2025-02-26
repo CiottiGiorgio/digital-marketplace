@@ -31,12 +31,12 @@ def dm_client(
 
 
 def test_fail_not_enough_deposited_buy(
+    asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
-    seller: SigningAccount,
+    first_seller: SigningAccount,
     random_account: SigningAccount,
-    asset_to_sell: int,
 ) -> None:
     dm_client.new_group().add_transaction(
         algorand_client.create_transaction.asset_opt_in(
@@ -57,19 +57,21 @@ def test_fail_not_enough_deposited_buy(
 
     with pytest.raises(LogicError):
         dm_client.send.buy(
-            BuyArgs(sale_key=SaleKey(owner=seller.address, asset=asset_to_sell))
+            BuyArgs(sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell))
         )
 
 
 def test_pass_buy(
+    asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
     buyer: SigningAccount,
-    seller: SigningAccount,
-    asset_to_sell: int,
+    first_seller: SigningAccount,
 ) -> None:
-    seller_deposited_before_call = dm_client.state.local_state(seller.address).deposited
+    seller_deposited_before_call = dm_client.state.local_state(
+        first_seller.address
+    ).deposited
     buyer_deposited_before_call = dm_client.state.local_state(buyer.address).deposited
 
     app_asa_balance = helpers.asa_amount(
@@ -80,13 +82,13 @@ def test_pass_buy(
     )
 
     dm_client.send.buy(
-        BuyArgs(sale_key=SaleKey(owner=seller.address, asset=asset_to_sell)),
+        BuyArgs(sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell)),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
     assert (
-        dm_client.state.local_state(seller.address).deposited
+        dm_client.state.local_state(first_seller.address).deposited
         - seller_deposited_before_call
         == cst.COST_TO_BUY.micro_algo + cst.SALES_BOX_MBR.micro_algo
     )
@@ -108,5 +110,5 @@ def test_pass_buy(
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
         dm_client.state.box.sales.get_value(
-            SaleKey(owner=seller.address, asset=asset_to_sell)
+            SaleKey(owner=first_seller.address, asset=asset_to_sell)
         )

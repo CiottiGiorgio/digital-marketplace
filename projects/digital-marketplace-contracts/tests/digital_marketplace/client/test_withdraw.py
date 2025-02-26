@@ -22,16 +22,16 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 
 @pytest.fixture(scope="function")
 def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, seller: SigningAccount
+    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
 ) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=seller.address)
+    return digital_marketplace_client.clone(default_sender=first_seller.address)
 
 
 def test_fail_overdraft_withdraw(
+    asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
     random_account: SigningAccount,
-    asset_to_sell: int,
 ) -> None:
     dm_client.send.opt_in.deposit(
         DepositArgs(
@@ -66,10 +66,12 @@ def test_pass_noop_partial_withdraw(
     dm_client: DigitalMarketplaceClient,
     scenario_deposit: Callable,
     algorand_client: AlgorandClient,
-    seller: SigningAccount,
+    first_seller: SigningAccount,
 ) -> None:
-    balance_before_call = algorand_client.account.get_information(seller.address).amount
-    deposited_before_call = dm_client.state.local_state(seller.address).deposited
+    balance_before_call = algorand_client.account.get_information(
+        first_seller.address
+    ).amount
+    deposited_before_call = dm_client.state.local_state(first_seller.address).deposited
 
     dm_client.send.withdraw(
         WithdrawArgs(amount=cst.AMOUNT_TO_DEPOSIT.micro_algo - 1),
@@ -77,14 +79,14 @@ def test_pass_noop_partial_withdraw(
     )
 
     assert (
-        algorand_client.account.get_information(seller.address).amount
+        algorand_client.account.get_information(first_seller.address).amount
         - balance_before_call
         == cst.AMOUNT_TO_DEPOSIT.micro_algo
         - 1
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
     assert dm_client.state.local_state(
-        seller.address
+        first_seller.address
     ).deposited - deposited_before_call == -(cst.AMOUNT_TO_DEPOSIT.micro_algo - 1)
 
 
@@ -92,9 +94,11 @@ def test_pass_noop_full_withdraw(
     dm_client: DigitalMarketplaceClient,
     scenario_deposit: Callable,
     algorand_client: AlgorandClient,
-    seller: SigningAccount,
+    first_seller: SigningAccount,
 ) -> None:
-    balance_before_call = algorand_client.account.get_information(seller.address).amount
+    balance_before_call = algorand_client.account.get_information(
+        first_seller.address
+    ).amount
 
     dm_client.send.withdraw(
         WithdrawArgs(amount=cst.AMOUNT_TO_DEPOSIT.micro_algo),
@@ -102,21 +106,23 @@ def test_pass_noop_full_withdraw(
     )
 
     assert (
-        algorand_client.account.get_information(seller.address).amount
+        algorand_client.account.get_information(first_seller.address).amount
         - balance_before_call
         == cst.AMOUNT_TO_DEPOSIT.micro_algo
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
-    assert dm_client.state.local_state(seller.address).deposited == 0
+    assert dm_client.state.local_state(first_seller.address).deposited == 0
 
 
 def test_pass_close_out_withdraw(
     dm_client: DigitalMarketplaceClient,
     scenario_deposit: Callable,
     algorand_client: AlgorandClient,
-    seller: SigningAccount,
+    first_seller: SigningAccount,
 ) -> None:
-    balance_before_call = algorand_client.account.get_information(seller.address).amount
+    balance_before_call = algorand_client.account.get_information(
+        first_seller.address
+    ).amount
 
     dm_client.send.close_out.withdraw(
         WithdrawArgs(amount=cst.AMOUNT_TO_DEPOSIT.micro_algo),
@@ -124,10 +130,10 @@ def test_pass_close_out_withdraw(
     )
 
     assert (
-        algorand_client.account.get_information(seller.address).amount
+        algorand_client.account.get_information(first_seller.address).amount
         - balance_before_call
         == cst.AMOUNT_TO_DEPOSIT.micro_algo
         - AlgoAmount.from_micro_algo(2_000).micro_algo
     )
     with pytest.raises(AlgodHTTPError, match="account application info not found"):
-        _ = dm_client.state.local_state(seller.address).deposited
+        _ = dm_client.state.local_state(first_seller.address).deposited

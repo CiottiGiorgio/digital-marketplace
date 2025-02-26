@@ -21,17 +21,17 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 
 @pytest.fixture(scope="function")
 def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, seller: SigningAccount
+    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
 ) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=seller.address)
+    return digital_marketplace_client.clone(default_sender=first_seller.address)
 
 
 def test_pass_noop_close_sale(
+    asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
-    seller: SigningAccount,
-    asset_to_sell: int,
+    first_seller: SigningAccount,
 ) -> None:
     mbr_before_call = algorand_client.account.get_information(
         dm_client.app_address
@@ -41,7 +41,7 @@ def test_pass_noop_close_sale(
         dm_client.app_address,
         asset_to_sell,
     )
-    deposited_before_call = dm_client.state.local_state(seller.address).deposited
+    deposited_before_call = dm_client.state.local_state(first_seller.address).deposited
 
     dm_client.send.close_sale(
         CloseSaleArgs(asset=asset_to_sell),
@@ -63,22 +63,23 @@ def test_pass_noop_close_sale(
     ).micro_algo == -cst.SALES_BOX_BASE_MBR.micro_algo
     assert asa_balance - asa_balance_before_call == -cst.ASA_AMOUNT_TO_SELL
     assert (
-        dm_client.state.local_state(seller.address).deposited - deposited_before_call
+        dm_client.state.local_state(first_seller.address).deposited
+        - deposited_before_call
         == cst.SALES_BOX_MBR.micro_algo
     )
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
         dm_client.state.box.sales.get_value(
-            SaleKey(owner=seller.address, asset=asset_to_sell)
+            SaleKey(owner=first_seller.address, asset=asset_to_sell)
         )
 
 
 def test_pass_opt_in_close_sale(
+    asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
-    seller: SigningAccount,
-    asset_to_sell: int,
+    first_seller: SigningAccount,
 ) -> None:
     dm_client.send.clear_state()
 
@@ -112,11 +113,11 @@ def test_pass_opt_in_close_sale(
     )
     assert asa_balance - asa_balance_before_call == -cst.ASA_AMOUNT_TO_SELL
     assert (
-        dm_client.state.local_state(seller.address).deposited
+        dm_client.state.local_state(first_seller.address).deposited
         == cst.SALES_BOX_MBR.micro_algo
     )
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
         dm_client.state.box.sales.get_value(
-            SaleKey(owner=seller.address, asset=asset_to_sell)
+            SaleKey(owner=first_seller.address, asset=asset_to_sell)
         )
