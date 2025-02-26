@@ -34,7 +34,7 @@ def asset_holder(
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+        min_spending_balance=cst.AMOUNT_TO_FUND,
     )
     algorand_client.send.asset_opt_in(
         AssetOptInParams(sender=account.address, asset_id=asset_to_sell)
@@ -79,7 +79,7 @@ def test_fail_diff_sender_open_sale(
                     ),
                     signer=asset_holder.signer,
                 ),
-                cost=AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo,
+                cost=cst.COST_TO_BUY.micro_algo,
             )
         )
 
@@ -106,7 +106,7 @@ def test_fail_wrong_receiver_open_sale(
                     ),
                     signer=seller.signer,
                 ),
-                cost=AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo,
+                cost=cst.COST_TO_BUY.micro_algo,
             )
         )
 
@@ -144,7 +144,7 @@ def test_fail_not_enough_deposited_open_sale(
                         receiver=dm_client.app_address,
                     )
                 ),
-                cost=cst.COST_TO_BUY,
+                cost=cst.COST_TO_BUY.micro_algo,
             ),
             send_params=SendParams(populate_app_call_resources=True),
         )
@@ -177,7 +177,7 @@ def test_pass_open_sale(
                     receiver=dm_client.app_address,
                 )
             ),
-            cost=AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo,
+            cost=cst.COST_TO_BUY.micro_algo,
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
@@ -191,20 +191,16 @@ def test_pass_open_sale(
     # The created box does not contain a bid yet.
     # The mbr does not raise as much as the subtracted amount from the deposit.
     assert (
-        algorand_client.account.get_information(
-            dm_client.app_address
-        ).min_balance.micro_algo
-        - mbr_before_call.micro_algo
+        algorand_client.account.get_information(dm_client.app_address).min_balance
+        - mbr_before_call
         == cst.SALES_BOX_BASE_MBR
     )
     assert asa_balance - asa_balance_before_call == cst.ASA_AMOUNT_TO_SELL
     assert (
         dm_client.state.local_state(seller.address).deposited - deposited_before_call
-        == -cst.SALES_BOX_MBR
+        == -cst.SALES_BOX_MBR.micro_algo
     )
 
     assert dm_client.state.box.sales.get_value(
         SaleKey(owner=seller.address, asset=asset_to_sell)
-    ) == Sale(
-        cst.ASA_AMOUNT_TO_SELL, AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo, []
-    )
+    ) == Sale(cst.ASA_AMOUNT_TO_SELL, cst.COST_TO_BUY.micro_algo, [])

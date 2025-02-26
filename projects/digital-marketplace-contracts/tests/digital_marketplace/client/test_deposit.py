@@ -21,7 +21,7 @@ def generic_actor(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+        min_spending_balance=cst.AMOUNT_TO_FUND,
     )
     return account
 
@@ -83,7 +83,7 @@ def test_pass_deposit(
     algorand_client: AlgorandClient,
     generic_actor: SigningAccount,
 ) -> None:
-    result = dm_client.send.opt_in.deposit(
+    dm_client.send.opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
@@ -94,27 +94,25 @@ def test_pass_deposit(
             )
         )
     )
-    assert result.confirmation
 
     assert (
         dm_client.state.local_state(generic_actor.address).deposited
         == AlgoAmount.from_algo(1).micro_algo
     )
 
-    result = dm_client.send.deposit(
+    dm_client.send.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
                     sender=generic_actor.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT - 1),
+                    amount=cst.AMOUNT_TO_DEPOSIT - AlgoAmount.from_algo(1),
                 )
             )
         )
     )
-    assert result.confirmation
 
     assert (
         dm_client.state.local_state(generic_actor.address).deposited
-        == AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT).micro_algo
+        == cst.AMOUNT_TO_DEPOSIT.micro_algo
     )

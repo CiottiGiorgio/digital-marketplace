@@ -88,12 +88,12 @@ def test_pass_buy(
     assert (
         dm_client.state.local_state(seller.address).deposited
         - seller_deposited_before_call
-        == AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo + cst.SALES_BOX_MBR
+        == cst.COST_TO_BUY.micro_algo + cst.SALES_BOX_MBR.micro_algo
     )
     assert (
         dm_client.state.local_state(buyer.address).deposited
         - buyer_deposited_before_call
-        == -AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo
+        == -cst.COST_TO_BUY.micro_algo
     )
     assert (
         helpers.asa_amount(algorand_client, dm_client.app_address, asset_to_sell)

@@ -28,7 +28,7 @@ def deployer(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.from_environment("DEPLOYER")
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+        min_spending_balance=cst.AMOUNT_TO_FUND,
     )
     return account
 
@@ -38,7 +38,7 @@ def seller(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+        min_spending_balance=cst.AMOUNT_TO_FUND,
     )
     return account
 
@@ -48,7 +48,7 @@ def buyer(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+        min_spending_balance=cst.AMOUNT_TO_FUND,
     )
     return account
 
@@ -58,7 +58,7 @@ def bidder(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+        min_spending_balance=cst.AMOUNT_TO_FUND,
     )
     return account
 
@@ -68,7 +68,7 @@ def random_account(algorand_client: AlgorandClient) -> SigningAccount:
     account = algorand_client.account.random()
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
-        min_spending_balance=AlgoAmount.from_algo(cst.AMOUNT_TO_FUND),
+        min_spending_balance=cst.AMOUNT_TO_FUND,
     )
     return account
 
@@ -129,7 +129,7 @@ def scenario_deposit(
                     PaymentParams(
                         sender=account.address,
                         receiver=digital_marketplace_client.app_address,
-                        amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
+                        amount=cst.AMOUNT_TO_DEPOSIT,
                     )
                 )
             ),
@@ -141,7 +141,7 @@ def scenario_deposit(
                 PaymentParams(
                     sender=bidder.address,
                     receiver=digital_marketplace_client.app_address,
-                    amount=AlgoAmount.from_algo(cst.AMOUNT_TO_DEPOSIT),
+                    amount=cst.AMOUNT_TO_DEPOSIT,
                 )
             )
         ),
@@ -182,7 +182,7 @@ def scenario_open_sale(
                     receiver=digital_marketplace_client.app_address,
                 )
             ),
-            cost=AlgoAmount.from_algo(cst.COST_TO_BUY).micro_algo,
+            cost=cst.COST_TO_BUY.micro_algo,
         ),
         params=CommonAppCallParams(sender=seller.address),
         send_params=SendParams(populate_app_call_resources=True),
