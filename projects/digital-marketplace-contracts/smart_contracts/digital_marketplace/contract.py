@@ -159,6 +159,9 @@ class DigitalMarketplace(ARC4Contract):
                 self.placed_bids[arc4.Address(Txn.sender)].copy(), sale_key.copy()
             )
             if found:
+                self.deposited[Txn.sender] += self.placed_bids[
+                    arc4.Address(Txn.sender)
+                ][index].bid_amount.native
                 self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
                     sale_key.copy(), new_bid_amount
                 )

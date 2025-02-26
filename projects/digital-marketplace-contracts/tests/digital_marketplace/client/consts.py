@@ -1,7 +1,7 @@
 from algokit_utils import AlgoAmount
 
 AMOUNT_TO_FUND = AlgoAmount.from_algo(1_000_000)
-AMOUNT_TO_DEPOSIT = AlgoAmount.from_algo(20)
+AMOUNT_TO_DEPOSIT = AlgoAmount.from_algo(50)
 assert AMOUNT_TO_DEPOSIT.algo > 1
 
 ASA_AMOUNT_TO_CREATE = 100_000
