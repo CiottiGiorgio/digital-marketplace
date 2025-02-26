@@ -142,7 +142,8 @@ def test_pass_first_placed_bid_first_bid(
         ]
     ]
     assert (
-        dm_client.state.local_state(first_bidder.address).deposited - deposited_before_call
+        dm_client.state.local_state(first_bidder.address).deposited
+        - deposited_before_call
         == -(cst.PLACED_BIDS_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo
     )
 
@@ -318,6 +319,7 @@ def test_pass_repeatedly_placed_bid(
         [[seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo + 1],
     ]
     assert (
-        dm_client.state.local_state(first_bidder.address).deposited - deposited_before_call
+        dm_client.state.local_state(first_bidder.address).deposited
+        - deposited_before_call
         == -1
     )

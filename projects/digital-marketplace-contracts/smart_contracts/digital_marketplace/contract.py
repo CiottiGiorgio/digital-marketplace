@@ -195,4 +195,6 @@ class DigitalMarketplace(ARC4Contract):
             else:
                 self.placed_bids[arc4.Address(Txn.sender)].append(placed_bids[i].copy())
 
-        # TODO: Is we emptied all placed bids we can return the related box mbr
+        if not self.placed_bids[arc4.Address(Txn.sender)]:
+            self.deposited[Txn.sender] += placed_bids_box_mbr()
+            del self.placed_bids[arc4.Address(Txn.sender)]
