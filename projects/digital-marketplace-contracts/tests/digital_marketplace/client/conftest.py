@@ -211,3 +211,22 @@ def scenario_bid(
         params=CommonAppCallParams(sender=first_bidder.address),
         send_params=SendParams(populate_app_call_resources=True),
     )
+
+
+@pytest.fixture(scope="function")
+def scenario_outbid(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    scenario_bid: Callable,
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    second_bidder: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    digital_marketplace_client.send.bid(
+        BidArgs(
+            sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
+            new_bid_amount=cst.AMOUNT_TO_OUTBID.micro_algo,
+        ),
+        params=CommonAppCallParams(sender=second_bidder.address),
+        send_params=SendParams(populate_app_call_resources=True),
+    )

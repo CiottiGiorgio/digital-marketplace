@@ -21,6 +21,7 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
     OpenSaleArgs,
     SaleKey,
 )
+from tests.digital_marketplace.client.conftest import second_bidder
 
 
 @pytest.fixture(scope="function")
@@ -30,7 +31,7 @@ def dm_client(
     return digital_marketplace_client.clone(default_sender=first_bidder.address)
 
 
-def test_pass_noop_claim_unencumbered_bids(
+def test_pass_noop_zero_claim_unencumbered_bids(
     dm_client: DigitalMarketplaceClient,
     scenario_bid: Callable,
     seller: SigningAccount,
@@ -54,4 +55,29 @@ def test_pass_noop_claim_unencumbered_bids(
         dm_client.state.local_state(first_bidder.address).deposited
         - deposited_before_call
         == 0
+    )
+
+
+def test_pass_noop_positive_to_empty_claim_unencumbered_bids(
+    dm_client: DigitalMarketplaceClient,
+    scenario_outbid: Callable,
+    seller: SigningAccount,
+    first_bidder: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    assert dm_client.state.box.placed_bids.get_value(first_bidder.address) == [
+        [[seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
+    ]
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
+
+    dm_client.send.claim_unencumbered_bids(
+        send_params=SendParams(populate_app_call_resources=True)
+    )
+
+    with pytest.raises(AlgodHTTPError, match="box not found"):
+        _ = dm_client.state.box.placed_bids.get_value(first_bidder.address)
+    assert (
+        dm_client.state.local_state(first_bidder.address).deposited
+        - deposited_before_call
+        == (cst.AMOUNT_TO_BID + cst.PLACED_BIDS_BOX_MBR).micro_algo
     )

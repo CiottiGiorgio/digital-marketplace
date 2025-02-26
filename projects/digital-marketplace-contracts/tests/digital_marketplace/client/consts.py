@@ -10,6 +10,7 @@ ASA_AMOUNT_TO_SELL = 2_000
 COST_TO_BUY = AlgoAmount.from_algo(5)
 
 AMOUNT_TO_BID = AlgoAmount.from_algo(4)
+AMOUNT_TO_OUTBID = AMOUNT_TO_BID + AlgoAmount.from_micro_algo(1)
 
 # Box MBR
 SALES_BOX_BASE_MBR = AlgoAmount.from_micro_algo(
