@@ -140,7 +140,9 @@ class DigitalMarketplace(ARC4Contract):
     def bid(self, sale_key: SaleKey, new_bid_amount: arc4.UInt64) -> None:
         maybe_best_bid = self.sales[sale_key].bid.copy()
         if maybe_best_bid:
-            assert maybe_best_bid[0].amount.native < new_bid_amount.native
+            assert (
+                maybe_best_bid[0].amount.native < new_bid_amount.native
+            ), err.WORSE_BID
 
             self.sales[sale_key].bid[0] = Bid(
                 bidder=arc4.Address(Txn.sender), amount=new_bid_amount

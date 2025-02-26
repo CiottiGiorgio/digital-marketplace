@@ -856,8 +856,8 @@ bid:
     bytec_3 // 0x0000
     !=
     bz bid_else_body@2
-    // smart_contracts/digital_marketplace/contract.py:143
-    // assert maybe_best_bid[0].amount.native < new_bid_amount.native
+    // smart_contracts/digital_marketplace/contract.py:144
+    // maybe_best_bid[0].amount.native < new_bid_amount.native
     frame_dig 4
     extract 2 40
     pushint 32 // 32
@@ -865,17 +865,21 @@ bid:
     frame_dig -1
     btoi
     <
-    assert
-    // smart_contracts/digital_marketplace/contract.py:146
+    // smart_contracts/digital_marketplace/contract.py:143-145
+    // assert (
+    //     maybe_best_bid[0].amount.native < new_bid_amount.native
+    // ), err.WORSE_BID
+    assert // Worse bid
+    // smart_contracts/digital_marketplace/contract.py:148
     // bidder=arc4.Address(Txn.sender), amount=new_bid_amount
     txn Sender
-    // smart_contracts/digital_marketplace/contract.py:145-147
+    // smart_contracts/digital_marketplace/contract.py:147-149
     // self.sales[sale_key].bid[0] = Bid(
     //     bidder=arc4.Address(Txn.sender), amount=new_bid_amount
     // )
     frame_dig -1
     concat
-    // smart_contracts/digital_marketplace/contract.py:145
+    // smart_contracts/digital_marketplace/contract.py:147
     // self.sales[sale_key].bid[0] = Bid(
     dig 1
     box_get
@@ -889,7 +893,7 @@ bid:
     dig 2
     uncover 2
     substring3
-    // smart_contracts/digital_marketplace/contract.py:145-147
+    // smart_contracts/digital_marketplace/contract.py:147-149
     // self.sales[sale_key].bid[0] = Bid(
     //     bidder=arc4.Address(Txn.sender), amount=new_bid_amount
     // )
@@ -911,7 +915,7 @@ bid:
     box_put
 
 bid_after_if_else@3:
-    // smart_contracts/digital_marketplace/contract.py:153
+    // smart_contracts/digital_marketplace/contract.py:155
     // self.deposited[Txn.sender] -= new_bid_amount.native
     txn Sender
     dup
@@ -925,7 +929,7 @@ bid_after_if_else@3:
     bytec_0 // "deposited"
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:155
+    // smart_contracts/digital_marketplace/contract.py:157
     // if self.placed_bids.maybe(arc4.Address(Txn.sender))[1]:
     bytec_1 // "placed_bids"
     txn Sender
@@ -933,7 +937,7 @@ bid_after_if_else@3:
     box_get
     bury 1
     bz bid_else_body@8
-    // smart_contracts/digital_marketplace/contract.py:157
+    // smart_contracts/digital_marketplace/contract.py:159
     // self.placed_bids[arc4.Address(Txn.sender)].copy(), sale_key.copy()
     bytec_1 // "placed_bids"
     txn Sender
@@ -979,17 +983,17 @@ bid_for_header@13:
     frame_bury 2
 
 bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18:
-    // smart_contracts/digital_marketplace/contract.py:159
+    // smart_contracts/digital_marketplace/contract.py:161
     // if found:
     bz bid_else_body@6
-    // smart_contracts/digital_marketplace/contract.py:160-162
+    // smart_contracts/digital_marketplace/contract.py:162-164
     // self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
     //     sale_key.copy(), new_bid_amount
     // )
     frame_dig -2
     frame_dig -1
     concat
-    // smart_contracts/digital_marketplace/contract.py:160
+    // smart_contracts/digital_marketplace/contract.py:162
     // self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
     bytec_1 // "placed_bids"
     txn Sender
@@ -997,7 +1001,7 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     dup
     box_get
     assert // check self.placed_bids entry exists
-    // smart_contracts/digital_marketplace/contract.py:160-162
+    // smart_contracts/digital_marketplace/contract.py:162-164
     // self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
     //     sale_key.copy(), new_bid_amount
     // )
@@ -1022,7 +1026,7 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     retsub
 
 bid_else_body@6:
-    // smart_contracts/digital_marketplace/contract.py:164
+    // smart_contracts/digital_marketplace/contract.py:166
     // self.placed_bids[arc4.Address(Txn.sender)].append(
     bytec_1 // "placed_bids"
     txn Sender
@@ -1030,17 +1034,17 @@ bid_else_body@6:
     dup
     box_get
     assert // check self.placed_bids entry exists
-    // smart_contracts/digital_marketplace/contract.py:164-166
+    // smart_contracts/digital_marketplace/contract.py:166-168
     // self.placed_bids[arc4.Address(Txn.sender)].append(
     //     PlacedBid(sale_key.copy(), new_bid_amount)
     // )
     extract 2 0
-    // smart_contracts/digital_marketplace/contract.py:165
+    // smart_contracts/digital_marketplace/contract.py:167
     // PlacedBid(sale_key.copy(), new_bid_amount)
     frame_dig -2
     frame_dig -1
     concat
-    // smart_contracts/digital_marketplace/contract.py:164-166
+    // smart_contracts/digital_marketplace/contract.py:166-168
     // self.placed_bids[arc4.Address(Txn.sender)].append(
     //     PlacedBid(sale_key.copy(), new_bid_amount)
     // )
@@ -1074,14 +1078,14 @@ bid_after_for@17:
     intc_0 // 0
     dup
     frame_bury 2
-    // smart_contracts/digital_marketplace/contract.py:156-158
+    // smart_contracts/digital_marketplace/contract.py:158-160
     // found, index = find_placed_bid(
     //     self.placed_bids[arc4.Address(Txn.sender)].copy(), sale_key.copy()
     // )
     b bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18
 
 bid_else_body@8:
-    // smart_contracts/digital_marketplace/contract.py:168
+    // smart_contracts/digital_marketplace/contract.py:170
     // self.deposited[Txn.sender] -= placed_bids_box_mbr()
     txn Sender
     dup
@@ -1100,30 +1104,30 @@ bid_else_body@8:
     //     )
     // )
     pushint 13135300 // 13135300
-    // smart_contracts/digital_marketplace/contract.py:168
+    // smart_contracts/digital_marketplace/contract.py:170
     // self.deposited[Txn.sender] -= placed_bids_box_mbr()
     -
     bytec_0 // "deposited"
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:170
+    // smart_contracts/digital_marketplace/contract.py:172
     // PlacedBid(sale_key.copy(), new_bid_amount)
     frame_dig -2
     frame_dig -1
     concat
-    // smart_contracts/digital_marketplace/contract.py:169-171
+    // smart_contracts/digital_marketplace/contract.py:171-173
     // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
     //     PlacedBid(sale_key.copy(), new_bid_amount)
     // )
     pushbytes 0x0001
     swap
     concat
-    // smart_contracts/digital_marketplace/contract.py:169
+    // smart_contracts/digital_marketplace/contract.py:171
     // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
     bytec_1 // "placed_bids"
     txn Sender
     concat
-    // smart_contracts/digital_marketplace/contract.py:169-171
+    // smart_contracts/digital_marketplace/contract.py:171-173
     // self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
     //     PlacedBid(sale_key.copy(), new_bid_amount)
     // )
@@ -1135,7 +1139,7 @@ bid_else_body@8:
     retsub
 
 bid_else_body@2:
-    // smart_contracts/digital_marketplace/contract.py:149
+    // smart_contracts/digital_marketplace/contract.py:151
     // self.sales[sale_key].bid.append(
     dup
     box_get
@@ -1149,17 +1153,17 @@ bid_else_body@2:
     dig 2
     uncover 2
     substring3
-    // smart_contracts/digital_marketplace/contract.py:149-151
+    // smart_contracts/digital_marketplace/contract.py:151-153
     // self.sales[sale_key].bid.append(
     //     Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
     // )
     extract 2 0
-    // smart_contracts/digital_marketplace/contract.py:150
+    // smart_contracts/digital_marketplace/contract.py:152
     // Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
     txn Sender
     frame_dig -1
     concat
-    // smart_contracts/digital_marketplace/contract.py:149-151
+    // smart_contracts/digital_marketplace/contract.py:151-153
     // self.sales[sale_key].bid.append(
     //     Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
     // )

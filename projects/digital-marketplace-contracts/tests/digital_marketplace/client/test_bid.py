@@ -3,18 +3,20 @@ from typing import Callable
 import consts as cst
 import pytest
 from algokit_utils import (
-    SendParams,
     AlgorandClient,
-    SigningAccount,
+    LogicError,
     PaymentParams,
+    SendParams,
+    SigningAccount,
 )
 from algosdk.error import AlgodHTTPError
 
+import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     BidArgs,
+    DepositArgs,
     DigitalMarketplaceClient,
     SaleKey,
-    DepositArgs,
 )
 
 
@@ -23,6 +25,36 @@ def dm_client(
     digital_marketplace_client: DigitalMarketplaceClient, bidder: SigningAccount
 ) -> DigitalMarketplaceClient:
     return digital_marketplace_client.clone(default_sender=bidder.address)
+
+
+@pytest.fixture(scope="function")
+def scenario_random_account_bid(
+    digital_marketplace_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    seller: SigningAccount,
+    random_account: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    digital_marketplace_client.clone(
+        default_sender=random_account.address
+    ).new_group().opt_in.deposit(
+        DepositArgs(
+            payment=algorand_client.create_transaction.payment(
+                PaymentParams(
+                    sender=random_account.address,
+                    receiver=digital_marketplace_client.app_address,
+                    amount=cst.AMOUNT_TO_DEPOSIT,
+                )
+            )
+        )
+    ).bid(
+        BidArgs(
+            sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
+            new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
+        )
+    ).send(
+        send_params=SendParams(populate_app_call_resources=True)
+    )
 
 
 def test_pass_first_placed_bid_first_bid(
@@ -65,38 +97,19 @@ def test_pass_first_placed_bid_first_bid(
     )
 
 
-def test_pass_first_placed_bid_second_bid(
+def test_pass_first_placed_bid_better_bid(
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
     seller: SigningAccount,
     bidder: SigningAccount,
     random_account: SigningAccount,
+    scenario_random_account_bid: Callable,
     asset_to_sell: int,
 ) -> None:
-    dm_client.clone(default_sender=random_account.address).new_group().opt_in.deposit(
-        DepositArgs(
-            payment=algorand_client.create_transaction.payment(
-                PaymentParams(
-                    sender=random_account.address,
-                    receiver=dm_client.app_address,
-                    amount=cst.AMOUNT_TO_DEPOSIT,
-                )
-            )
-        )
-    ).bid(
-        BidArgs(
-            sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
-            new_bid_amount=cst.AMOUNT_TO_BID.micro_algo - 1,
-        )
-    ).send(send_params=SendParams(populate_app_call_resources=True))
-
-    assert (
-        dm_client.state.box.sales.get_value(
-            SaleKey(owner=seller.address, asset=asset_to_sell)
-        ).bid
-        == [[random_account.address, cst.AMOUNT_TO_BID.micro_algo - 1]]
-    )
+    assert dm_client.state.box.sales.get_value(
+        SaleKey(owner=seller.address, asset=asset_to_sell)
+    ).bid == [[random_account.address, cst.AMOUNT_TO_BID.micro_algo]]
     with pytest.raises(AlgodHTTPError, match="box not found"):
         _ = dm_client.state.box.placed_bids.get_value(bidder.address)
     deposited_before_call = dm_client.state.local_state(bidder.address).deposited
@@ -104,21 +117,38 @@ def test_pass_first_placed_bid_second_bid(
     dm_client.send.bid(
         BidArgs(
             sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
-            new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
+            new_bid_amount=cst.AMOUNT_TO_BID.micro_algo + 1,
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
     assert dm_client.state.box.sales.get_value(
         SaleKey(owner=seller.address, asset=asset_to_sell)
-    ).bid == [[bidder.address, cst.AMOUNT_TO_BID.micro_algo]]
+    ).bid == [[bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]]
     assert dm_client.state.box.placed_bids.get_value(bidder.address) == [
         [
             [seller.address, asset_to_sell],
-            cst.AMOUNT_TO_BID.micro_algo,
+            cst.AMOUNT_TO_BID.micro_algo + 1,
         ]
     ]
     assert (
         dm_client.state.local_state(bidder.address).deposited - deposited_before_call
-        == -(cst.PLACED_BIDS_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo
+        == -((cst.PLACED_BIDS_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo + 1)
     )
+
+
+def test_fail_worse_bid(
+    dm_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+    scenario_random_account_bid: Callable,
+    seller: SigningAccount,
+    asset_to_sell: int,
+) -> None:
+    with pytest.raises(LogicError, match=err.WORSE_BID):
+        dm_client.send.bid(
+            BidArgs(
+                sale_key=SaleKey(owner=seller.address, asset=asset_to_sell),
+                new_bid_amount=cst.AMOUNT_TO_BID.micro_algo - 1,
+            ),
+            send_params=SendParams(populate_app_call_resources=True),
+        )
