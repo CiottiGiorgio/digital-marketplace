@@ -143,7 +143,7 @@ def digital_marketplace_client(
     algorand_client.account.ensure_funded(
         client.app_address,
         dispenser_account=algorand_client.account.dispenser_from_environment(),
-        min_spending_balance=AlgoAmount.from_algo(0),
+        min_spending_balance=AlgoAmount(algo=0),
     )
     return client
 
@@ -192,7 +192,7 @@ def scenario_sponsor_asset(
     digital_marketplace_client.send.sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
         params=CommonAppCallParams(
-            extra_fee=AlgoAmount.from_micro_algo(1_000), sender=first_seller.address
+            extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
         ),
     )
 

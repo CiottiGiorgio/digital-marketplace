@@ -41,7 +41,7 @@ def test_pass_noop_accept_bid(
 
     dm_client.send.accept_bid(
         AcceptBidArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
@@ -86,7 +86,7 @@ def test_pass_opt_in_accept_bid(
 
     dm_client.send.opt_in.accept_bid(
         AcceptBidArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 

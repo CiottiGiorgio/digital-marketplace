@@ -193,20 +193,12 @@ def test_pass_multiple_placed_bid(
 def test_pass_repeatedly_placed_bid(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
-    scenario_open_sale: Callable,
+    scenario_first_seller_first_bidder_bid: Callable,
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
-
-    dm_client.send.bid(
-        BidArgs(
-            sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell),
-            new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
-        ),
-        send_params=SendParams(populate_app_call_resources=True),
-    )
 
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
         [

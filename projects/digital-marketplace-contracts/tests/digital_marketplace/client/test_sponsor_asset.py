@@ -31,7 +31,7 @@ def test_fail_already_opted_into_sponsor_asset(
         dm_client.send.sponsor_asset(
             SponsorAssetArgs(asset=asset_to_sell),
             params=CommonAppCallParams(
-                extra_fee=AlgoAmount.from_micro_algo(1_000),
+                extra_fee=AlgoAmount(micro_algo=1_000),
             ),
         )
 
@@ -53,7 +53,7 @@ def test_fail_clawback_sponsor_asset(
     with pytest.raises(LogicError, match=err.CLAWBACK_ASA):
         dm_client.send.sponsor_asset(
             SponsorAssetArgs(asset=result.asset_id),
-            params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+            params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         )
 
 
@@ -69,7 +69,7 @@ def test_fail_not_enough_deposited_sponsor_asset(
                 PaymentParams(
                     sender=first_seller.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(0),
+                    amount=AlgoAmount(algo=0),
                 )
             )
         )
@@ -91,14 +91,14 @@ def test_pass_sponsor_asset(
     dm_client.send.sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
         params=CommonAppCallParams(
-            sender=first_seller.address, extra_fee=AlgoAmount.from_micro_algo(1_000)
+            sender=first_seller.address, extra_fee=AlgoAmount(micro_algo=1_000)
         ),
     )
 
     assert (
         dm_client.state.local_state(first_seller.address).deposited
         - deposited_before_call
-        == -AlgoAmount.from_micro_algo(100_000).micro_algo
+        == -AlgoAmount(micro_algo=100_000).micro_algo
     )
 
     assert (

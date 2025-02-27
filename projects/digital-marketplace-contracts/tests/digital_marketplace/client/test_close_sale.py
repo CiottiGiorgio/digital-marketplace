@@ -38,7 +38,7 @@ def test_pass_noop_close_sale(
 
     dm_client.send.close_sale(
         CloseSaleArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
@@ -87,7 +87,7 @@ def test_pass_opt_in_close_sale(
 
     dm_client.send.opt_in.close_sale(
         CloseSaleArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 

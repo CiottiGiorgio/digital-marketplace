@@ -30,7 +30,7 @@ def test_fail_diff_sender_opt_in_deposit(
                         PaymentParams(
                             sender=random_account.address,
                             receiver=dm_client.app_address,
-                            amount=AlgoAmount.from_algo(1),
+                            amount=AlgoAmount(algo=1),
                         )
                     ),
                     signer=random_account.signer,
@@ -52,7 +52,7 @@ def test_fail_wrong_receiver_opt_in_deposit(
                         PaymentParams(
                             sender=first_seller.address,
                             receiver=first_seller.address,
-                            amount=AlgoAmount.from_algo(1),
+                            amount=AlgoAmount(algo=1),
                         )
                     ),
                     signer=first_seller.signer,
@@ -72,7 +72,7 @@ def test_pass_noop_and_opt_in_deposit(
                 PaymentParams(
                     sender=first_seller.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(1),
+                    amount=AlgoAmount(algo=1),
                 )
             )
         )
@@ -80,7 +80,7 @@ def test_pass_noop_and_opt_in_deposit(
 
     assert (
         dm_client.state.local_state(first_seller.address).deposited
-        == AlgoAmount.from_algo(1).micro_algo
+        == AlgoAmount(algo=1).micro_algo
     )
 
     dm_client.send.deposit(
@@ -89,7 +89,7 @@ def test_pass_noop_and_opt_in_deposit(
                 PaymentParams(
                     sender=first_seller.address,
                     receiver=dm_client.app_address,
-                    amount=cst.AMOUNT_TO_DEPOSIT - AlgoAmount.from_algo(1),
+                    amount=cst.AMOUNT_TO_DEPOSIT - AlgoAmount(algo=1),
                 )
             )
         )

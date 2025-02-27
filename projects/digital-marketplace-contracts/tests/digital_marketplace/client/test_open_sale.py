@@ -117,13 +117,13 @@ def test_fail_not_enough_deposited_open_sale(
                     sender=first_seller.address,
                     receiver=dm_client.app_address,
                     # This is just enough to sponsor an asset but not enough to open a sales box.
-                    amount=AlgoAmount.from_micro_algo(100_000),
+                    amount=AlgoAmount(micro_algo=100_000),
                 )
             )
         )
     ).sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
     ).send()
 
     with pytest.raises(LogicError, match="- would result negative"):

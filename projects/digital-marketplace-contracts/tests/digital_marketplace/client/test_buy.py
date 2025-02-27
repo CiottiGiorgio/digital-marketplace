@@ -48,7 +48,7 @@ def test_fail_not_enough_deposited_buy(
                 PaymentParams(
                     sender=random_account.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(0),
+                    amount=cst.AMOUNT_TO_BID - AlgoAmount(micro_algo=1),
                 )
             )
         ),
@@ -59,7 +59,7 @@ def test_fail_not_enough_deposited_buy(
         dm_client.send.buy(
             BuyArgs(sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell)),
             params=CommonAppCallParams(
-                extra_fee=AlgoAmount.from_micro_algo(1_000),
+                extra_fee=AlgoAmount(micro_algo=1_000),
                 sender=random_account.address,
             ),
             send_params=SendParams(populate_app_call_resources=True),
@@ -88,7 +88,7 @@ def test_pass_buy(
 
     dm_client.send.buy(
         BuyArgs(sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell)),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 

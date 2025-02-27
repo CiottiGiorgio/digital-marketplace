@@ -31,7 +31,7 @@ def test_fail_overdraft_withdraw(
                 PaymentParams(
                     sender=random_account.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(0),
+                    amount=AlgoAmount(algo=0),
                 )
             )
         ),
@@ -40,9 +40,9 @@ def test_fail_overdraft_withdraw(
 
     with pytest.raises(LogicError, match="- would result negative"):
         dm_client.send.withdraw(
-            WithdrawArgs(amount=AlgoAmount.from_algo(1).micro_algo),
+            WithdrawArgs(amount=AlgoAmount(algo=1).micro_algo),
             params=CommonAppCallParams(
-                extra_fee=AlgoAmount.from_micro_algo(1_000),
+                extra_fee=AlgoAmount(micro_algo=1_000),
                 sender=random_account.address,
             ),
         )
@@ -61,7 +61,7 @@ def test_pass_noop_partial_withdraw(
 
     dm_client.send.withdraw(
         WithdrawArgs(amount=cst.AMOUNT_TO_DEPOSIT.micro_algo - 1),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
     )
 
     assert (
@@ -69,7 +69,7 @@ def test_pass_noop_partial_withdraw(
         - balance_before_call
         == cst.AMOUNT_TO_DEPOSIT.micro_algo
         - 1
-        - AlgoAmount.from_micro_algo(2_000).micro_algo
+        - AlgoAmount(micro_algo=2_000).micro_algo
     )
     assert dm_client.state.local_state(
         first_seller.address
@@ -88,14 +88,13 @@ def test_pass_noop_full_withdraw(
 
     dm_client.send.withdraw(
         WithdrawArgs(amount=cst.AMOUNT_TO_DEPOSIT.micro_algo),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
     )
 
     assert (
         algorand_client.account.get_information(first_seller.address).amount
         - balance_before_call
-        == cst.AMOUNT_TO_DEPOSIT.micro_algo
-        - AlgoAmount.from_micro_algo(2_000).micro_algo
+        == cst.AMOUNT_TO_DEPOSIT.micro_algo - AlgoAmount(micro_algo=2_000).micro_algo
     )
     assert dm_client.state.local_state(first_seller.address).deposited == 0
 
@@ -114,14 +113,13 @@ def test_pass_close_out_withdraw(
     #  available balance regardless of amount argument.
     dm_client.send.close_out.withdraw(
         WithdrawArgs(amount=0),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
     )
 
     assert (
         algorand_client.account.get_information(first_seller.address).amount
         - balance_before_call
-        == cst.AMOUNT_TO_DEPOSIT.micro_algo
-        - AlgoAmount.from_micro_algo(2_000).micro_algo
+        == cst.AMOUNT_TO_DEPOSIT.micro_algo - AlgoAmount(micro_algo=2_000).micro_algo
     )
     with pytest.raises(AlgodHTTPError, match="account application info not found"):
         _ = dm_client.state.local_state(first_seller.address).deposited

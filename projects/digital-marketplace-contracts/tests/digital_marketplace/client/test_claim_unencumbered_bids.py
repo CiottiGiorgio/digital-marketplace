@@ -121,7 +121,7 @@ def test_pass_opt_in_positive_to_empty_claim_unencumbered_bids(
                 PaymentParams(
                     sender=first_bidder.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount.from_algo(1),
+                    amount=AlgoAmount(algo=1),
                 )
             )
         )
@@ -223,7 +223,7 @@ def test_pass_bid_was_sold_to_empty(
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
     dm_client.clone(default_sender=buyer.address).send.buy(
         BuyArgs(sale_key=sale_key),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
@@ -252,7 +252,7 @@ def test_pass_bid_was_accepted_to_empty(
 ) -> None:
     dm_client.clone(default_sender=first_seller.address).send.accept_bid(
         AcceptBidArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
