@@ -145,41 +145,37 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod
     def bid(self, sale_key: SaleKey, new_bid_amount: arc4.UInt64) -> None:
+        arc4_sender = arc4.Address(Txn.sender)
+        new_bid = Bid(bidder=arc4_sender, amount=new_bid_amount)
+
         maybe_best_bid = self.sales[sale_key].bid.copy()
         if maybe_best_bid:
             assert (
                 maybe_best_bid[0].amount.native < new_bid_amount.native
             ), err.WORSE_BID
 
-            self.sales[sale_key].bid[0] = Bid(
-                bidder=arc4.Address(Txn.sender), amount=new_bid_amount
-            )
+            self.sales[sale_key].bid[0] = new_bid.copy()
         else:
-            self.sales[sale_key].bid.append(
-                Bid(bidder=arc4.Address(Txn.sender), amount=new_bid_amount)
-            )
+            self.sales[sale_key].bid.append(new_bid.copy())
 
         self.deposited[Txn.sender] -= new_bid_amount.native
 
-        if self.placed_bids.maybe(arc4.Address(Txn.sender))[1]:
+        new_placed_bid = PlacedBid(sale_key.copy(), new_bid_amount)
+        if self.placed_bids.maybe(arc4_sender)[1]:
             found, index = find_placed_bid(
-                self.placed_bids[arc4.Address(Txn.sender)].copy(), sale_key.copy()
+                self.placed_bids[arc4_sender].copy(), sale_key.copy()
             )
             if found:
-                self.deposited[Txn.sender] += self.placed_bids[
-                    arc4.Address(Txn.sender)
-                ][index].bid_amount.native
-                self.placed_bids[arc4.Address(Txn.sender)][index] = PlacedBid(
-                    sale_key.copy(), new_bid_amount
-                )
+                self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
+                    index
+                ].bid_amount.native
+                self.placed_bids[arc4_sender][index] = new_placed_bid.copy()
             else:
-                self.placed_bids[arc4.Address(Txn.sender)].append(
-                    PlacedBid(sale_key.copy(), new_bid_amount)
-                )
+                self.placed_bids[arc4_sender].append(new_placed_bid.copy())
         else:
             self.deposited[Txn.sender] -= placed_bids_box_mbr()
-            self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid](
-                PlacedBid(sale_key.copy(), new_bid_amount)
+            self.placed_bids[arc4_sender] = arc4.DynamicArray[PlacedBid](
+                new_placed_bid.copy()
             )
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
