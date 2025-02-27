@@ -150,6 +150,32 @@ def test_fail_not_enough_deposited_open_sale(
         )
 
 
+def test_fail_sale_already_exists_open_sale(
+    asset_to_sell: int,
+    dm_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+    algorand_client: AlgorandClient,
+    first_seller: SigningAccount,
+    asset_holder: SigningAccount,
+) -> None:
+    with pytest.raises(LogicError, match=err.SALE_ALREADY_EXISTS):
+        dm_client.send.open_sale(
+            OpenSaleArgs(
+                asset_deposit=algorand_client.create_transaction.asset_transfer(
+                    AssetTransferParams(
+                        sender=first_seller.address,
+                        asset_id=asset_to_sell,
+                        amount=cst.ASA_AMOUNT_TO_SELL,
+                        receiver=dm_client.app_address,
+                    )
+                ),
+                cost=cst.COST_TO_BUY.micro_algo,
+            ),
+            params=CommonAppCallParams(sender=first_seller.address),
+            send_params=SendParams(populate_app_call_resources=True),
+        )
+
+
 def test_pass_open_sale(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,

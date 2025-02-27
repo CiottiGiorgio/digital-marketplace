@@ -3,21 +3,20 @@ from typing import Callable
 import consts as cst
 import pytest
 from algokit_utils import (
-    SendParams,
     AlgoAmount,
-    PaymentParams,
-    SigningAccount,
     AlgorandClient,
+    PaymentParams,
+    SendParams,
+    SigningAccount,
 )
 from algosdk.error import AlgodHTTPError
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
-    DigitalMarketplaceClient,
     BidArgs,
-    SaleKey,
     DepositArgs,
+    DigitalMarketplaceClient,
+    SaleKey,
 )
-from tests.conftest import algorand_client
 
 
 @pytest.fixture(scope="function")
@@ -170,7 +169,7 @@ def test_pass_opt_in_positive_to_non_empty_claim_unencumbered_bids(
 
     assert dm_client.state.box.placed_bids.get_value(first_bidder.address) == [
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
-        [[second_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
+        [[second_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
     ]
 
     dm_client.send.opt_in.claim_unencumbered_bids(

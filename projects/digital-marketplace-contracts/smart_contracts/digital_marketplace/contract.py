@@ -98,11 +98,14 @@ class DigitalMarketplace(ARC4Contract):
             asset_deposit.asset_receiver == Global.current_application_address
         ), err.WRONG_RECEIVER
 
+        sale_key = SaleKey(
+            arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id)
+        )
+        assert not self.sales.maybe(sale_key)[1], err.SALE_ALREADY_EXISTS
+
         self.deposited[Txn.sender] -= sales_box_mbr(self.sales.key_prefix.length)
 
-        self.sales[
-            SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset_deposit.xfer_asset.id))
-        ] = Sale(
+        self.sales[sale_key] = Sale(
             arc4.UInt64(asset_deposit.asset_amount), cost, arc4.DynamicArray[Bid]()
         )
 
