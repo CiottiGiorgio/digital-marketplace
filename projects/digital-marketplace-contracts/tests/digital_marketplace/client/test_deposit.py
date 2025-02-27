@@ -16,27 +16,17 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 )
 
 
-@pytest.fixture(scope="module")
-def generic_actor(algorand_client: AlgorandClient) -> SigningAccount:
-    account = algorand_client.account.random()
-    algorand_client.account.ensure_funded_from_environment(
-        account_to_fund=account.address,
-        min_spending_balance=cst.AMOUNT_TO_FUND,
-    )
-    return account
-
-
 @pytest.fixture(scope="function")
 def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, generic_actor: SigningAccount
+    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
 ) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=generic_actor.address)
+    return digital_marketplace_client.clone(default_sender=first_seller.address)
 
 
 def test_fail_diff_sender_opt_in_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
-    generic_actor: SigningAccount,
+    first_seller: SigningAccount,
     random_account: SigningAccount,
 ) -> None:
     with pytest.raises(LogicError, match=err.DIFFERENT_SENDER):
@@ -59,7 +49,7 @@ def test_fail_diff_sender_opt_in_deposit(
 def test_fail_wrong_receiver_opt_in_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
-    generic_actor: SigningAccount,
+    first_seller: SigningAccount,
 ) -> None:
     with pytest.raises(LogicError, match=err.WRONG_RECEIVER):
         dm_client.send.opt_in.deposit(
@@ -67,27 +57,27 @@ def test_fail_wrong_receiver_opt_in_deposit(
                 payment=TransactionWithSigner(
                     txn=algorand_client.create_transaction.payment(
                         PaymentParams(
-                            sender=generic_actor.address,
-                            receiver=generic_actor.address,
+                            sender=first_seller.address,
+                            receiver=first_seller.address,
                             amount=AlgoAmount.from_algo(1),
                         )
                     ),
-                    signer=generic_actor.signer,
+                    signer=first_seller.signer,
                 )
             ),
         )
 
 
-def test_pass_deposit(
+def test_pass_noop_and_opt_in_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
-    generic_actor: SigningAccount,
+    first_seller: SigningAccount,
 ) -> None:
     dm_client.send.opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
-                    sender=generic_actor.address,
+                    sender=first_seller.address,
                     receiver=dm_client.app_address,
                     amount=AlgoAmount.from_algo(1),
                 )
@@ -96,7 +86,7 @@ def test_pass_deposit(
     )
 
     assert (
-        dm_client.state.local_state(generic_actor.address).deposited
+        dm_client.state.local_state(first_seller.address).deposited
         == AlgoAmount.from_algo(1).micro_algo
     )
 
@@ -104,7 +94,7 @@ def test_pass_deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
-                    sender=generic_actor.address,
+                    sender=first_seller.address,
                     receiver=dm_client.app_address,
                     amount=cst.AMOUNT_TO_DEPOSIT - AlgoAmount.from_algo(1),
                 )
@@ -113,6 +103,6 @@ def test_pass_deposit(
     )
 
     assert (
-        dm_client.state.local_state(generic_actor.address).deposited
+        dm_client.state.local_state(first_seller.address).deposited
         == cst.AMOUNT_TO_DEPOSIT.micro_algo
     )
