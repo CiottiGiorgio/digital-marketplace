@@ -26,7 +26,7 @@ def dm_client(
     return digital_marketplace_client.clone(default_sender=first_seller.address)
 
 
-def test_pass_accept_bid(
+def test_pass_noop_accept_bid(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
@@ -57,6 +57,50 @@ def test_pass_accept_bid(
     assert (
         dm_client.state.local_state(first_seller.address).deposited
         - deposited_before_call
+        == (cst.AMOUNT_TO_BID + cst.SALES_BOX_MBR).micro_algo
+    )
+    assert (
+        helpers.asa_amount(
+            algorand_client,
+            first_bidder.address,
+            asset_to_sell,
+        )
+        - asa_balance_before_call
+        == cst.ASA_AMOUNT_TO_SELL
+    )
+
+
+def test_pass_opt_in_accept_bid(
+    asset_to_sell: int,
+    dm_client: DigitalMarketplaceClient,
+    scenario_first_seller_first_bidder_bid: Callable,
+    algorand_client: AlgorandClient,
+    first_seller: SigningAccount,
+    first_bidder: SigningAccount,
+) -> None:
+    dm_client.send.clear_state()
+
+    sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
+
+    assert dm_client.state.box.sales.get_value(sale_key).bid == [
+        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
+    ]
+    asa_balance_before_call = helpers.asa_amount(
+        algorand_client,
+        first_bidder.address,
+        asset_to_sell,
+    )
+
+    dm_client.send.opt_in.accept_bid(
+        AcceptBidArgs(asset=asset_to_sell),
+        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        send_params=SendParams(populate_app_call_resources=True),
+    )
+
+    with pytest.raises(AlgodHTTPError, match="box not found"):
+        _ = dm_client.state.box.sales.get_value(sale_key)
+    assert (
+        dm_client.state.local_state(first_seller.address).deposited
         == (cst.AMOUNT_TO_BID + cst.SALES_BOX_MBR).micro_algo
     )
     assert (
