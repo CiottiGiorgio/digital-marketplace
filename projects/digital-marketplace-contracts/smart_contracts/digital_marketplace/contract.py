@@ -183,7 +183,7 @@ class DigitalMarketplace(ARC4Contract):
         self.deposited[Txn.sender] = self.deposited.get(Txn.sender, UInt64(0))
 
         placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
-        self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid]()
+        encumbered_placed_bids = arc4.DynamicArray[PlacedBid]()
 
         for i in urange(placed_bids.length):
             if (
@@ -197,9 +197,11 @@ class DigitalMarketplace(ARC4Contract):
                     + placed_bids[i].bid_amount.native
                 )
             else:
-                self.placed_bids[arc4.Address(Txn.sender)].append(placed_bids[i].copy())
+                encumbered_placed_bids.append(placed_bids[i].copy())
 
-        if not self.placed_bids[arc4.Address(Txn.sender)]:
+        if encumbered_placed_bids:
+            self.placed_bids[arc4.Address(Txn.sender)] = encumbered_placed_bids.copy()
+        else:
             self.deposited[Txn.sender] += placed_bids_box_mbr()
             del self.placed_bids[arc4.Address(Txn.sender)]
 
