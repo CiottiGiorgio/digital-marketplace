@@ -68,12 +68,14 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod(allow_actions=["NoOp", "CloseOut"])
     def withdraw(self, amount: arc4.UInt64) -> None:
-        if Txn.on_completion == OnCompleteAction.CloseOut:
-            assert self.deposited[Txn.sender] == amount.native, err.BALANCE_NOT_EMPTY
+        if Txn.on_completion == OnCompleteAction.NoOp:
+            self.deposited[Txn.sender] -= amount.native
 
-        self.deposited[Txn.sender] -= amount.native
-
-        itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
+            itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
+        else:
+            itxn.Payment(
+                receiver=Txn.sender, amount=self.deposited[Txn.sender]
+            ).submit()
 
     @abimethod
     def sponsor_asset(self, asset: Asset) -> None:

@@ -12,7 +12,6 @@ from algokit_utils import (
 )
 from algosdk.error import AlgodHTTPError
 
-import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     DepositArgs,
     DigitalMarketplaceClient,
@@ -53,17 +52,6 @@ def test_fail_overdraft_withdraw(
                 extra_fee=AlgoAmount.from_micro_algo(1_000),
                 sender=random_account.address,
             ),
-        )
-
-
-def test_fail_close_out_with_balance_withdraw(
-    dm_client: DigitalMarketplaceClient,
-    scenario_deposit: Callable,
-) -> None:
-    with pytest.raises(LogicError, match=err.BALANCE_NOT_EMPTY):
-        dm_client.send.close_out.withdraw(
-            WithdrawArgs(amount=cst.AMOUNT_TO_DEPOSIT.micro_algo - 1),
-            params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
         )
 
 
@@ -129,8 +117,10 @@ def test_pass_close_out_withdraw(
         first_seller.address
     ).amount
 
+    # When called with CloseOut, the withdraw method will send back all
+    #  available balance regardless of amount argument.
     dm_client.send.close_out.withdraw(
-        WithdrawArgs(amount=cst.AMOUNT_TO_DEPOSIT.micro_algo),
+        WithdrawArgs(amount=0),
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     )
 
