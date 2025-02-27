@@ -183,3 +183,6 @@ def test_pass_opt_in_positive_to_non_empty_claim_unencumbered_bids(
         dm_client.state.local_state(first_bidder.address).deposited
         == cst.AMOUNT_TO_BID.micro_algo
     )
+
+
+# TODO: Add tests for bids that were unencumbered because of buy or accept_bid

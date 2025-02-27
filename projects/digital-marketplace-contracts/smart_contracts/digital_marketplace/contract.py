@@ -201,3 +201,22 @@ class DigitalMarketplace(ARC4Contract):
         if not self.placed_bids[arc4.Address(Txn.sender)]:
             self.deposited[Txn.sender] += placed_bids_box_mbr()
             del self.placed_bids[arc4.Address(Txn.sender)]
+
+    @abimethod(allow_actions=["NoOp", "OptIn"])
+    def accept_bid(self, asset: arc4.UInt64) -> None:
+        sale_key = SaleKey(owner=arc4.Address(Txn.sender), asset=asset)
+        sale = self.sales[sale_key].copy()
+        current_best_bid = sale.bid[0].copy()
+
+        self.deposited[Txn.sender] = (
+            self.deposited.get(Txn.sender, default=UInt64(0))
+            + current_best_bid.amount.native
+            + sales_box_mbr(self.sales.key_prefix.length)
+        )
+        itxn.AssetTransfer(
+            xfer_asset=asset.native,
+            asset_receiver=current_best_bid.bidder.native,
+            asset_amount=sale.amount.native,
+        ).submit()
+
+        del self.sales[sale_key]
