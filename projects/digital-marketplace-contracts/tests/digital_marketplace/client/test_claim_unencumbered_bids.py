@@ -5,6 +5,7 @@ import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
+    CommonAppCallParams,
     PaymentParams,
     SendParams,
     SigningAccount,
@@ -12,7 +13,9 @@ from algokit_utils import (
 from algosdk.error import AlgodHTTPError
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
+    AcceptBidArgs,
     BidArgs,
+    BuyArgs,
     DepositArgs,
     DigitalMarketplaceClient,
     SaleKey,
@@ -185,4 +188,60 @@ def test_pass_opt_in_positive_to_non_empty_claim_unencumbered_bids(
     )
 
 
-# TODO: Add tests for bids that were unencumbered because of buy or accept_bid
+def test_pass_bid_was_sold_to_empty(
+    asset_to_sell: int,
+    dm_client: DigitalMarketplaceClient,
+    scenario_first_seller_first_bidder_bid: Callable,
+    first_seller: SigningAccount,
+    buyer: SigningAccount,
+    first_bidder: SigningAccount,
+) -> None:
+    sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
+    dm_client.clone(default_sender=buyer.address).send.buy(
+        BuyArgs(sale_key=sale_key),
+        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        send_params=SendParams(populate_app_call_resources=True),
+    )
+
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
+
+    dm_client.send.claim_unencumbered_bids(
+        send_params=SendParams(populate_app_call_resources=True)
+    )
+
+    assert (
+        dm_client.state.local_state(first_bidder.address).deposited
+        - deposited_before_call
+        == (cst.AMOUNT_TO_BID + cst.PLACED_BIDS_BOX_MBR).micro_algo
+    )
+    with pytest.raises(AlgodHTTPError, match="box not found"):
+        _ = dm_client.state.box.placed_bids.get_value(first_bidder.address)
+
+
+def test_pass_bid_was_accepted_to_empty(
+    asset_to_sell: int,
+    dm_client: DigitalMarketplaceClient,
+    scenario_first_seller_first_bidder_bid: Callable,
+    first_seller: SigningAccount,
+    buyer: SigningAccount,
+    first_bidder: SigningAccount,
+) -> None:
+    dm_client.clone(default_sender=first_seller.address).send.accept_bid(
+        AcceptBidArgs(asset=asset_to_sell),
+        params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
+        send_params=SendParams(populate_app_call_resources=True),
+    )
+
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
+
+    dm_client.send.claim_unencumbered_bids(
+        send_params=SendParams(populate_app_call_resources=True)
+    )
+
+    assert (
+        dm_client.state.local_state(first_bidder.address).deposited
+        - deposited_before_call
+        == (cst.AMOUNT_TO_BID + cst.PLACED_BIDS_BOX_MBR).micro_algo
+    )
+    with pytest.raises(AlgodHTTPError, match="box not found"):
+        _ = dm_client.state.box.placed_bids.get_value(first_bidder.address)
