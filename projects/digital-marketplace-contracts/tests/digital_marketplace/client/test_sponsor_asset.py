@@ -1,10 +1,12 @@
 from typing import Callable
 
+import consts as cst
 import helpers
 import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
+    AssetCreateParams,
     CommonAppCallParams,
     LogicError,
     PaymentParams,
@@ -38,6 +40,27 @@ def test_fail_already_opted_into_sponsor_asset(
             params=CommonAppCallParams(
                 extra_fee=AlgoAmount.from_micro_algo(1_000),
             ),
+        )
+
+
+def test_fail_clawback_sponsor_asset(
+    dm_client: DigitalMarketplaceClient,
+    algorand_client: AlgorandClient,
+    first_seller: SigningAccount,
+) -> None:
+    result = algorand_client.send.asset_create(
+        AssetCreateParams(
+            sender=first_seller.address,
+            total=cst.ASA_AMOUNT_TO_CREATE,
+            decimals=cst.ASA_DECIMALS,
+            clawback=first_seller.address,
+        )
+    )
+
+    with pytest.raises(LogicError, match=err.CLAWBACK_ASA):
+        dm_client.send.sponsor_asset(
+            SponsorAssetArgs(asset=result.asset_id),
+            params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
         )
 
 

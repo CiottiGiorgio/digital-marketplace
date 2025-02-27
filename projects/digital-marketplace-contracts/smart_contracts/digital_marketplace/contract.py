@@ -82,6 +82,7 @@ class DigitalMarketplace(ARC4Contract):
         assert not Global.current_application_address.is_opted_in(
             asset
         ), err.ALREADY_OPTED_IN
+        assert asset.clawback == Global.zero_address, err.CLAWBACK_ASA
 
         self.deposited[Txn.sender] -= Global.asset_opt_in_min_balance
 

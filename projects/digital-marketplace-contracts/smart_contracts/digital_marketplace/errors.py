@@ -1,5 +1,6 @@
 DIFFERENT_SENDER: str = "Different sender"
 WRONG_RECEIVER: str = "Wrong receiver"
+CLAWBACK_ASA: str = "Clawback ASA"
 UNAUTHORIZED: str = "Unauthorized"
 ALREADY_OPTED_IN: str = "Already opted in"
 WORSE_BID: str = "Worse bid"

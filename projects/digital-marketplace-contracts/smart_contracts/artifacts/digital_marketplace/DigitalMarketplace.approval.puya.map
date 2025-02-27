@@ -4,7 +4,7 @@
     "../../digital_marketplace/contract.py",
     "../../digital_marketplace/subroutines.py"
   ],
-  "mappings": "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",
+  "mappings": "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",
   "op_pc_offset": 0,
   "pc_events": {
     "1": {
@@ -1672,93 +1672,142 @@
       "stack_out": []
     },
     "463": {
-      "op": "txn Sender"
+      "op": "frame_dig -1",
+      "stack_out": [
+        "asset#0 (copy)"
+      ]
     },
     "465": {
-      "op": "dup"
-    },
-    "466": {
-      "op": "intc_0 // 0"
+      "op": "asset_params_get AssetClawback",
+      "defined_out": [
+        "check%0#0",
+        "value%0#0"
+      ],
+      "stack_out": [
+        "value%0#0",
+        "check%0#0"
+      ]
     },
     "467": {
+      "error": "asset exists",
+      "op": "assert // asset exists",
+      "stack_out": [
+        "value%0#0"
+      ]
+    },
+    "468": {
+      "op": "global ZeroAddress",
+      "defined_out": [
+        "tmp%4#0",
+        "value%0#0"
+      ],
+      "stack_out": [
+        "value%0#0",
+        "tmp%4#0"
+      ]
+    },
+    "470": {
+      "op": "==",
+      "defined_out": [
+        "tmp%5#0"
+      ],
+      "stack_out": [
+        "tmp%5#0"
+      ]
+    },
+    "471": {
+      "error": "Clawback ASA",
+      "op": "assert // Clawback ASA",
+      "stack_out": []
+    },
+    "472": {
+      "op": "txn Sender"
+    },
+    "474": {
+      "op": "dup"
+    },
+    "475": {
+      "op": "intc_0 // 0"
+    },
+    "476": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
         "0",
-        "tmp%4#0",
-        "tmp%4#0 (copy)"
+        "tmp%6#0",
+        "tmp%6#0 (copy)"
       ],
       "stack_out": [
-        "tmp%4#0",
-        "tmp%4#0 (copy)",
+        "tmp%6#0",
+        "tmp%6#0 (copy)",
         "0",
         "\"deposited\""
       ]
     },
-    "468": {
+    "477": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%0#0",
         "maybe_value%0#0",
-        "tmp%4#0"
+        "tmp%6#0"
       ],
       "stack_out": [
-        "tmp%4#0",
+        "tmp%6#0",
         "maybe_value%0#0",
         "maybe_exists%0#0"
       ]
     },
-    "469": {
+    "478": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
-        "tmp%4#0",
+        "tmp%6#0",
         "maybe_value%0#0"
       ]
     },
-    "470": {
+    "479": {
       "op": "global AssetOptInMinBalance",
       "defined_out": [
         "maybe_value%0#0",
-        "tmp%4#0",
-        "tmp%5#0"
+        "tmp%6#0",
+        "tmp%7#0"
       ],
       "stack_out": [
-        "tmp%4#0",
+        "tmp%6#0",
         "maybe_value%0#0",
-        "tmp%5#0"
+        "tmp%7#0"
       ]
     },
-    "472": {
+    "481": {
       "op": "-",
       "defined_out": [
         "new_state_value%0#0",
-        "tmp%4#0"
+        "tmp%6#0"
       ],
       "stack_out": [
-        "tmp%4#0",
+        "tmp%6#0",
         "new_state_value%0#0"
       ]
     },
-    "473": {
+    "482": {
       "op": "bytec_0 // \"deposited\""
     },
-    "474": {
+    "483": {
       "op": "swap",
       "stack_out": [
-        "tmp%4#0",
+        "tmp%6#0",
         "\"deposited\"",
         "new_state_value%0#0"
       ]
     },
-    "475": {
+    "484": {
       "op": "app_local_put",
       "stack_out": []
     },
-    "476": {
+    "485": {
       "op": "itxn_begin"
     },
-    "477": {
+    "486": {
       "op": "global CurrentApplicationAddress",
       "defined_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
@@ -1767,34 +1816,34 @@
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
       ]
     },
-    "479": {
+    "488": {
       "op": "intc_0 // 0",
       "stack_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
         "0"
       ]
     },
-    "480": {
+    "489": {
       "op": "itxn_field AssetAmount",
       "stack_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
       ]
     },
-    "482": {
+    "491": {
       "op": "itxn_field AssetReceiver",
       "stack_out": []
     },
-    "484": {
+    "493": {
       "op": "frame_dig -1",
       "stack_out": [
         "asset#0 (copy)"
       ]
     },
-    "486": {
+    "495": {
       "op": "itxn_field XferAsset",
       "stack_out": []
     },
-    "488": {
+    "497": {
       "op": "pushint 4 // axfer",
       "defined_out": [
         "axfer"
@@ -1803,28 +1852,28 @@
         "axfer"
       ]
     },
-    "490": {
+    "499": {
       "op": "itxn_field TypeEnum",
       "stack_out": []
     },
-    "492": {
+    "501": {
       "op": "intc_0 // 0",
       "stack_out": [
         "0"
       ]
     },
-    "493": {
+    "502": {
       "op": "itxn_field Fee",
       "stack_out": []
     },
-    "495": {
+    "504": {
       "op": "itxn_submit"
     },
-    "496": {
+    "505": {
       "retsub": true,
       "op": "retsub"
     },
-    "497": {
+    "506": {
       "subroutine": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.open_sale",
       "params": {
         "asset_deposit#0": "uint64",
@@ -1834,7 +1883,7 @@
       "stack_in": [],
       "op": "proto 2 0"
     },
-    "500": {
+    "509": {
       "op": "frame_dig -2",
       "defined_out": [
         "asset_deposit#0 (copy)"
@@ -1843,7 +1892,7 @@
         "asset_deposit#0 (copy)"
       ]
     },
-    "502": {
+    "511": {
       "op": "gtxns Sender",
       "defined_out": [
         "tmp%0#0"
@@ -1852,7 +1901,7 @@
         "tmp%0#0"
       ]
     },
-    "504": {
+    "513": {
       "op": "txn Sender",
       "defined_out": [
         "tmp%0#0",
@@ -1863,7 +1912,7 @@
         "tmp%1#0"
       ]
     },
-    "506": {
+    "515": {
       "op": "==",
       "defined_out": [
         "tmp%2#0"
@@ -1872,18 +1921,18 @@
         "tmp%2#0"
       ]
     },
-    "507": {
+    "516": {
       "error": "Different sender",
       "op": "assert // Different sender",
       "stack_out": []
     },
-    "508": {
+    "517": {
       "op": "frame_dig -2",
       "stack_out": [
         "asset_deposit#0 (copy)"
       ]
     },
-    "510": {
+    "519": {
       "op": "gtxns AssetReceiver",
       "defined_out": [
         "tmp%3#0"
@@ -1892,7 +1941,7 @@
         "tmp%3#0"
       ]
     },
-    "512": {
+    "521": {
       "op": "global CurrentApplicationAddress",
       "defined_out": [
         "tmp%3#0",
@@ -1903,7 +1952,7 @@
         "tmp%4#0"
       ]
     },
-    "514": {
+    "523": {
       "op": "==",
       "defined_out": [
         "tmp%5#0"
@@ -1912,12 +1961,12 @@
         "tmp%5#0"
       ]
     },
-    "515": {
+    "524": {
       "error": "Wrong receiver",
       "op": "assert // Wrong receiver",
       "stack_out": []
     },
-    "516": {
+    "525": {
       "op": "txn Sender",
       "defined_out": [
         "tmp%6#0"
@@ -1926,14 +1975,14 @@
         "tmp%6#0"
       ]
     },
-    "518": {
+    "527": {
       "op": "frame_dig -2",
       "stack_out": [
         "tmp%6#0",
         "asset_deposit#0 (copy)"
       ]
     },
-    "520": {
+    "529": {
       "op": "gtxns XferAsset",
       "defined_out": [
         "tmp%6#0",
@@ -1944,7 +1993,7 @@
         "to_encode%0#0"
       ]
     },
-    "522": {
+    "531": {
       "op": "itob",
       "defined_out": [
         "tmp%6#0",
@@ -1955,7 +2004,7 @@
         "val_as_bytes%0#0"
       ]
     },
-    "523": {
+    "532": {
       "op": "concat",
       "defined_out": [
         "sale_key#0"
@@ -1964,7 +2013,7 @@
         "sale_key#0"
       ]
     },
-    "524": {
+    "533": {
       "op": "bytec_2 // \"sales\"",
       "defined_out": [
         "\"sales\"",
@@ -1975,14 +2024,14 @@
         "\"sales\""
       ]
     },
-    "525": {
+    "534": {
       "op": "swap",
       "stack_out": [
         "\"sales\"",
         "sale_key#0"
       ]
     },
-    "526": {
+    "535": {
       "op": "concat",
       "defined_out": [
         "tmp%7#0"
@@ -1991,7 +2040,7 @@
         "tmp%7#0"
       ]
     },
-    "527": {
+    "536": {
       "op": "dup",
       "defined_out": [
         "tmp%7#0",
@@ -2002,7 +2051,7 @@
         "tmp%7#0 (copy)"
       ]
     },
-    "528": {
+    "537": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%0#0",
@@ -2015,14 +2064,14 @@
         "maybe_exists%0#0"
       ]
     },
-    "529": {
+    "538": {
       "op": "bury 1",
       "stack_out": [
         "tmp%7#0",
         "maybe_exists%0#0"
       ]
     },
-    "531": {
+    "540": {
       "op": "!",
       "defined_out": [
         "tmp%7#0",
@@ -2033,23 +2082,23 @@
         "tmp%8#0"
       ]
     },
-    "532": {
+    "541": {
       "error": "Sale already exists",
       "op": "assert // Sale already exists",
       "stack_out": [
         "tmp%7#0"
       ]
     },
-    "533": {
+    "542": {
       "op": "txn Sender"
     },
-    "535": {
+    "544": {
       "op": "dup"
     },
-    "536": {
+    "545": {
       "op": "intc_0 // 0"
     },
-    "537": {
+    "546": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -2066,7 +2115,7 @@
         "\"deposited\""
       ]
     },
-    "538": {
+    "547": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%1#0",
@@ -2081,7 +2130,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "539": {
+    "548": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
@@ -2090,7 +2139,7 @@
         "maybe_value%1#0"
       ]
     },
-    "540": {
+    "549": {
       "op": "pushint 5 // 5",
       "defined_out": [
         "5",
@@ -2105,7 +2154,7 @@
         "5"
       ]
     },
-    "542": {
+    "551": {
       "callsub": "smart_contracts.digital_marketplace.subroutines.sales_box_mbr",
       "op": "callsub sales_box_mbr",
       "defined_out": [
@@ -2121,7 +2170,7 @@
         "tmp%11#0"
       ]
     },
-    "545": {
+    "554": {
       "op": "-",
       "defined_out": [
         "new_state_value%0#0",
@@ -2134,10 +2183,10 @@
         "new_state_value%0#0"
       ]
     },
-    "546": {
+    "555": {
       "op": "bytec_0 // \"deposited\""
     },
-    "547": {
+    "556": {
       "op": "swap",
       "stack_out": [
         "tmp%7#0",
@@ -2146,20 +2195,20 @@
         "new_state_value%0#0"
       ]
     },
-    "548": {
+    "557": {
       "op": "app_local_put",
       "stack_out": [
         "tmp%7#0"
       ]
     },
-    "549": {
+    "558": {
       "op": "frame_dig -2",
       "stack_out": [
         "tmp%7#0",
         "asset_deposit#0 (copy)"
       ]
     },
-    "551": {
+    "560": {
       "op": "gtxns AssetAmount",
       "defined_out": [
         "tmp%7#0",
@@ -2170,7 +2219,7 @@
         "to_encode%1#0"
       ]
     },
-    "553": {
+    "562": {
       "op": "itob",
       "defined_out": [
         "tmp%7#0",
@@ -2181,7 +2230,7 @@
         "val_as_bytes%1#0"
       ]
     },
-    "554": {
+    "563": {
       "op": "frame_dig -1",
       "defined_out": [
         "cost#0 (copy)",
@@ -2194,7 +2243,7 @@
         "cost#0 (copy)"
       ]
     },
-    "556": {
+    "565": {
       "op": "concat",
       "defined_out": [
         "encoded_tuple_buffer%5#0",
@@ -2205,7 +2254,7 @@
         "encoded_tuple_buffer%5#0"
       ]
     },
-    "557": {
+    "566": {
       "op": "pushbytes 0x0012",
       "defined_out": [
         "0x0012",
@@ -2218,7 +2267,7 @@
         "0x0012"
       ]
     },
-    "561": {
+    "570": {
       "op": "concat",
       "defined_out": [
         "encoded_tuple_buffer%6#0",
@@ -2229,7 +2278,7 @@
         "encoded_tuple_buffer%6#0"
       ]
     },
-    "562": {
+    "571": {
       "op": "bytec_3 // 0x0000",
       "defined_out": [
         "0x0000",
@@ -2242,7 +2291,7 @@
         "0x0000"
       ]
     },
-    "563": {
+    "572": {
       "op": "concat",
       "defined_out": [
         "encoded_tuple_buffer%7#0",
@@ -2253,7 +2302,7 @@
         "encoded_tuple_buffer%7#0"
       ]
     },
-    "564": {
+    "573": {
       "op": "dig 1",
       "stack_out": [
         "tmp%7#0",
@@ -2261,7 +2310,7 @@
         "tmp%7#0 (copy)"
       ]
     },
-    "566": {
+    "575": {
       "op": "box_del",
       "defined_out": [
         "encoded_tuple_buffer%7#0",
@@ -2274,22 +2323,22 @@
         "{box_del}"
       ]
     },
-    "567": {
+    "576": {
       "op": "pop",
       "stack_out": [
         "tmp%7#0",
         "encoded_tuple_buffer%7#0"
       ]
     },
-    "568": {
+    "577": {
       "op": "box_put",
       "stack_out": []
     },
-    "569": {
+    "578": {
       "retsub": true,
       "op": "retsub"
     },
-    "570": {
+    "579": {
       "subroutine": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.close_sale",
       "params": {
         "asset#0": "uint64"
@@ -2298,7 +2347,7 @@
       "stack_in": [],
       "op": "proto 1 0"
     },
-    "573": {
+    "582": {
       "op": "txn Sender",
       "defined_out": [
         "tmp%0#0"
@@ -2307,7 +2356,7 @@
         "tmp%0#0"
       ]
     },
-    "575": {
+    "584": {
       "op": "frame_dig -1",
       "defined_out": [
         "asset#0 (copy)",
@@ -2318,7 +2367,7 @@
         "asset#0 (copy)"
       ]
     },
-    "577": {
+    "586": {
       "op": "itob",
       "defined_out": [
         "tmp%0#0",
@@ -2329,7 +2378,7 @@
         "val_as_bytes%0#0"
       ]
     },
-    "578": {
+    "587": {
       "op": "concat",
       "defined_out": [
         "sale_key#0"
@@ -2338,10 +2387,10 @@
         "sale_key#0"
       ]
     },
-    "579": {
+    "588": {
       "op": "itxn_begin"
     },
-    "580": {
+    "589": {
       "op": "txn Sender",
       "defined_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
@@ -2352,7 +2401,7 @@
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
       ]
     },
-    "582": {
+    "591": {
       "op": "bytec_2 // \"sales\"",
       "defined_out": [
         "\"sales\"",
@@ -2365,7 +2414,7 @@
         "\"sales\""
       ]
     },
-    "583": {
+    "592": {
       "op": "uncover 2",
       "stack_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
@@ -2373,7 +2422,7 @@
         "sale_key#0"
       ]
     },
-    "585": {
+    "594": {
       "op": "concat",
       "defined_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
@@ -2384,7 +2433,7 @@
         "tmp%1#0"
       ]
     },
-    "586": {
+    "595": {
       "op": "dup",
       "defined_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
@@ -2397,7 +2446,7 @@
         "tmp%1#0 (copy)"
       ]
     },
-    "587": {
+    "596": {
       "op": "box_get",
       "defined_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
@@ -2412,7 +2461,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "588": {
+    "597": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -2421,7 +2470,7 @@
         "maybe_value%0#0"
       ]
     },
-    "589": {
+    "598": {
       "op": "intc_0 // 0",
       "defined_out": [
         "0",
@@ -2436,7 +2485,7 @@
         "0"
       ]
     },
-    "590": {
+    "599": {
       "op": "extract_uint64",
       "defined_out": [
         "inner_txn_params%0%%param_AssetAmount_idx_0#0",
@@ -2449,40 +2498,40 @@
         "inner_txn_params%0%%param_AssetAmount_idx_0#0"
       ]
     },
-    "591": {
+    "600": {
       "op": "itxn_field AssetAmount",
       "stack_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
         "tmp%1#0"
       ]
     },
-    "593": {
+    "602": {
       "op": "swap",
       "stack_out": [
         "tmp%1#0",
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
       ]
     },
-    "594": {
+    "603": {
       "op": "itxn_field AssetReceiver",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "596": {
+    "605": {
       "op": "frame_dig -1",
       "stack_out": [
         "tmp%1#0",
         "asset#0 (copy)"
       ]
     },
-    "598": {
+    "607": {
       "op": "itxn_field XferAsset",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "600": {
+    "609": {
       "op": "pushint 4 // axfer",
       "defined_out": [
         "axfer",
@@ -2493,29 +2542,29 @@
         "axfer"
       ]
     },
-    "602": {
+    "611": {
       "op": "itxn_field TypeEnum",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "604": {
+    "613": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
         "0"
       ]
     },
-    "605": {
+    "614": {
       "op": "itxn_field Fee",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "607": {
+    "616": {
       "op": "itxn_submit"
     },
-    "608": {
+    "617": {
       "op": "txn Sender",
       "defined_out": [
         "tmp%1#0",
@@ -2526,7 +2575,7 @@
         "tmp%3#0"
       ]
     },
-    "610": {
+    "619": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
@@ -2534,7 +2583,7 @@
         "0"
       ]
     },
-    "611": {
+    "620": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -2549,7 +2598,7 @@
         "\"deposited\""
       ]
     },
-    "612": {
+    "621": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%1#0",
@@ -2562,7 +2611,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "613": {
+    "622": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
@@ -2571,7 +2620,7 @@
         "0"
       ]
     },
-    "614": {
+    "623": {
       "op": "cover 2",
       "stack_out": [
         "tmp%1#0",
@@ -2580,7 +2629,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "616": {
+    "625": {
       "op": "select",
       "defined_out": [
         "state_get%0#0",
@@ -2591,7 +2640,7 @@
         "state_get%0#0"
       ]
     },
-    "617": {
+    "626": {
       "op": "pushint 5 // 5",
       "defined_out": [
         "5",
@@ -2604,7 +2653,7 @@
         "5"
       ]
     },
-    "619": {
+    "628": {
       "callsub": "smart_contracts.digital_marketplace.subroutines.sales_box_mbr",
       "op": "callsub sales_box_mbr",
       "defined_out": [
@@ -2618,7 +2667,7 @@
         "tmp%5#0"
       ]
     },
-    "622": {
+    "631": {
       "op": "txn Sender",
       "defined_out": [
         "state_get%0#0",
@@ -2633,7 +2682,7 @@
         "tmp%6#0"
       ]
     },
-    "624": {
+    "633": {
       "op": "cover 2",
       "stack_out": [
         "tmp%1#0",
@@ -2642,7 +2691,7 @@
         "tmp%5#0"
       ]
     },
-    "626": {
+    "635": {
       "op": "+",
       "defined_out": [
         "new_state_value%0#0",
@@ -2655,10 +2704,10 @@
         "new_state_value%0#0"
       ]
     },
-    "627": {
+    "636": {
       "op": "bytec_0 // \"deposited\""
     },
-    "628": {
+    "637": {
       "op": "swap",
       "stack_out": [
         "tmp%1#0",
@@ -2667,13 +2716,13 @@
         "new_state_value%0#0"
       ]
     },
-    "629": {
+    "638": {
       "op": "app_local_put",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "630": {
+    "639": {
       "op": "box_del",
       "defined_out": [
         "{box_del}"
@@ -2682,15 +2731,15 @@
         "{box_del}"
       ]
     },
-    "631": {
+    "640": {
       "op": "pop",
       "stack_out": []
     },
-    "632": {
+    "641": {
       "retsub": true,
       "op": "retsub"
     },
-    "633": {
+    "642": {
       "subroutine": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.buy",
       "params": {
         "sale_key#0": "bytes"
@@ -2699,16 +2748,16 @@
       "stack_in": [],
       "op": "proto 1 0"
     },
-    "636": {
+    "645": {
       "op": "txn Sender"
     },
-    "638": {
+    "647": {
       "op": "dup"
     },
-    "639": {
+    "648": {
       "op": "intc_0 // 0"
     },
-    "640": {
+    "649": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -2723,7 +2772,7 @@
         "\"deposited\""
       ]
     },
-    "641": {
+    "650": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%0#0",
@@ -2736,7 +2785,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "642": {
+    "651": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
@@ -2744,7 +2793,7 @@
         "maybe_value%0#0"
       ]
     },
-    "643": {
+    "652": {
       "op": "bytec_2 // \"sales\"",
       "defined_out": [
         "\"sales\"",
@@ -2757,7 +2806,7 @@
         "\"sales\""
       ]
     },
-    "644": {
+    "653": {
       "op": "frame_dig -1",
       "defined_out": [
         "\"sales\"",
@@ -2772,7 +2821,7 @@
         "sale_key#0 (copy)"
       ]
     },
-    "646": {
+    "655": {
       "op": "concat",
       "defined_out": [
         "maybe_value%0#0",
@@ -2785,7 +2834,7 @@
         "tmp%1#0"
       ]
     },
-    "647": {
+    "656": {
       "op": "dup",
       "defined_out": [
         "maybe_value%0#0",
@@ -2800,7 +2849,7 @@
         "tmp%1#0 (copy)"
       ]
     },
-    "648": {
+    "657": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%1#0",
@@ -2817,7 +2866,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "649": {
+    "658": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -2827,7 +2876,7 @@
         "maybe_value%1#0"
       ]
     },
-    "650": {
+    "659": {
       "op": "pushint 8 // 8",
       "defined_out": [
         "8",
@@ -2844,7 +2893,7 @@
         "8"
       ]
     },
-    "652": {
+    "661": {
       "op": "extract_uint64",
       "defined_out": [
         "maybe_value%0#0",
@@ -2859,7 +2908,7 @@
         "tmp%3#0"
       ]
     },
-    "653": {
+    "662": {
       "op": "uncover 2",
       "stack_out": [
         "tmp%0#0",
@@ -2868,7 +2917,7 @@
         "maybe_value%0#0"
       ]
     },
-    "655": {
+    "664": {
       "op": "swap",
       "stack_out": [
         "tmp%0#0",
@@ -2877,7 +2926,7 @@
         "tmp%3#0"
       ]
     },
-    "656": {
+    "665": {
       "op": "-",
       "defined_out": [
         "new_state_value%0#0",
@@ -2890,7 +2939,7 @@
         "new_state_value%0#0"
       ]
     },
-    "657": {
+    "666": {
       "op": "uncover 2",
       "stack_out": [
         "tmp%1#0",
@@ -2898,7 +2947,7 @@
         "tmp%0#0"
       ]
     },
-    "659": {
+    "668": {
       "op": "bytec_0 // \"deposited\"",
       "stack_out": [
         "tmp%1#0",
@@ -2907,7 +2956,7 @@
         "\"deposited\""
       ]
     },
-    "660": {
+    "669": {
       "op": "uncover 2",
       "stack_out": [
         "tmp%1#0",
@@ -2916,20 +2965,20 @@
         "new_state_value%0#0"
       ]
     },
-    "662": {
+    "671": {
       "op": "app_local_put",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "663": {
+    "672": {
       "op": "frame_dig -1",
       "stack_out": [
         "tmp%1#0",
         "sale_key#0 (copy)"
       ]
     },
-    "665": {
+    "674": {
       "error": "Index access is out of bounds",
       "op": "extract 0 32 // on error: Index access is out of bounds",
       "defined_out": [
@@ -2941,7 +2990,7 @@
         "reinterpret_bytes[32]%0#0"
       ]
     },
-    "668": {
+    "677": {
       "op": "dup",
       "defined_out": [
         "reinterpret_bytes[32]%0#0",
@@ -2954,7 +3003,7 @@
         "reinterpret_bytes[32]%0#0 (copy)"
       ]
     },
-    "669": {
+    "678": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
@@ -2963,7 +3012,7 @@
         "0"
       ]
     },
-    "670": {
+    "679": {
       "op": "bytec_0 // \"deposited\"",
       "stack_out": [
         "tmp%1#0",
@@ -2973,7 +3022,7 @@
         "\"deposited\""
       ]
     },
-    "671": {
+    "680": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%2#0",
@@ -2988,7 +3037,7 @@
         "maybe_exists%2#0"
       ]
     },
-    "672": {
+    "681": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
@@ -2997,7 +3046,7 @@
         "maybe_value%2#0"
       ]
     },
-    "673": {
+    "682": {
       "op": "dig 2",
       "stack_out": [
         "tmp%1#0",
@@ -3006,7 +3055,7 @@
         "tmp%1#0 (copy)"
       ]
     },
-    "675": {
+    "684": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%3#0",
@@ -3023,7 +3072,7 @@
         "maybe_exists%3#0"
       ]
     },
-    "676": {
+    "685": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -3033,7 +3082,7 @@
         "maybe_value%3#0"
       ]
     },
-    "677": {
+    "686": {
       "op": "pushint 8 // 8",
       "stack_out": [
         "tmp%1#0",
@@ -3043,7 +3092,7 @@
         "8"
       ]
     },
-    "679": {
+    "688": {
       "op": "extract_uint64",
       "defined_out": [
         "maybe_value%2#0",
@@ -3058,7 +3107,7 @@
         "tmp%6#0"
       ]
     },
-    "680": {
+    "689": {
       "op": "pushint 5 // 5",
       "defined_out": [
         "5",
@@ -3075,7 +3124,7 @@
         "5"
       ]
     },
-    "682": {
+    "691": {
       "callsub": "smart_contracts.digital_marketplace.subroutines.sales_box_mbr",
       "op": "callsub sales_box_mbr",
       "defined_out": [
@@ -3093,7 +3142,7 @@
         "tmp%8#0"
       ]
     },
-    "685": {
+    "694": {
       "op": "+",
       "defined_out": [
         "maybe_value%2#0",
@@ -3108,7 +3157,7 @@
         "tmp%9#0"
       ]
     },
-    "686": {
+    "695": {
       "op": "+",
       "defined_out": [
         "new_state_value%1#0",
@@ -3121,10 +3170,10 @@
         "new_state_value%1#0"
       ]
     },
-    "687": {
+    "696": {
       "op": "bytec_0 // \"deposited\""
     },
-    "688": {
+    "697": {
       "op": "swap",
       "stack_out": [
         "tmp%1#0",
@@ -3133,23 +3182,23 @@
         "new_state_value%1#0"
       ]
     },
-    "689": {
+    "698": {
       "op": "app_local_put",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "690": {
+    "699": {
       "op": "itxn_begin"
     },
-    "691": {
+    "700": {
       "op": "frame_dig -1",
       "stack_out": [
         "tmp%1#0",
         "sale_key#0 (copy)"
       ]
     },
-    "693": {
+    "702": {
       "op": "pushint 32 // 32",
       "defined_out": [
         "32",
@@ -3162,7 +3211,7 @@
         "32"
       ]
     },
-    "695": {
+    "704": {
       "op": "extract_uint64",
       "defined_out": [
         "inner_txn_params%0%%param_XferAsset_idx_0#0",
@@ -3173,7 +3222,7 @@
         "inner_txn_params%0%%param_XferAsset_idx_0#0"
       ]
     },
-    "696": {
+    "705": {
       "op": "txn Sender",
       "defined_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
@@ -3186,7 +3235,7 @@
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
       ]
     },
-    "698": {
+    "707": {
       "op": "dig 2",
       "stack_out": [
         "tmp%1#0",
@@ -3195,7 +3244,7 @@
         "tmp%1#0 (copy)"
       ]
     },
-    "700": {
+    "709": {
       "op": "box_get",
       "defined_out": [
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0",
@@ -3212,7 +3261,7 @@
         "maybe_exists%4#0"
       ]
     },
-    "701": {
+    "710": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -3222,7 +3271,7 @@
         "maybe_value%4#0"
       ]
     },
-    "702": {
+    "711": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
@@ -3232,7 +3281,7 @@
         "0"
       ]
     },
-    "703": {
+    "712": {
       "op": "extract_uint64",
       "defined_out": [
         "inner_txn_params%0%%param_AssetAmount_idx_0#0",
@@ -3247,7 +3296,7 @@
         "inner_txn_params%0%%param_AssetAmount_idx_0#0"
       ]
     },
-    "704": {
+    "713": {
       "op": "itxn_field AssetAmount",
       "stack_out": [
         "tmp%1#0",
@@ -3255,20 +3304,20 @@
         "inner_txn_params%0%%param_AssetReceiver_idx_0#0"
       ]
     },
-    "706": {
+    "715": {
       "op": "itxn_field AssetReceiver",
       "stack_out": [
         "tmp%1#0",
         "inner_txn_params%0%%param_XferAsset_idx_0#0"
       ]
     },
-    "708": {
+    "717": {
       "op": "itxn_field XferAsset",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "710": {
+    "719": {
       "op": "pushint 4 // axfer",
       "defined_out": [
         "axfer",
@@ -3279,29 +3328,29 @@
         "axfer"
       ]
     },
-    "712": {
+    "721": {
       "op": "itxn_field TypeEnum",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "714": {
+    "723": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
         "0"
       ]
     },
-    "715": {
+    "724": {
       "op": "itxn_field Fee",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "717": {
+    "726": {
       "op": "itxn_submit"
     },
-    "718": {
+    "727": {
       "op": "box_del",
       "defined_out": [
         "{box_del}"
@@ -3310,15 +3359,15 @@
         "{box_del}"
       ]
     },
-    "719": {
+    "728": {
       "op": "pop",
       "stack_out": []
     },
-    "720": {
+    "729": {
       "retsub": true,
       "op": "retsub"
     },
-    "721": {
+    "730": {
       "subroutine": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.bid",
       "params": {
         "sale_key#0": "bytes",
@@ -3328,20 +3377,20 @@
       "stack_in": [],
       "op": "proto 2 0"
     },
-    "724": {
+    "733": {
       "op": "intc_0 // 0",
       "stack_out": [
         "placed_bids#0"
       ]
     },
-    "725": {
+    "734": {
       "op": "pushbytes \"\"",
       "stack_out": [
         "placed_bids#0",
         "i#0"
       ]
     },
-    "727": {
+    "736": {
       "op": "dupn 2",
       "stack_out": [
         "placed_bids#0",
@@ -3350,7 +3399,7 @@
         "tmp%0#1"
       ]
     },
-    "729": {
+    "738": {
       "op": "bytec_2 // \"sales\"",
       "defined_out": [
         "\"sales\""
@@ -3363,7 +3412,7 @@
         "\"sales\""
       ]
     },
-    "730": {
+    "739": {
       "op": "frame_dig -2",
       "defined_out": [
         "\"sales\"",
@@ -3378,7 +3427,7 @@
         "sale_key#0 (copy)"
       ]
     },
-    "732": {
+    "741": {
       "op": "concat",
       "defined_out": [
         "tmp%0#0"
@@ -3391,7 +3440,7 @@
         "tmp%0#0"
       ]
     },
-    "733": {
+    "742": {
       "op": "dup",
       "defined_out": [
         "tmp%0#0"
@@ -3405,7 +3454,7 @@
         "tmp%0#0"
       ]
     },
-    "734": {
+    "743": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%0#0",
@@ -3422,7 +3471,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "735": {
+    "744": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -3434,7 +3483,7 @@
         "maybe_value%0#0"
       ]
     },
-    "736": {
+    "745": {
       "op": "dup",
       "defined_out": [
         "maybe_value%0#0",
@@ -3451,7 +3500,7 @@
         "maybe_value%0#0 (copy)"
       ]
     },
-    "737": {
+    "746": {
       "op": "intc_3 // 16",
       "defined_out": [
         "16",
@@ -3470,7 +3519,7 @@
         "16"
       ]
     },
-    "738": {
+    "747": {
       "op": "extract_uint16",
       "defined_out": [
         "item_start_offset%0#0",
@@ -3487,7 +3536,7 @@
         "item_start_offset%0#0"
       ]
     },
-    "739": {
+    "748": {
       "op": "dig 1",
       "stack_out": [
         "placed_bids#0",
@@ -3500,7 +3549,7 @@
         "maybe_value%0#0 (copy)"
       ]
     },
-    "741": {
+    "750": {
       "op": "len",
       "defined_out": [
         "item_end_offset%0#0",
@@ -3519,7 +3568,7 @@
         "item_end_offset%0#0"
       ]
     },
-    "742": {
+    "751": {
       "op": "substring3",
       "defined_out": [
         "maybe_best_bid#0",
@@ -3534,7 +3583,7 @@
         "maybe_best_bid#0"
       ]
     },
-    "743": {
+    "752": {
       "op": "dup",
       "stack_out": [
         "placed_bids#0",
@@ -3546,7 +3595,7 @@
         "maybe_best_bid#0"
       ]
     },
-    "744": {
+    "753": {
       "op": "cover 2",
       "defined_out": [
         "maybe_best_bid#0",
@@ -3562,7 +3611,7 @@
         "maybe_best_bid#0"
       ]
     },
-    "746": {
+    "755": {
       "op": "bytec_3 // 0x0000",
       "defined_out": [
         "0x0000",
@@ -3580,7 +3629,7 @@
         "0x0000"
       ]
     },
-    "747": {
+    "756": {
       "op": "!=",
       "defined_out": [
         "maybe_best_bid#0",
@@ -3597,7 +3646,7 @@
         "tmp%2#0"
       ]
     },
-    "748": {
+    "757": {
       "op": "bz bid_else_body@2",
       "stack_out": [
         "placed_bids#0",
@@ -3608,127 +3657,127 @@
         "tmp%0#0"
       ]
     },
-    "751": {
+    "760": {
       "op": "frame_dig 4"
     },
-    "753": {
+    "762": {
       "op": "extract 2 40"
     },
-    "756": {
+    "765": {
       "op": "pushint 32 // 32"
     },
-    "758": {
+    "767": {
       "op": "extract_uint64"
     },
-    "759": {
+    "768": {
       "op": "frame_dig -1"
     },
-    "761": {
+    "770": {
       "op": "btoi"
     },
-    "762": {
+    "771": {
       "op": "<"
     },
-    "763": {
+    "772": {
       "error": "Worse bid",
       "op": "assert // Worse bid"
     },
-    "764": {
+    "773": {
       "op": "txn Sender"
     },
-    "766": {
+    "775": {
       "op": "frame_dig -1"
     },
-    "768": {
+    "777": {
       "op": "concat"
     },
-    "769": {
+    "778": {
       "op": "dig 1"
     },
-    "771": {
+    "780": {
       "op": "box_get"
     },
-    "772": {
+    "781": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists"
     },
-    "773": {
+    "782": {
       "op": "dup"
-    },
-    "774": {
-      "op": "intc_3 // 16"
-    },
-    "775": {
-      "op": "extract_uint16"
-    },
-    "776": {
-      "op": "dig 1"
-    },
-    "778": {
-      "op": "len"
-    },
-    "779": {
-      "op": "dig 2"
-    },
-    "781": {
-      "op": "dig 2"
     },
     "783": {
-      "op": "uncover 2"
+      "op": "intc_3 // 16"
     },
-    "785": {
-      "op": "substring3"
-    },
-    "786": {
-      "op": "dup"
-    },
-    "787": {
-      "op": "intc_0 // 0"
-    },
-    "788": {
+    "784": {
       "op": "extract_uint16"
     },
-    "789": {
-      "error": "Index access is out of bounds",
-      "op": "assert // Index access is out of bounds"
+    "785": {
+      "op": "dig 1"
+    },
+    "787": {
+      "op": "len"
+    },
+    "788": {
+      "op": "dig 2"
     },
     "790": {
-      "op": "uncover 3"
+      "op": "dig 2"
     },
     "792": {
-      "op": "replace2 2"
+      "op": "uncover 2"
     },
     "794": {
-      "op": "uncover 2"
+      "op": "substring3"
+    },
+    "795": {
+      "op": "dup"
     },
     "796": {
       "op": "intc_0 // 0"
     },
     "797": {
-      "op": "uncover 3"
+      "op": "extract_uint16"
+    },
+    "798": {
+      "error": "Index access is out of bounds",
+      "op": "assert // Index access is out of bounds"
     },
     "799": {
-      "op": "extract3"
-    },
-    "800": {
-      "op": "swap"
+      "op": "uncover 3"
     },
     "801": {
-      "op": "concat"
+      "op": "replace2 2"
     },
-    "802": {
-      "op": "dig 1"
-    },
-    "804": {
-      "op": "box_del"
+    "803": {
+      "op": "uncover 2"
     },
     "805": {
-      "op": "pop"
+      "op": "intc_0 // 0"
     },
     "806": {
+      "op": "uncover 3"
+    },
+    "808": {
+      "op": "extract3"
+    },
+    "809": {
+      "op": "swap"
+    },
+    "810": {
+      "op": "concat"
+    },
+    "811": {
+      "op": "dig 1"
+    },
+    "813": {
+      "op": "box_del"
+    },
+    "814": {
+      "op": "pop"
+    },
+    "815": {
       "op": "box_put"
     },
-    "807": {
+    "816": {
       "block": "bid_after_if_else@3",
       "stack_in": [
         "placed_bids#0",
@@ -3739,13 +3788,13 @@
       ],
       "op": "txn Sender"
     },
-    "809": {
+    "818": {
       "op": "dup"
     },
-    "810": {
+    "819": {
       "op": "intc_0 // 0"
     },
-    "811": {
+    "820": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -3765,7 +3814,7 @@
         "\"deposited\""
       ]
     },
-    "812": {
+    "821": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%3#0",
@@ -3783,7 +3832,7 @@
         "maybe_exists%3#0"
       ]
     },
-    "813": {
+    "822": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
@@ -3796,7 +3845,7 @@
         "maybe_value%3#0"
       ]
     },
-    "814": {
+    "823": {
       "op": "frame_dig -1",
       "defined_out": [
         "maybe_value%3#0",
@@ -3814,7 +3863,7 @@
         "new_bid_amount#0 (copy)"
       ]
     },
-    "816": {
+    "825": {
       "op": "btoi",
       "defined_out": [
         "maybe_value%3#0",
@@ -3832,7 +3881,7 @@
         "tmp%15#0"
       ]
     },
-    "817": {
+    "826": {
       "op": "-",
       "defined_out": [
         "new_state_value%0#0",
@@ -3848,10 +3897,10 @@
         "new_state_value%0#0"
       ]
     },
-    "818": {
+    "827": {
       "op": "bytec_0 // \"deposited\""
     },
-    "819": {
+    "828": {
       "op": "swap",
       "stack_out": [
         "placed_bids#0",
@@ -3864,7 +3913,7 @@
         "new_state_value%0#0"
       ]
     },
-    "820": {
+    "829": {
       "op": "app_local_put",
       "stack_out": [
         "placed_bids#0",
@@ -3874,10 +3923,10 @@
         "maybe_best_bid#0"
       ]
     },
-    "821": {
+    "830": {
       "op": "bytec_1 // \"placed_bids\""
     },
-    "822": {
+    "831": {
       "op": "txn Sender",
       "defined_out": [
         "\"placed_bids\"",
@@ -3893,7 +3942,7 @@
         "tmp%16#0"
       ]
     },
-    "824": {
+    "833": {
       "op": "concat",
       "defined_out": [
         "tmp%17#0"
@@ -3907,7 +3956,7 @@
         "tmp%17#0"
       ]
     },
-    "825": {
+    "834": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%4#0",
@@ -3923,7 +3972,7 @@
         "maybe_exists%4#0"
       ]
     },
-    "826": {
+    "835": {
       "op": "bury 1",
       "stack_out": [
         "placed_bids#0",
@@ -3934,7 +3983,7 @@
         "maybe_exists%4#0"
       ]
     },
-    "828": {
+    "837": {
       "op": "bz bid_else_body@8",
       "stack_out": [
         "placed_bids#0",
@@ -3944,50 +3993,50 @@
         "maybe_best_bid#0"
       ]
     },
-    "831": {
+    "840": {
       "op": "bytec_1 // \"placed_bids\""
     },
-    "832": {
+    "841": {
       "op": "txn Sender"
     },
-    "834": {
+    "843": {
       "op": "concat"
     },
-    "835": {
+    "844": {
       "op": "box_get"
     },
-    "836": {
+    "845": {
       "op": "swap"
     },
-    "837": {
+    "846": {
       "op": "dup"
     },
-    "838": {
+    "847": {
       "op": "cover 2"
     },
-    "840": {
+    "849": {
       "op": "frame_bury 0"
     },
-    "842": {
+    "851": {
       "error": "check self.placed_bids entry exists",
       "op": "assert // check self.placed_bids entry exists"
     },
-    "843": {
+    "852": {
       "op": "intc_0 // 0"
     },
-    "844": {
+    "853": {
       "op": "extract_uint16"
     },
-    "845": {
+    "854": {
       "op": "frame_bury 3"
     },
-    "847": {
+    "856": {
       "op": "intc_0 // 0"
     },
-    "848": {
+    "857": {
       "op": "frame_bury 1"
     },
-    "850": {
+    "859": {
       "block": "bid_for_header@13",
       "stack_in": [
         "placed_bids#0",
@@ -4009,7 +4058,7 @@
         "i#0"
       ]
     },
-    "852": {
+    "861": {
       "op": "frame_dig 3",
       "defined_out": [
         "i#0",
@@ -4025,7 +4074,7 @@
         "tmp%0#1"
       ]
     },
-    "854": {
+    "863": {
       "op": "<",
       "defined_out": [
         "continue_looping%0#0",
@@ -4041,7 +4090,7 @@
         "continue_looping%0#0"
       ]
     },
-    "855": {
+    "864": {
       "op": "bz bid_after_for@17",
       "stack_out": [
         "placed_bids#0",
@@ -4051,51 +4100,51 @@
         "maybe_best_bid#0"
       ]
     },
-    "858": {
+    "867": {
       "op": "frame_dig 0"
     },
-    "860": {
+    "869": {
       "op": "extract 2 0"
     },
-    "863": {
+    "872": {
       "op": "frame_dig 1"
     },
-    "865": {
+    "874": {
       "op": "intc_2 // 48"
     },
-    "866": {
+    "875": {
       "op": "*"
     },
-    "867": {
+    "876": {
       "op": "intc_2 // 48"
     },
-    "868": {
+    "877": {
       "error": "Index access is out of bounds",
       "op": "extract3 // on error: Index access is out of bounds"
     },
-    "869": {
+    "878": {
       "error": "Index access is out of bounds",
       "op": "extract 0 40 // on error: Index access is out of bounds"
     },
-    "872": {
+    "881": {
       "op": "frame_dig -2"
     },
-    "874": {
+    "883": {
       "op": "=="
     },
-    "875": {
+    "884": {
       "op": "bz bid_after_if_else@16"
     },
-    "878": {
+    "887": {
       "op": "intc_1 // 1"
     },
-    "879": {
+    "888": {
       "op": "frame_dig 1"
     },
-    "881": {
+    "890": {
       "op": "frame_bury 2"
     },
-    "883": {
+    "892": {
       "block": "bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18",
       "stack_in": [
         "placed_bids#0",
@@ -4115,175 +4164,175 @@
         "maybe_best_bid#0"
       ]
     },
-    "886": {
+    "895": {
       "op": "txn Sender"
     },
-    "888": {
+    "897": {
       "op": "dup"
     },
-    "889": {
+    "898": {
       "op": "intc_0 // 0"
     },
-    "890": {
+    "899": {
       "op": "bytec_0 // \"deposited\""
     },
-    "891": {
+    "900": {
       "op": "app_local_get_ex"
     },
-    "892": {
+    "901": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account"
     },
-    "893": {
+    "902": {
       "op": "bytec_1 // \"placed_bids\""
     },
-    "894": {
+    "903": {
       "op": "txn Sender"
     },
-    "896": {
+    "905": {
       "op": "concat"
     },
-    "897": {
+    "906": {
       "op": "box_get"
     },
-    "898": {
+    "907": {
       "error": "check self.placed_bids entry exists",
       "op": "assert // check self.placed_bids entry exists"
     },
-    "899": {
+    "908": {
       "op": "extract 2 0"
     },
-    "902": {
+    "911": {
       "op": "frame_dig 2"
     },
-    "904": {
+    "913": {
       "op": "dup"
     },
-    "905": {
+    "914": {
       "op": "cover 4"
     },
-    "907": {
+    "916": {
       "op": "intc_2 // 48"
     },
-    "908": {
+    "917": {
       "op": "*"
     },
-    "909": {
+    "918": {
       "op": "swap"
     },
-    "910": {
+    "919": {
       "op": "dig 1"
     },
-    "912": {
+    "921": {
       "op": "intc_2 // 48"
     },
-    "913": {
+    "922": {
       "error": "Index access is out of bounds",
       "op": "extract3 // on error: Index access is out of bounds"
     },
-    "914": {
+    "923": {
       "op": "pushint 40 // 40"
     },
-    "916": {
+    "925": {
       "op": "extract_uint64"
     },
-    "917": {
-      "op": "uncover 2"
-    },
-    "919": {
-      "op": "+"
-    },
-    "920": {
-      "op": "uncover 2"
-    },
-    "922": {
-      "op": "bytec_0 // \"deposited\""
-    },
-    "923": {
-      "op": "uncover 2"
-    },
-    "925": {
-      "op": "app_local_put"
-    },
     "926": {
-      "op": "frame_dig -2"
+      "op": "uncover 2"
     },
     "928": {
-      "op": "frame_dig -1"
+      "op": "+"
     },
-    "930": {
-      "op": "concat"
+    "929": {
+      "op": "uncover 2"
     },
     "931": {
-      "op": "bytec_1 // \"placed_bids\""
+      "op": "bytec_0 // \"deposited\""
     },
     "932": {
-      "op": "txn Sender"
+      "op": "uncover 2"
     },
     "934": {
-      "op": "concat"
+      "op": "app_local_put"
     },
     "935": {
-      "op": "dup"
-    },
-    "936": {
-      "op": "box_get"
+      "op": "frame_dig -2"
     },
     "937": {
+      "op": "frame_dig -1"
+    },
+    "939": {
+      "op": "concat"
+    },
+    "940": {
+      "op": "bytec_1 // \"placed_bids\""
+    },
+    "941": {
+      "op": "txn Sender"
+    },
+    "943": {
+      "op": "concat"
+    },
+    "944": {
+      "op": "dup"
+    },
+    "945": {
+      "op": "box_get"
+    },
+    "946": {
       "error": "check self.placed_bids entry exists",
       "op": "assert // check self.placed_bids entry exists"
     },
-    "938": {
+    "947": {
       "op": "dup"
     },
-    "939": {
+    "948": {
       "op": "intc_0 // 0"
     },
-    "940": {
+    "949": {
       "op": "extract_uint16"
     },
-    "941": {
+    "950": {
       "op": "uncover 5"
     },
-    "943": {
+    "952": {
       "op": ">"
     },
-    "944": {
+    "953": {
       "error": "Index access is out of bounds",
       "op": "assert // Index access is out of bounds"
     },
-    "945": {
+    "954": {
       "op": "uncover 3"
-    },
-    "947": {
-      "op": "pushint 2 // 2"
-    },
-    "949": {
-      "op": "+"
-    },
-    "950": {
-      "op": "uncover 3"
-    },
-    "952": {
-      "op": "replace3"
-    },
-    "953": {
-      "op": "dig 1"
-    },
-    "955": {
-      "op": "box_del"
     },
     "956": {
-      "op": "pop"
-    },
-    "957": {
-      "op": "box_put"
+      "op": "pushint 2 // 2"
     },
     "958": {
+      "op": "+"
+    },
+    "959": {
+      "op": "uncover 3"
+    },
+    "961": {
+      "op": "replace3"
+    },
+    "962": {
+      "op": "dig 1"
+    },
+    "964": {
+      "op": "box_del"
+    },
+    "965": {
+      "op": "pop"
+    },
+    "966": {
+      "op": "box_put"
+    },
+    "967": {
       "retsub": true,
       "op": "retsub"
     },
-    "959": {
+    "968": {
       "block": "bid_else_body@6",
       "stack_in": [
         "placed_bids#0",
@@ -4294,7 +4343,7 @@
       ],
       "op": "bytec_1 // \"placed_bids\""
     },
-    "960": {
+    "969": {
       "op": "txn Sender",
       "defined_out": [
         "\"placed_bids\"",
@@ -4310,7 +4359,7 @@
         "tmp%28#0"
       ]
     },
-    "962": {
+    "971": {
       "op": "concat",
       "defined_out": [
         "tmp%29#0"
@@ -4324,7 +4373,7 @@
         "tmp%29#0"
       ]
     },
-    "963": {
+    "972": {
       "op": "dup",
       "defined_out": [
         "tmp%29#0",
@@ -4340,7 +4389,7 @@
         "tmp%29#0 (copy)"
       ]
     },
-    "964": {
+    "973": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%9#0",
@@ -4358,7 +4407,7 @@
         "maybe_exists%9#0"
       ]
     },
-    "965": {
+    "974": {
       "error": "check self.placed_bids entry exists",
       "op": "assert // check self.placed_bids entry exists",
       "stack_out": [
@@ -4371,7 +4420,7 @@
         "maybe_value%9#0"
       ]
     },
-    "966": {
+    "975": {
       "op": "extract 2 0",
       "defined_out": [
         "expr_value_trimmed%1#0",
@@ -4387,7 +4436,7 @@
         "expr_value_trimmed%1#0"
       ]
     },
-    "969": {
+    "978": {
       "op": "frame_dig -2",
       "defined_out": [
         "expr_value_trimmed%1#0",
@@ -4405,7 +4454,7 @@
         "sale_key#0 (copy)"
       ]
     },
-    "971": {
+    "980": {
       "op": "frame_dig -1",
       "defined_out": [
         "expr_value_trimmed%1#0",
@@ -4425,7 +4474,7 @@
         "new_bid_amount#0 (copy)"
       ]
     },
-    "973": {
+    "982": {
       "op": "concat",
       "defined_out": [
         "encoded_tuple_buffer%11#0",
@@ -4443,7 +4492,7 @@
         "encoded_tuple_buffer%11#0"
       ]
     },
-    "974": {
+    "983": {
       "op": "concat",
       "defined_out": [
         "concatenated%1#0",
@@ -4459,7 +4508,7 @@
         "concatenated%1#0"
       ]
     },
-    "975": {
+    "984": {
       "op": "dup",
       "defined_out": [
         "concatenated%1#0",
@@ -4477,7 +4526,7 @@
         "concatenated%1#0 (copy)"
       ]
     },
-    "976": {
+    "985": {
       "op": "len",
       "defined_out": [
         "byte_len%1#0",
@@ -4495,7 +4544,7 @@
         "byte_len%1#0"
       ]
     },
-    "977": {
+    "986": {
       "op": "intc_2 // 48",
       "defined_out": [
         "48",
@@ -4515,7 +4564,7 @@
         "48"
       ]
     },
-    "978": {
+    "987": {
       "op": "/",
       "defined_out": [
         "concatenated%1#0",
@@ -4533,7 +4582,7 @@
         "len_%1#0"
       ]
     },
-    "979": {
+    "988": {
       "op": "itob",
       "defined_out": [
         "as_bytes%1#0",
@@ -4551,7 +4600,7 @@
         "as_bytes%1#0"
       ]
     },
-    "980": {
+    "989": {
       "op": "extract 6 2",
       "defined_out": [
         "concatenated%1#0",
@@ -4569,7 +4618,7 @@
         "len_16_bit%1#0"
       ]
     },
-    "983": {
+    "992": {
       "op": "swap",
       "stack_out": [
         "placed_bids#0",
@@ -4582,7 +4631,7 @@
         "concatenated%1#0"
       ]
     },
-    "984": {
+    "993": {
       "op": "concat",
       "defined_out": [
         "concat_result%1#0",
@@ -4598,7 +4647,7 @@
         "concat_result%1#0"
       ]
     },
-    "985": {
+    "994": {
       "op": "dig 1",
       "stack_out": [
         "placed_bids#0",
@@ -4611,7 +4660,7 @@
         "tmp%29#0 (copy)"
       ]
     },
-    "987": {
+    "996": {
       "op": "box_del",
       "defined_out": [
         "concat_result%1#0",
@@ -4629,7 +4678,7 @@
         "{box_del}"
       ]
     },
-    "988": {
+    "997": {
       "op": "pop",
       "stack_out": [
         "placed_bids#0",
@@ -4641,7 +4690,7 @@
         "concat_result%1#0"
       ]
     },
-    "989": {
+    "998": {
       "op": "box_put",
       "stack_out": [
         "placed_bids#0",
@@ -4651,11 +4700,11 @@
         "maybe_best_bid#0"
       ]
     },
-    "990": {
+    "999": {
       "retsub": true,
       "op": "retsub"
     },
-    "991": {
+    "1000": {
       "block": "bid_after_if_else@16",
       "stack_in": [
         "placed_bids#0",
@@ -4677,7 +4726,7 @@
         "i#0"
       ]
     },
-    "993": {
+    "1002": {
       "op": "intc_1 // 1",
       "defined_out": [
         "1",
@@ -4693,7 +4742,7 @@
         "1"
       ]
     },
-    "994": {
+    "1003": {
       "op": "+",
       "stack_out": [
         "placed_bids#0",
@@ -4704,7 +4753,7 @@
         "i#0"
       ]
     },
-    "995": {
+    "1004": {
       "op": "frame_bury 1",
       "defined_out": [
         "i#0"
@@ -4717,10 +4766,10 @@
         "maybe_best_bid#0"
       ]
     },
-    "997": {
+    "1006": {
       "op": "b bid_for_header@13"
     },
-    "1000": {
+    "1009": {
       "block": "bid_after_for@17",
       "stack_in": [
         "placed_bids#0",
@@ -4742,7 +4791,7 @@
         "smart_contracts.digital_marketplace.subroutines.find_placed_bid%0#0"
       ]
     },
-    "1001": {
+    "1010": {
       "op": "dup",
       "defined_out": [
         "index#0",
@@ -4758,7 +4807,7 @@
         "index#0"
       ]
     },
-    "1002": {
+    "1011": {
       "op": "frame_bury 2",
       "defined_out": [
         "found#0",
@@ -4773,10 +4822,10 @@
         "found#0"
       ]
     },
-    "1004": {
+    "1013": {
       "op": "b bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18"
     },
-    "1007": {
+    "1016": {
       "block": "bid_else_body@8",
       "stack_in": [
         "placed_bids#0",
@@ -4787,13 +4836,13 @@
       ],
       "op": "txn Sender"
     },
-    "1009": {
+    "1018": {
       "op": "dup"
     },
-    "1010": {
+    "1019": {
       "op": "intc_0 // 0"
     },
-    "1011": {
+    "1020": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -4813,7 +4862,7 @@
         "\"deposited\""
       ]
     },
-    "1012": {
+    "1021": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%10#0",
@@ -4831,7 +4880,7 @@
         "maybe_exists%10#0"
       ]
     },
-    "1013": {
+    "1022": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
@@ -4844,7 +4893,7 @@
         "maybe_value%10#0"
       ]
     },
-    "1014": {
+    "1023": {
       "op": "intc 4 // 13135300",
       "defined_out": [
         "13135300",
@@ -4862,7 +4911,7 @@
         "13135300"
       ]
     },
-    "1016": {
+    "1025": {
       "op": "-",
       "defined_out": [
         "new_state_value%2#0",
@@ -4878,10 +4927,10 @@
         "new_state_value%2#0"
       ]
     },
-    "1017": {
+    "1026": {
       "op": "bytec_0 // \"deposited\""
     },
-    "1018": {
+    "1027": {
       "op": "swap",
       "stack_out": [
         "placed_bids#0",
@@ -4894,7 +4943,7 @@
         "new_state_value%2#0"
       ]
     },
-    "1019": {
+    "1028": {
       "op": "app_local_put",
       "stack_out": [
         "placed_bids#0",
@@ -4904,7 +4953,7 @@
         "maybe_best_bid#0"
       ]
     },
-    "1020": {
+    "1029": {
       "op": "frame_dig -2",
       "defined_out": [
         "sale_key#0 (copy)"
@@ -4918,7 +4967,7 @@
         "sale_key#0 (copy)"
       ]
     },
-    "1022": {
+    "1031": {
       "op": "frame_dig -1",
       "defined_out": [
         "new_bid_amount#0 (copy)",
@@ -4934,7 +4983,7 @@
         "new_bid_amount#0 (copy)"
       ]
     },
-    "1024": {
+    "1033": {
       "op": "concat",
       "defined_out": [
         "encoded_tuple_buffer%14#0"
@@ -4948,7 +4997,7 @@
         "encoded_tuple_buffer%14#0"
       ]
     },
-    "1025": {
+    "1034": {
       "op": "pushbytes 0x0001",
       "defined_out": [
         "0x0001",
@@ -4964,7 +5013,7 @@
         "0x0001"
       ]
     },
-    "1029": {
+    "1038": {
       "op": "swap",
       "stack_out": [
         "placed_bids#0",
@@ -4976,7 +5025,7 @@
         "encoded_tuple_buffer%14#0"
       ]
     },
-    "1030": {
+    "1039": {
       "op": "concat",
       "defined_out": [
         "array_data%0#0"
@@ -4990,10 +5039,10 @@
         "array_data%0#0"
       ]
     },
-    "1031": {
+    "1040": {
       "op": "bytec_1 // \"placed_bids\""
     },
-    "1032": {
+    "1041": {
       "op": "txn Sender",
       "defined_out": [
         "\"placed_bids\"",
@@ -5011,7 +5060,7 @@
         "tmp%32#0"
       ]
     },
-    "1034": {
+    "1043": {
       "op": "concat",
       "defined_out": [
         "array_data%0#0",
@@ -5027,7 +5076,7 @@
         "tmp%33#0"
       ]
     },
-    "1035": {
+    "1044": {
       "op": "dup",
       "defined_out": [
         "array_data%0#0",
@@ -5045,7 +5094,7 @@
         "tmp%33#0 (copy)"
       ]
     },
-    "1036": {
+    "1045": {
       "op": "box_del",
       "defined_out": [
         "array_data%0#0",
@@ -5063,7 +5112,7 @@
         "{box_del}"
       ]
     },
-    "1037": {
+    "1046": {
       "op": "pop",
       "stack_out": [
         "placed_bids#0",
@@ -5075,7 +5124,7 @@
         "tmp%33#0"
       ]
     },
-    "1038": {
+    "1047": {
       "op": "swap",
       "stack_out": [
         "placed_bids#0",
@@ -5087,7 +5136,7 @@
         "array_data%0#0"
       ]
     },
-    "1039": {
+    "1048": {
       "op": "box_put",
       "stack_out": [
         "placed_bids#0",
@@ -5097,11 +5146,11 @@
         "maybe_best_bid#0"
       ]
     },
-    "1040": {
+    "1049": {
       "retsub": true,
       "op": "retsub"
     },
-    "1041": {
+    "1050": {
       "block": "bid_else_body@2",
       "stack_in": [
         "placed_bids#0",
@@ -5126,7 +5175,7 @@
         "tmp%0#0 (copy)"
       ]
     },
-    "1042": {
+    "1051": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%2#0",
@@ -5144,7 +5193,7 @@
         "maybe_exists%2#0"
       ]
     },
-    "1043": {
+    "1052": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -5157,7 +5206,7 @@
         "maybe_value%2#0"
       ]
     },
-    "1044": {
+    "1053": {
       "op": "dup",
       "defined_out": [
         "maybe_value%2#0",
@@ -5175,7 +5224,7 @@
         "maybe_value%2#0 (copy)"
       ]
     },
-    "1045": {
+    "1054": {
       "op": "intc_3 // 16",
       "defined_out": [
         "16",
@@ -5195,7 +5244,7 @@
         "16"
       ]
     },
-    "1046": {
+    "1055": {
       "op": "extract_uint16",
       "defined_out": [
         "item_start_offset%2#0",
@@ -5213,7 +5262,7 @@
         "item_start_offset%2#0"
       ]
     },
-    "1047": {
+    "1056": {
       "op": "dig 1",
       "stack_out": [
         "placed_bids#0",
@@ -5227,7 +5276,7 @@
         "maybe_value%2#0 (copy)"
       ]
     },
-    "1049": {
+    "1058": {
       "op": "len",
       "defined_out": [
         "item_end_offset%2#0",
@@ -5247,7 +5296,7 @@
         "item_end_offset%2#0"
       ]
     },
-    "1050": {
+    "1059": {
       "op": "dig 2",
       "stack_out": [
         "placed_bids#0",
@@ -5262,7 +5311,7 @@
         "maybe_value%2#0 (copy)"
       ]
     },
-    "1052": {
+    "1061": {
       "op": "dig 2",
       "defined_out": [
         "item_end_offset%2#0",
@@ -5286,7 +5335,7 @@
         "item_start_offset%2#0 (copy)"
       ]
     },
-    "1054": {
+    "1063": {
       "op": "uncover 2",
       "stack_out": [
         "placed_bids#0",
@@ -5302,7 +5351,7 @@
         "item_end_offset%2#0"
       ]
     },
-    "1056": {
+    "1065": {
       "op": "substring3",
       "defined_out": [
         "item_start_offset%2#0",
@@ -5322,7 +5371,7 @@
         "tmp%12#0"
       ]
     },
-    "1057": {
+    "1066": {
       "op": "extract 2 0",
       "defined_out": [
         "expr_value_trimmed%0#0",
@@ -5342,7 +5391,7 @@
         "expr_value_trimmed%0#0"
       ]
     },
-    "1060": {
+    "1069": {
       "op": "txn Sender",
       "defined_out": [
         "expr_value_trimmed%0#0",
@@ -5364,7 +5413,7 @@
         "tmp%13#0"
       ]
     },
-    "1062": {
+    "1071": {
       "op": "frame_dig -1",
       "defined_out": [
         "expr_value_trimmed%0#0",
@@ -5388,7 +5437,7 @@
         "new_bid_amount#0 (copy)"
       ]
     },
-    "1064": {
+    "1073": {
       "op": "concat",
       "defined_out": [
         "encoded_tuple_buffer%5#0",
@@ -5410,7 +5459,7 @@
         "encoded_tuple_buffer%5#0"
       ]
     },
-    "1065": {
+    "1074": {
       "op": "concat",
       "defined_out": [
         "concatenated%0#0",
@@ -5430,7 +5479,7 @@
         "concatenated%0#0"
       ]
     },
-    "1066": {
+    "1075": {
       "op": "dup",
       "defined_out": [
         "concatenated%0#0",
@@ -5452,7 +5501,7 @@
         "concatenated%0#0 (copy)"
       ]
     },
-    "1067": {
+    "1076": {
       "op": "len",
       "defined_out": [
         "byte_len%0#0",
@@ -5474,7 +5523,7 @@
         "byte_len%0#0"
       ]
     },
-    "1068": {
+    "1077": {
       "op": "pushint 40 // 40",
       "defined_out": [
         "40",
@@ -5498,7 +5547,7 @@
         "40"
       ]
     },
-    "1070": {
+    "1079": {
       "op": "/",
       "defined_out": [
         "concatenated%0#0",
@@ -5520,7 +5569,7 @@
         "len_%0#0"
       ]
     },
-    "1071": {
+    "1080": {
       "op": "itob",
       "defined_out": [
         "as_bytes%0#0",
@@ -5542,7 +5591,7 @@
         "as_bytes%0#0"
       ]
     },
-    "1072": {
+    "1081": {
       "op": "extract 6 2",
       "defined_out": [
         "concatenated%0#0",
@@ -5564,7 +5613,7 @@
         "len_16_bit%0#0"
       ]
     },
-    "1075": {
+    "1084": {
       "op": "swap",
       "stack_out": [
         "placed_bids#0",
@@ -5579,7 +5628,7 @@
         "concatenated%0#0"
       ]
     },
-    "1076": {
+    "1085": {
       "op": "concat",
       "defined_out": [
         "concat_result%0#0",
@@ -5599,7 +5648,7 @@
         "concat_result%0#0"
       ]
     },
-    "1077": {
+    "1086": {
       "op": "uncover 2",
       "stack_out": [
         "placed_bids#0",
@@ -5613,7 +5662,7 @@
         "maybe_value%2#0"
       ]
     },
-    "1079": {
+    "1088": {
       "op": "intc_0 // 0",
       "defined_out": [
         "0",
@@ -5635,7 +5684,7 @@
         "0"
       ]
     },
-    "1080": {
+    "1089": {
       "op": "uncover 3",
       "stack_out": [
         "placed_bids#0",
@@ -5650,7 +5699,7 @@
         "item_start_offset%2#0"
       ]
     },
-    "1082": {
+    "1091": {
       "op": "extract3",
       "defined_out": [
         "concat_result%0#0",
@@ -5668,7 +5717,7 @@
         "data_up_to_item%1#0"
       ]
     },
-    "1083": {
+    "1092": {
       "op": "swap",
       "stack_out": [
         "placed_bids#0",
@@ -5681,7 +5730,7 @@
         "concat_result%0#0"
       ]
     },
-    "1084": {
+    "1093": {
       "op": "concat",
       "defined_out": [
         "tmp%0#0",
@@ -5697,7 +5746,7 @@
         "updated_data%1#0"
       ]
     },
-    "1085": {
+    "1094": {
       "op": "dig 1",
       "stack_out": [
         "placed_bids#0",
@@ -5710,7 +5759,7 @@
         "tmp%0#0 (copy)"
       ]
     },
-    "1087": {
+    "1096": {
       "op": "box_del",
       "defined_out": [
         "tmp%0#0",
@@ -5728,7 +5777,7 @@
         "{box_del}"
       ]
     },
-    "1088": {
+    "1097": {
       "op": "pop",
       "stack_out": [
         "placed_bids#0",
@@ -5740,7 +5789,7 @@
         "updated_data%1#0"
       ]
     },
-    "1089": {
+    "1098": {
       "op": "box_put",
       "stack_out": [
         "placed_bids#0",
@@ -5750,30 +5799,30 @@
         "maybe_best_bid#0"
       ]
     },
-    "1090": {
+    "1099": {
       "op": "b bid_after_if_else@3"
     },
-    "1093": {
+    "1102": {
       "subroutine": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.claim_unencumbered_bids",
       "params": {},
       "block": "claim_unencumbered_bids",
       "stack_in": [],
       "op": "proto 0 0"
     },
-    "1096": {
+    "1105": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%7#0"
       ]
     },
-    "1097": {
+    "1106": {
       "op": "dup",
       "stack_out": [
         "tmp%7#0",
         "tmp%9#0"
       ]
     },
-    "1098": {
+    "1107": {
       "op": "txn Sender",
       "defined_out": [
         "tmp%0#0"
@@ -5784,7 +5833,7 @@
         "tmp%0#0"
       ]
     },
-    "1100": {
+    "1109": {
       "op": "intc_0 // 0",
       "defined_out": [
         "0",
@@ -5797,7 +5846,7 @@
         "0"
       ]
     },
-    "1101": {
+    "1110": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -5812,7 +5861,7 @@
         "\"deposited\""
       ]
     },
-    "1102": {
+    "1111": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%0#0",
@@ -5825,7 +5874,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "1103": {
+    "1112": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%7#0",
@@ -5835,7 +5884,7 @@
         "0"
       ]
     },
-    "1104": {
+    "1113": {
       "op": "cover 2",
       "stack_out": [
         "tmp%7#0",
@@ -5845,7 +5894,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "1106": {
+    "1115": {
       "op": "select",
       "defined_out": [
         "state_get%0#0"
@@ -5856,7 +5905,7 @@
         "state_get%0#0"
       ]
     },
-    "1107": {
+    "1116": {
       "op": "txn Sender",
       "defined_out": [
         "state_get%0#0",
@@ -5869,7 +5918,7 @@
         "tmp%1#0"
       ]
     },
-    "1109": {
+    "1118": {
       "op": "bytec_0 // \"deposited\"",
       "stack_out": [
         "tmp%7#0",
@@ -5879,7 +5928,7 @@
         "\"deposited\""
       ]
     },
-    "1110": {
+    "1119": {
       "op": "uncover 2",
       "stack_out": [
         "tmp%7#0",
@@ -5889,17 +5938,17 @@
         "state_get%0#0"
       ]
     },
-    "1112": {
+    "1121": {
       "op": "app_local_put",
       "stack_out": [
         "tmp%7#0",
         "tmp%9#0"
       ]
     },
-    "1113": {
+    "1122": {
       "op": "bytec_1 // \"placed_bids\""
     },
-    "1114": {
+    "1123": {
       "op": "txn Sender",
       "defined_out": [
         "\"placed_bids\"",
@@ -5912,7 +5961,7 @@
         "tmp%2#0"
       ]
     },
-    "1116": {
+    "1125": {
       "op": "concat",
       "defined_out": [
         "tmp%3#0"
@@ -5923,7 +5972,7 @@
         "tmp%3#0"
       ]
     },
-    "1117": {
+    "1126": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%1#0",
@@ -5936,7 +5985,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "1118": {
+    "1127": {
       "op": "swap",
       "stack_out": [
         "tmp%7#0",
@@ -5945,7 +5994,7 @@
         "placed_bids#0"
       ]
     },
-    "1119": {
+    "1128": {
       "op": "dup",
       "stack_out": [
         "tmp%7#0",
@@ -5955,7 +6004,7 @@
         "placed_bids#0 (copy)"
       ]
     },
-    "1120": {
+    "1129": {
       "op": "uncover 2",
       "defined_out": [
         "maybe_exists%1#0",
@@ -5969,7 +6018,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "1122": {
+    "1131": {
       "error": "check self.placed_bids entry exists",
       "op": "assert // check self.placed_bids entry exists",
       "stack_out": [
@@ -5979,10 +6028,10 @@
         "placed_bids#0"
       ]
     },
-    "1123": {
+    "1132": {
       "op": "bytec_1 // \"placed_bids\""
     },
-    "1124": {
+    "1133": {
       "op": "txn Sender",
       "defined_out": [
         "\"placed_bids\"",
@@ -5998,7 +6047,7 @@
         "tmp%4#0"
       ]
     },
-    "1126": {
+    "1135": {
       "op": "concat",
       "defined_out": [
         "placed_bids#0",
@@ -6012,7 +6061,7 @@
         "tmp%5#0"
       ]
     },
-    "1127": {
+    "1136": {
       "op": "dup",
       "defined_out": [
         "placed_bids#0",
@@ -6028,7 +6077,7 @@
         "tmp%5#0 (copy)"
       ]
     },
-    "1128": {
+    "1137": {
       "op": "box_del",
       "defined_out": [
         "placed_bids#0",
@@ -6044,7 +6093,7 @@
         "{box_del}"
       ]
     },
-    "1129": {
+    "1138": {
       "op": "pop",
       "stack_out": [
         "tmp%7#0",
@@ -6054,7 +6103,7 @@
         "tmp%5#0"
       ]
     },
-    "1130": {
+    "1139": {
       "op": "bytec_3 // 0x0000",
       "defined_out": [
         "0x0000",
@@ -6070,7 +6119,7 @@
         "0x0000"
       ]
     },
-    "1131": {
+    "1140": {
       "op": "box_put",
       "stack_out": [
         "tmp%7#0",
@@ -6079,7 +6128,7 @@
         "placed_bids#0"
       ]
     },
-    "1132": {
+    "1141": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%7#0",
@@ -6089,7 +6138,7 @@
         "0"
       ]
     },
-    "1133": {
+    "1142": {
       "op": "extract_uint16",
       "defined_out": [
         "placed_bids#0",
@@ -6102,7 +6151,7 @@
         "tmp%6#0"
       ]
     },
-    "1134": {
+    "1143": {
       "op": "intc_0 // 0",
       "defined_out": [
         "i#0",
@@ -6117,7 +6166,7 @@
         "i#0"
       ]
     },
-    "1135": {
+    "1144": {
       "block": "claim_unencumbered_bids_for_header@1",
       "stack_in": [
         "tmp%7#0",
@@ -6139,7 +6188,7 @@
         "i#0"
       ]
     },
-    "1137": {
+    "1146": {
       "op": "frame_dig 3",
       "defined_out": [
         "i#0",
@@ -6155,7 +6204,7 @@
         "tmp%6#0"
       ]
     },
-    "1139": {
+    "1148": {
       "op": "<",
       "defined_out": [
         "continue_looping%0#0",
@@ -6171,7 +6220,7 @@
         "continue_looping%0#0"
       ]
     },
-    "1140": {
+    "1149": {
       "op": "bz claim_unencumbered_bids_after_for@9",
       "stack_out": [
         "tmp%7#0",
@@ -6181,142 +6230,142 @@
         "i#0"
       ]
     },
-    "1143": {
+    "1152": {
       "op": "frame_dig 2"
     },
-    "1145": {
+    "1154": {
       "op": "extract 2 0"
     },
-    "1148": {
+    "1157": {
       "op": "frame_dig 4"
     },
-    "1150": {
+    "1159": {
       "op": "intc_2 // 48"
-    },
-    "1151": {
-      "op": "*"
-    },
-    "1152": {
-      "op": "intc_2 // 48"
-    },
-    "1153": {
-      "error": "Index access is out of bounds",
-      "op": "extract3 // on error: Index access is out of bounds"
-    },
-    "1154": {
-      "op": "dup"
-    },
-    "1155": {
-      "op": "frame_bury 0"
-    },
-    "1157": {
-      "error": "Index access is out of bounds",
-      "op": "extract 0 40 // on error: Index access is out of bounds"
     },
     "1160": {
-      "op": "bytec_2 // \"sales\""
+      "op": "*"
     },
     "1161": {
-      "op": "swap"
+      "op": "intc_2 // 48"
     },
     "1162": {
-      "op": "concat"
+      "error": "Index access is out of bounds",
+      "op": "extract3 // on error: Index access is out of bounds"
     },
     "1163": {
       "op": "dup"
     },
     "1164": {
-      "op": "frame_bury 1"
+      "op": "frame_bury 0"
     },
     "1166": {
-      "op": "box_get"
-    },
-    "1167": {
-      "op": "bury 1"
+      "error": "Index access is out of bounds",
+      "op": "extract 0 40 // on error: Index access is out of bounds"
     },
     "1169": {
-      "op": "bz claim_unencumbered_bids_if_body@5"
+      "op": "bytec_2 // \"sales\""
+    },
+    "1170": {
+      "op": "swap"
+    },
+    "1171": {
+      "op": "concat"
     },
     "1172": {
-      "op": "frame_dig 1"
+      "op": "dup"
     },
-    "1174": {
-      "op": "box_get"
+    "1173": {
+      "op": "frame_bury 1"
     },
     "1175": {
-      "op": "pop"
-    },
-    "1176": {
-      "op": "dup"
-    },
-    "1177": {
-      "op": "intc_3 // 16"
-    },
-    "1178": {
-      "op": "extract_uint16"
-    },
-    "1179": {
-      "op": "dig 1"
-    },
-    "1181": {
-      "op": "len"
-    },
-    "1182": {
-      "op": "substring3"
-    },
-    "1183": {
-      "op": "bytec_3 // 0x0000"
-    },
-    "1184": {
-      "op": "=="
-    },
-    "1185": {
-      "op": "bnz claim_unencumbered_bids_if_body@5"
-    },
-    "1188": {
-      "op": "frame_dig 1"
-    },
-    "1190": {
       "op": "box_get"
     },
-    "1191": {
+    "1176": {
+      "op": "bury 1"
+    },
+    "1178": {
+      "op": "bz claim_unencumbered_bids_if_body@5"
+    },
+    "1181": {
+      "op": "frame_dig 1"
+    },
+    "1183": {
+      "op": "box_get"
+    },
+    "1184": {
       "op": "pop"
     },
-    "1192": {
+    "1185": {
       "op": "dup"
     },
-    "1193": {
+    "1186": {
       "op": "intc_3 // 16"
     },
-    "1194": {
+    "1187": {
       "op": "extract_uint16"
     },
-    "1195": {
+    "1188": {
       "op": "dig 1"
     },
-    "1197": {
+    "1190": {
       "op": "len"
     },
-    "1198": {
+    "1191": {
       "op": "substring3"
     },
+    "1192": {
+      "op": "bytec_3 // 0x0000"
+    },
+    "1193": {
+      "op": "=="
+    },
+    "1194": {
+      "op": "bnz claim_unencumbered_bids_if_body@5"
+    },
+    "1197": {
+      "op": "frame_dig 1"
+    },
     "1199": {
-      "op": "extract 2 40"
+      "op": "box_get"
+    },
+    "1200": {
+      "op": "pop"
+    },
+    "1201": {
+      "op": "dup"
     },
     "1202": {
+      "op": "intc_3 // 16"
+    },
+    "1203": {
+      "op": "extract_uint16"
+    },
+    "1204": {
+      "op": "dig 1"
+    },
+    "1206": {
+      "op": "len"
+    },
+    "1207": {
+      "op": "substring3"
+    },
+    "1208": {
+      "op": "extract 2 40"
+    },
+    "1211": {
       "error": "Index access is out of bounds",
       "op": "extract 0 32 // on error: Index access is out of bounds"
     },
-    "1205": {
+    "1214": {
       "op": "txn Sender"
     },
-    "1207": {
+    "1216": {
       "op": "=="
     },
-    "1208": {
+    "1217": {
       "op": "bnz claim_unencumbered_bids_else_body@6"
     },
-    "1211": {
+    "1220": {
       "block": "claim_unencumbered_bids_if_body@5",
       "stack_in": [
         "tmp%7#0",
@@ -6338,7 +6387,7 @@
         "tmp%22#0"
       ]
     },
-    "1213": {
+    "1222": {
       "op": "intc_0 // 0",
       "defined_out": [
         "0",
@@ -6354,7 +6403,7 @@
         "0"
       ]
     },
-    "1214": {
+    "1223": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -6372,7 +6421,7 @@
         "\"deposited\""
       ]
     },
-    "1215": {
+    "1224": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%5#0",
@@ -6388,7 +6437,7 @@
         "maybe_exists%5#0"
       ]
     },
-    "1216": {
+    "1225": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%7#0",
@@ -6401,7 +6450,7 @@
         "0"
       ]
     },
-    "1217": {
+    "1226": {
       "op": "cover 2",
       "stack_out": [
         "tmp%7#0",
@@ -6414,7 +6463,7 @@
         "maybe_exists%5#0"
       ]
     },
-    "1219": {
+    "1228": {
       "op": "select",
       "defined_out": [
         "state_get%1#0"
@@ -6428,7 +6477,7 @@
         "state_get%1#0"
       ]
     },
-    "1220": {
+    "1229": {
       "op": "frame_dig 0",
       "defined_out": [
         "state_get%1#0",
@@ -6444,7 +6493,7 @@
         "tmp%7#0"
       ]
     },
-    "1222": {
+    "1231": {
       "op": "pushint 40 // 40",
       "defined_out": [
         "40",
@@ -6462,7 +6511,7 @@
         "40"
       ]
     },
-    "1224": {
+    "1233": {
       "op": "extract_uint64",
       "defined_out": [
         "state_get%1#0",
@@ -6479,7 +6528,7 @@
         "tmp%25#0"
       ]
     },
-    "1225": {
+    "1234": {
       "op": "txn Sender",
       "defined_out": [
         "state_get%1#0",
@@ -6498,7 +6547,7 @@
         "tmp%26#0"
       ]
     },
-    "1227": {
+    "1236": {
       "op": "cover 2",
       "stack_out": [
         "tmp%7#0",
@@ -6511,7 +6560,7 @@
         "tmp%25#0"
       ]
     },
-    "1229": {
+    "1238": {
       "op": "+",
       "defined_out": [
         "new_state_value%0#0",
@@ -6528,10 +6577,10 @@
         "new_state_value%0#0"
       ]
     },
-    "1230": {
+    "1239": {
       "op": "bytec_0 // \"deposited\""
     },
-    "1231": {
+    "1240": {
       "op": "swap",
       "stack_out": [
         "tmp%7#0",
@@ -6544,7 +6593,7 @@
         "new_state_value%0#0"
       ]
     },
-    "1232": {
+    "1241": {
       "op": "app_local_put",
       "stack_out": [
         "tmp%7#0",
@@ -6554,7 +6603,7 @@
         "i#0"
       ]
     },
-    "1233": {
+    "1242": {
       "block": "claim_unencumbered_bids_after_if_else@7",
       "stack_in": [
         "tmp%7#0",
@@ -6576,7 +6625,7 @@
         "i#0"
       ]
     },
-    "1235": {
+    "1244": {
       "op": "intc_1 // 1",
       "defined_out": [
         "1",
@@ -6592,7 +6641,7 @@
         "1"
       ]
     },
-    "1236": {
+    "1245": {
       "op": "+",
       "stack_out": [
         "tmp%7#0",
@@ -6603,7 +6652,7 @@
         "i#0"
       ]
     },
-    "1237": {
+    "1246": {
       "op": "frame_bury 4",
       "defined_out": [
         "i#0"
@@ -6616,10 +6665,10 @@
         "i#0"
       ]
     },
-    "1239": {
+    "1248": {
       "op": "b claim_unencumbered_bids_for_header@1"
     },
-    "1242": {
+    "1251": {
       "block": "claim_unencumbered_bids_else_body@6",
       "stack_in": [
         "tmp%7#0",
@@ -6630,7 +6679,7 @@
       ],
       "op": "bytec_1 // \"placed_bids\""
     },
-    "1243": {
+    "1252": {
       "op": "txn Sender",
       "defined_out": [
         "\"placed_bids\"",
@@ -6646,7 +6695,7 @@
         "tmp%27#0"
       ]
     },
-    "1245": {
+    "1254": {
       "op": "concat",
       "defined_out": [
         "tmp%28#0"
@@ -6660,7 +6709,7 @@
         "tmp%28#0"
       ]
     },
-    "1246": {
+    "1255": {
       "op": "dup",
       "defined_out": [
         "tmp%28#0",
@@ -6676,7 +6725,7 @@
         "tmp%28#0 (copy)"
       ]
     },
-    "1247": {
+    "1256": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%6#0",
@@ -6694,7 +6743,7 @@
         "maybe_exists%6#0"
       ]
     },
-    "1248": {
+    "1257": {
       "error": "check self.placed_bids entry exists",
       "op": "assert // check self.placed_bids entry exists",
       "stack_out": [
@@ -6707,7 +6756,7 @@
         "maybe_value%6#0"
       ]
     },
-    "1249": {
+    "1258": {
       "op": "extract 2 0",
       "defined_out": [
         "expr_value_trimmed%0#0",
@@ -6723,7 +6772,7 @@
         "expr_value_trimmed%0#0"
       ]
     },
-    "1252": {
+    "1261": {
       "op": "frame_dig 0",
       "defined_out": [
         "expr_value_trimmed%0#0",
@@ -6741,7 +6790,7 @@
         "tmp%7#0"
       ]
     },
-    "1254": {
+    "1263": {
       "op": "concat",
       "defined_out": [
         "concatenated%0#0",
@@ -6758,7 +6807,7 @@
         "concatenated%0#0"
       ]
     },
-    "1255": {
+    "1264": {
       "op": "dup",
       "defined_out": [
         "concatenated%0#0",
@@ -6777,7 +6826,7 @@
         "concatenated%0#0 (copy)"
       ]
     },
-    "1256": {
+    "1265": {
       "op": "len",
       "defined_out": [
         "byte_len%0#0",
@@ -6796,7 +6845,7 @@
         "byte_len%0#0"
       ]
     },
-    "1257": {
+    "1266": {
       "op": "intc_2 // 48",
       "defined_out": [
         "48",
@@ -6817,7 +6866,7 @@
         "48"
       ]
     },
-    "1258": {
+    "1267": {
       "op": "/",
       "defined_out": [
         "concatenated%0#0",
@@ -6836,7 +6885,7 @@
         "len_%0#0"
       ]
     },
-    "1259": {
+    "1268": {
       "op": "itob",
       "defined_out": [
         "as_bytes%0#0",
@@ -6855,7 +6904,7 @@
         "as_bytes%0#0"
       ]
     },
-    "1260": {
+    "1269": {
       "op": "extract 6 2",
       "defined_out": [
         "concatenated%0#0",
@@ -6874,7 +6923,7 @@
         "len_16_bit%0#0"
       ]
     },
-    "1263": {
+    "1272": {
       "op": "swap",
       "stack_out": [
         "tmp%7#0",
@@ -6887,7 +6936,7 @@
         "concatenated%0#0"
       ]
     },
-    "1264": {
+    "1273": {
       "op": "concat",
       "defined_out": [
         "concat_result%0#0",
@@ -6904,7 +6953,7 @@
         "concat_result%0#0"
       ]
     },
-    "1265": {
+    "1274": {
       "op": "dig 1",
       "stack_out": [
         "tmp%7#0",
@@ -6917,7 +6966,7 @@
         "tmp%28#0 (copy)"
       ]
     },
-    "1267": {
+    "1276": {
       "op": "box_del",
       "defined_out": [
         "concat_result%0#0",
@@ -6936,7 +6985,7 @@
         "{box_del}"
       ]
     },
-    "1268": {
+    "1277": {
       "op": "pop",
       "stack_out": [
         "tmp%7#0",
@@ -6948,7 +6997,7 @@
         "concat_result%0#0"
       ]
     },
-    "1269": {
+    "1278": {
       "op": "box_put",
       "stack_out": [
         "tmp%7#0",
@@ -6958,10 +7007,10 @@
         "i#0"
       ]
     },
-    "1270": {
+    "1279": {
       "op": "b claim_unencumbered_bids_after_if_else@7"
     },
-    "1273": {
+    "1282": {
       "block": "claim_unencumbered_bids_after_for@9",
       "stack_in": [
         "tmp%7#0",
@@ -6972,7 +7021,7 @@
       ],
       "op": "bytec_1 // \"placed_bids\""
     },
-    "1274": {
+    "1283": {
       "op": "txn Sender",
       "defined_out": [
         "\"placed_bids\"",
@@ -6988,7 +7037,7 @@
         "tmp%30#0"
       ]
     },
-    "1276": {
+    "1285": {
       "op": "concat",
       "defined_out": [
         "tmp%31#0"
@@ -7002,7 +7051,7 @@
         "tmp%31#0"
       ]
     },
-    "1277": {
+    "1286": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%7#0",
@@ -7018,7 +7067,7 @@
         "maybe_exists%7#0"
       ]
     },
-    "1278": {
+    "1287": {
       "error": "check self.placed_bids entry exists",
       "op": "assert // check self.placed_bids entry exists",
       "stack_out": [
@@ -7030,7 +7079,7 @@
         "maybe_value%7#0"
       ]
     },
-    "1279": {
+    "1288": {
       "op": "bytec_3 // 0x0000",
       "defined_out": [
         "0x0000",
@@ -7046,7 +7095,7 @@
         "0x0000"
       ]
     },
-    "1280": {
+    "1289": {
       "op": "==",
       "defined_out": [
         "tmp%32#0"
@@ -7060,7 +7109,7 @@
         "tmp%32#0"
       ]
     },
-    "1281": {
+    "1290": {
       "op": "bz claim_unencumbered_bids_after_if_else@11",
       "stack_out": [
         "tmp%7#0",
@@ -7070,56 +7119,56 @@
         "i#0"
       ]
     },
-    "1284": {
+    "1293": {
       "op": "txn Sender"
     },
-    "1286": {
+    "1295": {
       "op": "dup"
     },
-    "1287": {
+    "1296": {
       "op": "intc_0 // 0"
     },
-    "1288": {
+    "1297": {
       "op": "bytec_0 // \"deposited\""
     },
-    "1289": {
+    "1298": {
       "op": "app_local_get_ex"
     },
-    "1290": {
+    "1299": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account"
     },
-    "1291": {
+    "1300": {
       "op": "intc 4 // 13135300"
     },
-    "1293": {
+    "1302": {
       "op": "+"
     },
-    "1294": {
+    "1303": {
       "op": "bytec_0 // \"deposited\""
     },
-    "1295": {
+    "1304": {
       "op": "swap"
     },
-    "1296": {
+    "1305": {
       "op": "app_local_put"
     },
-    "1297": {
+    "1306": {
       "op": "bytec_1 // \"placed_bids\""
     },
-    "1298": {
+    "1307": {
       "op": "txn Sender"
     },
-    "1300": {
+    "1309": {
       "op": "concat"
     },
-    "1301": {
+    "1310": {
       "op": "box_del"
     },
-    "1302": {
+    "1311": {
       "op": "pop"
     },
-    "1303": {
+    "1312": {
       "block": "claim_unencumbered_bids_after_if_else@11",
       "stack_in": [
         "tmp%7#0",
@@ -7131,7 +7180,7 @@
       "retsub": true,
       "op": "retsub"
     },
-    "1304": {
+    "1313": {
       "subroutine": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.accept_bid",
       "params": {
         "asset#0": "bytes"
@@ -7140,7 +7189,7 @@
       "stack_in": [],
       "op": "proto 1 0"
     },
-    "1307": {
+    "1316": {
       "op": "txn Sender",
       "defined_out": [
         "tmp%0#0"
@@ -7149,7 +7198,7 @@
         "tmp%0#0"
       ]
     },
-    "1309": {
+    "1318": {
       "op": "frame_dig -1",
       "defined_out": [
         "asset#0 (copy)",
@@ -7160,7 +7209,7 @@
         "asset#0 (copy)"
       ]
     },
-    "1311": {
+    "1320": {
       "op": "concat",
       "defined_out": [
         "sale_key#0"
@@ -7169,7 +7218,7 @@
         "sale_key#0"
       ]
     },
-    "1312": {
+    "1321": {
       "op": "bytec_2 // \"sales\"",
       "defined_out": [
         "\"sales\"",
@@ -7180,14 +7229,14 @@
         "\"sales\""
       ]
     },
-    "1313": {
+    "1322": {
       "op": "swap",
       "stack_out": [
         "\"sales\"",
         "sale_key#0"
       ]
     },
-    "1314": {
+    "1323": {
       "op": "concat",
       "defined_out": [
         "tmp%1#0"
@@ -7196,7 +7245,7 @@
         "tmp%1#0"
       ]
     },
-    "1315": {
+    "1324": {
       "op": "dup",
       "defined_out": [
         "tmp%1#0",
@@ -7207,7 +7256,7 @@
         "tmp%1#0 (copy)"
       ]
     },
-    "1316": {
+    "1325": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%0#0",
@@ -7220,7 +7269,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "1317": {
+    "1326": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -7228,7 +7277,7 @@
         "sale#0"
       ]
     },
-    "1318": {
+    "1327": {
       "op": "dup",
       "defined_out": [
         "sale#0",
@@ -7241,7 +7290,7 @@
         "sale#0 (copy)"
       ]
     },
-    "1319": {
+    "1328": {
       "op": "intc_3 // 16",
       "defined_out": [
         "16",
@@ -7256,7 +7305,7 @@
         "16"
       ]
     },
-    "1320": {
+    "1329": {
       "op": "extract_uint16",
       "defined_out": [
         "item_start_offset%0#0",
@@ -7269,7 +7318,7 @@
         "item_start_offset%0#0"
       ]
     },
-    "1321": {
+    "1330": {
       "op": "dig 1",
       "stack_out": [
         "tmp%1#0",
@@ -7278,7 +7327,7 @@
         "sale#0 (copy)"
       ]
     },
-    "1323": {
+    "1332": {
       "op": "len",
       "defined_out": [
         "item_end_offset%0#0",
@@ -7293,7 +7342,7 @@
         "item_end_offset%0#0"
       ]
     },
-    "1324": {
+    "1333": {
       "op": "dig 2",
       "stack_out": [
         "tmp%1#0",
@@ -7303,7 +7352,7 @@
         "sale#0 (copy)"
       ]
     },
-    "1326": {
+    "1335": {
       "op": "cover 2",
       "stack_out": [
         "tmp%1#0",
@@ -7313,7 +7362,7 @@
         "item_end_offset%0#0"
       ]
     },
-    "1328": {
+    "1337": {
       "op": "substring3",
       "defined_out": [
         "sale#0",
@@ -7326,7 +7375,7 @@
         "tmp%2#0"
       ]
     },
-    "1329": {
+    "1338": {
       "op": "extract 2 40",
       "defined_out": [
         "current_best_bid#0",
@@ -7339,7 +7388,7 @@
         "current_best_bid#0"
       ]
     },
-    "1332": {
+    "1341": {
       "op": "txn Sender",
       "defined_out": [
         "current_best_bid#0",
@@ -7354,7 +7403,7 @@
         "tmp%4#0"
       ]
     },
-    "1334": {
+    "1343": {
       "op": "intc_0 // 0",
       "defined_out": [
         "0",
@@ -7371,7 +7420,7 @@
         "0"
       ]
     },
-    "1335": {
+    "1344": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -7390,7 +7439,7 @@
         "\"deposited\""
       ]
     },
-    "1336": {
+    "1345": {
       "op": "app_local_get_ex",
       "defined_out": [
         "current_best_bid#0",
@@ -7407,7 +7456,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "1337": {
+    "1346": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
@@ -7418,7 +7467,7 @@
         "0"
       ]
     },
-    "1338": {
+    "1347": {
       "op": "cover 2",
       "stack_out": [
         "tmp%1#0",
@@ -7429,7 +7478,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "1340": {
+    "1349": {
       "op": "select",
       "defined_out": [
         "current_best_bid#0",
@@ -7444,7 +7493,7 @@
         "state_get%0#0"
       ]
     },
-    "1341": {
+    "1350": {
       "op": "dig 1",
       "defined_out": [
         "current_best_bid#0",
@@ -7461,7 +7510,7 @@
         "current_best_bid#0 (copy)"
       ]
     },
-    "1343": {
+    "1352": {
       "op": "pushint 32 // 32",
       "defined_out": [
         "32",
@@ -7480,7 +7529,7 @@
         "32"
       ]
     },
-    "1345": {
+    "1354": {
       "op": "extract_uint64",
       "defined_out": [
         "current_best_bid#0",
@@ -7497,7 +7546,7 @@
         "tmp%6#0"
       ]
     },
-    "1346": {
+    "1355": {
       "op": "+",
       "defined_out": [
         "current_best_bid#0",
@@ -7512,7 +7561,7 @@
         "tmp%7#0"
       ]
     },
-    "1347": {
+    "1356": {
       "op": "pushint 5 // 5",
       "defined_out": [
         "5",
@@ -7529,7 +7578,7 @@
         "5"
       ]
     },
-    "1349": {
+    "1358": {
       "callsub": "smart_contracts.digital_marketplace.subroutines.sales_box_mbr",
       "op": "callsub sales_box_mbr",
       "defined_out": [
@@ -7547,7 +7596,7 @@
         "tmp%9#0"
       ]
     },
-    "1352": {
+    "1361": {
       "op": "txn Sender",
       "defined_out": [
         "current_best_bid#0",
@@ -7566,7 +7615,7 @@
         "tmp%10#0"
       ]
     },
-    "1354": {
+    "1363": {
       "op": "cover 2",
       "stack_out": [
         "tmp%1#0",
@@ -7577,7 +7626,7 @@
         "tmp%9#0"
       ]
     },
-    "1356": {
+    "1365": {
       "op": "+",
       "defined_out": [
         "current_best_bid#0",
@@ -7594,10 +7643,10 @@
         "new_state_value%0#0"
       ]
     },
-    "1357": {
+    "1366": {
       "op": "bytec_0 // \"deposited\""
     },
-    "1358": {
+    "1367": {
       "op": "swap",
       "stack_out": [
         "tmp%1#0",
@@ -7608,7 +7657,7 @@
         "new_state_value%0#0"
       ]
     },
-    "1359": {
+    "1368": {
       "op": "app_local_put",
       "stack_out": [
         "tmp%1#0",
@@ -7616,10 +7665,10 @@
         "current_best_bid#0"
       ]
     },
-    "1360": {
+    "1369": {
       "op": "itxn_begin"
     },
-    "1361": {
+    "1370": {
       "op": "frame_dig -1",
       "stack_out": [
         "tmp%1#0",
@@ -7628,7 +7677,7 @@
         "asset#0 (copy)"
       ]
     },
-    "1363": {
+    "1372": {
       "op": "btoi",
       "defined_out": [
         "current_best_bid#0",
@@ -7643,7 +7692,7 @@
         "inner_txn_params%0%%param_XferAsset_idx_0#0"
       ]
     },
-    "1364": {
+    "1373": {
       "op": "swap",
       "stack_out": [
         "tmp%1#0",
@@ -7652,7 +7701,7 @@
         "current_best_bid#0"
       ]
     },
-    "1365": {
+    "1374": {
       "error": "Index access is out of bounds",
       "op": "extract 0 32 // on error: Index access is out of bounds",
       "defined_out": [
@@ -7668,7 +7717,7 @@
         "reinterpret_bytes[32]%0#0"
       ]
     },
-    "1368": {
+    "1377": {
       "op": "uncover 2",
       "stack_out": [
         "tmp%1#0",
@@ -7677,7 +7726,7 @@
         "sale#0"
       ]
     },
-    "1370": {
+    "1379": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
@@ -7687,7 +7736,7 @@
         "0"
       ]
     },
-    "1371": {
+    "1380": {
       "op": "extract_uint64",
       "defined_out": [
         "inner_txn_params%0%%param_AssetAmount_idx_0#0",
@@ -7702,7 +7751,7 @@
         "inner_txn_params%0%%param_AssetAmount_idx_0#0"
       ]
     },
-    "1372": {
+    "1381": {
       "op": "itxn_field AssetAmount",
       "stack_out": [
         "tmp%1#0",
@@ -7710,20 +7759,20 @@
         "reinterpret_bytes[32]%0#0"
       ]
     },
-    "1374": {
+    "1383": {
       "op": "itxn_field AssetReceiver",
       "stack_out": [
         "tmp%1#0",
         "inner_txn_params%0%%param_XferAsset_idx_0#0"
       ]
     },
-    "1376": {
+    "1385": {
       "op": "itxn_field XferAsset",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "1378": {
+    "1387": {
       "op": "pushint 4 // axfer",
       "defined_out": [
         "axfer",
@@ -7734,29 +7783,29 @@
         "axfer"
       ]
     },
-    "1380": {
+    "1389": {
       "op": "itxn_field TypeEnum",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "1382": {
+    "1391": {
       "op": "intc_0 // 0",
       "stack_out": [
         "tmp%1#0",
         "0"
       ]
     },
-    "1383": {
+    "1392": {
       "op": "itxn_field Fee",
       "stack_out": [
         "tmp%1#0"
       ]
     },
-    "1385": {
+    "1394": {
       "op": "itxn_submit"
     },
-    "1386": {
+    "1395": {
       "op": "box_del",
       "defined_out": [
         "{box_del}"
@@ -7765,11 +7814,11 @@
         "{box_del}"
       ]
     },
-    "1387": {
+    "1396": {
       "op": "pop",
       "stack_out": []
     },
-    "1388": {
+    "1397": {
       "retsub": true,
       "op": "retsub"
     }
