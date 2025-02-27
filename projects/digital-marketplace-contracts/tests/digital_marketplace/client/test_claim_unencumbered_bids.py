@@ -56,6 +56,30 @@ def test_pass_noop_zero_claim_unencumbered_bids(
     )
 
 
+def test_pass_opt_in_zero_claim_unencumbered_bids(
+    asset_to_sell: int,
+    dm_client: DigitalMarketplaceClient,
+    scenario_first_seller_first_bidder_bid: Callable,
+    first_seller: SigningAccount,
+    first_bidder: SigningAccount,
+) -> None:
+    dm_client.send.clear_state()
+
+    placed_bids_before_call = dm_client.state.box.placed_bids.get_value(
+        first_bidder.address
+    )
+
+    dm_client.send.opt_in.claim_unencumbered_bids(
+        send_params=SendParams(populate_app_call_resources=True)
+    )
+
+    assert (
+        dm_client.state.box.placed_bids.get_value(first_bidder.address)
+        == placed_bids_before_call
+    )
+    assert dm_client.state.local_state(first_bidder.address).deposited == 0
+
+
 def test_pass_noop_positive_to_empty_claim_unencumbered_bids(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,

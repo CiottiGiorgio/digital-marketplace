@@ -183,6 +183,8 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def claim_unencumbered_bids(self) -> None:
+        self.deposited[Txn.sender] = self.deposited.get(Txn.sender, UInt64(0))
+
         placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
         self.placed_bids[arc4.Address(Txn.sender)] = arc4.DynamicArray[PlacedBid]()
 
