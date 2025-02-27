@@ -59,8 +59,7 @@ def test_fail_not_enough_deposited_sponsor_asset(
         )
     )
 
-    # FIXME: We need to catch a more granular error here.
-    with pytest.raises(LogicError):
+    with pytest.raises(LogicError, match="- would result negative"):
         dm_client.send.sponsor_asset(SponsorAssetArgs(asset=asset_to_sell))
 
 

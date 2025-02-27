@@ -133,7 +133,7 @@ def test_fail_not_enough_deposited_open_sale(
         params=CommonAppCallParams(extra_fee=AlgoAmount.from_micro_algo(1_000)),
     ).send()
 
-    with pytest.raises(LogicError):
+    with pytest.raises(LogicError, match="- would result negative"):
         dm_client.send.open_sale(
             OpenSaleArgs(
                 asset_deposit=algorand_client.create_transaction.asset_transfer(

@@ -55,9 +55,14 @@ def test_fail_not_enough_deposited_buy(
         params=CommonAppCallParams(sender=random_account.address),
     ).send()
 
-    with pytest.raises(LogicError):
+    with pytest.raises(LogicError, match="- would result negative"):
         dm_client.send.buy(
-            BuyArgs(sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell))
+            BuyArgs(sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell)),
+            params=CommonAppCallParams(
+                extra_fee=AlgoAmount.from_micro_algo(1_000),
+                sender=random_account.address,
+            ),
+            send_params=SendParams(populate_app_call_resources=True),
         )
 
 

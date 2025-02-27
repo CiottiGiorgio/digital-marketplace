@@ -46,9 +46,14 @@ def test_fail_overdraft_withdraw(
         params=CommonAppCallParams(sender=random_account.address),
     )
 
-    # FIXME: We need to catch a more granular error here.
-    with pytest.raises(LogicError):
-        dm_client.send.withdraw(WithdrawArgs(amount=AlgoAmount.from_algo(1).micro_algo))
+    with pytest.raises(LogicError, match="- would result negative"):
+        dm_client.send.withdraw(
+            WithdrawArgs(amount=AlgoAmount.from_algo(1).micro_algo),
+            params=CommonAppCallParams(
+                extra_fee=AlgoAmount.from_micro_algo(1_000),
+                sender=random_account.address,
+            ),
+        )
 
 
 def test_fail_close_out_with_balance_withdraw(
