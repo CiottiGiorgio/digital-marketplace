@@ -19,13 +19,6 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 )
 
 
-@pytest.fixture(scope="function")
-def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
-) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=first_seller.address)
-
-
 def test_fail_overdraft_withdraw(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,

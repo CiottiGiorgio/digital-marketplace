@@ -16,13 +16,6 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 )
 
 
-@pytest.fixture(scope="function")
-def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
-) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=first_seller.address)
-
-
 def test_fail_diff_sender_opt_in_deposit(
     dm_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,

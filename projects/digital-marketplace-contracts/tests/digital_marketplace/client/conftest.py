@@ -149,6 +149,13 @@ def digital_marketplace_client(
 
 
 @pytest.fixture(scope="function")
+def dm_client(
+    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
+) -> DigitalMarketplaceClient:
+    return digital_marketplace_client.clone(default_sender=first_seller.address)
+
+
+@pytest.fixture(scope="function")
 def scenario_deposit(
     digital_marketplace_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,

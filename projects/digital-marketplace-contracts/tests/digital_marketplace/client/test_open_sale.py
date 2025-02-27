@@ -50,13 +50,6 @@ def asset_holder(
     return account
 
 
-@pytest.fixture(scope="function")
-def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
-) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=first_seller.address)
-
-
 def test_fail_diff_sender_open_sale(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,

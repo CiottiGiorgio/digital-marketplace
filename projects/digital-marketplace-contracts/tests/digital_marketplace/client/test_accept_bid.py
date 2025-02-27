@@ -19,13 +19,6 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 from tests.digital_marketplace.client import helpers
 
 
-@pytest.fixture(scope="function")
-def dm_client(
-    digital_marketplace_client: DigitalMarketplaceClient, first_seller: SigningAccount
-) -> DigitalMarketplaceClient:
-    return digital_marketplace_client.clone(default_sender=first_seller.address)
-
-
 def test_pass_noop_accept_bid(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
