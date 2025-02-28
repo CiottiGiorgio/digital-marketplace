@@ -6,7 +6,6 @@ import pytest
 from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
-    AssetOptInParams,
     AssetTransferParams,
     CommonAppCallParams,
     LogicError,
@@ -27,36 +26,13 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 )
 
 
-@pytest.fixture(scope="module")
-def asset_holder(
-    algorand_client: AlgorandClient, first_seller: SigningAccount, asset_to_sell: int
-) -> SigningAccount:
-    account = algorand_client.account.random()
-    algorand_client.account.ensure_funded_from_environment(
-        account_to_fund=account.address,
-        min_spending_balance=cst.AMOUNT_TO_FUND,
-    )
-    algorand_client.send.asset_opt_in(
-        AssetOptInParams(sender=account.address, asset_id=asset_to_sell)
-    )
-    algorand_client.send.asset_transfer(
-        AssetTransferParams(
-            sender=first_seller.address,
-            asset_id=asset_to_sell,
-            amount=cst.ASA_AMOUNT_TO_SELL,
-            receiver=account.address,
-        )
-    )
-    return account
-
-
 def test_fail_diff_sender_open_sale(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_sponsor_asset: Callable,
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
-    asset_holder: SigningAccount,
+    second_seller: SigningAccount,
 ) -> None:
     with pytest.raises(LogicError, match=err.DIFFERENT_SENDER):
         dm_client.send.open_sale(
@@ -64,13 +40,13 @@ def test_fail_diff_sender_open_sale(
                 asset_deposit=TransactionWithSigner(
                     txn=algorand_client.create_transaction.asset_transfer(
                         AssetTransferParams(
-                            sender=asset_holder.address,
+                            sender=second_seller.address,
                             asset_id=asset_to_sell,
                             amount=cst.ASA_AMOUNT_TO_SELL,
                             receiver=dm_client.app_address,
                         )
                     ),
-                    signer=asset_holder.signer,
+                    signer=second_seller.signer,
                 ),
                 cost=cst.COST_TO_BUY.micro_algo,
             )
@@ -83,7 +59,7 @@ def test_fail_wrong_receiver_open_sale(
     scenario_sponsor_asset: Callable,
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
-    asset_holder: SigningAccount,
+    second_seller: SigningAccount,
 ) -> None:
     with pytest.raises(LogicError, match=err.WRONG_RECEIVER):
         dm_client.send.open_sale(
@@ -94,7 +70,7 @@ def test_fail_wrong_receiver_open_sale(
                             sender=first_seller.address,
                             asset_id=asset_to_sell,
                             amount=cst.ASA_AMOUNT_TO_SELL,
-                            receiver=asset_holder.address,
+                            receiver=second_seller.address,
                         )
                     ),
                     signer=first_seller.signer,
@@ -149,7 +125,7 @@ def test_fail_sale_already_exists_open_sale(
     scenario_open_sale: Callable,
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
-    asset_holder: SigningAccount,
+    second_seller: SigningAccount,
 ) -> None:
     with pytest.raises(LogicError, match=err.SALE_ALREADY_EXISTS):
         dm_client.send.open_sale(
