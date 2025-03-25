@@ -192,10 +192,7 @@ class DigitalMarketplace(ARC4Contract):
                 or not self.sales.maybe(placed_bids[i].sale_key)[0].bid[0].bidder.native
                 == Txn.sender
             ):
-                self.deposited[Txn.sender] = (
-                    self.deposited.get(Txn.sender, UInt64(0))
-                    + placed_bids[i].bid_amount.native
-                )
+                self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
             else:
                 encumbered_placed_bids.append(placed_bids[i].copy())
 
