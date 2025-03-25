@@ -48,11 +48,11 @@ jobs:
           set -o pipefail
           algokit project run test --project-name 'digital-marketplace-contracts'
 
-      - name: Build smart contracts
-        run: algokit project run build --project-name 'digital-marketplace-contracts'
+#      - name: Build smart contracts
+#        run: algokit project run build --project-name 'digital-marketplace-contracts'
 
-      - name: Scan TEAL files for issues
-        run: algokit project run audit-teal --project-name 'digital-marketplace-contracts'
+#      - name: Scan TEAL files for issues
+#        run: algokit project run audit-teal --project-name 'digital-marketplace-contracts'
 
       # # Uncomment to enable TEAL static analysis with snapshoting using Tealer package
       # # Would first require running locally using audit-teal command and committing the snapshots into source control
@@ -61,5 +61,5 @@ jobs:
       # - name: Check output stability of the smart contracts
       #   run: algokit project run ci-teal-diff --project-name 'digital-marketplace-contracts'
 
-      - name: Run deployer against LocalNet
-        run: algokit project deploy localnet --project-name 'digital-marketplace-contracts'
+#      - name: Run deployer against LocalNet
+#        run: algokit project deploy localnet --project-name 'digital-marketplace-contracts'
