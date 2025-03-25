@@ -36,9 +36,8 @@ audit = { commands = [
   'poetry run pip-audit',
 ], description = 'Audit with pip-audit. NOTE: If used with poetry >v2, make sure to install `poetry-plugin-export` as per https://github.com/python-poetry/poetry-plugin-export#installation.' }
 lint = { commands = [
-  'poetry run black --check --diff .',
-  'poetry run ruff check .',
-  'poetry run mypy',
+  'poetry run black .',
+  'poetry run ruff check . --fix',
 ], description = 'Perform linting' }
 audit-teal = { commands = [
   # 🚨 IMPORTANT 🚨: For strict TEAL validation, remove --exclude statements. The default starter contract is not for production. Ensure thorough testing and adherence to best practices in smart contract development. This is not a replacement for a professional audit.
@@ -50,3 +49,8 @@ ci-teal-diff = { commands = [
   'git add -N ./smart_contracts/artifacts',
   'git diff --exit-code --minimal ./smart_contracts/artifacts',
 ], description = 'Check TEAL files for differences' }
+ci-lint = { commands = [
+  'poetry run black --check --diff .',
+  'poetry run ruff check .',
+  'poetry run mypy',
+], description = 'Perform linting' }

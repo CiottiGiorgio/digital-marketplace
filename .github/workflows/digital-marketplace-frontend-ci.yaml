@@ -1,9 +1,9 @@
 name: Validate digital-marketplace-frontend
 
 on:
-  
+
   workflow_call:
-  
+
 
 jobs:
   validate:
@@ -34,14 +34,14 @@ jobs:
       - name: Install dependencies
         run: algokit project bootstrap all --project-name 'digital-marketplace-frontend'
 
-      
+
       - name: Run linters
-        run: algokit project run lint --project-name 'digital-marketplace-frontend'
-      
-      
+        run: algokit project run ci-lint --project-name 'digital-marketplace-frontend'
+
+
       - name: Run unit tests
         run: algokit project run test --project-name 'digital-marketplace-frontend'
-      
+
 
       - name: Build
         run: algokit project run build --project-name 'digital-marketplace-frontend'
