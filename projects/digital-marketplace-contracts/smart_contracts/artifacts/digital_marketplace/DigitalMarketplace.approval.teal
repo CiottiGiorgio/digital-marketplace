@@ -969,26 +969,12 @@ bid:
 
 bid_after_if_else@3:
     // smart_contracts/digital_marketplace/contract.py:161
-    // self.deposited[Txn.sender] -= new_bid_amount.native
-    txn Sender
-    dup
-    intc_0 // 0
-    bytec_0 // "deposited"
-    app_local_get_ex
-    assert // check self.deposited exists for account
-    frame_dig -1
-    btoi
-    -
-    bytec_0 // "deposited"
-    swap
-    app_local_put
-    // smart_contracts/digital_marketplace/contract.py:163
     // new_placed_bid = PlacedBid(sale_key.copy(), new_bid_amount)
     frame_dig -2
     frame_dig -1
     concat
     frame_bury 0
-    // smart_contracts/digital_marketplace/contract.py:164
+    // smart_contracts/digital_marketplace/contract.py:162
     // if self.placed_bids.maybe(arc4_sender)[1]:
     bytec_3 // "placed_bids"
     frame_dig 6
@@ -998,7 +984,7 @@ bid_after_if_else@3:
     box_get
     bury 1
     bz bid_else_body@8
-    // smart_contracts/digital_marketplace/contract.py:166
+    // smart_contracts/digital_marketplace/contract.py:164
     // self.placed_bids[arc4_sender].copy(), sale_key.copy()
     frame_dig 2
     box_get
@@ -1042,10 +1028,10 @@ bid_for_header@13:
     frame_bury 4
 
 bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18:
-    // smart_contracts/digital_marketplace/contract.py:168
+    // smart_contracts/digital_marketplace/contract.py:166
     // if found:
     bz bid_else_body@6
-    // smart_contracts/digital_marketplace/contract.py:169
+    // smart_contracts/digital_marketplace/contract.py:167
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     txn Sender
     dup
@@ -1058,7 +1044,7 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     cover 2
     box_get
     assert // check self.placed_bids entry exists
-    // smart_contracts/digital_marketplace/contract.py:169-171
+    // smart_contracts/digital_marketplace/contract.py:167-169
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     //     index
     // ].bid_amount.native
@@ -1077,16 +1063,16 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     uncover 2
     +
     uncover 4
-    // smart_contracts/digital_marketplace/contract.py:169
+    // smart_contracts/digital_marketplace/contract.py:167
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     bytec_0 // "deposited"
-    // smart_contracts/digital_marketplace/contract.py:169-171
+    // smart_contracts/digital_marketplace/contract.py:167-169
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     //     index
     // ].bid_amount.native
     uncover 2
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:172
+    // smart_contracts/digital_marketplace/contract.py:170
     // self.placed_bids[arc4_sender][index] = new_placed_bid.copy()
     dig 1
     box_get
@@ -1106,10 +1092,26 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     box_del
     pop
     box_put
+
+bid_after_if_else@9:
+    // smart_contracts/digital_marketplace/contract.py:179
+    // self.deposited[Txn.sender] -= new_bid_amount.native
+    txn Sender
+    dup
+    intc_0 // 0
+    bytec_0 // "deposited"
+    app_local_get_ex
+    assert // check self.deposited exists for account
+    frame_dig -1
+    btoi
+    -
+    bytec_0 // "deposited"
+    swap
+    app_local_put
     retsub
 
 bid_else_body@6:
-    // smart_contracts/digital_marketplace/contract.py:174
+    // smart_contracts/digital_marketplace/contract.py:172
     // self.placed_bids[arc4_sender].append(new_placed_bid.copy())
     frame_dig 2
     dup
@@ -1130,7 +1132,7 @@ bid_else_body@6:
     box_del
     pop
     box_put
-    retsub
+    b bid_after_if_else@9
 
 bid_after_if_else@16:
     // smart_contracts/digital_marketplace/subroutines.py:45
@@ -1147,14 +1149,14 @@ bid_after_for@17:
     intc_0 // 0
     dup
     frame_bury 4
-    // smart_contracts/digital_marketplace/contract.py:165-167
+    // smart_contracts/digital_marketplace/contract.py:163-165
     // found, index = find_placed_bid(
     //     self.placed_bids[arc4_sender].copy(), sale_key.copy()
     // )
     b bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18
 
 bid_else_body@8:
-    // smart_contracts/digital_marketplace/contract.py:176
+    // smart_contracts/digital_marketplace/contract.py:174
     // self.deposited[Txn.sender] -= placed_bids_box_mbr()
     txn Sender
     dup
@@ -1173,13 +1175,13 @@ bid_else_body@8:
     //     )
     // )
     intc 4 // 13135300
-    // smart_contracts/digital_marketplace/contract.py:176
+    // smart_contracts/digital_marketplace/contract.py:174
     // self.deposited[Txn.sender] -= placed_bids_box_mbr()
     -
     bytec_0 // "deposited"
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:177-179
+    // smart_contracts/digital_marketplace/contract.py:175-177
     // self.placed_bids[arc4_sender] = arc4.DynamicArray[PlacedBid](
     //     new_placed_bid.copy()
     // )
@@ -1192,7 +1194,7 @@ bid_else_body@8:
     pop
     swap
     box_put
-    retsub
+    b bid_after_if_else@9
 
 bid_else_body@2:
     // smart_contracts/digital_marketplace/contract.py:159

@@ -158,8 +158,6 @@ class DigitalMarketplace(ARC4Contract):
         else:
             self.sales[sale_key].bid.append(new_bid.copy())
 
-        self.deposited[Txn.sender] -= new_bid_amount.native
-
         new_placed_bid = PlacedBid(sale_key.copy(), new_bid_amount)
         if self.placed_bids.maybe(arc4_sender)[1]:
             found, index = find_placed_bid(
@@ -177,6 +175,8 @@ class DigitalMarketplace(ARC4Contract):
             self.placed_bids[arc4_sender] = arc4.DynamicArray[PlacedBid](
                 new_placed_bid.copy()
             )
+
+        self.deposited[Txn.sender] -= new_bid_amount.native
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def claim_unencumbered_bids(self) -> None:
