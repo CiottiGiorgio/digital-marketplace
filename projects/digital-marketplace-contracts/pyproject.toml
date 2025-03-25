@@ -21,6 +21,8 @@ pytest = "*"
 pytest-cov = "*"
 pip-audit = "*"
 puyapy = "*"
+pytest-xdist = "*"
+numpy = "^2.2.4"
 
 [build-system]
 requires = ["poetry-core"]

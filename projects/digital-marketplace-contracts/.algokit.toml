@@ -32,6 +32,9 @@ build = { commands = [
 test = { commands = [
   'poetry run pytest',
 ], description = 'Run smart contract tests' }
+test-parallel = { commands = [
+  'poetry run pytest -x -n auto',
+], description = 'Run smart contract tests' }
 audit = { commands = [
   'poetry run pip-audit',
 ], description = 'Audit with pip-audit. NOTE: If used with poetry >v2, make sure to install `poetry-plugin-export` as per https://github.com/python-poetry/poetry-plugin-export#installation.' }
