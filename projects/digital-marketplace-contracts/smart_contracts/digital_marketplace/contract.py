@@ -10,6 +10,7 @@ from algopy import (
     arc4,
     gtxn,
     itxn,
+    subroutine,
     urange,
 )
 from algopy.arc4 import abimethod
@@ -46,6 +47,11 @@ class Sale(arc4.Struct):
 class PlacedBid(arc4.Struct):
     sale_key: SaleKey
     bid_amount: arc4.UInt64
+
+
+class UnencumberedBidsReceipt(arc4.Struct):
+    total_bids: arc4.UInt64
+    unencumbered_bids: arc4.UInt64
 
 
 class DigitalMarketplace(ARC4Contract):
@@ -178,6 +184,14 @@ class DigitalMarketplace(ARC4Contract):
 
         self.deposited[Txn.sender] -= new_bid_amount.native
 
+    @subroutine
+    def is_encumbered(self, bid: PlacedBid) -> bool:
+        return not (
+            not self.sales.maybe(bid.sale_key)[1]
+            or not self.sales.maybe(bid.sale_key)[0].bid
+            or not self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
+        )
+
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def claim_unencumbered_bids(self) -> None:
         self.deposited[Txn.sender] = self.deposited.get(Txn.sender, UInt64(0))
@@ -186,12 +200,7 @@ class DigitalMarketplace(ARC4Contract):
         encumbered_placed_bids = arc4.DynamicArray[PlacedBid]()
 
         for i in urange(placed_bids.length):
-            if (
-                not self.sales.maybe(placed_bids[i].sale_key)[1]
-                or not self.sales.maybe(placed_bids[i].sale_key)[0].bid
-                or not self.sales.maybe(placed_bids[i].sale_key)[0].bid[0].bidder.native
-                == Txn.sender
-            ):
+            if not self.is_encumbered(placed_bids[i].copy()):
                 self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
             else:
                 encumbered_placed_bids.append(placed_bids[i].copy())
@@ -201,6 +210,22 @@ class DigitalMarketplace(ARC4Contract):
         else:
             self.deposited[Txn.sender] += placed_bids_box_mbr()
             del self.placed_bids[arc4.Address(Txn.sender)]
+
+    @abimethod(readonly=True)
+    def get_total_and_unencumbered_bids(self) -> UnencumberedBidsReceipt:
+        total_bids = UInt64(0)
+        unencumbered_bids = UInt64(0)
+
+        placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
+
+        for i in urange(placed_bids.length):
+            total_bids += placed_bids[i].bid_amount.native
+            if not self.is_encumbered(placed_bids[i].copy()):
+                unencumbered_bids += placed_bids[i].bid_amount.native
+
+        return UnencumberedBidsReceipt(
+            arc4.UInt64(total_bids), arc4.UInt64(unencumbered_bids)
+        )
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def accept_bid(self, asset: arc4.UInt64) -> None:
