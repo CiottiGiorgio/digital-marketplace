@@ -40,7 +40,7 @@ jobs:
         run: algokit project run audit --project-name 'digital-marketplace-contracts'
 
       - name: Lint and format python dependencies
-        run: algokit project run lint --project-name 'digital-marketplace-contracts'
+        run: algokit project run ci-lint --project-name 'digital-marketplace-contracts'
 
       - name: Run tests
         shell: bash
