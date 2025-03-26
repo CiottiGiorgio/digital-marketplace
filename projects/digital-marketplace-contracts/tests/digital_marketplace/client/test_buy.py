@@ -15,6 +15,7 @@ from algokit_utils import (
 )
 from algosdk.error import AlgodHTTPError
 
+import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     BuyArgs,
     DepositArgs,
@@ -116,4 +117,23 @@ def test_pass_buy(
     with pytest.raises(AlgodHTTPError, match="box not found"):
         dm_client.state.box.sales.get_value(
             SaleKey(owner=first_seller.address, asset=asset_to_sell)
+        )
+
+
+def test_fail_seller_cannot_be_buyer(
+    asset_to_sell: int,
+    digital_marketplace_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+    algorand_client: AlgorandClient,
+    first_seller: SigningAccount,
+) -> None:
+    with pytest.raises(LogicError, match=err.SELLER_CANT_BE_BUYER):
+        digital_marketplace_client.send.buy(
+            BuyArgs(
+                sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell),
+            ),
+            params=CommonAppCallParams(
+                extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
+            ),
+            send_params=SendParams(populate_app_call_resources=True),
         )

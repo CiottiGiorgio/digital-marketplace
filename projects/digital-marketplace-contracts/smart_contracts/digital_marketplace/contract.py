@@ -136,6 +136,8 @@ class DigitalMarketplace(ARC4Contract):
 
     @abimethod
     def buy(self, sale_key: SaleKey) -> None:
+        assert Txn.sender != sale_key.owner.native, err.SELLER_CANT_BE_BUYER
+
         self.deposited[Txn.sender] -= self.sales[sale_key].cost.native
         self.deposited[sale_key.owner.native] += self.sales[
             sale_key

@@ -310,4 +310,5 @@ def test_fail_seller_cannot_be_bidder(
                 new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
             ),
             params=CommonAppCallParams(sender=first_seller.address),
+            send_params=SendParams(populate_app_call_resources=True),
         )
