@@ -56,11 +56,11 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 
 @pytest.fixture(scope="session")
 def rng(worker_id: str) -> Generator:
-    return random.default_rng()
+    return random.default_rng(list(worker_id.encode()))
 
 
 @pytest.fixture(scope="session")
-def deployer(algorand_client: AlgorandClient) -> SigningAccount:
+def deployer(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the deployer account, ensuring it is funded.
     """
@@ -68,12 +68,13 @@ def deployer(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def first_seller(algorand_client: AlgorandClient) -> SigningAccount:
+def first_seller(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the first seller account, ensuring it is funded.
     """
@@ -81,12 +82,13 @@ def first_seller(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def second_seller(algorand_client: AlgorandClient) -> SigningAccount:
+def second_seller(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the second seller account, ensuring it is funded.
     """
@@ -94,12 +96,13 @@ def second_seller(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def buyer(algorand_client: AlgorandClient) -> SigningAccount:
+def buyer(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the buyer account, ensuring it is funded.
     """
@@ -107,12 +110,13 @@ def buyer(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def first_bidder(algorand_client: AlgorandClient) -> SigningAccount:
+def first_bidder(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the first bidder account, ensuring it is funded.
     """
@@ -120,12 +124,13 @@ def first_bidder(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def second_bidder(algorand_client: AlgorandClient) -> SigningAccount:
+def second_bidder(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the second bidder account, ensuring it is funded.
     """
@@ -133,12 +138,13 @@ def second_bidder(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="function")
-def random_account(algorand_client: AlgorandClient) -> SigningAccount:
+def random_account(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide a random account, ensuring it is funded.
     """
@@ -146,6 +152,7 @@ def random_account(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
