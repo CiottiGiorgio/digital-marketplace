@@ -1259,7 +1259,7 @@ is_encumbered:
     // def is_encumbered(self, bid: PlacedBid) -> bool:
     proto 1 2
     // smart_contracts/digital_marketplace/contract.py:190
-    // not self.sales.maybe(bid.sale_key)[1]
+    // self.sales.maybe(bid.sale_key)[1]
     frame_dig -1
     extract 0 40 // on error: Index access is out of bounds
     bytec_1 // "sales"
@@ -1268,9 +1268,13 @@ is_encumbered:
     dup
     box_get
     bury 1
-    bz is_encumbered_bool_true@3
+    // smart_contracts/digital_marketplace/contract.py:190-192
+    // self.sales.maybe(bid.sale_key)[1]
+    // and bool(self.sales.maybe(bid.sale_key)[0].bid)
+    // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
+    bz is_encumbered_bool_false@4
     // smart_contracts/digital_marketplace/contract.py:191
-    // or not self.sales.maybe(bid.sale_key)[0].bid
+    // and bool(self.sales.maybe(bid.sale_key)[0].bid)
     frame_dig 0
     box_get
     pop
@@ -1281,14 +1285,14 @@ is_encumbered:
     len
     substring3
     bytec_2 // 0x0000
-    ==
+    !=
     // smart_contracts/digital_marketplace/contract.py:190-192
-    // not self.sales.maybe(bid.sale_key)[1]
-    // or not self.sales.maybe(bid.sale_key)[0].bid
-    // or not self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
-    bnz is_encumbered_bool_true@3
+    // self.sales.maybe(bid.sale_key)[1]
+    // and bool(self.sales.maybe(bid.sale_key)[0].bid)
+    // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
+    bz is_encumbered_bool_false@4
     // smart_contracts/digital_marketplace/contract.py:192
-    // or not self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
+    // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
     frame_dig 0
     box_get
     pop
@@ -1302,19 +1306,20 @@ is_encumbered:
     extract 0 32 // on error: Index access is out of bounds
     txn Sender
     ==
-    bnz is_encumbered_bool_false@4
-
-is_encumbered_bool_true@3:
+    // smart_contracts/digital_marketplace/contract.py:190-192
+    // self.sales.maybe(bid.sale_key)[1]
+    // and bool(self.sales.maybe(bid.sale_key)[0].bid)
+    // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
+    bz is_encumbered_bool_false@4
     intc_1 // 1
 
 is_encumbered_bool_merge@5:
     // smart_contracts/digital_marketplace/contract.py:189-193
-    // return not (
-    //     not self.sales.maybe(bid.sale_key)[1]
-    //     or not self.sales.maybe(bid.sale_key)[0].bid
-    //     or not self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
+    // return (
+    //     self.sales.maybe(bid.sale_key)[1]
+    //     and bool(self.sales.maybe(bid.sale_key)[0].bid)
+    //     and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
     // )
-    !
     frame_dig -1
     uncover 2
     retsub

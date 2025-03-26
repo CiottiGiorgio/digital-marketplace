@@ -186,10 +186,10 @@ class DigitalMarketplace(ARC4Contract):
 
     @subroutine
     def is_encumbered(self, bid: PlacedBid) -> bool:
-        return not (
-            not self.sales.maybe(bid.sale_key)[1]
-            or not self.sales.maybe(bid.sale_key)[0].bid
-            or not self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
+        return (
+            self.sales.maybe(bid.sale_key)[1]
+            and bool(self.sales.maybe(bid.sale_key)[0].bid)
+            and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
         )
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
