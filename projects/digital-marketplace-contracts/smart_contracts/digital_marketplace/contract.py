@@ -200,10 +200,10 @@ class DigitalMarketplace(ARC4Contract):
         encumbered_placed_bids = arc4.DynamicArray[PlacedBid]()
 
         for i in urange(placed_bids.length):
-            if not self.is_encumbered(placed_bids[i].copy()):
-                self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
-            else:
+            if self.is_encumbered(placed_bids[i].copy()):
                 encumbered_placed_bids.append(placed_bids[i].copy())
+            else:
+                self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
 
         if encumbered_placed_bids:
             self.placed_bids[arc4.Address(Txn.sender)] = encumbered_placed_bids.copy()

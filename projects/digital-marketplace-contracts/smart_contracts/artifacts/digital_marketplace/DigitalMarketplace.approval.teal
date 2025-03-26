@@ -1376,7 +1376,7 @@ claim_unencumbered_bids_for_header@1:
     <
     bz claim_unencumbered_bids_after_for@7
     // smart_contracts/digital_marketplace/contract.py:203
-    // if not self.is_encumbered(placed_bids[i].copy()):
+    // if self.is_encumbered(placed_bids[i].copy()):
     frame_dig 0
     extract 2 0
     frame_dig 3
@@ -1387,34 +1387,8 @@ claim_unencumbered_bids_for_header@1:
     dup
     callsub is_encumbered
     pop
-    bnz claim_unencumbered_bids_else_body@4
+    bz claim_unencumbered_bids_else_body@4
     // smart_contracts/digital_marketplace/contract.py:204
-    // self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
-    txn Sender
-    dup
-    intc_0 // 0
-    bytec_0 // "deposited"
-    app_local_get_ex
-    assert // check self.deposited exists for account
-    uncover 2
-    pushint 40 // 40
-    extract_uint64
-    +
-    bytec_0 // "deposited"
-    swap
-    app_local_put
-
-claim_unencumbered_bids_after_if_else@5:
-    // smart_contracts/digital_marketplace/contract.py:202
-    // for i in urange(placed_bids.length):
-    frame_dig 3
-    intc_1 // 1
-    +
-    frame_bury 3
-    b claim_unencumbered_bids_for_header@1
-
-claim_unencumbered_bids_else_body@4:
-    // smart_contracts/digital_marketplace/contract.py:206
     // encumbered_placed_bids.append(placed_bids[i].copy())
     frame_dig 1
     extract 2 0
@@ -1429,6 +1403,32 @@ claim_unencumbered_bids_else_body@4:
     swap
     concat
     frame_bury 1
+
+claim_unencumbered_bids_after_if_else@5:
+    // smart_contracts/digital_marketplace/contract.py:202
+    // for i in urange(placed_bids.length):
+    frame_dig 3
+    intc_1 // 1
+    +
+    frame_bury 3
+    b claim_unencumbered_bids_for_header@1
+
+claim_unencumbered_bids_else_body@4:
+    // smart_contracts/digital_marketplace/contract.py:206
+    // self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
+    txn Sender
+    dup
+    intc_0 // 0
+    bytec_0 // "deposited"
+    app_local_get_ex
+    assert // check self.deposited exists for account
+    uncover 2
+    pushint 40 // 40
+    extract_uint64
+    +
+    bytec_0 // "deposited"
+    swap
+    app_local_put
     b claim_unencumbered_bids_after_if_else@5
 
 claim_unencumbered_bids_after_for@7:
