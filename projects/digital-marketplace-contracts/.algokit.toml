@@ -33,7 +33,7 @@ test = { commands = [
   'poetry run pytest',
 ], description = 'Run smart contract tests' }
 test-parallel = { commands = [
-  'poetry run pytest -x -n auto',
+  'poetry run pytest -n auto',
 ], description = 'Run smart contract tests' }
 audit = { commands = [
   'poetry run pip-audit',
