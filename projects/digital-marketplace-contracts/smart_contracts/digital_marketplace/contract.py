@@ -154,6 +154,8 @@ class DigitalMarketplace(ARC4Contract):
         arc4_sender = arc4.Address(Txn.sender)
         new_bid = Bid(bidder=arc4_sender, amount=new_bid_amount)
 
+        assert arc4_sender != sale_key.owner, err.SELLER_CANT_BE_BIDDER
+
         maybe_best_bid = self.sales[sale_key].bid.copy()
         if maybe_best_bid:
             assert (

@@ -20,7 +20,7 @@ main_after_if_else@17:
     return
 
 main_accept_bid_route@14:
-    // smart_contracts/digital_marketplace/contract.py:230
+    // smart_contracts/digital_marketplace/contract.py:232
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     intc_1 // 1
     txn OnCompletion
@@ -33,14 +33,14 @@ main_accept_bid_route@14:
     // smart_contracts/digital_marketplace/contract.py:57
     // class DigitalMarketplace(ARC4Contract):
     txna ApplicationArgs 1
-    // smart_contracts/digital_marketplace/contract.py:230
+    // smart_contracts/digital_marketplace/contract.py:232
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     callsub accept_bid
     intc_1 // 1
     return
 
 main_get_total_and_unencumbered_bids_route@13:
-    // smart_contracts/digital_marketplace/contract.py:214
+    // smart_contracts/digital_marketplace/contract.py:216
     // @abimethod(readonly=True)
     txn OnCompletion
     !
@@ -56,7 +56,7 @@ main_get_total_and_unencumbered_bids_route@13:
     return
 
 main_claim_unencumbered_bids_route@12:
-    // smart_contracts/digital_marketplace/contract.py:195
+    // smart_contracts/digital_marketplace/contract.py:197
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     intc_1 // 1
     txn OnCompletion
@@ -910,12 +910,22 @@ bid:
     // smart_contracts/digital_marketplace/contract.py:154
     // arc4_sender = arc4.Address(Txn.sender)
     txn Sender
-    dup
+    // smart_contracts/digital_marketplace/contract.py:154-155
+    // arc4_sender = arc4.Address(Txn.sender)
+    // new_bid = Bid(bidder=arc4_sender, amount=new_bid_amount)
+    dupn 2
     // smart_contracts/digital_marketplace/contract.py:155
     // new_bid = Bid(bidder=arc4_sender, amount=new_bid_amount)
     frame_dig -1
     concat
+    swap
     // smart_contracts/digital_marketplace/contract.py:157
+    // assert arc4_sender != sale_key.owner, err.SELLER_CANT_BE_BIDDER
+    frame_dig -2
+    extract 0 32 // on error: Index access is out of bounds
+    !=
+    assert // Seller cannot be bidder
+    // smart_contracts/digital_marketplace/contract.py:159
     // maybe_best_bid = self.sales[sale_key].bid.copy()
     bytec_1 // "sales"
     frame_dig -2
@@ -932,12 +942,12 @@ bid:
     substring3
     dup
     cover 3
-    // smart_contracts/digital_marketplace/contract.py:158
+    // smart_contracts/digital_marketplace/contract.py:160
     // if maybe_best_bid:
     bytec_2 // 0x0000
     !=
     bz bid_else_body@2
-    // smart_contracts/digital_marketplace/contract.py:160
+    // smart_contracts/digital_marketplace/contract.py:162
     // maybe_best_bid[0].amount.native < new_bid_amount.native
     frame_dig 7
     extract 2 40
@@ -946,12 +956,12 @@ bid:
     frame_dig -1
     btoi
     <
-    // smart_contracts/digital_marketplace/contract.py:159-161
+    // smart_contracts/digital_marketplace/contract.py:161-163
     // assert (
     //     maybe_best_bid[0].amount.native < new_bid_amount.native
     // ), err.WORSE_BID
     assert // Worse bid
-    // smart_contracts/digital_marketplace/contract.py:163
+    // smart_contracts/digital_marketplace/contract.py:165
     // self.sales[sale_key].bid[0] = new_bid.copy()
     swap
     dup
@@ -984,13 +994,13 @@ bid:
     box_put
 
 bid_after_if_else@3:
-    // smart_contracts/digital_marketplace/contract.py:167
+    // smart_contracts/digital_marketplace/contract.py:169
     // new_placed_bid = PlacedBid(sale_key.copy(), new_bid_amount)
     frame_dig -2
     frame_dig -1
     concat
     frame_bury 0
-    // smart_contracts/digital_marketplace/contract.py:168
+    // smart_contracts/digital_marketplace/contract.py:170
     // if self.placed_bids.maybe(arc4_sender)[1]:
     bytec_3 // "placed_bids"
     frame_dig 6
@@ -1000,7 +1010,7 @@ bid_after_if_else@3:
     box_get
     bury 1
     bz bid_else_body@8
-    // smart_contracts/digital_marketplace/contract.py:170
+    // smart_contracts/digital_marketplace/contract.py:172
     // self.placed_bids[arc4_sender].copy(), sale_key.copy()
     frame_dig 2
     box_get
@@ -1044,10 +1054,10 @@ bid_for_header@13:
     frame_bury 4
 
 bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18:
-    // smart_contracts/digital_marketplace/contract.py:172
+    // smart_contracts/digital_marketplace/contract.py:174
     // if found:
     bz bid_else_body@6
-    // smart_contracts/digital_marketplace/contract.py:173
+    // smart_contracts/digital_marketplace/contract.py:175
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     txn Sender
     dup
@@ -1060,7 +1070,7 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     cover 2
     box_get
     assert // check self.placed_bids entry exists
-    // smart_contracts/digital_marketplace/contract.py:173-175
+    // smart_contracts/digital_marketplace/contract.py:175-177
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     //     index
     // ].bid_amount.native
@@ -1079,16 +1089,16 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     uncover 2
     +
     uncover 4
-    // smart_contracts/digital_marketplace/contract.py:173
+    // smart_contracts/digital_marketplace/contract.py:175
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     bytec_0 // "deposited"
-    // smart_contracts/digital_marketplace/contract.py:173-175
+    // smart_contracts/digital_marketplace/contract.py:175-177
     // self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
     //     index
     // ].bid_amount.native
     uncover 2
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:176
+    // smart_contracts/digital_marketplace/contract.py:178
     // self.placed_bids[arc4_sender][index] = new_placed_bid.copy()
     dig 1
     box_get
@@ -1110,7 +1120,7 @@ bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bi
     box_put
 
 bid_after_if_else@9:
-    // smart_contracts/digital_marketplace/contract.py:185
+    // smart_contracts/digital_marketplace/contract.py:187
     // self.deposited[Txn.sender] -= new_bid_amount.native
     txn Sender
     dup
@@ -1127,7 +1137,7 @@ bid_after_if_else@9:
     retsub
 
 bid_else_body@6:
-    // smart_contracts/digital_marketplace/contract.py:178
+    // smart_contracts/digital_marketplace/contract.py:180
     // self.placed_bids[arc4_sender].append(new_placed_bid.copy())
     frame_dig 2
     dup
@@ -1165,14 +1175,14 @@ bid_after_for@17:
     intc_0 // 0
     dup
     frame_bury 4
-    // smart_contracts/digital_marketplace/contract.py:169-171
+    // smart_contracts/digital_marketplace/contract.py:171-173
     // found, index = find_placed_bid(
     //     self.placed_bids[arc4_sender].copy(), sale_key.copy()
     // )
     b bid_after_inlined_smart_contracts.digital_marketplace.subroutines.find_placed_bid@18
 
 bid_else_body@8:
-    // smart_contracts/digital_marketplace/contract.py:180
+    // smart_contracts/digital_marketplace/contract.py:182
     // self.deposited[Txn.sender] -= placed_bids_box_mbr()
     txn Sender
     dup
@@ -1191,13 +1201,13 @@ bid_else_body@8:
     //     )
     // )
     intc 4 // 13135300
-    // smart_contracts/digital_marketplace/contract.py:180
+    // smart_contracts/digital_marketplace/contract.py:182
     // self.deposited[Txn.sender] -= placed_bids_box_mbr()
     -
     bytec_0 // "deposited"
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:181-183
+    // smart_contracts/digital_marketplace/contract.py:183-185
     // self.placed_bids[arc4_sender] = arc4.DynamicArray[PlacedBid](
     //     new_placed_bid.copy()
     // )
@@ -1213,7 +1223,7 @@ bid_else_body@8:
     b bid_after_if_else@9
 
 bid_else_body@2:
-    // smart_contracts/digital_marketplace/contract.py:165
+    // smart_contracts/digital_marketplace/contract.py:167
     // self.sales[sale_key].bid.append(new_bid.copy())
     swap
     dup
@@ -1254,11 +1264,11 @@ bid_else_body@2:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.is_encumbered(bid: bytes) -> uint64, bytes:
 is_encumbered:
-    // smart_contracts/digital_marketplace/contract.py:187-188
+    // smart_contracts/digital_marketplace/contract.py:189-190
     // @subroutine
     // def is_encumbered(self, bid: PlacedBid) -> bool:
     proto 1 2
-    // smart_contracts/digital_marketplace/contract.py:190
+    // smart_contracts/digital_marketplace/contract.py:192
     // self.sales.maybe(bid.sale_key)[1]
     frame_dig -1
     extract 0 40 // on error: Index access is out of bounds
@@ -1268,12 +1278,12 @@ is_encumbered:
     dup
     box_get
     bury 1
-    // smart_contracts/digital_marketplace/contract.py:190-192
+    // smart_contracts/digital_marketplace/contract.py:192-194
     // self.sales.maybe(bid.sale_key)[1]
     // and bool(self.sales.maybe(bid.sale_key)[0].bid)
     // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
     bz is_encumbered_bool_false@4
-    // smart_contracts/digital_marketplace/contract.py:191
+    // smart_contracts/digital_marketplace/contract.py:193
     // and bool(self.sales.maybe(bid.sale_key)[0].bid)
     frame_dig 0
     box_get
@@ -1286,12 +1296,12 @@ is_encumbered:
     substring3
     bytec_2 // 0x0000
     !=
-    // smart_contracts/digital_marketplace/contract.py:190-192
+    // smart_contracts/digital_marketplace/contract.py:192-194
     // self.sales.maybe(bid.sale_key)[1]
     // and bool(self.sales.maybe(bid.sale_key)[0].bid)
     // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
     bz is_encumbered_bool_false@4
-    // smart_contracts/digital_marketplace/contract.py:192
+    // smart_contracts/digital_marketplace/contract.py:194
     // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
     frame_dig 0
     box_get
@@ -1306,7 +1316,7 @@ is_encumbered:
     extract 0 32 // on error: Index access is out of bounds
     txn Sender
     ==
-    // smart_contracts/digital_marketplace/contract.py:190-192
+    // smart_contracts/digital_marketplace/contract.py:192-194
     // self.sales.maybe(bid.sale_key)[1]
     // and bool(self.sales.maybe(bid.sale_key)[0].bid)
     // and self.sales.maybe(bid.sale_key)[0].bid[0].bidder.native == Txn.sender
@@ -1314,7 +1324,7 @@ is_encumbered:
     intc_1 // 1
 
 is_encumbered_bool_merge@5:
-    // smart_contracts/digital_marketplace/contract.py:189-193
+    // smart_contracts/digital_marketplace/contract.py:191-195
     // return (
     //     self.sales.maybe(bid.sale_key)[1]
     //     and bool(self.sales.maybe(bid.sale_key)[0].bid)
@@ -1331,11 +1341,11 @@ is_encumbered_bool_false@4:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.claim_unencumbered_bids() -> void:
 claim_unencumbered_bids:
-    // smart_contracts/digital_marketplace/contract.py:195-196
+    // smart_contracts/digital_marketplace/contract.py:197-198
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     // def claim_unencumbered_bids(self) -> None:
     proto 0 0
-    // smart_contracts/digital_marketplace/contract.py:197
+    // smart_contracts/digital_marketplace/contract.py:199
     // self.deposited[Txn.sender] = self.deposited.get(Txn.sender, UInt64(0))
     txn Sender
     intc_0 // 0
@@ -1348,7 +1358,7 @@ claim_unencumbered_bids:
     bytec_0 // "deposited"
     uncover 2
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:199
+    // smart_contracts/digital_marketplace/contract.py:201
     // placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
     bytec_3 // "placed_bids"
     txn Sender
@@ -1358,24 +1368,24 @@ claim_unencumbered_bids:
     dup
     uncover 2
     assert // check self.placed_bids entry exists
-    // smart_contracts/digital_marketplace/contract.py:200
+    // smart_contracts/digital_marketplace/contract.py:202
     // encumbered_placed_bids = arc4.DynamicArray[PlacedBid]()
     bytec_2 // 0x0000
     swap
-    // smart_contracts/digital_marketplace/contract.py:202
+    // smart_contracts/digital_marketplace/contract.py:204
     // for i in urange(placed_bids.length):
     intc_0 // 0
     extract_uint16
     intc_0 // 0
 
 claim_unencumbered_bids_for_header@1:
-    // smart_contracts/digital_marketplace/contract.py:202
+    // smart_contracts/digital_marketplace/contract.py:204
     // for i in urange(placed_bids.length):
     frame_dig 3
     frame_dig 2
     <
     bz claim_unencumbered_bids_after_for@7
-    // smart_contracts/digital_marketplace/contract.py:203
+    // smart_contracts/digital_marketplace/contract.py:205
     // if self.is_encumbered(placed_bids[i].copy()):
     frame_dig 0
     extract 2 0
@@ -1388,7 +1398,7 @@ claim_unencumbered_bids_for_header@1:
     callsub is_encumbered
     pop
     bz claim_unencumbered_bids_else_body@4
-    // smart_contracts/digital_marketplace/contract.py:204
+    // smart_contracts/digital_marketplace/contract.py:206
     // encumbered_placed_bids.append(placed_bids[i].copy())
     frame_dig 1
     extract 2 0
@@ -1405,7 +1415,7 @@ claim_unencumbered_bids_for_header@1:
     frame_bury 1
 
 claim_unencumbered_bids_after_if_else@5:
-    // smart_contracts/digital_marketplace/contract.py:202
+    // smart_contracts/digital_marketplace/contract.py:204
     // for i in urange(placed_bids.length):
     frame_dig 3
     intc_1 // 1
@@ -1414,7 +1424,7 @@ claim_unencumbered_bids_after_if_else@5:
     b claim_unencumbered_bids_for_header@1
 
 claim_unencumbered_bids_else_body@4:
-    // smart_contracts/digital_marketplace/contract.py:206
+    // smart_contracts/digital_marketplace/contract.py:208
     // self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
     txn Sender
     dup
@@ -1432,13 +1442,13 @@ claim_unencumbered_bids_else_body@4:
     b claim_unencumbered_bids_after_if_else@5
 
 claim_unencumbered_bids_after_for@7:
-    // smart_contracts/digital_marketplace/contract.py:208
+    // smart_contracts/digital_marketplace/contract.py:210
     // if encumbered_placed_bids:
     frame_dig 1
     bytec_2 // 0x0000
     !=
     bz claim_unencumbered_bids_else_body@9
-    // smart_contracts/digital_marketplace/contract.py:209
+    // smart_contracts/digital_marketplace/contract.py:211
     // self.placed_bids[arc4.Address(Txn.sender)] = encumbered_placed_bids.copy()
     bytec_3 // "placed_bids"
     txn Sender
@@ -1451,7 +1461,7 @@ claim_unencumbered_bids_after_for@7:
     retsub
 
 claim_unencumbered_bids_else_body@9:
-    // smart_contracts/digital_marketplace/contract.py:211
+    // smart_contracts/digital_marketplace/contract.py:213
     // self.deposited[Txn.sender] += placed_bids_box_mbr()
     txn Sender
     dup
@@ -1470,13 +1480,13 @@ claim_unencumbered_bids_else_body@9:
     //     )
     // )
     intc 4 // 13135300
-    // smart_contracts/digital_marketplace/contract.py:211
+    // smart_contracts/digital_marketplace/contract.py:213
     // self.deposited[Txn.sender] += placed_bids_box_mbr()
     +
     bytec_0 // "deposited"
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:212
+    // smart_contracts/digital_marketplace/contract.py:214
     // del self.placed_bids[arc4.Address(Txn.sender)]
     bytec_3 // "placed_bids"
     txn Sender
@@ -1488,19 +1498,19 @@ claim_unencumbered_bids_else_body@9:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.get_total_and_unencumbered_bids() -> bytes:
 get_total_and_unencumbered_bids:
-    // smart_contracts/digital_marketplace/contract.py:214-215
+    // smart_contracts/digital_marketplace/contract.py:216-217
     // @abimethod(readonly=True)
     // def get_total_and_unencumbered_bids(self) -> UnencumberedBidsReceipt:
     proto 0 1
     pushbytes ""
     dup
-    // smart_contracts/digital_marketplace/contract.py:216
+    // smart_contracts/digital_marketplace/contract.py:218
     // total_bids = UInt64(0)
     intc_0 // 0
-    // smart_contracts/digital_marketplace/contract.py:217
+    // smart_contracts/digital_marketplace/contract.py:219
     // unencumbered_bids = UInt64(0)
     dup
-    // smart_contracts/digital_marketplace/contract.py:219
+    // smart_contracts/digital_marketplace/contract.py:221
     // placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
     bytec_3 // "placed_bids"
     txn Sender
@@ -1510,20 +1520,20 @@ get_total_and_unencumbered_bids:
     dup
     uncover 2
     assert // check self.placed_bids entry exists
-    // smart_contracts/digital_marketplace/contract.py:221
+    // smart_contracts/digital_marketplace/contract.py:223
     // for i in urange(placed_bids.length):
     intc_0 // 0
     extract_uint16
     intc_0 // 0
 
 get_total_and_unencumbered_bids_for_header@1:
-    // smart_contracts/digital_marketplace/contract.py:221
+    // smart_contracts/digital_marketplace/contract.py:223
     // for i in urange(placed_bids.length):
     frame_dig 6
     frame_dig 5
     <
     bz get_total_and_unencumbered_bids_after_for@6
-    // smart_contracts/digital_marketplace/contract.py:222
+    // smart_contracts/digital_marketplace/contract.py:224
     // total_bids += placed_bids[i].bid_amount.native
     frame_dig 4
     extract 2 0
@@ -1540,14 +1550,14 @@ get_total_and_unencumbered_bids_for_header@1:
     frame_dig 2
     +
     frame_bury 2
-    // smart_contracts/digital_marketplace/contract.py:223
+    // smart_contracts/digital_marketplace/contract.py:225
     // if not self.is_encumbered(placed_bids[i].copy()):
     callsub is_encumbered
     pop
     frame_dig 3
     frame_bury 1
     bnz get_total_and_unencumbered_bids_after_if_else@4
-    // smart_contracts/digital_marketplace/contract.py:224
+    // smart_contracts/digital_marketplace/contract.py:226
     // unencumbered_bids += placed_bids[i].bid_amount.native
     frame_dig 3
     frame_dig 0
@@ -1557,7 +1567,7 @@ get_total_and_unencumbered_bids_for_header@1:
 get_total_and_unencumbered_bids_after_if_else@4:
     frame_dig 1
     frame_bury 3
-    // smart_contracts/digital_marketplace/contract.py:221
+    // smart_contracts/digital_marketplace/contract.py:223
     // for i in urange(placed_bids.length):
     frame_dig 6
     intc_1 // 1
@@ -1566,13 +1576,13 @@ get_total_and_unencumbered_bids_after_if_else@4:
     b get_total_and_unencumbered_bids_for_header@1
 
 get_total_and_unencumbered_bids_after_for@6:
-    // smart_contracts/digital_marketplace/contract.py:227
+    // smart_contracts/digital_marketplace/contract.py:229
     // arc4.UInt64(total_bids), arc4.UInt64(unencumbered_bids)
     frame_dig 2
     itob
     frame_dig 3
     itob
-    // smart_contracts/digital_marketplace/contract.py:226-228
+    // smart_contracts/digital_marketplace/contract.py:228-230
     // return UnencumberedBidsReceipt(
     //     arc4.UInt64(total_bids), arc4.UInt64(unencumbered_bids)
     // )
@@ -1583,16 +1593,16 @@ get_total_and_unencumbered_bids_after_for@6:
 
 // smart_contracts.digital_marketplace.contract.DigitalMarketplace.accept_bid(asset: bytes) -> void:
 accept_bid:
-    // smart_contracts/digital_marketplace/contract.py:230-231
+    // smart_contracts/digital_marketplace/contract.py:232-233
     // @abimethod(allow_actions=["NoOp", "OptIn"])
     // def accept_bid(self, asset: arc4.UInt64) -> None:
     proto 1 0
-    // smart_contracts/digital_marketplace/contract.py:232
+    // smart_contracts/digital_marketplace/contract.py:234
     // sale_key = SaleKey(owner=arc4.Address(Txn.sender), asset=asset)
     txn Sender
     frame_dig -1
     concat
-    // smart_contracts/digital_marketplace/contract.py:233
+    // smart_contracts/digital_marketplace/contract.py:235
     // sale = self.sales[sale_key].copy()
     bytec_1 // "sales"
     swap
@@ -1600,7 +1610,7 @@ accept_bid:
     dup
     box_get
     assert // check self.sales entry exists
-    // smart_contracts/digital_marketplace/contract.py:234
+    // smart_contracts/digital_marketplace/contract.py:236
     // current_best_bid = sale.bid[0].copy()
     dup
     intc_3 // 16
@@ -1611,7 +1621,7 @@ accept_bid:
     cover 2
     substring3
     extract 2 40
-    // smart_contracts/digital_marketplace/contract.py:237
+    // smart_contracts/digital_marketplace/contract.py:239
     // self.deposited.get(Txn.sender, default=UInt64(0))
     txn Sender
     intc_0 // 0
@@ -1620,32 +1630,32 @@ accept_bid:
     intc_0 // 0
     cover 2
     select
-    // smart_contracts/digital_marketplace/contract.py:238
+    // smart_contracts/digital_marketplace/contract.py:240
     // + current_best_bid.amount.native
     dig 1
     pushint 32 // 32
     extract_uint64
-    // smart_contracts/digital_marketplace/contract.py:237-238
+    // smart_contracts/digital_marketplace/contract.py:239-240
     // self.deposited.get(Txn.sender, default=UInt64(0))
     // + current_best_bid.amount.native
     +
-    // smart_contracts/digital_marketplace/contract.py:239
+    // smart_contracts/digital_marketplace/contract.py:241
     // + sales_box_mbr(self.sales.key_prefix.length)
     pushint 5 // 5
     callsub sales_box_mbr
-    // smart_contracts/digital_marketplace/contract.py:236
+    // smart_contracts/digital_marketplace/contract.py:238
     // self.deposited[Txn.sender] = (
     txn Sender
-    // smart_contracts/digital_marketplace/contract.py:237-239
+    // smart_contracts/digital_marketplace/contract.py:239-241
     // self.deposited.get(Txn.sender, default=UInt64(0))
     // + current_best_bid.amount.native
     // + sales_box_mbr(self.sales.key_prefix.length)
     cover 2
     +
-    // smart_contracts/digital_marketplace/contract.py:236
+    // smart_contracts/digital_marketplace/contract.py:238
     // self.deposited[Txn.sender] = (
     bytec_0 // "deposited"
-    // smart_contracts/digital_marketplace/contract.py:236-240
+    // smart_contracts/digital_marketplace/contract.py:238-242
     // self.deposited[Txn.sender] = (
     //     self.deposited.get(Txn.sender, default=UInt64(0))
     //     + current_best_bid.amount.native
@@ -1653,22 +1663,22 @@ accept_bid:
     // )
     swap
     app_local_put
-    // smart_contracts/digital_marketplace/contract.py:241-245
+    // smart_contracts/digital_marketplace/contract.py:243-247
     // itxn.AssetTransfer(
     //     xfer_asset=asset.native,
     //     asset_receiver=current_best_bid.bidder.native,
     //     asset_amount=sale.amount.native,
     // ).submit()
     itxn_begin
-    // smart_contracts/digital_marketplace/contract.py:242
+    // smart_contracts/digital_marketplace/contract.py:244
     // xfer_asset=asset.native,
     frame_dig -1
     btoi
-    // smart_contracts/digital_marketplace/contract.py:243
+    // smart_contracts/digital_marketplace/contract.py:245
     // asset_receiver=current_best_bid.bidder.native,
     swap
     extract 0 32 // on error: Index access is out of bounds
-    // smart_contracts/digital_marketplace/contract.py:244
+    // smart_contracts/digital_marketplace/contract.py:246
     // asset_amount=sale.amount.native,
     uncover 2
     intc_0 // 0
@@ -1676,20 +1686,20 @@ accept_bid:
     itxn_field AssetAmount
     itxn_field AssetReceiver
     itxn_field XferAsset
-    // smart_contracts/digital_marketplace/contract.py:241
+    // smart_contracts/digital_marketplace/contract.py:243
     // itxn.AssetTransfer(
     pushint 4 // axfer
     itxn_field TypeEnum
     intc_0 // 0
     itxn_field Fee
-    // smart_contracts/digital_marketplace/contract.py:241-245
+    // smart_contracts/digital_marketplace/contract.py:243-247
     // itxn.AssetTransfer(
     //     xfer_asset=asset.native,
     //     asset_receiver=current_best_bid.bidder.native,
     //     asset_amount=sale.amount.native,
     // ).submit()
     itxn_submit
-    // smart_contracts/digital_marketplace/contract.py:247
+    // smart_contracts/digital_marketplace/contract.py:249
     // del self.sales[sale_key]
     box_del
     pop

@@ -294,3 +294,20 @@ def test_pass_repeatedly_placed_bid_exact_deposited(
         dm_client.state.local_state(first_bidder.address).deposited
         == AlgoAmount(micro_algo=0).micro_algo
     )
+
+
+def test_fail_seller_cannot_be_bidder(
+    asset_to_sell: int,
+    digital_marketplace_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+    algorand_client: AlgorandClient,
+    first_seller: SigningAccount,
+) -> None:
+    with pytest.raises(LogicError, match=err.SELLER_CANT_BE_BIDDER):
+        digital_marketplace_client.send.bid(
+            BidArgs(
+                sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell),
+                new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
+            ),
+            params=CommonAppCallParams(sender=first_seller.address),
+        )
