@@ -6,6 +6,7 @@ from algokit_utils import (
     AlgoAmount,
     AlgorandClient,
     CommonAppCallParams,
+    LogicError,
     PaymentParams,
     SendParams,
     SigningAccount,
@@ -13,7 +14,6 @@ from algokit_utils import (
 from algosdk.error import AlgodHTTPError
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
-    AcceptBidArgs,
     BidArgs,
     BuyArgs,
     DepositArgs,
@@ -242,30 +242,15 @@ def test_pass_bid_was_sold_to_empty(
         _ = dm_client.state.box.receipt_book.get_value(first_bidder.address)
 
 
-def test_pass_bid_was_accepted_to_empty(
+def test_fail_bid_was_accepted_to_empty(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
-    scenario_first_seller_first_bidder_bid: Callable,
+    scenario_accept_first_bid: Callable,
     first_seller: SigningAccount,
     buyer: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
-    dm_client.clone(default_sender=first_seller.address).send.accept_bid(
-        AcceptBidArgs(asset=asset_to_sell),
-        params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
-        send_params=SendParams(populate_app_call_resources=True),
-    )
-
-    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
-
-    dm_client.send.claim_unencumbered_bids(
-        send_params=SendParams(populate_app_call_resources=True)
-    )
-
-    assert (
-        dm_client.state.local_state(first_bidder.address).deposited
-        - deposited_before_call
-        == (cst.AMOUNT_TO_BID + cst.RECEIPT_BOOK_BOX_MBR).micro_algo
-    )
-    with pytest.raises(AlgodHTTPError, match="box not found"):
-        _ = dm_client.state.box.receipt_book.get_value(first_bidder.address)
+    with pytest.raises(LogicError):
+        dm_client.send.claim_unencumbered_bids(
+            send_params=SendParams(populate_app_call_resources=True)
+        )

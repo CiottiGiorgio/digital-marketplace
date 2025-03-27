@@ -237,6 +237,21 @@ class DigitalMarketplace(ARC4Contract):
         sale = self.sales[sale_key].copy()
         current_best_bid = sale.bid[0].copy()
 
+        receipt_book = self.receipt_book[current_best_bid.bidder].copy()
+        found, index = find_bid_receipt(receipt_book.copy(), sale_key)
+        assert found
+
+        encumbered_receipts = arc4.DynamicArray[BidReceipt]()
+        for i in urange(receipt_book.length):
+            if i != index:
+                encumbered_receipts.append(receipt_book[i].copy())
+
+        if encumbered_receipts:
+            self.receipt_book[current_best_bid.bidder] = encumbered_receipts.copy()
+        else:
+            self.deposited[current_best_bid.bidder.native] += receipt_book_box_mbr()
+            del self.receipt_book[current_best_bid.bidder]
+
         self.deposited[Txn.sender] = (
             self.deposited.get(Txn.sender, default=UInt64(0))
             + current_best_bid.amount.native

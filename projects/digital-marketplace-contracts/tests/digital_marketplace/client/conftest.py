@@ -15,6 +15,7 @@ from algokit_utils import (
 )
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
+    AcceptBidArgs,
     BidArgs,
     DepositArgs,
     DigitalMarketplaceClient,
@@ -242,7 +243,6 @@ def scenario_first_seller_first_bidder_bid(
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
-    algorand_client: AlgorandClient,
     first_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
@@ -261,7 +261,6 @@ def scenario_first_seller_second_bidder_outbid(
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
-    algorand_client: AlgorandClient,
     first_seller: SigningAccount,
     second_bidder: SigningAccount,
 ) -> None:
@@ -271,5 +270,21 @@ def scenario_first_seller_second_bidder_outbid(
             new_bid_amount=cst.AMOUNT_TO_OUTBID.micro_algo,
         ),
         params=CommonAppCallParams(sender=second_bidder.address),
+        send_params=SendParams(populate_app_call_resources=True),
+    )
+
+
+@pytest.fixture(scope="function")
+def scenario_accept_first_bid(
+    asset_to_sell: int,
+    digital_marketplace_client: DigitalMarketplaceClient,
+    scenario_first_seller_first_bidder_bid: Callable,
+    first_seller: SigningAccount,
+) -> None:
+    digital_marketplace_client.send.accept_bid(
+        AcceptBidArgs(asset=asset_to_sell),
+        params=CommonAppCallParams(
+            extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
+        ),
         send_params=SendParams(populate_app_call_resources=True),
     )

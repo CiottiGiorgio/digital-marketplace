@@ -40,9 +40,9 @@ def receipt_book_box_mbr() -> UInt64:
 
 @subroutine
 def find_bid_receipt(
-    receipt: arc4.DynamicArray[BidReceipt], key: SaleKey
+    receipts: arc4.DynamicArray[BidReceipt], key: SaleKey
 ) -> tuple[bool, UInt64]:
-    for i in urange(receipt.length):
-        if receipt[i].sale_key == key:
+    for i in urange(receipts.length):
+        if receipts[i].sale_key == key:
             return True, i
     return False, UInt64(0)
