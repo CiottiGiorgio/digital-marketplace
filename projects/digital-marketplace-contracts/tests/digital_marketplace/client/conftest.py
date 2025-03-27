@@ -418,6 +418,7 @@ def scenario_first_seller_second_bidder_outbid(
 
 @pytest.fixture(scope="function")
 def scenario_accept_first_bid(
+    rng: Generator,
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
@@ -433,7 +434,9 @@ def scenario_accept_first_bid(
     digital_marketplace_client.send.accept_bid(
         AcceptBidArgs(asset=asset_to_sell),
         params=CommonAppCallParams(
-            extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
+            extra_fee=AlgoAmount(micro_algo=1_000),
+            sender=first_seller.address,
+            note=rng.integers(2**32).tobytes(),
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
