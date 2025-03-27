@@ -200,17 +200,17 @@ class DigitalMarketplace(ARC4Contract):
     def claim_unencumbered_bids(self) -> None:
         self.deposited[Txn.sender] = self.deposited.get(Txn.sender, UInt64(0))
 
-        bid_receipts = self.receipt_book[arc4.Address(Txn.sender)].copy()
-        encumbered_bid_receipts = arc4.DynamicArray[BidReceipt]()
+        receipt_book = self.receipt_book[arc4.Address(Txn.sender)].copy()
+        encumbered_receipts = arc4.DynamicArray[BidReceipt]()
 
-        for i in urange(bid_receipts.length):
-            if self.is_encumbered(bid_receipts[i].copy()):
-                encumbered_bid_receipts.append(bid_receipts[i].copy())
+        for i in urange(receipt_book.length):
+            if self.is_encumbered(receipt_book[i].copy()):
+                encumbered_receipts.append(receipt_book[i].copy())
             else:
-                self.deposited[Txn.sender] += bid_receipts[i].amount.native
+                self.deposited[Txn.sender] += receipt_book[i].amount.native
 
-        if encumbered_bid_receipts:
-            self.receipt_book[arc4.Address(Txn.sender)] = encumbered_bid_receipts.copy()
+        if encumbered_receipts:
+            self.receipt_book[arc4.Address(Txn.sender)] = encumbered_receipts.copy()
         else:
             self.deposited[Txn.sender] += receipt_book_box_mbr()
             del self.receipt_book[arc4.Address(Txn.sender)]
@@ -220,12 +220,12 @@ class DigitalMarketplace(ARC4Contract):
         total_bids = UInt64(0)
         unencumbered_bids = UInt64(0)
 
-        bid_receipts = self.receipt_book[arc4.Address(Txn.sender)].copy()
+        receipt_book = self.receipt_book[arc4.Address(Txn.sender)].copy()
 
-        for i in urange(bid_receipts.length):
-            total_bids += bid_receipts[i].amount.native
-            if not self.is_encumbered(bid_receipts[i].copy()):
-                unencumbered_bids += bid_receipts[i].amount.native
+        for i in urange(receipt_book.length):
+            total_bids += receipt_book[i].amount.native
+            if not self.is_encumbered(receipt_book[i].copy()):
+                unencumbered_bids += receipt_book[i].amount.native
 
         return UnencumberedBidsReceipt(
             arc4.UInt64(total_bids), arc4.UInt64(unencumbered_bids)

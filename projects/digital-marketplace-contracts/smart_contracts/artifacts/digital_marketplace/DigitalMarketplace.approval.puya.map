@@ -4,7 +4,7 @@
     "../../digital_marketplace/contract.py",
     "../../digital_marketplace/subroutines.py"
   ],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAwDA;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;;;;;;AAAA;;AAiLK;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAjLL;;;AAiLK;;;AAAA;;AAhBA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;;;;;AAAA;AAAA;AAAA;AAAA;;AAnBA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;AA7CA;;AAAA;AAAA;AAAA;;AAAA;AAjGL;;;AAAA;;;AAiGK;;;AAAA;;AAjBA;;AAAA;AAAA;AAAA;;AAAA;AAhFL;;;AAgFK;;;AAAA;;AAhBA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAhEL;;;AAAA;AAAA;;AAgEK;;;AAAA;;AApBA;;AAAA;AAAA;AAAA;;AAAA;AA5CL;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;AAAA;AAAA;;;AA4CK;;;AAAA;;AAfA;;AAAA;AAAA;AAAA;;AAAA;AA7BL;;;AAAA;AAAA;;AA6BK;;;AAAA;;AAXA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAlBL;;;AAkBK;;;AAAA;;AAXA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAPL;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAOK;;;AAAA;;AAPL;;AAAA;;;;;;;;;ACnDA;;;AAKQ;;AAEA;;AAFA;AAEK;;AAFL;AAMA;;AANA;AAQA;;AARA;AAQI;;AARJ;AAUA;;AAVA;AAYC;;AAZD;AAFW;;;AAAA;AAAR;;;AAAA;AAAP;ADuDJ;;;AAEe;;AAAA;;AAAkB;;AAAlB;AAAP;AAEI;;AAAA;;AAAoB;;AAApB;AADJ;AAKuB;;AAAnB;AAAA;AAAA;AAAuC;AAAvC;;AAAA;AAAoD;;AAAA;;AADzC;;AACX;;AAAA;AADJ;AAAA;AAAA;;AAIR;;;AAEW;;AAAX;;;AAC2B;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;AAA9B;AAAA;;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAEA;AAAsB;;;;;;AAAtB;;;AAAA;;;AAAA;;AAEA;AACa;;AAAkC;AAAf;AAAA;AAAA;AAAA;;;;;AADhC;;;AAAA;;;AAAA;;AAIZ;;;AAEmB;;AAAA;;AAAA;;AAAA;;AAAJ;AAAP;AAGO;;AAAA;;AAAA;AAAkB;;AAAlB;AAAP;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAA9B;AAAA;AAAA;AAAA;AAEA;AAEmB;;AACF;;;;;;;;;AAHjB;;;;AAAA;;;AAAA;;AAMR;;;AAIe;;AAAA;;AAAwB;;AAAxB;AAAP;AAEI;;AAAA;;AAAgC;;AAAhC;AADJ;AAKiB;;AAAyB;;AAAA;;AAAZ;AADnB;AAGA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAJ;AAAP;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA4C;;AAAd;;;AAA9B;AAAA;AAAA;AAAA;AAGgB;;AAAA;;AAAZ;AADmB;;AAAA;AAAA;;;;AAAA;AAC4B;AAD5B;AAAvB;;AAAA;;AAAA;;AAIR;;;AAEwC;;AAAa;;AAAA;AAAlC;AAEX;AAEmB;;AACF;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;;;;;;;;AAHjB;;;;AAAA;;;AAAA;AAOI;;AADyB;AAAA;AAAA;AACL;AADK;;AAAA;AAEX;;AAAd;;;AAFW;;AAAc;;AAAA;AAA7B;AAAA;AAAA;AAIA;;;AAER;;;AAEe;;AAAc;;AAAA;;;AAAd;AAAA;;AAAA;AAAP;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAA9B;;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AACA;;AAAA;AAAA;AAAA;AAAA;AAAyC;;AAAA;AAAA;AAAA;;AAAA;AAEX;;AAAd;;;AAFyB;AAAzC;AAAA;;AAAA;AAAA;;AAAA;AAIA;AACe;;AAAA;;AAAA;AACI;;AACF;;AAAA;AAAA;AAAA;AAAA;;;;;;;AAHjB;;;;AAAA;;;AAAA;AAMA;;;AAER;;;;;;;;;;AAEmC;;AAA3B;;AACU;;AAAA;AAAA;AAEY;;AAAA;;;AAAf;AAAP;AAEiB;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AACd;AAAA;AAAX;;;AAEgB;;AAAA;;;AAAA;;AAAA;AAAkC;;AAAA;AAAlC;AADJ;AAIA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;AAIc;;AAAA;;AAAA;AAAA;;AACf;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAX;;;AAEgB;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;ACjII;AAAA;AAAA;;AAAP;AAAL;;AAAK;;AAAA;;AAAA;AAAb;;;AACW;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;;AAAA;AAAX;;;AACmB;;;;;ADiInB;;;AAC+B;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;AAAA;;AAAA;AAAA;AAAA;;;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAA9B;;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAGA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;AASO;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;AAA9B;AAAA;AAAA;AAAA;;AAPQ;;AAAA;AAAA;AAAA;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;;AAAA;;AAAA;;;;ACzIH;;AAAA;AAAA;AAAA;;;;;AAGF;AAAO;;;AD6HS;;;AAWA;;AAAf;AAAA;AAAA;AAAA;AAAA;AC1JD;;AD0JC;AAAA;AAAA;AAAA;AACiC;;;;AAAA;;AAAA;AAAjC;;AAAA;AAAA;;AAAA;AAAA;;;;AAhBA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;;;;AAsBZ;;;AAG6B;;AAAA;;;AAAjB;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;;;AACS;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAL;AAAA;AADJ;;;AAEI;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;;AAAA;;;AAA0D;;AAA1D;AAFJ;;;;AADJ;;AAAA;;AAAA;;;;;AAMR;;;AAEwD;;AAAnB;AAAA;AAAA;AAA+B;AAA/B;;AAAA;AAAd;;AAAf;AAAA;;AAAA;AAEe;AAA+B;;AAA/B;AAAA;AAAA;AAAA;AAAA;;AAAA;AACW;AAAA;AAEV;AAAA;AAAP;AAAA;;AAAA;;AAAA;AAAjB;;;AACkC;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAnB;;;AAAA;AAAf;;;AACgB;;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;;AAFC;;AAAA;AAAA;AAAA;;;;;AAIc;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;;AAAA;AAA9B;AAAA;AAAA;AAAA;;;;AAEL;;AAAA;AAAA;AAAX;;;AACY;AAA+B;;AAA/B;AAAA;AAAA;;AAAA;;AAAA;;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;ACzLD;;ADyLC;AAAA;AAAA;AAAA;AACI;AAA+B;;AAA/B;AAAJ;;;AAEZ;;;;;;AAEqB;AACO;AAEL;AAA+B;;AAA/B;AAAA;AAAA;AAAA;AAAA;;AAAA;AAEC;AAAA;AAAP;AAAA;;AAAA;;AAAA;AAAjB;;;AAC0B;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAd;;AAAA;AAAA;;AACO;;;AAAA;;;;;AAAJ;;;AACC;;AAAA;;AAAA;;;;;;;AAHC;;AAAA;AAAA;AAAA;;;;;AAML;;AAAA;AAAyB;;AAAA;AADtB;AAAP;;AAAA;AAIR;;;AAE8C;;AAA3B;;AAAA;AACJ;AAAA;AAAA;AAAA;AAAA;AAAA;AACY;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;AAAA;;;AAGI;;AAAnB;AAAA;AAAA;AAAuC;AAAvC;;AAAA;AACE;;AAAA;;AAAA;AADF;AAEgB;;AAAd;;;AAHS;;AACX;;AAAA;AADJ;AAAA;AAAA;AAKA;AACe;;AAAA;AACI;AAAA;;;AACF;;AAAA;AAAA;;;;;;;AAHjB;;;;AAAA;;;AAAA;AAMA;;",
+  "mappings": "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",
   "op_pc_offset": 0,
   "pc_events": {
     "1": {
@@ -9437,11 +9437,11 @@
     "1236": {
       "op": "box_get",
       "defined_out": [
-        "bid_receipts#0",
-        "maybe_exists%1#0"
+        "maybe_exists%1#0",
+        "receipt_book#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
+        "receipt_book#0",
         "maybe_exists%1#0"
       ]
     },
@@ -9449,26 +9449,26 @@
       "op": "swap",
       "stack_out": [
         "maybe_exists%1#0",
-        "bid_receipts#0"
+        "receipt_book#0"
       ]
     },
     "1238": {
       "op": "dup",
       "stack_out": [
         "maybe_exists%1#0",
-        "bid_receipts#0",
-        "bid_receipts#0 (copy)"
+        "receipt_book#0",
+        "receipt_book#0 (copy)"
       ]
     },
     "1239": {
       "op": "uncover 2",
       "defined_out": [
-        "bid_receipts#0",
-        "maybe_exists%1#0"
+        "maybe_exists%1#0",
+        "receipt_book#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "bid_receipts#0",
+        "receipt_book#0",
+        "receipt_book#0",
         "maybe_exists%1#0"
       ]
     },
@@ -9476,67 +9476,67 @@
       "error": "check self.receipt_book entry exists",
       "op": "assert // check self.receipt_book entry exists",
       "stack_out": [
-        "bid_receipts#0",
-        "bid_receipts#0"
+        "receipt_book#0",
+        "receipt_book#0"
       ]
     },
     "1242": {
       "op": "bytec_2 // 0x0000",
       "defined_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0",
+        "receipt_book#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0"
+        "receipt_book#0",
+        "receipt_book#0",
+        "encumbered_receipts#0"
       ]
     },
     "1243": {
       "op": "swap",
       "defined_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0",
+        "receipt_book#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
-        "bid_receipts#0"
+        "receipt_book#0",
+        "encumbered_receipts#0",
+        "receipt_book#0"
       ]
     },
     "1244": {
       "op": "intc_0 // 0",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
-        "bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
+        "receipt_book#0",
         "0"
       ]
     },
     "1245": {
       "op": "extract_uint16",
       "defined_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0"
       ]
     },
     "1246": {
       "op": "intc_0 // 0",
       "defined_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -9544,8 +9544,8 @@
     "1247": {
       "block": "claim_unencumbered_bids_for_header@1",
       "stack_in": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ],
@@ -9554,8 +9554,8 @@
         "i#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "i#0"
@@ -9568,8 +9568,8 @@
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "i#0",
@@ -9584,8 +9584,8 @@
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "continue_looping%0#0"
@@ -9594,8 +9594,8 @@
     "1252": {
       "op": "bz claim_unencumbered_bids_after_for@7",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -9603,29 +9603,29 @@
     "1255": {
       "op": "frame_dig 0",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
-        "bid_receipts#0"
+        "receipt_book#0"
       ]
     },
     "1257": {
       "op": "extract 2 0",
       "defined_out": [
         "array_head_and_tail%0#0",
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "array_head_and_tail%0#0"
@@ -9634,8 +9634,8 @@
     "1260": {
       "op": "frame_dig 3",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -9647,13 +9647,13 @@
       "defined_out": [
         "48",
         "array_head_and_tail%0#0",
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -9665,14 +9665,14 @@
       "op": "*",
       "defined_out": [
         "array_head_and_tail%0#0",
-        "bid_receipts#0",
         "i#0",
         "item_offset%0#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -9682,8 +9682,8 @@
     "1264": {
       "op": "intc_2 // 48",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -9695,14 +9695,14 @@
       "error": "Index access is out of bounds",
       "op": "extract3 // on error: Index access is out of bounds",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0",
         "tmp%5#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0"
@@ -9711,14 +9711,14 @@
     "1266": {
       "op": "dup",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0",
         "tmp%5#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -9729,16 +9729,16 @@
       "callsub": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.is_encumbered",
       "op": "callsub is_encumbered",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
         "is_encumbered%0#0",
         "is_encumbered%1#0",
+        "receipt_book#0",
         "tmp%4#0",
         "tmp%5#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -9749,8 +9749,8 @@
     "1270": {
       "op": "pop",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -9760,8 +9760,8 @@
     "1271": {
       "op": "bz claim_unencumbered_bids_else_body@4",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0"
@@ -9770,34 +9770,34 @@
     "1274": {
       "op": "frame_dig 1",
       "defined_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0",
         "tmp%5#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0"
       ]
     },
     "1276": {
       "op": "extract 2 0",
       "defined_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "expr_value_trimmed%0#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0",
         "tmp%5#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -9807,8 +9807,8 @@
     "1279": {
       "op": "swap",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "expr_value_trimmed%0#0",
@@ -9818,15 +9818,15 @@
     "1280": {
       "op": "concat",
       "defined_out": [
-        "bid_receipts#0",
         "concatenated%0#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "concatenated%0#0"
@@ -9835,16 +9835,16 @@
     "1281": {
       "op": "dup",
       "defined_out": [
-        "bid_receipts#0",
         "concatenated%0#0",
         "concatenated%0#0 (copy)",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "concatenated%0#0",
@@ -9854,16 +9854,16 @@
     "1282": {
       "op": "len",
       "defined_out": [
-        "bid_receipts#0",
         "byte_len%0#0",
         "concatenated%0#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "concatenated%0#0",
@@ -9873,8 +9873,8 @@
     "1283": {
       "op": "intc_2 // 48",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "concatenated%0#0",
@@ -9885,16 +9885,16 @@
     "1284": {
       "op": "/",
       "defined_out": [
-        "bid_receipts#0",
         "concatenated%0#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
         "len_%0#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "concatenated%0#0",
@@ -9905,15 +9905,15 @@
       "op": "itob",
       "defined_out": [
         "as_bytes%0#0",
-        "bid_receipts#0",
         "concatenated%0#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "concatenated%0#0",
@@ -9923,16 +9923,16 @@
     "1286": {
       "op": "extract 6 2",
       "defined_out": [
-        "bid_receipts#0",
         "concatenated%0#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
         "len_16_bit%0#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "concatenated%0#0",
@@ -9942,8 +9942,8 @@
     "1289": {
       "op": "swap",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "len_16_bit%0#0",
@@ -9953,24 +9953,24 @@
     "1290": {
       "op": "concat",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0"
       ]
     },
     "1291": {
       "op": "frame_bury 1",
       "defined_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%4#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -9978,8 +9978,8 @@
     "1293": {
       "block": "claim_unencumbered_bids_after_if_else@5",
       "stack_in": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ],
@@ -9988,8 +9988,8 @@
         "i#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "i#0"
@@ -10002,8 +10002,8 @@
         "i#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "i#0",
@@ -10013,8 +10013,8 @@
     "1296": {
       "op": "+",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "i#0"
@@ -10026,8 +10026,8 @@
         "i#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -10038,8 +10038,8 @@
     "1302": {
       "block": "claim_unencumbered_bids_else_body@4",
       "stack_in": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0"
@@ -10049,8 +10049,8 @@
         "tmp%7#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -10064,8 +10064,8 @@
         "tmp%7#0 (copy)"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -10081,8 +10081,8 @@
         "tmp%7#0 (copy)"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -10100,8 +10100,8 @@
         "tmp%7#0 (copy)"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -10119,8 +10119,8 @@
         "tmp%7#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -10133,8 +10133,8 @@
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%5#0",
@@ -10150,8 +10150,8 @@
         "tmp%7#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%7#0",
@@ -10168,8 +10168,8 @@
         "tmp%7#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%7#0",
@@ -10186,8 +10186,8 @@
         "tmp%7#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%7#0",
@@ -10202,8 +10202,8 @@
         "tmp%7#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%7#0",
@@ -10216,8 +10216,8 @@
     "1316": {
       "op": "swap",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%7#0",
@@ -10228,8 +10228,8 @@
     "1317": {
       "op": "app_local_put",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -10240,47 +10240,47 @@
     "1321": {
       "block": "claim_unencumbered_bids_after_for@7",
       "stack_in": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ],
       "op": "frame_dig 1",
       "defined_out": [
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0"
       ]
     },
     "1323": {
       "op": "bytec_2 // 0x0000",
       "defined_out": [
         "0x0000",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "0x0000"
       ]
     },
     "1324": {
       "op": "!=",
       "defined_out": [
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "tmp%11#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%11#0"
@@ -10289,8 +10289,8 @@
     "1325": {
       "op": "bz claim_unencumbered_bids_else_body@9",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -10299,11 +10299,11 @@
       "op": "bytec_3 // \"receipt_book\"",
       "defined_out": [
         "\"receipt_book\"",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "\"receipt_book\""
@@ -10313,12 +10313,12 @@
       "op": "txn Sender",
       "defined_out": [
         "\"receipt_book\"",
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "tmp%12#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "\"receipt_book\"",
@@ -10328,12 +10328,12 @@
     "1331": {
       "op": "concat",
       "defined_out": [
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "tmp%13#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%13#0"
@@ -10342,13 +10342,13 @@
     "1332": {
       "op": "dup",
       "defined_out": [
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "tmp%13#0",
         "tmp%13#0 (copy)"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%13#0",
@@ -10358,13 +10358,13 @@
     "1333": {
       "op": "box_del",
       "defined_out": [
-        "encumbered_bid_receipts#0",
+        "encumbered_receipts#0",
         "tmp%13#0",
         "{box_del}"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%13#0",
@@ -10374,8 +10374,8 @@
     "1334": {
       "op": "pop",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%13#0"
@@ -10384,19 +10384,19 @@
     "1335": {
       "op": "frame_dig 1",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%13#0",
-        "encumbered_bid_receipts#0"
+        "encumbered_receipts#0"
       ]
     },
     "1337": {
       "op": "box_put",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -10408,8 +10408,8 @@
     "1339": {
       "block": "claim_unencumbered_bids_else_body@9",
       "stack_in": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ],
@@ -10418,8 +10418,8 @@
         "tmp%14#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0"
@@ -10432,8 +10432,8 @@
         "tmp%14#0 (copy)"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10448,8 +10448,8 @@
         "tmp%14#0 (copy)"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10466,8 +10466,8 @@
         "tmp%14#0 (copy)"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10484,8 +10484,8 @@
         "tmp%14#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10497,8 +10497,8 @@
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10513,8 +10513,8 @@
         "tmp%14#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10529,8 +10529,8 @@
         "tmp%14#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10543,8 +10543,8 @@
     "1350": {
       "op": "swap",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%14#0",
@@ -10555,8 +10555,8 @@
     "1351": {
       "op": "app_local_put",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -10567,8 +10567,8 @@
         "\"receipt_book\""
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "\"receipt_book\""
@@ -10581,8 +10581,8 @@
         "tmp%16#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "\"receipt_book\"",
@@ -10595,8 +10595,8 @@
         "tmp%17#0"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "tmp%17#0"
@@ -10608,8 +10608,8 @@
         "{box_del}"
       ],
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0",
         "{box_del}"
@@ -10618,8 +10618,8 @@
     "1357": {
       "op": "pop",
       "stack_out": [
-        "bid_receipts#0",
-        "encumbered_bid_receipts#0",
+        "receipt_book#0",
+        "encumbered_receipts#0",
         "tmp%4#0",
         "i#0"
       ]
@@ -10692,8 +10692,8 @@
     "1371": {
       "op": "box_get",
       "defined_out": [
-        "bid_receipts#0",
         "maybe_exists%0#0",
+        "receipt_book#0",
         "total_bids#0",
         "unencumbered_bids#0"
       ],
@@ -10702,7 +10702,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "maybe_exists%0#0"
       ]
     },
@@ -10714,7 +10714,7 @@
         "total_bids#0",
         "unencumbered_bids#0",
         "maybe_exists%0#0",
-        "bid_receipts#0"
+        "receipt_book#0"
       ]
     },
     "1373": {
@@ -10725,15 +10725,15 @@
         "total_bids#0",
         "unencumbered_bids#0",
         "maybe_exists%0#0",
-        "bid_receipts#0",
-        "bid_receipts#0 (copy)"
+        "receipt_book#0",
+        "receipt_book#0 (copy)"
       ]
     },
     "1374": {
       "op": "uncover 2",
       "defined_out": [
-        "bid_receipts#0",
         "maybe_exists%0#0",
+        "receipt_book#0",
         "total_bids#0",
         "unencumbered_bids#0"
       ],
@@ -10742,8 +10742,8 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
-        "bid_receipts#0",
+        "receipt_book#0",
+        "receipt_book#0",
         "maybe_exists%0#0"
       ]
     },
@@ -10755,8 +10755,8 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
-        "bid_receipts#0"
+        "receipt_book#0",
+        "receipt_book#0"
       ]
     },
     "1377": {
@@ -10766,15 +10766,15 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
-        "bid_receipts#0",
+        "receipt_book#0",
+        "receipt_book#0",
         "0"
       ]
     },
     "1378": {
       "op": "extract_uint16",
       "defined_out": [
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "total_bids#0",
         "unencumbered_bids#0"
@@ -10784,15 +10784,15 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0"
       ]
     },
     "1379": {
       "op": "intc_0 // 0",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "total_bids#0",
         "unencumbered_bids#0"
@@ -10802,7 +10802,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ]
@@ -10814,7 +10814,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ],
@@ -10827,7 +10827,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "i#0"
@@ -10844,7 +10844,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "i#0",
@@ -10863,7 +10863,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "continue_looping%0#0"
@@ -10876,7 +10876,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ]
@@ -10884,8 +10884,8 @@
     "1388": {
       "op": "frame_dig 4",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0"
       ],
       "stack_out": [
@@ -10893,18 +10893,18 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
-        "bid_receipts#0"
+        "receipt_book#0"
       ]
     },
     "1390": {
       "op": "extract 2 0",
       "defined_out": [
         "array_head_and_tail%0#0",
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0"
       ],
       "stack_out": [
@@ -10912,7 +10912,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "array_head_and_tail%0#0"
@@ -10925,7 +10925,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -10937,8 +10937,8 @@
       "defined_out": [
         "48",
         "array_head_and_tail%0#0",
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0"
       ],
       "stack_out": [
@@ -10946,7 +10946,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -10958,9 +10958,9 @@
       "op": "*",
       "defined_out": [
         "array_head_and_tail%0#0",
-        "bid_receipts#0",
         "i#0",
         "item_offset%0#0",
+        "receipt_book#0",
         "tmp%2#0"
       ],
       "stack_out": [
@@ -10968,7 +10968,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -10982,7 +10982,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "array_head_and_tail%0#0",
@@ -10994,8 +10994,8 @@
       "error": "Index access is out of bounds",
       "op": "extract3 // on error: Index access is out of bounds",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%3#0"
       ],
@@ -11004,7 +11004,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0"
@@ -11013,8 +11013,8 @@
     "1399": {
       "op": "dup",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%3#0",
         "tmp%3#0 (copy)"
@@ -11024,7 +11024,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0",
@@ -11035,8 +11035,8 @@
       "op": "pushint 40 // 40",
       "defined_out": [
         "40",
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%3#0",
         "tmp%3#0 (copy)"
@@ -11046,7 +11046,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0",
@@ -11057,8 +11057,8 @@
     "1402": {
       "op": "extract_uint64",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%3#0",
         "tmp%5#0"
@@ -11068,7 +11068,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0",
@@ -11082,7 +11082,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0",
@@ -11093,8 +11093,8 @@
     "1404": {
       "op": "frame_bury 0",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%3#0",
         "tmp%5#0"
@@ -11104,7 +11104,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0",
@@ -11114,8 +11114,8 @@
     "1406": {
       "op": "frame_dig 2",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%3#0",
         "tmp%5#0",
@@ -11126,7 +11126,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0",
@@ -11141,7 +11141,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0",
@@ -11151,8 +11151,8 @@
     "1409": {
       "op": "frame_bury 2",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%3#0",
         "tmp%5#0",
@@ -11163,7 +11163,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "tmp%3#0"
@@ -11173,10 +11173,10 @@
       "callsub": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.is_encumbered",
       "op": "callsub is_encumbered",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
         "is_encumbered%0#0",
         "is_encumbered%1#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%5#0",
         "total_bids#0"
@@ -11186,7 +11186,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "is_encumbered%0#0",
@@ -11200,7 +11200,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "is_encumbered%0#0"
@@ -11209,9 +11209,9 @@
     "1415": {
       "op": "frame_dig 3",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
         "is_encumbered%0#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%5#0",
         "total_bids#0",
@@ -11222,7 +11222,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "is_encumbered%0#0",
@@ -11232,9 +11232,9 @@
     "1417": {
       "op": "frame_bury 1",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
         "is_encumbered%0#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%5#0",
         "total_bids#0",
@@ -11245,7 +11245,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "is_encumbered%0#0"
@@ -11258,7 +11258,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ]
@@ -11266,8 +11266,8 @@
     "1422": {
       "op": "frame_dig 3",
       "defined_out": [
-        "bid_receipts#0",
         "i#0",
+        "receipt_book#0",
         "tmp%2#0",
         "tmp%5#0",
         "total_bids#0",
@@ -11279,7 +11279,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "unencumbered_bids#0"
@@ -11292,7 +11292,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "unencumbered_bids#0",
@@ -11306,7 +11306,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "unencumbered_bids#9"
@@ -11319,7 +11319,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ]
@@ -11331,7 +11331,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ],
@@ -11344,7 +11344,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "unencumbered_bids#0"
@@ -11360,7 +11360,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ]
@@ -11376,7 +11376,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "i#0"
@@ -11394,7 +11394,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "i#0",
@@ -11408,7 +11408,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "i#0"
@@ -11421,7 +11421,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ]
@@ -11436,7 +11436,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0"
       ],
@@ -11449,7 +11449,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "total_bids#0"
@@ -11466,7 +11466,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "val_as_bytes%0#0"
@@ -11484,7 +11484,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "val_as_bytes%0#0",
@@ -11504,7 +11504,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "val_as_bytes%0#0",
@@ -11523,7 +11523,7 @@
         "unencumbered_bids#9",
         "total_bids#0",
         "unencumbered_bids#0",
-        "bid_receipts#0",
+        "receipt_book#0",
         "tmp%2#0",
         "i#0",
         "encoded_tuple_buffer%2#0"

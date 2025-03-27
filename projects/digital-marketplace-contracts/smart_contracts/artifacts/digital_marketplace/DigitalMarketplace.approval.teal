@@ -1367,7 +1367,7 @@ claim_unencumbered_bids:
     uncover 2
     app_local_put
     // smart_contracts/digital_marketplace/contract.py:203
-    // bid_receipts = self.receipt_book[arc4.Address(Txn.sender)].copy()
+    // receipt_book = self.receipt_book[arc4.Address(Txn.sender)].copy()
     bytec_3 // "receipt_book"
     txn Sender
     concat
@@ -1377,24 +1377,24 @@ claim_unencumbered_bids:
     uncover 2
     assert // check self.receipt_book entry exists
     // smart_contracts/digital_marketplace/contract.py:204
-    // encumbered_bid_receipts = arc4.DynamicArray[BidReceipt]()
+    // encumbered_receipts = arc4.DynamicArray[BidReceipt]()
     bytec_2 // 0x0000
     swap
     // smart_contracts/digital_marketplace/contract.py:206
-    // for i in urange(bid_receipts.length):
+    // for i in urange(receipt_book.length):
     intc_0 // 0
     extract_uint16
     intc_0 // 0
 
 claim_unencumbered_bids_for_header@1:
     // smart_contracts/digital_marketplace/contract.py:206
-    // for i in urange(bid_receipts.length):
+    // for i in urange(receipt_book.length):
     frame_dig 3
     frame_dig 2
     <
     bz claim_unencumbered_bids_after_for@7
     // smart_contracts/digital_marketplace/contract.py:207
-    // if self.is_encumbered(bid_receipts[i].copy()):
+    // if self.is_encumbered(receipt_book[i].copy()):
     frame_dig 0
     extract 2 0
     frame_dig 3
@@ -1407,7 +1407,7 @@ claim_unencumbered_bids_for_header@1:
     pop
     bz claim_unencumbered_bids_else_body@4
     // smart_contracts/digital_marketplace/contract.py:208
-    // encumbered_bid_receipts.append(bid_receipts[i].copy())
+    // encumbered_receipts.append(receipt_book[i].copy())
     frame_dig 1
     extract 2 0
     swap
@@ -1424,7 +1424,7 @@ claim_unencumbered_bids_for_header@1:
 
 claim_unencumbered_bids_after_if_else@5:
     // smart_contracts/digital_marketplace/contract.py:206
-    // for i in urange(bid_receipts.length):
+    // for i in urange(receipt_book.length):
     frame_dig 3
     intc_1 // 1
     +
@@ -1433,7 +1433,7 @@ claim_unencumbered_bids_after_if_else@5:
 
 claim_unencumbered_bids_else_body@4:
     // smart_contracts/digital_marketplace/contract.py:210
-    // self.deposited[Txn.sender] += bid_receipts[i].amount.native
+    // self.deposited[Txn.sender] += receipt_book[i].amount.native
     txn Sender
     dup
     intc_0 // 0
@@ -1451,13 +1451,13 @@ claim_unencumbered_bids_else_body@4:
 
 claim_unencumbered_bids_after_for@7:
     // smart_contracts/digital_marketplace/contract.py:212
-    // if encumbered_bid_receipts:
+    // if encumbered_receipts:
     frame_dig 1
     bytec_2 // 0x0000
     !=
     bz claim_unencumbered_bids_else_body@9
     // smart_contracts/digital_marketplace/contract.py:213
-    // self.receipt_book[arc4.Address(Txn.sender)] = encumbered_bid_receipts.copy()
+    // self.receipt_book[arc4.Address(Txn.sender)] = encumbered_receipts.copy()
     bytec_3 // "receipt_book"
     txn Sender
     concat
@@ -1519,7 +1519,7 @@ get_total_and_unencumbered_bids:
     // unencumbered_bids = UInt64(0)
     dup
     // smart_contracts/digital_marketplace/contract.py:223
-    // bid_receipts = self.receipt_book[arc4.Address(Txn.sender)].copy()
+    // receipt_book = self.receipt_book[arc4.Address(Txn.sender)].copy()
     bytec_3 // "receipt_book"
     txn Sender
     concat
@@ -1529,20 +1529,20 @@ get_total_and_unencumbered_bids:
     uncover 2
     assert // check self.receipt_book entry exists
     // smart_contracts/digital_marketplace/contract.py:225
-    // for i in urange(bid_receipts.length):
+    // for i in urange(receipt_book.length):
     intc_0 // 0
     extract_uint16
     intc_0 // 0
 
 get_total_and_unencumbered_bids_for_header@1:
     // smart_contracts/digital_marketplace/contract.py:225
-    // for i in urange(bid_receipts.length):
+    // for i in urange(receipt_book.length):
     frame_dig 6
     frame_dig 5
     <
     bz get_total_and_unencumbered_bids_after_for@6
     // smart_contracts/digital_marketplace/contract.py:226
-    // total_bids += bid_receipts[i].amount.native
+    // total_bids += receipt_book[i].amount.native
     frame_dig 4
     extract 2 0
     frame_dig 6
@@ -1559,14 +1559,14 @@ get_total_and_unencumbered_bids_for_header@1:
     +
     frame_bury 2
     // smart_contracts/digital_marketplace/contract.py:227
-    // if not self.is_encumbered(bid_receipts[i].copy()):
+    // if not self.is_encumbered(receipt_book[i].copy()):
     callsub is_encumbered
     pop
     frame_dig 3
     frame_bury 1
     bnz get_total_and_unencumbered_bids_after_if_else@4
     // smart_contracts/digital_marketplace/contract.py:228
-    // unencumbered_bids += bid_receipts[i].amount.native
+    // unencumbered_bids += receipt_book[i].amount.native
     frame_dig 3
     frame_dig 0
     +
@@ -1576,7 +1576,7 @@ get_total_and_unencumbered_bids_after_if_else@4:
     frame_dig 1
     frame_bury 3
     // smart_contracts/digital_marketplace/contract.py:225
-    // for i in urange(bid_receipts.length):
+    // for i in urange(receipt_book.length):
     frame_dig 6
     intc_1 // 1
     +
