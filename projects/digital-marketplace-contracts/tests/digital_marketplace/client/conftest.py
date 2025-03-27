@@ -17,6 +17,7 @@ from algokit_utils import (
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     AcceptBidArgs,
     BidArgs,
+    BuyArgs,
     DepositArgs,
     DigitalMarketplaceClient,
     DigitalMarketplaceFactory,
@@ -287,4 +288,28 @@ def scenario_accept_first_bid(
             extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
         ),
         send_params=SendParams(populate_app_call_resources=True),
+    )
+
+
+@pytest.fixture(scope="function")
+def scenario_first_bid_buy_both_sales(
+    asset_to_sell: int,
+    digital_marketplace_client: DigitalMarketplaceClient,
+    scenario_first_seller_first_bidder_bid: Callable,
+    first_seller: SigningAccount,
+    second_seller: SigningAccount,
+    buyer: SigningAccount,
+) -> None:
+    digital_marketplace_client.new_group().buy(
+        BuyArgs(sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell)),
+        params=CommonAppCallParams(
+            extra_fee=AlgoAmount(micro_algo=1_000), sender=buyer.address
+        ),
+    ).buy(
+        BuyArgs(sale_key=SaleKey(owner=second_seller.address, asset=asset_to_sell)),
+        params=CommonAppCallParams(
+            extra_fee=AlgoAmount(micro_algo=1_000), sender=buyer.address
+        ),
+    ).send(
+        send_params=SendParams(populate_app_call_resources=True)
     )

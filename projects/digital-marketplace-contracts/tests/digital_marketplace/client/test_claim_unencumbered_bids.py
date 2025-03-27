@@ -254,3 +254,30 @@ def test_fail_bid_was_accepted_to_empty(
         dm_client.send.claim_unencumbered_bids(
             send_params=SendParams(populate_app_call_resources=True)
         )
+
+
+def test_pass_reopened_sale_is_still_unencumbered(
+    asset_to_sell: int,
+    dm_client: DigitalMarketplaceClient,
+    scenario_first_bid_buy_both_sales: Callable,
+    scenario_open_sale: Callable,
+    first_seller: SigningAccount,
+    buyer: SigningAccount,
+    first_bidder: SigningAccount,
+) -> None:
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+        [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
+    ]
+    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
+
+    dm_client.send.claim_unencumbered_bids(
+        send_params=SendParams(populate_app_call_resources=True)
+    )
+
+    with pytest.raises(AlgodHTTPError, match="box not found"):
+        _ = dm_client.state.box.receipt_book.get_value(first_bidder.address)
+    assert (
+        dm_client.state.local_state(first_bidder.address).deposited
+        - deposited_before_call
+        == (cst.AMOUNT_TO_BID + cst.RECEIPT_BOOK_BOX_MBR).micro_algo
+    )
