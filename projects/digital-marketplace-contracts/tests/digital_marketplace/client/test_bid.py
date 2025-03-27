@@ -28,13 +28,16 @@ def dm_client(
     return digital_marketplace_client.clone(default_sender=first_bidder.address)
 
 
-def test_pass_first_bid_receipt_is_first_bid(
+def test_pass_first_bid(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
     first_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
+    """
+    Test that the first bid on a sale succeeds and updates the local state correctly.
+    """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
     assert dm_client.state.box.sales.get_value(sale_key).bid == []
     with pytest.raises(AlgodHTTPError, match="box not found"):
@@ -65,7 +68,7 @@ def test_pass_first_bid_receipt_is_first_bid(
     )
 
 
-def test_pass_first_bid_receipt_is_outbid(
+def test_pass_second_bid_is_outbid(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
@@ -74,6 +77,9 @@ def test_pass_first_bid_receipt_is_outbid(
     first_bidder: SigningAccount,
     second_bidder: SigningAccount,
 ) -> None:
+    """
+    Test that a second bid on a sale outbids the first bid and updates the local state correctly.
+    """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
         [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
@@ -113,6 +119,9 @@ def test_fail_worse_bid(
     first_seller: SigningAccount,
     second_bidder: SigningAccount,
 ) -> None:
+    """
+    Test that a bid fails if it is worse than the current highest bid.
+    """
     with pytest.raises(LogicError, match=err.WORSE_BID):
         dm_client.send.bid(
             BidArgs(
@@ -131,6 +140,9 @@ def test_fail_same_bid(
     first_seller: SigningAccount,
     second_bidder: SigningAccount,
 ) -> None:
+    """
+    Test that a bid fails if it is the same as the current highest bid.
+    """
     with pytest.raises(LogicError, match=err.WORSE_BID):
         dm_client.send.bid(
             BidArgs(
@@ -142,7 +154,7 @@ def test_fail_same_bid(
         )
 
 
-def test_pass_multiple_bid_receipt(
+def test_pass_multiple_bid(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
@@ -151,6 +163,9 @@ def test_pass_multiple_bid_receipt(
     second_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
+    """
+    Test that multiple bids on different sales succeed and update the local state correctly.
+    """
     first_sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
     second_sale_key = SaleKey(owner=second_seller.address, asset=asset_to_sell)
     assert dm_client.state.box.sales.get_value(first_sale_key).bid == []
@@ -192,7 +207,7 @@ def test_pass_multiple_bid_receipt(
     )
 
 
-def test_pass_repeatedly_bid_receipt(
+def test_pass_repeated_bid(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
@@ -200,6 +215,9 @@ def test_pass_repeatedly_bid_receipt(
     first_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
+    """
+    Test that a repeated bid on the same sale succeeds and updates the local state correctly.
+    """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
 
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
@@ -234,7 +252,7 @@ def test_pass_repeatedly_bid_receipt(
     )
 
 
-def test_pass_repeatedly_bid_receipt_exact_deposited(
+def test_pass_repeated_bid_exact_deposit(
     asset_to_sell: int,
     dm_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
@@ -242,7 +260,9 @@ def test_pass_repeatedly_bid_receipt_exact_deposited(
     first_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
-    # TODO: Write docstrings for all tests
+    """
+    Test that a repeated bid with an exact deposit amount succeeds and updates the local state correctly.
+    """
     # Here we want to up our bid by 1 microALGO and we want to have exactly 1 microALGO in the balance.
     # This test verifies that, when you are overwriting one of your own bids,
     #  you get your money back before giving the new bid amount again.
@@ -303,6 +323,9 @@ def test_fail_seller_cannot_be_bidder(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that a seller cannot place a bid on their own sale.
+    """
     with pytest.raises(LogicError, match=err.SELLER_CANT_BE_BIDDER):
         digital_marketplace_client.send.bid(
             BidArgs(

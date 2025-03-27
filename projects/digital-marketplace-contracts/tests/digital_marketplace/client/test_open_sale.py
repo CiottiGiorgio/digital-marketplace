@@ -34,6 +34,10 @@ def test_fail_diff_sender_open_sale(
     first_seller: SigningAccount,
     second_seller: SigningAccount,
 ) -> None:
+    """
+    Test that opening a sale fails if the sender of the asset transfer transaction
+    is different from the sender of the app call.
+    """
     with pytest.raises(LogicError, match=err.DIFFERENT_SENDER):
         dm_client.send.open_sale(
             OpenSaleArgs(
@@ -61,6 +65,10 @@ def test_fail_wrong_receiver_open_sale(
     first_seller: SigningAccount,
     second_seller: SigningAccount,
 ) -> None:
+    """
+    Test that opening a sale fails if the receiver of the asset transfer transaction
+    is not the digital marketplace application.
+    """
     with pytest.raises(LogicError, match=err.WRONG_RECEIVER):
         dm_client.send.open_sale(
             OpenSaleArgs(
@@ -86,6 +94,9 @@ def test_fail_not_enough_deposited_open_sale(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that opening a sale fails if the caller has not deposited enough funds.
+    """
     dm_client.new_group().opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
@@ -127,6 +138,9 @@ def test_fail_sale_already_exists_open_sale(
     first_seller: SigningAccount,
     second_seller: SigningAccount,
 ) -> None:
+    """
+    Test that opening a sale fails if a sale for the asset already exists.
+    """
     with pytest.raises(LogicError, match=err.SALE_ALREADY_EXISTS):
         dm_client.send.open_sale(
             OpenSaleArgs(
@@ -152,6 +166,9 @@ def test_pass_open_sale(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that opening a sale succeeds and updates the local state correctly.
+    """
     mbr_before_call = algorand_client.account.get_information(
         dm_client.app_address
     ).min_balance

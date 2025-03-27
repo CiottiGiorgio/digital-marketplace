@@ -39,6 +39,9 @@ def test_fail_not_enough_deposited_buy(
     first_seller: SigningAccount,
     random_account: SigningAccount,
 ) -> None:
+    """
+    Test that buying an asset fails if the buyer has not deposited enough funds.
+    """
     dm_client.new_group().add_transaction(
         algorand_client.create_transaction.asset_opt_in(
             AssetOptInParams(sender=random_account.address, asset_id=asset_to_sell)
@@ -75,6 +78,9 @@ def test_pass_buy(
     buyer: SigningAccount,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that buying an asset succeeds and updates the local state correctly.
+    """
     seller_deposited_before_call = dm_client.state.local_state(
         first_seller.address
     ).deposited
@@ -127,6 +133,9 @@ def test_fail_seller_cannot_be_buyer(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that a seller cannot buy their own asset.
+    """
     with pytest.raises(LogicError, match=err.SELLER_CANT_BE_BUYER):
         digital_marketplace_client.send.buy(
             BuyArgs(

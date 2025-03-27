@@ -27,6 +27,9 @@ def test_fail_already_opted_into_sponsor_asset(
     scenario_sponsor_asset: Callable,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that sponsoring an asset fails if the application has already opted into the asset.
+    """
     with pytest.raises(LogicError, match=err.ALREADY_OPTED_IN):
         dm_client.send.sponsor_asset(
             SponsorAssetArgs(asset=asset_to_sell),
@@ -41,6 +44,9 @@ def test_fail_clawback_sponsor_asset(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that sponsoring an asset fails if the asset has a clawback address.
+    """
     result = algorand_client.send.asset_create(
         AssetCreateParams(
             sender=first_seller.address,
@@ -63,6 +69,9 @@ def test_fail_not_enough_deposited_sponsor_asset(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that sponsoring an asset fails if the caller has not deposited enough funds.
+    """
     dm_client.send.opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
@@ -86,6 +95,9 @@ def test_pass_sponsor_asset(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that sponsoring an asset succeeds and updates the deposited field correctly.
+    """
     deposited_before_call = dm_client.state.local_state(first_seller.address).deposited
 
     dm_client.send.sponsor_asset(

@@ -27,6 +27,10 @@ def test_pass_noop_accept_bid(
     first_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
+    """
+    Test accepting a bid, ensuring the bid is processed correctly
+    and the state is updated as expected.
+    """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
 
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
@@ -84,6 +88,10 @@ def test_pass_opt_in_accept_bid(
     first_seller: SigningAccount,
     first_bidder: SigningAccount,
 ) -> None:
+    """
+    Test accepting a bid with opting in, ensuring the bid is processed correctly
+    and the state is updated as expected.
+    """
     dm_client.send.clear_state()
 
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
@@ -142,6 +150,10 @@ def test_pass_unencumbered_bid_survives(
     first_bidder: SigningAccount,
     second_bidder: SigningAccount,
 ) -> None:
+    """
+    Test that an unencumbered bid survives after accepting a bid, ensuring the state
+    is updated correctly and the appropriate bid remains.
+    """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
 
     assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [

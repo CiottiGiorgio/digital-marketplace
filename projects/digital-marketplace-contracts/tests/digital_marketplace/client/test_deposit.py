@@ -22,6 +22,10 @@ def test_fail_diff_sender_opt_in_deposit(
     first_seller: SigningAccount,
     random_account: SigningAccount,
 ) -> None:
+    """
+    Test that an opt-in deposit fails if the sender of the payment transaction
+    is different from the sender of the app call.
+    """
     with pytest.raises(LogicError, match=err.DIFFERENT_SENDER):
         dm_client.send.opt_in.deposit(
             DepositArgs(
@@ -44,6 +48,10 @@ def test_fail_wrong_receiver_opt_in_deposit(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that an opt-in deposit fails if the receiver of the payment transaction
+    is not the digital marketplace application.
+    """
     with pytest.raises(LogicError, match=err.WRONG_RECEIVER):
         dm_client.send.opt_in.deposit(
             DepositArgs(
@@ -66,6 +74,10 @@ def test_pass_noop_and_opt_in_deposit(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that an opt-in deposit followed by a regular deposit succeeds and
+    updates the local state of the first seller correctly.
+    """
     dm_client.send.opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(

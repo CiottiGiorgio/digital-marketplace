@@ -26,6 +26,9 @@ def test_pass_noop_close_sale(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that closing a sale without any bids succeeds and updates the local state correctly.
+    """
     mbr_before_call = algorand_client.account.get_information(
         dm_client.app_address
     ).min_balance
@@ -74,6 +77,9 @@ def test_pass_opt_in_close_sale(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that closing a sale after opting in succeeds and updates the local state correctly.
+    """
     dm_client.send.clear_state()
 
     mbr_before_call = algorand_client.account.get_information(

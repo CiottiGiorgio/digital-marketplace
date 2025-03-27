@@ -25,6 +25,9 @@ def test_fail_overdraft_withdraw(
     algorand_client: AlgorandClient,
     random_account: SigningAccount,
 ) -> None:
+    """
+    Test that a withdrawal fails if the amount to withdraw exceeds the deposited amount.
+    """
     dm_client.send.opt_in.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
@@ -54,6 +57,9 @@ def test_pass_noop_partial_withdraw(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that a partial withdrawal succeeds and updates the deposited field correctly.
+    """
     balance_before_call = algorand_client.account.get_information(
         first_seller.address
     ).amount
@@ -82,6 +88,9 @@ def test_pass_noop_full_withdraw(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that a full withdrawal succeeds and updates the local state correctly.
+    """
     balance_before_call = algorand_client.account.get_information(
         first_seller.address
     ).amount
@@ -105,6 +114,9 @@ def test_pass_close_out_withdraw(
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
 ) -> None:
+    """
+    Test that a close-out withdraw succeeds and removes the local state.
+    """
     balance_before_call = algorand_client.account.get_information(
         first_seller.address
     ).amount
