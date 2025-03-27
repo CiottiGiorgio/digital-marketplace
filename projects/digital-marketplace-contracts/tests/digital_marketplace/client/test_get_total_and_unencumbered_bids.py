@@ -3,7 +3,6 @@ from typing import Callable
 import consts as cst
 import pytest
 from algokit_utils import (
-    LogicError,
     SigningAccount,
 )
 
@@ -18,17 +17,6 @@ def dm_client(
     digital_marketplace_client: DigitalMarketplaceClient, first_bidder: SigningAccount
 ) -> DigitalMarketplaceClient:
     return digital_marketplace_client.clone(default_sender=first_bidder.address)
-
-
-def test_fail_no_bids(
-    dm_client: DigitalMarketplaceClient,
-    scenario_open_sale: Callable,
-) -> None:
-    """
-    Test that claiming unencumbered bids fails when there are no bids.
-    """
-    with pytest.raises(LogicError):
-        dm_client.send.claim_unencumbered_bids()
 
 
 def test_pass_no_unencumbered_bids(
@@ -59,4 +47,17 @@ def test_pass_with_unencumbered_bids(
             total_bids=cst.AMOUNT_TO_BID.micro_algo,
             unencumbered_bids=cst.AMOUNT_TO_BID.micro_algo,
         )
+    )
+
+
+def test_pass_no_bids(
+    dm_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+) -> None:
+    """
+    Test that the total bids and unencumbered bids are zero when there are no bids.
+    """
+    assert (
+        dm_client.send.get_total_and_unencumbered_bids().abi_return
+        == UnencumberedBidsReceipt(total_bids=0, unencumbered_bids=0)
     )

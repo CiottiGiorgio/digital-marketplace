@@ -4,7 +4,7 @@
     "../../digital_marketplace/contract.py",
     "../../digital_marketplace/subroutines.py"
   ],
-  "mappings": "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",
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAwDA;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;;;AAAA;;;;;;;;;;;;;;;;;;;;;;AAAA;;AAkLK;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAlLL;;;AAkLK;;;AAAA;;AAjBA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;;;;;AAAA;AAAA;AAAA;AAAA;;AAnBA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;;AAAA;;AA7CA;;AAAA;AAAA;AAAA;;AAAA;AAjGL;;;AAAA;;;AAiGK;;;AAAA;;AAjBA;;AAAA;AAAA;AAAA;;AAAA;AAhFL;;;AAgFK;;;AAAA;;AAhBA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAhEL;;;AAAA;AAAA;;AAgEK;;;AAAA;;AApBA;;AAAA;AAAA;AAAA;;AAAA;AA5CL;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;AAAA;AAAA;;;AA4CK;;;AAAA;;AAfA;;AAAA;AAAA;AAAA;;AAAA;AA7BL;;;AAAA;AAAA;;AA6BK;;;AAAA;;AAXA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAlBL;;;AAkBK;;;AAAA;;AAXA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAPL;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAOK;;;AAAA;;AAPL;;AAAA;;;;;;;;;ACnDA;;;AAKQ;;AAEA;;AAFA;AAEK;;AAFL;AAMA;;AANA;AAQA;;AARA;AAQI;;AARJ;AAUA;;AAVA;AAYC;;AAZD;AAFW;;;AAAA;AAAR;;;AAAA;AAAP;AAgCJ;;;AAIoB;;AAAA;AAAA;AAAP;AAAA;;AAAA;;AAAA;AAAb;;;AACW;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;;AAAA;AAAX;;;AACmB;AAAP;;AAAA;;AAAA;;AAAA;;AAAA;;AAAA;AAFC;;AAAA;AAAA;AAAA;;;;;AAGF;AAAO;AAAd;;AAAA;;AAAA;;AAAA;;AAAA;ADgBJ;;;AAEe;;AAAA;;AAAkB;;AAAlB;AAAP;AAEI;;AAAA;;AAAoB;;AAApB;AADJ;AAKuB;;AAAnB;AAAA;AAAA;AAAuC;AAAvC;;AAAA;AAAoD;;AAAA;;AADzC;;AACX;;AAAA;AADJ;AAAA;AAAA;;AAIR;;;AAEW;;AAAX;;;AAC2B;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;AAA9B;AAAA;;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAEA;AAAsB;;;;;;AAAtB;;;AAAA;;;AAAA;;AAEA;AACa;;AAAkC;AAAf;AAAA;AAAA;AAAA;;;;;AADhC;;;AAAA;;;AAAA;;AAIZ;;;AAEmB;;AAAA;;AAAA;;AAAA;;AAAJ;AAAP;AAGO;;AAAA;;AAAA;AAAkB;;AAAlB;AAAP;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAA9B;AAAA;AAAA;AAAA;AAEA;AAEmB;;AACF;;;;;;;;;AAHjB;;;;AAAA;;;AAAA;;AAMR;;;AAIe;;AAAA;;AAAwB;;AAAxB;AAAP;AAEI;;AAAA;;AAAgC;;AAAhC;AADJ;AAKiB;;AAAyB;;AAAA;;AAAZ;AADnB;AAGA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAJ;AAAP;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA4C;;AAAd;;;AAA9B;AAAA;AAAA;AAAA;AAGgB;;AAAA;;AAAZ;AADmB;;AAAA;AAAA;;;;AAAA;AAC4B;AAD5B;AAAvB;;AAAA;;AAAA;;AAIR;;;AAEwC;;AAAa;;AAAA;AAAlC;AAEX;AAEmB;;AACF;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;;;;;;;;AAHjB;;;;AAAA;;;AAAA;AAOI;;AADyB;AAAA;AAAA;AACL;AADK;;AAAA;AAEX;;AAAd;;;AAFW;;AAAc;;AAAA;AAA7B;AAAA;AAAA;AAIA;;;AAER;;;AAEe;;AAAc;;AAAA;;;AAAd;AAAA;;AAAA;AAAP;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAA9B;;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AACA;;AAAA;AAAA;AAAA;AAAA;AAAyC;;AAAA;AAAA;AAAA;;AAAA;AAEX;;AAAd;;;AAFyB;AAAzC;AAAA;;AAAA;AAAA;;AAAA;AAIA;AACe;;AAAA;;AAAA;AACI;;AACF;;AAAA;AAAA;AAAA;AAAA;;;;;;;AAHjB;;;;AAAA;;;AAAA;AAMA;;;AAER;;;;;;;AAEmC;;AAA3B;;AACU;;AAAA;AAAA;AAEY;;AAAA;;;AAAf;AAAP;AAEiB;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AACd;AAAA;AAAX;;;AAEgB;;AAAA;;;AAAA;;AAAA;AAAkC;;AAAA;AAAlC;AADJ;AAIA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;AAIc;;AAAA;;AAAA;AAAA;;AACf;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAX;;;AAEgB;;AAAA;AAAA;AADW;;AAAA;;;AAAA;;AAAA;;AAG3B;;;AAC+B;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;AAAA;;AAAA;AAAA;AAAA;;;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAA;AAA9B;;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAGA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;AASO;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;AAA9B;AAAA;AAAA;AAAA;;AAPQ;;AAAA;AAAA;AAAA;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;;AAAA;;AAAA;;;;AAEW;;AAAf;AAAA;AAAA;AAAA;AAAA;AC1JD;;AD0JC;AAAA;AAAA;AAAA;AACiC;;;;AAAA;;AAAA;AAAjC;;AAAA;AAAA;;AAAA;AAAA;;;;AAhBA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;;AAAA;;AAAA;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;;;;AAsBZ;;;AAG6B;;AAAA;;;AAAjB;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;;;AACS;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAL;AAAA;AADJ;;;AAEI;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;;AAAA;;;AAA0D;;AAA1D;AAFJ;;;;AADJ;;AAAA;;AAAA;;;;;AAMR;;;AAEwD;;AAAnB;AAAA;AAAA;AAA+B;AAA/B;;AAAA;AAAd;;AAAf;AAAA;;AAAA;AAEe;AAA+B;;AAA/B;AAAA;AAAA;AAAA;AAAA;;AAAA;AACO;AAAA;AAEN;AAAA;AAAP;AAAA;;AAAA;;AAAA;AAAjB;;;AACkC;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAnB;;;AAAA;AAAf;;;AACgB;;AAAA;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;AAAA;;AAFC;;AAAA;AAAA;AAAA;;;;;AAIc;;AAAf;AAAA;AAAA;AAAA;AAAA;AAA8B;;AAAA;;AAAA;AAA9B;AAAA;AAAA;AAAA;;;;AAEL;;AAAA;AAAA;AAAX;;;AACY;AAA+B;;AAA/B;AAAA;AAAA;;AAAA;;AAAA;;AAEe;;AAAf;AAAA;AAAA;AAAA;AAAA;ACzLD;;ADyLC;AAAA;AAAA;AAAA;AACI;AAA+B;;AAA/B;AAAJ;;;AAEZ;;;;;;;;AAEqB;AAAb;;AAGG;AAAqC;;AAArC;AAAA;AAAA;;;;;AAAX;;;AAC2B;AAA+B;;AAA/B;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;AAEC;AAAA;AAAA;;AAAP;AAAL;;AAAK;;AAAA;;AAAA;AAArB;;;AAC8B;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;AAAd;;AAAA;AAAA;;AACO;;;AAAA;;;;;AAAJ;;;AACC;;AAAA;;AAAA;;;;;;;AAHC;;AAAA;AAAA;AAAA;;;;;;;;;;;;;;;;;AAMT;AAAyB;AAAA;AADtB;AAAP;;AAAA;AAIR;;;;AAE8C;;AAA3B;;AAAA;AACJ;AAAA;;AAAA;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;AACY;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;;;AAAA;AAAA;;AAEc;;;AAAA;AAAA;;AAAlB;AAAA;AAAA;AAAA;AAAA;;AAAA;AAAA;AAAA;AAAA;;AAAA;;AAAA;AACA;AAAA;;AAAA;;;AAAA;;AAAA;AAAA;;AACf;AAEsB;AAAA;AACN;AAAA;AAAP;AAAA;;AAAA;;AAAA;AAAjB;;;AACe;;AAAA;;AAAA;;;;;AAAf;;;AACgB;;AAAA;;;AAA2B;;AAAA;;;AAAA;;AAAA;AAAA;AAAA;AAAA;AAA3B;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;;;AAAA;AAAA;;;;;;;AAFC;;AAAA;AAAA;AAAA;;;;;AAIN;;AAAA;AAAA;AAAX;;;AACY;;AAAA;AAAA;;AAAA;;AAAA;AAMmB;;AAAnB;AAAA;AAAA;AAAuC;AAAvC;;AAAA;AACE;;AAAA;;AAAA;AADF;AAEgB;;AAAd;;;AAHS;;AACX;;AAAA;AADJ;AAAA;AAAA;AAKA;AACe;;AAAA;AAEE;;AAAA;AAAA;;;;;;;;;AAHjB;;;;AAAA;;;AAAA;AAMI;AAAA;;AAAA;AAAJ;;;AAdI;;AAAA;AAAA;AAAA;AAAA;AAAA;AC/ND;;AD+NC;AAAA;AAAA;AAAA;AACA;;AAAA;;",
   "op_pc_offset": 0,
   "pc_events": {
     "1": {
@@ -9823,28 +9823,37 @@
       "op": "proto 0 1"
     },
     "1374": {
-      "op": "pushbytes \"\"",
+      "op": "intc_0 // 0",
       "stack_out": [
-        "tmp%5#0"
+        "receipt_book#0"
       ]
     },
-    "1376": {
-      "op": "dup",
+    "1375": {
+      "op": "pushbytes \"\"",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9"
+        "receipt_book#0",
+        "i#0"
       ]
     },
     "1377": {
-      "op": "intc_0 // 0"
-    },
-    "1378": {
-      "op": "dup"
+      "op": "dupn 2",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0"
+      ]
     },
     "1379": {
-      "op": "bytec_3 // \"receipt_book\""
+      "op": "intc_0 // 0"
     },
     "1380": {
+      "op": "dupn 3"
+    },
+    "1382": {
+      "op": "bytec_3 // \"receipt_book\""
+    },
+    "1383": {
       "op": "txn Sender",
       "defined_out": [
         "\"receipt_book\"",
@@ -9853,15 +9862,19 @@
         "unencumbered_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
         "total_bids#0",
         "unencumbered_bids#0",
         "\"receipt_book\"",
         "tmp%0#0"
       ]
     },
-    "1382": {
+    "1385": {
       "op": "concat",
       "defined_out": [
         "tmp%1#0",
@@ -9869,494 +9882,749 @@
         "unencumbered_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
         "total_bids#0",
         "unencumbered_bids#0",
         "tmp%1#0"
       ]
     },
-    "1383": {
+    "1386": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%0#0",
-        "receipt_book#0",
+        "maybe_value%0#0",
         "total_bids#0",
         "unencumbered_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "maybe_value%0#0",
         "maybe_exists%0#0"
       ]
     },
-    "1384": {
-      "op": "swap",
+    "1387": {
+      "op": "bury 1",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "maybe_exists%0#0"
+      ]
+    },
+    "1389": {
+      "op": "swap",
+      "defined_out": [
         "maybe_exists%0#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "total_bids#0",
+        "maybe_exists%0#0",
+        "unencumbered_bids#10"
+      ]
+    },
+    "1390": {
+      "op": "cover 2",
+      "defined_out": [
+        "maybe_exists%0#0",
+        "total_bids#0",
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "maybe_exists%0#0"
+      ]
+    },
+    "1392": {
+      "op": "bz get_total_and_unencumbered_bids_after_if_else@8",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1395": {
+      "op": "bytec_3 // \"receipt_book\"",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "\"receipt_book\""
+      ]
+    },
+    "1396": {
+      "op": "txn Sender",
+      "defined_out": [
+        "\"receipt_book\"",
+        "tmp%2#0",
+        "total_bids#0",
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "\"receipt_book\"",
+        "tmp%2#0"
+      ]
+    },
+    "1398": {
+      "op": "concat",
+      "defined_out": [
+        "tmp%3#0",
+        "total_bids#0",
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%3#0"
+      ]
+    },
+    "1399": {
+      "op": "box_get",
+      "defined_out": [
+        "maybe_exists%1#0",
+        "receipt_book#0",
+        "total_bids#0",
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "receipt_book#0",
+        "maybe_exists%1#0"
+      ]
+    },
+    "1400": {
+      "op": "swap",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "maybe_exists%1#0",
         "receipt_book#0"
       ]
     },
-    "1385": {
+    "1401": {
       "op": "dup",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "maybe_exists%0#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "maybe_exists%1#0",
         "receipt_book#0",
         "receipt_book#0 (copy)"
       ]
     },
-    "1386": {
-      "op": "uncover 2",
-      "defined_out": [
-        "maybe_exists%0#0",
-        "receipt_book#0",
-        "total_bids#0",
-        "unencumbered_bids#0"
-      ],
+    "1402": {
+      "op": "cover 2",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "receipt_book#0",
-        "receipt_book#0",
-        "maybe_exists%0#0"
-      ]
-    },
-    "1388": {
-      "error": "check self.receipt_book entry exists",
-      "op": "assert // check self.receipt_book entry exists",
-      "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
-        "total_bids#0",
-        "unencumbered_bids#0",
-        "receipt_book#0",
+        "maybe_exists%1#0",
         "receipt_book#0"
       ]
     },
-    "1389": {
-      "op": "intc_0 // 0",
+    "1404": {
+      "op": "frame_bury 0",
+      "defined_out": [
+        "maybe_exists%1#0",
+        "receipt_book#0",
+        "total_bids#0",
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
+      ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "receipt_book#0",
+        "maybe_exists%1#0"
+      ]
+    },
+    "1406": {
+      "error": "check self.receipt_book entry exists",
+      "op": "assert // check self.receipt_book entry exists",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "receipt_book#0"
+      ]
+    },
+    "1407": {
+      "op": "intc_0 // 0",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "receipt_book#0",
         "0"
       ]
     },
-    "1390": {
+    "1408": {
       "op": "extract_uint16",
       "defined_out": [
         "receipt_book#0",
-        "tmp%2#0",
+        "tmp%4#0",
         "total_bids#0",
-        "unencumbered_bids#0"
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0"
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%4#0"
       ]
     },
-    "1391": {
+    "1409": {
+      "op": "frame_bury 2",
+      "defined_out": [
+        "receipt_book#0",
+        "tmp%4#0",
+        "total_bids#0",
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1411": {
       "op": "intc_0 // 0",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
+        "tmp%4#0",
         "total_bids#0",
-        "unencumbered_bids#0"
+        "total_bids#10",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "i#0"
       ]
     },
-    "1392": {
-      "block": "get_total_and_unencumbered_bids_for_header@1",
+    "1412": {
+      "op": "frame_bury 1",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1414": {
+      "block": "get_total_and_unencumbered_bids_for_header@2",
       "stack_in": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0"
+        "unencumbered_bids#10",
+        "total_bids#10"
       ],
-      "op": "frame_dig 6",
+      "op": "frame_dig 1",
       "defined_out": [
         "i#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "i#0"
       ]
     },
-    "1394": {
-      "op": "frame_dig 5",
+    "1416": {
+      "op": "frame_dig 2",
       "defined_out": [
         "i#0",
-        "tmp%2#0"
+        "tmp%4#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "i#0",
-        "i#0",
-        "tmp%2#0"
+        "tmp%4#0"
       ]
     },
-    "1396": {
+    "1418": {
       "op": "<",
       "defined_out": [
         "continue_looping%0#0",
         "i#0",
-        "tmp%2#0"
+        "tmp%4#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "continue_looping%0#0"
       ]
     },
-    "1397": {
-      "op": "bz get_total_and_unencumbered_bids_after_for@6",
+    "1419": {
+      "op": "bz get_total_and_unencumbered_bids_after_for@7",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0"
+        "unencumbered_bids#10",
+        "total_bids#10"
       ]
     },
-    "1400": {
-      "op": "frame_dig 4",
+    "1422": {
+      "op": "frame_dig 0",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0"
+        "tmp%4#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "receipt_book#0"
       ]
     },
-    "1402": {
+    "1424": {
       "op": "extract 2 0",
       "defined_out": [
         "array_head_and_tail%0#0",
         "i#0",
         "receipt_book#0",
-        "tmp%2#0"
+        "tmp%4#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "array_head_and_tail%0#0"
       ]
     },
-    "1405": {
-      "op": "frame_dig 6",
+    "1427": {
+      "op": "frame_dig 1",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "array_head_and_tail%0#0",
         "i#0"
       ]
     },
-    "1407": {
+    "1429": {
       "op": "intc_2 // 48",
       "defined_out": [
         "48",
         "array_head_and_tail%0#0",
         "i#0",
         "receipt_book#0",
-        "tmp%2#0"
+        "tmp%4#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "array_head_and_tail%0#0",
         "i#0",
         "48"
       ]
     },
-    "1408": {
+    "1430": {
       "op": "*",
       "defined_out": [
         "array_head_and_tail%0#0",
         "i#0",
         "item_offset%0#0",
         "receipt_book#0",
-        "tmp%2#0"
+        "tmp%4#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "array_head_and_tail%0#0",
         "item_offset%0#0"
       ]
     },
-    "1409": {
+    "1431": {
       "op": "intc_2 // 48",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "array_head_and_tail%0#0",
         "item_offset%0#0",
         "48"
       ]
     },
-    "1410": {
+    "1432": {
       "error": "Index access is out of bounds",
       "op": "extract3 // on error: Index access is out of bounds",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%3#0"
+        "tmp%4#0",
+        "tmp%5#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0"
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%5#0"
       ]
     },
-    "1411": {
+    "1433": {
       "op": "dup",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%3#0",
-        "tmp%3#0 (copy)"
+        "tmp%4#0",
+        "tmp%5#0",
+        "tmp%5#0 (copy)"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0",
-        "tmp%3#0 (copy)"
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%5#0",
+        "tmp%5#0 (copy)"
       ]
     },
-    "1412": {
+    "1434": {
       "op": "pushint 40 // 40",
       "defined_out": [
         "40",
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%3#0",
-        "tmp%3#0 (copy)"
+        "tmp%4#0",
+        "tmp%5#0",
+        "tmp%5#0 (copy)"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0",
-        "tmp%3#0 (copy)",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%5#0",
+        "tmp%5#0 (copy)",
         "40"
       ]
     },
-    "1414": {
+    "1436": {
       "op": "extract_uint64",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%3#0",
-        "tmp%5#0"
+        "tmp%4#0",
+        "tmp%5#0",
+        "tmp%7#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0",
-        "tmp%5#0"
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%5#0",
+        "tmp%7#0"
       ]
     },
-    "1415": {
+    "1437": {
       "op": "dup",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "tmp%5#0",
-        "tmp%5#0"
+        "tmp%7#0",
+        "tmp%7#0"
       ]
     },
-    "1416": {
-      "op": "frame_bury 0",
+    "1438": {
+      "op": "frame_bury 3",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%3#0",
-        "tmp%5#0"
+        "tmp%4#0",
+        "tmp%5#0",
+        "tmp%7#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0",
-        "tmp%5#0"
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%5#0",
+        "tmp%7#0"
       ]
     },
-    "1418": {
-      "op": "frame_dig 2",
+    "1440": {
+      "op": "frame_dig 4",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%3#0",
+        "tmp%4#0",
         "tmp%5#0",
+        "tmp%7#0",
         "total_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "tmp%5#0",
+        "tmp%7#0",
         "total_bids#0"
       ]
     },
-    "1420": {
+    "1442": {
       "op": "+",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%5#0",
         "total_bids#0"
       ]
     },
-    "1421": {
-      "op": "frame_bury 2",
+    "1443": {
+      "op": "frame_bury 4",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%3#0",
+        "tmp%4#0",
         "tmp%5#0",
+        "tmp%7#0",
         "total_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
-        "tmp%3#0"
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "tmp%5#0"
       ]
     },
-    "1423": {
+    "1445": {
       "callsub": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.is_encumbered",
       "op": "callsub is_encumbered",
       "defined_out": [
@@ -10364,212 +10632,225 @@
         "is_encumbered%0#0",
         "is_encumbered%1#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%5#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "is_encumbered%0#0",
         "is_encumbered%1#0"
       ]
     },
-    "1426": {
+    "1448": {
       "op": "pop",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "is_encumbered%0#0"
       ]
     },
-    "1427": {
-      "op": "frame_dig 3",
+    "1449": {
+      "op": "frame_dig 5",
       "defined_out": [
         "i#0",
         "is_encumbered%0#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%5#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
-        "unencumbered_bids#9"
+        "unencumbered_bids#10"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "is_encumbered%0#0",
-        "unencumbered_bids#9"
+        "unencumbered_bids#10"
       ]
     },
-    "1429": {
-      "op": "frame_bury 1",
+    "1451": {
+      "op": "frame_bury 6",
       "defined_out": [
         "i#0",
         "is_encumbered%0#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%5#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
-        "unencumbered_bids#9"
+        "unencumbered_bids#10"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "is_encumbered%0#0"
       ]
     },
-    "1431": {
-      "op": "bnz get_total_and_unencumbered_bids_after_if_else@4",
+    "1453": {
+      "op": "bnz get_total_and_unencumbered_bids_after_if_else@5",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0"
+        "unencumbered_bids#10",
+        "total_bids#10"
       ]
     },
-    "1434": {
-      "op": "frame_dig 3",
+    "1456": {
+      "op": "frame_dig 5",
       "defined_out": [
         "i#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "tmp%5#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "unencumbered_bids#9"
+        "unencumbered_bids#10"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "unencumbered_bids#0"
       ]
     },
-    "1436": {
-      "op": "frame_dig 0",
+    "1458": {
+      "op": "frame_dig 3",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "unencumbered_bids#0",
-        "tmp%5#0"
+        "tmp%7#0"
       ]
     },
-    "1438": {
+    "1460": {
       "op": "+",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
-        "total_bids#0",
-        "unencumbered_bids#0",
         "receipt_book#0",
-        "tmp%2#0",
         "i#0",
-        "unencumbered_bids#9"
-      ]
-    },
-    "1439": {
-      "op": "frame_bury 1",
-      "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0"
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "unencumbered_bids#10"
       ]
     },
-    "1441": {
-      "block": "get_total_and_unencumbered_bids_after_if_else@4",
+    "1461": {
+      "op": "frame_bury 6",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1463": {
+      "block": "get_total_and_unencumbered_bids_after_if_else@5",
       "stack_in": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
-        "total_bids#0",
-        "unencumbered_bids#0",
         "receipt_book#0",
-        "tmp%2#0",
-        "i#0"
-      ],
-      "op": "frame_dig 1",
-      "defined_out": [
-        "unencumbered_bids#0"
-      ],
-      "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
-        "total_bids#0",
-        "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
         "i#0",
-        "unencumbered_bids#0"
-      ]
-    },
-    "1443": {
-      "op": "frame_bury 3",
-      "defined_out": [
-        "unencumbered_bids#0"
-      ],
-      "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0"
-      ]
-    },
-    "1445": {
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ],
       "op": "frame_dig 6",
       "defined_out": [
+        "unencumbered_bids#0"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "unencumbered_bids#0"
+      ]
+    },
+    "1465": {
+      "op": "frame_bury 5",
+      "defined_out": [
+        "unencumbered_bids#0"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1467": {
+      "op": "frame_dig 1",
+      "defined_out": [
         "i#0",
         "unencumbered_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "i#0"
       ]
     },
-    "1447": {
+    "1469": {
       "op": "intc_1 // 1",
       "defined_out": [
         "1",
@@ -10577,108 +10858,210 @@
         "unencumbered_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "i#0",
         "1"
       ]
     },
-    "1448": {
+    "1470": {
       "op": "+",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
-        "total_bids#0",
-        "unencumbered_bids#0",
         "receipt_book#0",
-        "tmp%2#0",
         "i#0",
-        "i#0"
-      ]
-    },
-    "1449": {
-      "op": "frame_bury 6",
-      "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "i#0"
       ]
     },
-    "1451": {
-      "op": "b get_total_and_unencumbered_bids_for_header@1"
+    "1471": {
+      "op": "frame_bury 1",
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
     },
-    "1454": {
-      "block": "get_total_and_unencumbered_bids_after_for@6",
+    "1473": {
+      "op": "b get_total_and_unencumbered_bids_for_header@2"
+    },
+    "1476": {
+      "block": "get_total_and_unencumbered_bids_after_for@7",
       "stack_in": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0"
+        "unencumbered_bids#10",
+        "total_bids#10"
       ],
-      "op": "frame_dig 2",
+      "op": "frame_dig 5",
       "defined_out": [
-        "total_bids#0"
+        "unencumbered_bids#10"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "unencumbered_bids#10"
+      ]
+    },
+    "1478": {
+      "op": "frame_bury 6",
+      "defined_out": [
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
         "receipt_book#0",
-        "tmp%2#0",
         "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1480": {
+      "op": "frame_dig 4",
+      "defined_out": [
+        "total_bids#10",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1482": {
+      "op": "frame_bury 7",
+      "defined_out": [
+        "total_bids#10",
+        "unencumbered_bids#10"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ]
+    },
+    "1484": {
+      "block": "get_total_and_unencumbered_bids_after_if_else@8",
+      "stack_in": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10"
+      ],
+      "op": "frame_dig 6",
+      "defined_out": [
+        "unencumbered_bids#0"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "unencumbered_bids#0"
+      ]
+    },
+    "1486": {
+      "op": "frame_dig 7",
+      "defined_out": [
+        "total_bids#0",
+        "unencumbered_bids#0"
+      ],
+      "stack_out": [
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
+        "total_bids#0",
+        "unencumbered_bids#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "unencumbered_bids#0",
         "total_bids#0"
       ]
     },
-    "1456": {
+    "1488": {
       "op": "itob",
       "defined_out": [
         "total_bids#0",
+        "unencumbered_bids#0",
         "val_as_bytes%0#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
+        "unencumbered_bids#0",
         "val_as_bytes%0#0"
       ]
     },
-    "1457": {
-      "op": "frame_dig 3",
-      "defined_out": [
-        "total_bids#0",
-        "unencumbered_bids#0",
-        "val_as_bytes%0#0"
-      ],
+    "1489": {
+      "op": "swap",
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "val_as_bytes%0#0",
         "unencumbered_bids#0"
       ]
     },
-    "1459": {
+    "1490": {
       "op": "itob",
       "defined_out": [
         "total_bids#0",
@@ -10687,18 +11070,19 @@
         "val_as_bytes%1#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "val_as_bytes%0#0",
         "val_as_bytes%1#0"
       ]
     },
-    "1460": {
+    "1491": {
       "op": "concat",
       "defined_out": [
         "encoded_tuple_buffer%2#0",
@@ -10706,24 +11090,25 @@
         "unencumbered_bids#0"
       ],
       "stack_out": [
-        "tmp%5#0",
-        "unencumbered_bids#9",
+        "receipt_book#0",
+        "i#0",
+        "tmp%4#0",
+        "tmp%7#0",
         "total_bids#0",
         "unencumbered_bids#0",
-        "receipt_book#0",
-        "tmp%2#0",
-        "i#0",
+        "unencumbered_bids#10",
+        "total_bids#10",
         "encoded_tuple_buffer%2#0"
       ]
     },
-    "1461": {
+    "1492": {
       "op": "frame_bury 0"
     },
-    "1463": {
+    "1494": {
       "retsub": true,
       "op": "retsub"
     },
-    "1464": {
+    "1495": {
       "subroutine": "smart_contracts.digital_marketplace.contract.DigitalMarketplace.accept_bid",
       "params": {
         "asset#0": "bytes"
@@ -10732,13 +11117,13 @@
       "stack_in": [],
       "op": "proto 1 0"
     },
-    "1467": {
+    "1498": {
       "op": "intc_0 // 0",
       "stack_out": [
         "encumbered_receipts#9"
       ]
     },
-    "1468": {
+    "1499": {
       "op": "txn Sender",
       "defined_out": [
         "tmp%0#0"
@@ -10748,7 +11133,7 @@
         "tmp%0#0"
       ]
     },
-    "1470": {
+    "1501": {
       "op": "frame_dig -1",
       "defined_out": [
         "asset#0 (copy)",
@@ -10760,7 +11145,7 @@
         "asset#0 (copy)"
       ]
     },
-    "1472": {
+    "1503": {
       "op": "concat",
       "defined_out": [
         "sale_key#0"
@@ -10770,7 +11155,7 @@
         "sale_key#0"
       ]
     },
-    "1473": {
+    "1504": {
       "op": "bytec_1 // \"sales\"",
       "defined_out": [
         "\"sales\"",
@@ -10782,7 +11167,7 @@
         "\"sales\""
       ]
     },
-    "1474": {
+    "1505": {
       "op": "dig 1",
       "defined_out": [
         "\"sales\"",
@@ -10796,7 +11181,7 @@
         "sale_key#0 (copy)"
       ]
     },
-    "1476": {
+    "1507": {
       "op": "concat",
       "defined_out": [
         "sale_key#0",
@@ -10808,7 +11193,7 @@
         "tmp%1#0"
       ]
     },
-    "1477": {
+    "1508": {
       "op": "box_get",
       "defined_out": [
         "maybe_exists%0#0",
@@ -10822,7 +11207,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "1478": {
+    "1509": {
       "op": "swap",
       "stack_out": [
         "encumbered_receipts#9",
@@ -10831,7 +11216,7 @@
         "sale#0"
       ]
     },
-    "1479": {
+    "1510": {
       "op": "dup",
       "stack_out": [
         "encumbered_receipts#9",
@@ -10841,7 +11226,7 @@
         "sale#0 (copy)"
       ]
     },
-    "1480": {
+    "1511": {
       "op": "cover 2",
       "stack_out": [
         "encumbered_receipts#9",
@@ -10851,7 +11236,7 @@
         "sale#0"
       ]
     },
-    "1482": {
+    "1513": {
       "op": "cover 3",
       "defined_out": [
         "maybe_exists%0#0",
@@ -10866,7 +11251,7 @@
         "maybe_exists%0#0"
       ]
     },
-    "1484": {
+    "1515": {
       "error": "check self.sales entry exists",
       "op": "assert // check self.sales entry exists",
       "stack_out": [
@@ -10876,7 +11261,7 @@
         "sale#0"
       ]
     },
-    "1485": {
+    "1516": {
       "op": "dup",
       "defined_out": [
         "sale#0",
@@ -10891,7 +11276,7 @@
         "sale#0 (copy)"
       ]
     },
-    "1486": {
+    "1517": {
       "op": "intc_3 // 16",
       "defined_out": [
         "16",
@@ -10908,7 +11293,7 @@
         "16"
       ]
     },
-    "1487": {
+    "1518": {
       "op": "extract_uint16",
       "defined_out": [
         "item_start_offset%0#0",
@@ -10923,7 +11308,7 @@
         "item_start_offset%0#0"
       ]
     },
-    "1488": {
+    "1519": {
       "op": "dig 1",
       "stack_out": [
         "encumbered_receipts#9",
@@ -10934,7 +11319,7 @@
         "sale#0 (copy)"
       ]
     },
-    "1490": {
+    "1521": {
       "op": "len",
       "defined_out": [
         "item_end_offset%0#0",
@@ -10951,7 +11336,7 @@
         "item_end_offset%0#0"
       ]
     },
-    "1491": {
+    "1522": {
       "op": "substring3",
       "defined_out": [
         "sale#0",
@@ -10965,7 +11350,7 @@
         "tmp%2#0"
       ]
     },
-    "1492": {
+    "1523": {
       "op": "extract 2 40",
       "defined_out": [
         "current_best_bid#0",
@@ -10979,7 +11364,7 @@
         "current_best_bid#0"
       ]
     },
-    "1495": {
+    "1526": {
       "op": "dup",
       "stack_out": [
         "encumbered_receipts#9",
@@ -10989,7 +11374,7 @@
         "current_best_bid#0"
       ]
     },
-    "1496": {
+    "1527": {
       "op": "cover 2",
       "defined_out": [
         "current_best_bid#0",
@@ -11004,7 +11389,7 @@
         "current_best_bid#0"
       ]
     },
-    "1498": {
+    "1529": {
       "error": "Index access is out of bounds",
       "op": "extract 0 32 // on error: Index access is out of bounds",
       "defined_out": [
@@ -11021,7 +11406,7 @@
         "tmp%4#0"
       ]
     },
-    "1501": {
+    "1532": {
       "op": "dup",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11032,7 +11417,7 @@
         "tmp%4#0"
       ]
     },
-    "1502": {
+    "1533": {
       "op": "cover 2",
       "defined_out": [
         "current_best_bid#0",
@@ -11049,7 +11434,7 @@
         "tmp%4#0"
       ]
     },
-    "1504": {
+    "1535": {
       "op": "bytec_3 // \"receipt_book\"",
       "defined_out": [
         "\"receipt_book\"",
@@ -11068,7 +11453,7 @@
         "\"receipt_book\""
       ]
     },
-    "1505": {
+    "1536": {
       "op": "swap",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11080,7 +11465,7 @@
         "tmp%4#0"
       ]
     },
-    "1506": {
+    "1537": {
       "op": "concat",
       "defined_out": [
         "current_best_bid#0",
@@ -11098,7 +11483,7 @@
         "tmp%5#0"
       ]
     },
-    "1507": {
+    "1538": {
       "op": "dup",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11110,7 +11495,7 @@
         "tmp%5#0"
       ]
     },
-    "1508": {
+    "1539": {
       "op": "cover 2",
       "defined_out": [
         "current_best_bid#0",
@@ -11129,7 +11514,7 @@
         "tmp%5#0"
       ]
     },
-    "1510": {
+    "1541": {
       "op": "box_get",
       "defined_out": [
         "current_best_bid#0",
@@ -11151,7 +11536,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "1511": {
+    "1542": {
       "op": "swap",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11164,7 +11549,7 @@
         "receipt_book#0"
       ]
     },
-    "1512": {
+    "1543": {
       "op": "dup",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11178,7 +11563,7 @@
         "receipt_book#0 (copy)"
       ]
     },
-    "1513": {
+    "1544": {
       "op": "cover 2",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11192,7 +11577,7 @@
         "receipt_book#0"
       ]
     },
-    "1515": {
+    "1546": {
       "op": "cover 3",
       "defined_out": [
         "current_best_bid#0",
@@ -11215,7 +11600,7 @@
         "maybe_exists%1#0"
       ]
     },
-    "1517": {
+    "1548": {
       "error": "check self.receipt_book entry exists",
       "op": "assert // check self.receipt_book entry exists",
       "stack_out": [
@@ -11229,7 +11614,7 @@
         "receipt_book#0"
       ]
     },
-    "1518": {
+    "1549": {
       "op": "dup",
       "defined_out": [
         "current_best_bid#0",
@@ -11252,7 +11637,7 @@
         "receipt_book#0 (copy)"
       ]
     },
-    "1519": {
+    "1550": {
       "op": "uncover 2",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11266,7 +11651,7 @@
         "sale_key#0"
       ]
     },
-    "1521": {
+    "1552": {
       "callsub": "smart_contracts.digital_marketplace.subroutines.find_bid_receipt",
       "op": "callsub find_bid_receipt",
       "defined_out": [
@@ -11294,7 +11679,7 @@
         "sale_key#0"
       ]
     },
-    "1524": {
+    "1555": {
       "op": "cover 4",
       "defined_out": [
         "current_best_bid#0",
@@ -11321,7 +11706,7 @@
         "find_bid_receipt%2#0"
       ]
     },
-    "1526": {
+    "1557": {
       "op": "pop",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11336,7 +11721,7 @@
         "index#0"
       ]
     },
-    "1527": {
+    "1558": {
       "op": "cover 2",
       "defined_out": [
         "current_best_bid#0",
@@ -11361,7 +11746,7 @@
         "found#0"
       ]
     },
-    "1529": {
+    "1560": {
       "op": "assert",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11375,7 +11760,7 @@
         "receipt_book#0"
       ]
     },
-    "1530": {
+    "1561": {
       "op": "bytec_2 // 0x0000",
       "defined_out": [
         "current_best_bid#0",
@@ -11400,7 +11785,7 @@
         "encumbered_receipts#0"
       ]
     },
-    "1531": {
+    "1562": {
       "op": "swap",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11415,7 +11800,7 @@
         "receipt_book#0"
       ]
     },
-    "1532": {
+    "1563": {
       "op": "intc_0 // 0",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11431,7 +11816,7 @@
         "0"
       ]
     },
-    "1533": {
+    "1564": {
       "op": "extract_uint16",
       "defined_out": [
         "current_best_bid#0",
@@ -11457,7 +11842,7 @@
         "tmp%6#0"
       ]
     },
-    "1534": {
+    "1565": {
       "op": "intc_0 // 0",
       "defined_out": [
         "current_best_bid#0",
@@ -11485,7 +11870,7 @@
         "i#0"
       ]
     },
-    "1535": {
+    "1566": {
       "block": "accept_bid_for_header@1",
       "stack_in": [
         "encumbered_receipts#9",
@@ -11519,7 +11904,7 @@
         "i#0"
       ]
     },
-    "1537": {
+    "1568": {
       "op": "frame_dig 9",
       "defined_out": [
         "i#0",
@@ -11541,7 +11926,7 @@
         "tmp%6#0"
       ]
     },
-    "1539": {
+    "1570": {
       "op": "<",
       "defined_out": [
         "continue_looping%0#0",
@@ -11563,7 +11948,7 @@
         "continue_looping%0#0"
       ]
     },
-    "1540": {
+    "1571": {
       "op": "bz accept_bid_after_for@6",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11579,7 +11964,7 @@
         "i#0"
       ]
     },
-    "1543": {
+    "1574": {
       "op": "frame_dig 10",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11596,7 +11981,7 @@
         "i#0"
       ]
     },
-    "1545": {
+    "1576": {
       "op": "frame_dig 7",
       "defined_out": [
         "i#0",
@@ -11619,7 +12004,7 @@
         "index#0"
       ]
     },
-    "1547": {
+    "1578": {
       "op": "!=",
       "defined_out": [
         "i#0",
@@ -11642,7 +12027,7 @@
         "tmp%7#0"
       ]
     },
-    "1548": {
+    "1579": {
       "op": "frame_dig 8",
       "defined_out": [
         "encumbered_receipts#9",
@@ -11667,7 +12052,7 @@
         "encumbered_receipts#9"
       ]
     },
-    "1550": {
+    "1581": {
       "op": "frame_bury 0",
       "defined_out": [
         "encumbered_receipts#9",
@@ -11691,7 +12076,7 @@
         "tmp%7#0"
       ]
     },
-    "1552": {
+    "1583": {
       "op": "bz accept_bid_after_if_else@4",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11707,7 +12092,7 @@
         "i#0"
       ]
     },
-    "1555": {
+    "1586": {
       "op": "frame_dig 8",
       "defined_out": [
         "encumbered_receipts#0",
@@ -11731,7 +12116,7 @@
         "encumbered_receipts#0"
       ]
     },
-    "1557": {
+    "1588": {
       "op": "extract 2 0",
       "defined_out": [
         "encumbered_receipts#0",
@@ -11756,7 +12141,7 @@
         "expr_value_trimmed%0#0"
       ]
     },
-    "1560": {
+    "1591": {
       "op": "frame_dig 5",
       "defined_out": [
         "encumbered_receipts#0",
@@ -11783,7 +12168,7 @@
         "receipt_book#0"
       ]
     },
-    "1562": {
+    "1593": {
       "op": "extract 2 0",
       "defined_out": [
         "array_head_and_tail%1#0",
@@ -11811,7 +12196,7 @@
         "array_head_and_tail%1#0"
       ]
     },
-    "1565": {
+    "1596": {
       "op": "frame_dig 10",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11830,7 +12215,7 @@
         "i#0"
       ]
     },
-    "1567": {
+    "1598": {
       "op": "intc_2 // 48",
       "defined_out": [
         "48",
@@ -11861,7 +12246,7 @@
         "48"
       ]
     },
-    "1568": {
+    "1599": {
       "op": "*",
       "defined_out": [
         "array_head_and_tail%1#0",
@@ -11891,7 +12276,7 @@
         "item_offset%1#0"
       ]
     },
-    "1569": {
+    "1600": {
       "op": "intc_2 // 48",
       "stack_out": [
         "encumbered_receipts#9",
@@ -11911,7 +12296,7 @@
         "48"
       ]
     },
-    "1570": {
+    "1601": {
       "error": "Index access is out of bounds",
       "op": "extract3 // on error: Index access is out of bounds",
       "defined_out": [
@@ -11940,7 +12325,7 @@
         "tmp%8#0"
       ]
     },
-    "1571": {
+    "1602": {
       "op": "concat",
       "defined_out": [
         "concatenated%0#0",
@@ -11966,7 +12351,7 @@
         "concatenated%0#0"
       ]
     },
-    "1572": {
+    "1603": {
       "op": "dup",
       "defined_out": [
         "concatenated%0#0",
@@ -11994,7 +12379,7 @@
         "concatenated%0#0 (copy)"
       ]
     },
-    "1573": {
+    "1604": {
       "op": "len",
       "defined_out": [
         "byte_len%0#0",
@@ -12022,7 +12407,7 @@
         "byte_len%0#0"
       ]
     },
-    "1574": {
+    "1605": {
       "op": "intc_2 // 48",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12041,7 +12426,7 @@
         "48"
       ]
     },
-    "1575": {
+    "1606": {
       "op": "/",
       "defined_out": [
         "concatenated%0#0",
@@ -12069,7 +12454,7 @@
         "len_%0#0"
       ]
     },
-    "1576": {
+    "1607": {
       "op": "itob",
       "defined_out": [
         "as_bytes%0#0",
@@ -12097,7 +12482,7 @@
         "as_bytes%0#0"
       ]
     },
-    "1577": {
+    "1608": {
       "op": "extract 6 2",
       "defined_out": [
         "concatenated%0#0",
@@ -12125,7 +12510,7 @@
         "len_16_bit%0#0"
       ]
     },
-    "1580": {
+    "1611": {
       "op": "swap",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12143,7 +12528,7 @@
         "concatenated%0#0"
       ]
     },
-    "1581": {
+    "1612": {
       "op": "concat",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12160,7 +12545,7 @@
         "encumbered_receipts#9"
       ]
     },
-    "1582": {
+    "1613": {
       "op": "frame_bury 0",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12176,7 +12561,7 @@
         "i#0"
       ]
     },
-    "1584": {
+    "1615": {
       "block": "accept_bid_after_if_else@4",
       "stack_in": [
         "encumbered_receipts#9",
@@ -12210,7 +12595,7 @@
         "encumbered_receipts#0"
       ]
     },
-    "1586": {
+    "1617": {
       "op": "frame_bury 8",
       "defined_out": [
         "encumbered_receipts#0"
@@ -12229,7 +12614,7 @@
         "i#0"
       ]
     },
-    "1588": {
+    "1619": {
       "op": "frame_dig 10",
       "defined_out": [
         "encumbered_receipts#0",
@@ -12250,7 +12635,7 @@
         "i#0"
       ]
     },
-    "1590": {
+    "1621": {
       "op": "intc_1 // 1",
       "defined_out": [
         "1",
@@ -12273,7 +12658,7 @@
         "1"
       ]
     },
-    "1591": {
+    "1622": {
       "op": "+",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12290,7 +12675,7 @@
         "i#0"
       ]
     },
-    "1592": {
+    "1623": {
       "op": "frame_bury 10",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12306,10 +12691,10 @@
         "i#0"
       ]
     },
-    "1594": {
+    "1625": {
       "op": "b accept_bid_for_header@1"
     },
-    "1597": {
+    "1628": {
       "block": "accept_bid_after_for@6",
       "stack_in": [
         "encumbered_receipts#9",
@@ -12343,7 +12728,7 @@
         "encumbered_receipts#0"
       ]
     },
-    "1599": {
+    "1630": {
       "op": "bytec_2 // 0x0000",
       "defined_out": [
         "0x0000",
@@ -12365,7 +12750,7 @@
         "0x0000"
       ]
     },
-    "1600": {
+    "1631": {
       "op": "!=",
       "defined_out": [
         "encumbered_receipts#0",
@@ -12386,7 +12771,7 @@
         "tmp%9#0"
       ]
     },
-    "1601": {
+    "1632": {
       "op": "bz accept_bid_else_body@8",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12402,7 +12787,7 @@
         "i#0"
       ]
     },
-    "1604": {
+    "1635": {
       "op": "frame_dig 4",
       "defined_out": [
         "encumbered_receipts#0",
@@ -12423,7 +12808,7 @@
         "tmp%5#0"
       ]
     },
-    "1606": {
+    "1637": {
       "op": "dup",
       "defined_out": [
         "encumbered_receipts#0",
@@ -12446,7 +12831,7 @@
         "tmp%5#0 (copy)"
       ]
     },
-    "1607": {
+    "1638": {
       "op": "box_del",
       "defined_out": [
         "encumbered_receipts#0",
@@ -12469,7 +12854,7 @@
         "{box_del}"
       ]
     },
-    "1608": {
+    "1639": {
       "op": "pop",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12486,7 +12871,7 @@
         "tmp%5#0"
       ]
     },
-    "1609": {
+    "1640": {
       "op": "frame_dig 8",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12504,7 +12889,7 @@
         "encumbered_receipts#0"
       ]
     },
-    "1611": {
+    "1642": {
       "op": "box_put",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12520,7 +12905,7 @@
         "i#0"
       ]
     },
-    "1612": {
+    "1643": {
       "block": "accept_bid_after_if_else@9",
       "stack_in": [
         "encumbered_receipts#9",
@@ -12554,7 +12939,7 @@
         "tmp%15#0"
       ]
     },
-    "1614": {
+    "1645": {
       "op": "intc_0 // 0",
       "defined_out": [
         "0",
@@ -12576,7 +12961,7 @@
         "0"
       ]
     },
-    "1615": {
+    "1646": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -12600,7 +12985,7 @@
         "\"deposited\""
       ]
     },
-    "1616": {
+    "1647": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%3#0",
@@ -12622,7 +13007,7 @@
         "maybe_exists%3#0"
       ]
     },
-    "1617": {
+    "1648": {
       "op": "intc_0 // 0",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12641,7 +13026,7 @@
         "0"
       ]
     },
-    "1618": {
+    "1649": {
       "op": "cover 2",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12660,7 +13045,7 @@
         "maybe_exists%3#0"
       ]
     },
-    "1620": {
+    "1651": {
       "op": "select",
       "defined_out": [
         "state_get%0#0"
@@ -12680,7 +13065,7 @@
         "state_get%0#0"
       ]
     },
-    "1621": {
+    "1652": {
       "op": "frame_dig 2",
       "defined_out": [
         "current_best_bid#0",
@@ -12702,7 +13087,7 @@
         "current_best_bid#0"
       ]
     },
-    "1623": {
+    "1654": {
       "op": "pushint 32 // 32",
       "defined_out": [
         "32",
@@ -12726,7 +13111,7 @@
         "32"
       ]
     },
-    "1625": {
+    "1656": {
       "op": "extract_uint64",
       "defined_out": [
         "current_best_bid#0",
@@ -12749,7 +13134,7 @@
         "tmp%17#0"
       ]
     },
-    "1626": {
+    "1657": {
       "op": "+",
       "defined_out": [
         "current_best_bid#0",
@@ -12770,7 +13155,7 @@
         "tmp%18#0"
       ]
     },
-    "1627": {
+    "1658": {
       "op": "pushint 5 // 5",
       "defined_out": [
         "5",
@@ -12793,7 +13178,7 @@
         "5"
       ]
     },
-    "1629": {
+    "1660": {
       "callsub": "smart_contracts.digital_marketplace.subroutines.sales_box_mbr",
       "op": "callsub sales_box_mbr",
       "defined_out": [
@@ -12817,7 +13202,7 @@
         "tmp%20#0"
       ]
     },
-    "1632": {
+    "1663": {
       "op": "txn Sender",
       "defined_out": [
         "current_best_bid#0",
@@ -12842,7 +13227,7 @@
         "tmp%21#0"
       ]
     },
-    "1634": {
+    "1665": {
       "op": "cover 2",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12861,7 +13246,7 @@
         "tmp%20#0"
       ]
     },
-    "1636": {
+    "1667": {
       "op": "+",
       "defined_out": [
         "current_best_bid#0",
@@ -12884,10 +13269,10 @@
         "new_state_value%1#0"
       ]
     },
-    "1637": {
+    "1668": {
       "op": "bytec_0 // \"deposited\""
     },
-    "1638": {
+    "1669": {
       "op": "swap",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12906,7 +13291,7 @@
         "new_state_value%1#0"
       ]
     },
-    "1639": {
+    "1670": {
       "op": "app_local_put",
       "stack_out": [
         "encumbered_receipts#9",
@@ -12922,10 +13307,10 @@
         "i#0"
       ]
     },
-    "1640": {
+    "1671": {
       "op": "itxn_begin"
     },
-    "1641": {
+    "1672": {
       "op": "frame_dig -1",
       "defined_out": [
         "asset#0 (copy)",
@@ -12946,7 +13331,7 @@
         "asset#0 (copy)"
       ]
     },
-    "1643": {
+    "1674": {
       "op": "btoi",
       "defined_out": [
         "current_best_bid#0",
@@ -12967,7 +13352,7 @@
         "inner_txn_params%0%%param_XferAsset_idx_0#0"
       ]
     },
-    "1644": {
+    "1675": {
       "op": "frame_dig 1",
       "defined_out": [
         "current_best_bid#0",
@@ -12990,7 +13375,7 @@
         "sale#0"
       ]
     },
-    "1646": {
+    "1677": {
       "op": "intc_0 // 0",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13009,7 +13394,7 @@
         "0"
       ]
     },
-    "1647": {
+    "1678": {
       "op": "extract_uint64",
       "defined_out": [
         "current_best_bid#0",
@@ -13033,7 +13418,7 @@
         "inner_txn_params%0%%param_AssetAmount_idx_0#0"
       ]
     },
-    "1648": {
+    "1679": {
       "op": "itxn_field AssetAmount",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13050,7 +13435,7 @@
         "inner_txn_params%0%%param_XferAsset_idx_0#0"
       ]
     },
-    "1650": {
+    "1681": {
       "op": "frame_dig 3",
       "defined_out": [
         "current_best_bid#0",
@@ -13074,7 +13459,7 @@
         "tmp%4#0"
       ]
     },
-    "1652": {
+    "1683": {
       "op": "itxn_field AssetReceiver",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13091,7 +13476,7 @@
         "inner_txn_params%0%%param_XferAsset_idx_0#0"
       ]
     },
-    "1654": {
+    "1685": {
       "op": "itxn_field XferAsset",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13107,7 +13492,7 @@
         "i#0"
       ]
     },
-    "1656": {
+    "1687": {
       "op": "pushint 4 // axfer",
       "defined_out": [
         "axfer",
@@ -13130,7 +13515,7 @@
         "axfer"
       ]
     },
-    "1658": {
+    "1689": {
       "op": "itxn_field TypeEnum",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13146,7 +13531,7 @@
         "i#0"
       ]
     },
-    "1660": {
+    "1691": {
       "op": "intc_0 // 0",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13163,7 +13548,7 @@
         "0"
       ]
     },
-    "1661": {
+    "1692": {
       "op": "itxn_field Fee",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13179,10 +13564,10 @@
         "i#0"
       ]
     },
-    "1663": {
+    "1694": {
       "op": "itxn_submit"
     },
-    "1664": {
+    "1695": {
       "op": "bytec_1 // \"sales\"",
       "defined_out": [
         "\"sales\"",
@@ -13205,7 +13590,7 @@
         "\"sales\""
       ]
     },
-    "1665": {
+    "1696": {
       "op": "frame_dig 6",
       "defined_out": [
         "\"sales\"",
@@ -13230,7 +13615,7 @@
         "sale_key#0"
       ]
     },
-    "1667": {
+    "1698": {
       "op": "concat",
       "defined_out": [
         "current_best_bid#0",
@@ -13254,7 +13639,7 @@
         "tmp%23#0"
       ]
     },
-    "1668": {
+    "1699": {
       "op": "box_del",
       "defined_out": [
         "current_best_bid#0",
@@ -13278,7 +13663,7 @@
         "{box_del}"
       ]
     },
-    "1669": {
+    "1700": {
       "op": "pop",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13294,11 +13679,11 @@
         "i#0"
       ]
     },
-    "1670": {
+    "1701": {
       "retsub": true,
       "op": "retsub"
     },
-    "1671": {
+    "1702": {
       "block": "accept_bid_else_body@8",
       "stack_in": [
         "encumbered_receipts#9",
@@ -13332,7 +13717,7 @@
         "tmp%4#0"
       ]
     },
-    "1673": {
+    "1704": {
       "op": "dup",
       "defined_out": [
         "tmp%4#0",
@@ -13354,7 +13739,7 @@
         "tmp%4#0 (copy)"
       ]
     },
-    "1674": {
+    "1705": {
       "op": "intc_0 // 0",
       "defined_out": [
         "0",
@@ -13378,7 +13763,7 @@
         "0"
       ]
     },
-    "1675": {
+    "1706": {
       "op": "bytec_0 // \"deposited\"",
       "defined_out": [
         "\"deposited\"",
@@ -13404,7 +13789,7 @@
         "\"deposited\""
       ]
     },
-    "1676": {
+    "1707": {
       "op": "app_local_get_ex",
       "defined_out": [
         "maybe_exists%2#0",
@@ -13428,7 +13813,7 @@
         "maybe_exists%2#0"
       ]
     },
-    "1677": {
+    "1708": {
       "error": "check self.deposited exists for account",
       "op": "assert // check self.deposited exists for account",
       "stack_out": [
@@ -13447,7 +13832,7 @@
         "maybe_value%2#0"
       ]
     },
-    "1678": {
+    "1709": {
       "op": "intc 4 // 13135300",
       "defined_out": [
         "13135300",
@@ -13471,7 +13856,7 @@
         "13135300"
       ]
     },
-    "1680": {
+    "1711": {
       "op": "+",
       "defined_out": [
         "new_state_value%0#0",
@@ -13493,10 +13878,10 @@
         "new_state_value%0#0"
       ]
     },
-    "1681": {
+    "1712": {
       "op": "bytec_0 // \"deposited\""
     },
-    "1682": {
+    "1713": {
       "op": "swap",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13515,7 +13900,7 @@
         "new_state_value%0#0"
       ]
     },
-    "1683": {
+    "1714": {
       "op": "app_local_put",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13531,7 +13916,7 @@
         "i#0"
       ]
     },
-    "1684": {
+    "1715": {
       "op": "frame_dig 4",
       "defined_out": [
         "tmp%4#0",
@@ -13552,7 +13937,7 @@
         "tmp%5#0"
       ]
     },
-    "1686": {
+    "1717": {
       "op": "box_del",
       "defined_out": [
         "tmp%4#0",
@@ -13574,7 +13959,7 @@
         "{box_del}"
       ]
     },
-    "1687": {
+    "1718": {
       "op": "pop",
       "stack_out": [
         "encumbered_receipts#9",
@@ -13590,7 +13975,7 @@
         "i#0"
       ]
     },
-    "1688": {
+    "1719": {
       "op": "b accept_bid_after_if_else@9"
     }
   }

@@ -220,12 +220,13 @@ class DigitalMarketplace(ARC4Contract):
         total_bids = UInt64(0)
         unencumbered_bids = UInt64(0)
 
-        receipt_book = self.receipt_book[arc4.Address(Txn.sender)].copy()
+        if self.receipt_book.maybe(arc4.Address(Txn.sender))[1]:
+            receipt_book = self.receipt_book[arc4.Address(Txn.sender)].copy()
 
-        for i in urange(receipt_book.length):
-            total_bids += receipt_book[i].amount.native
-            if not self.is_encumbered(receipt_book[i].copy()):
-                unencumbered_bids += receipt_book[i].amount.native
+            for i in urange(receipt_book.length):
+                total_bids += receipt_book[i].amount.native
+                if not self.is_encumbered(receipt_book[i].copy()):
+                    unencumbered_bids += receipt_book[i].amount.native
 
         return UnencumberedBidsReceipt(
             arc4.UInt64(total_bids), arc4.UInt64(unencumbered_bids)
