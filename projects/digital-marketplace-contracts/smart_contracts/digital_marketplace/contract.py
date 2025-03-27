@@ -17,8 +17,8 @@ from algopy.arc4 import abimethod
 
 import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.digital_marketplace.subroutines import (
-    find_placed_bid,
-    placed_bids_box_mbr,
+    find_bid_receipt,
+    receipt_book_box_mbr,
     sales_box_mbr,
 )
 
@@ -44,9 +44,9 @@ class Sale(arc4.Struct):
     bid: arc4.DynamicArray[Bid]
 
 
-class PlacedBid(arc4.Struct):
+class BidReceipt(arc4.Struct):
     sale_key: SaleKey
-    bid_amount: arc4.UInt64
+    amount: arc4.UInt64
 
 
 class UnencumberedBidsReceipt(arc4.Struct):
@@ -59,7 +59,7 @@ class DigitalMarketplace(ARC4Contract):
         self.deposited = LocalState(UInt64)
 
         self.sales = BoxMap(SaleKey, Sale)
-        self.placed_bids = BoxMap(arc4.Address, arc4.DynamicArray[PlacedBid])
+        self.receipt_book = BoxMap(arc4.Address, arc4.DynamicArray[BidReceipt])
 
     @abimethod(allow_actions=["NoOp", "OptIn"])
     def deposit(self, payment: gtxn.PaymentTransaction) -> None:
@@ -168,28 +168,28 @@ class DigitalMarketplace(ARC4Contract):
         else:
             self.sales[sale_key].bid.append(new_bid.copy())
 
-        new_placed_bid = PlacedBid(sale_key.copy(), new_bid_amount)
-        if self.placed_bids.maybe(arc4_sender)[1]:
-            found, index = find_placed_bid(
-                self.placed_bids[arc4_sender].copy(), sale_key.copy()
+        new_bid_receipt = BidReceipt(sale_key.copy(), new_bid_amount)
+        if self.receipt_book.maybe(arc4_sender)[1]:
+            found, index = find_bid_receipt(
+                self.receipt_book[arc4_sender].copy(), sale_key.copy()
             )
             if found:
-                self.deposited[Txn.sender] += self.placed_bids[arc4_sender][
+                self.deposited[Txn.sender] += self.receipt_book[arc4_sender][
                     index
-                ].bid_amount.native
-                self.placed_bids[arc4_sender][index] = new_placed_bid.copy()
+                ].amount.native
+                self.receipt_book[arc4_sender][index] = new_bid_receipt.copy()
             else:
-                self.placed_bids[arc4_sender].append(new_placed_bid.copy())
+                self.receipt_book[arc4_sender].append(new_bid_receipt.copy())
         else:
-            self.deposited[Txn.sender] -= placed_bids_box_mbr()
-            self.placed_bids[arc4_sender] = arc4.DynamicArray[PlacedBid](
-                new_placed_bid.copy()
+            self.deposited[Txn.sender] -= receipt_book_box_mbr()
+            self.receipt_book[arc4_sender] = arc4.DynamicArray[BidReceipt](
+                new_bid_receipt.copy()
             )
 
         self.deposited[Txn.sender] -= new_bid_amount.native
 
     @subroutine
-    def is_encumbered(self, bid: PlacedBid) -> bool:
+    def is_encumbered(self, bid: BidReceipt) -> bool:
         return (
             self.sales.maybe(bid.sale_key)[1]
             and bool(self.sales.maybe(bid.sale_key)[0].bid)
@@ -200,32 +200,32 @@ class DigitalMarketplace(ARC4Contract):
     def claim_unencumbered_bids(self) -> None:
         self.deposited[Txn.sender] = self.deposited.get(Txn.sender, UInt64(0))
 
-        placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
-        encumbered_placed_bids = arc4.DynamicArray[PlacedBid]()
+        bid_receipts = self.receipt_book[arc4.Address(Txn.sender)].copy()
+        encumbered_bid_receipts = arc4.DynamicArray[BidReceipt]()
 
-        for i in urange(placed_bids.length):
-            if self.is_encumbered(placed_bids[i].copy()):
-                encumbered_placed_bids.append(placed_bids[i].copy())
+        for i in urange(bid_receipts.length):
+            if self.is_encumbered(bid_receipts[i].copy()):
+                encumbered_bid_receipts.append(bid_receipts[i].copy())
             else:
-                self.deposited[Txn.sender] += placed_bids[i].bid_amount.native
+                self.deposited[Txn.sender] += bid_receipts[i].amount.native
 
-        if encumbered_placed_bids:
-            self.placed_bids[arc4.Address(Txn.sender)] = encumbered_placed_bids.copy()
+        if encumbered_bid_receipts:
+            self.receipt_book[arc4.Address(Txn.sender)] = encumbered_bid_receipts.copy()
         else:
-            self.deposited[Txn.sender] += placed_bids_box_mbr()
-            del self.placed_bids[arc4.Address(Txn.sender)]
+            self.deposited[Txn.sender] += receipt_book_box_mbr()
+            del self.receipt_book[arc4.Address(Txn.sender)]
 
     @abimethod(readonly=True)
     def get_total_and_unencumbered_bids(self) -> UnencumberedBidsReceipt:
         total_bids = UInt64(0)
         unencumbered_bids = UInt64(0)
 
-        placed_bids = self.placed_bids[arc4.Address(Txn.sender)].copy()
+        bid_receipts = self.receipt_book[arc4.Address(Txn.sender)].copy()
 
-        for i in urange(placed_bids.length):
-            total_bids += placed_bids[i].bid_amount.native
-            if not self.is_encumbered(placed_bids[i].copy()):
-                unencumbered_bids += placed_bids[i].bid_amount.native
+        for i in urange(bid_receipts.length):
+            total_bids += bid_receipts[i].amount.native
+            if not self.is_encumbered(bid_receipts[i].copy()):
+                unencumbered_bids += bid_receipts[i].amount.native
 
         return UnencumberedBidsReceipt(
             arc4.UInt64(total_bids), arc4.UInt64(unencumbered_bids)

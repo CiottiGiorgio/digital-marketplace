@@ -1,6 +1,6 @@
 from algopy import UInt64, arc4, subroutine, urange
 
-from smart_contracts.digital_marketplace.contract import PlacedBid, SaleKey
+from smart_contracts.digital_marketplace.contract import BidReceipt, SaleKey
 
 
 @subroutine
@@ -26,7 +26,7 @@ def sales_box_mbr(prefix_length: UInt64) -> UInt64:
 
 
 @subroutine
-def placed_bids_box_mbr() -> UInt64:
+def receipt_book_box_mbr() -> UInt64:
     return UInt64(
         2_500
         + 400
@@ -39,10 +39,10 @@ def placed_bids_box_mbr() -> UInt64:
 
 
 @subroutine
-def find_placed_bid(
-    placed_bids: arc4.DynamicArray[PlacedBid], key: SaleKey
+def find_bid_receipt(
+    receipt: arc4.DynamicArray[BidReceipt], key: SaleKey
 ) -> tuple[bool, UInt64]:
-    for i in urange(placed_bids.length):
-        if placed_bids[i].sale_key == key:
+    for i in urange(receipt.length):
+        if receipt[i].sale_key == key:
             return True, i
     return False, UInt64(0)

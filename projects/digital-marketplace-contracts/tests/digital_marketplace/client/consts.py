@@ -18,4 +18,4 @@ SALES_BOX_BASE_MBR = AlgoAmount.from_micro_algo(
 )
 SALES_BOX_OPTIONAL_MBR = AlgoAmount(micro_algo=400 * (32 + 8))
 SALES_BOX_MBR = SALES_BOX_BASE_MBR + SALES_BOX_OPTIONAL_MBR
-PLACED_BIDS_BOX_MBR = AlgoAmount(micro_algo=2_500 + 400 * (64 + 32_768))
+RECEIPT_BOOK_BOX_MBR = AlgoAmount(micro_algo=2_500 + 400 * (64 + 32_768))

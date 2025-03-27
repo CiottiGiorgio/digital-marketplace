@@ -32,6 +32,9 @@ def test_pass_noop_accept_bid(
     assert dm_client.state.box.sales.get_value(sale_key).bid == [
         [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
     ]
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+        [[sale_key.owner, sale_key.asset], cst.AMOUNT_TO_BID]
+    ]
     deposited_before_call = dm_client.state.local_state(first_seller.address).deposited
     asa_balance_before_call = helpers.asa_amount(
         algorand_client,
@@ -47,6 +50,8 @@ def test_pass_noop_accept_bid(
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
         _ = dm_client.state.box.sales.get_value(sale_key)
+    with pytest.raises(AlgodHTTPError, match="box not found"):
+        _ = dm_client.state.box.receipt_book.get_value(first_bidder.address)
     assert (
         dm_client.state.local_state(first_seller.address).deposited
         - deposited_before_call
