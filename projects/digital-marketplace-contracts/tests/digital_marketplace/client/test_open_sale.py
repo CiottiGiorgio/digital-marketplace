@@ -14,9 +14,11 @@ from algokit_utils import (
     SigningAccount,
 )
 from algosdk.atomic_transaction_composer import TransactionWithSigner
+from algosdk.constants import ZERO_ADDRESS
 
 import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
+    Bid,
     DepositArgs,
     DigitalMarketplaceClient,
     OpenSaleArgs,
@@ -205,7 +207,7 @@ def test_pass_open_sale(
     assert (
         algorand_client.account.get_information(dm_client.app_address).min_balance
         - mbr_before_call
-        == cst.SALES_BOX_BASE_MBR
+        == cst.SALES_BOX_MBR
     )
     assert asa_balance - asa_balance_before_call == cst.ASA_AMOUNT_TO_SELL
     assert (
@@ -216,4 +218,8 @@ def test_pass_open_sale(
 
     assert dm_client.state.box.sales.get_value(
         SaleKey(owner=first_seller.address, asset=asset_to_sell)
-    ) == Sale(cst.ASA_AMOUNT_TO_SELL, cst.COST_TO_BUY.micro_algo, [])
+    ) == Sale(
+        cst.ASA_AMOUNT_TO_SELL,
+        cst.COST_TO_BUY.micro_algo,
+        Bid(bidder=ZERO_ADDRESS, amount=0),
+    )

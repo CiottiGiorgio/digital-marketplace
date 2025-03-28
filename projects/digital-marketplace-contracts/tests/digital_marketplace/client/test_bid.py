@@ -10,10 +10,12 @@ from algokit_utils import (
     SendParams,
     SigningAccount,
 )
+from algosdk.constants import ZERO_ADDRESS
 from algosdk.error import AlgodHTTPError
 
 import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
+    Bid,
     BidArgs,
     DigitalMarketplaceClient,
     SaleKey,
@@ -39,9 +41,11 @@ def test_pass_first_bid(
     Test that the first bid on a sale succeeds and updates the local state correctly.
     """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
-    assert dm_client.state.box.sales.get_value(sale_key).bid == []
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=ZERO_ADDRESS, amount=0
+    )
     with pytest.raises(AlgodHTTPError, match="box not found"):
-        _ = dm_client.state.box.receipt_book.get_value(first_bidder.address)
+        _ = dm_client.state.box.receipt_book.get_value(first_bidder.public_key)
     deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
 
     dm_client.send.bid(
@@ -52,10 +56,10 @@ def test_pass_first_bid(
         send_params=SendParams(populate_app_call_resources=True),
     )
 
-    assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
-    ]
-    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo
+    )
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.public_key) == [
         [
             [first_seller.address, asset_to_sell],
             cst.AMOUNT_TO_BID.micro_algo,
@@ -81,11 +85,11 @@ def test_pass_second_bid_is_outbid(
     Test that a second bid on a sale outbids the first bid and updates the local state correctly.
     """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
-    assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
-    ]
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo
+    )
     with pytest.raises(AlgodHTTPError, match="box not found"):
-        _ = dm_client.state.box.receipt_book.get_value(second_bidder.address)
+        _ = dm_client.state.box.receipt_book.get_value(second_bidder.public_key)
     deposited_before_call = dm_client.state.local_state(second_bidder.address).deposited
 
     dm_client.clone(default_sender=second_bidder.address).send.bid(
@@ -96,10 +100,10 @@ def test_pass_second_bid_is_outbid(
         send_params=SendParams(populate_app_call_resources=True),
     )
 
-    assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [second_bidder.address, cst.AMOUNT_TO_OUTBID.micro_algo]
-    ]
-    assert dm_client.state.box.receipt_book.get_value(second_bidder.address) == [
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=second_bidder.address, amount=cst.AMOUNT_TO_OUTBID.micro_algo
+    )
+    assert dm_client.state.box.receipt_book.get_value(second_bidder.public_key) == [
         [
             [first_seller.address, asset_to_sell],
             cst.AMOUNT_TO_OUTBID.micro_algo,
@@ -168,11 +172,15 @@ def test_pass_multiple_bid(
     """
     first_sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
     second_sale_key = SaleKey(owner=second_seller.address, asset=asset_to_sell)
-    assert dm_client.state.box.sales.get_value(first_sale_key).bid == []
-    assert dm_client.state.box.sales.get_value(second_sale_key).bid == []
+    assert dm_client.state.box.sales.get_value(first_sale_key).bid == Bid(
+        bidder=ZERO_ADDRESS, amount=0
+    )
+    assert dm_client.state.box.sales.get_value(second_sale_key).bid == Bid(
+        bidder=ZERO_ADDRESS, amount=0
+    )
 
     with pytest.raises(AlgodHTTPError, match="box not found"):
-        _ = dm_client.state.box.receipt_book.get_value(first_bidder.address)
+        _ = dm_client.state.box.receipt_book.get_value(first_bidder.public_key)
 
     deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
 
@@ -190,13 +198,13 @@ def test_pass_multiple_bid(
         send_params=SendParams(populate_app_call_resources=True)
     )
 
-    assert dm_client.state.box.sales.get_value(first_sale_key).bid == [
-        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
-    ]
-    assert dm_client.state.box.sales.get_value(second_sale_key).bid == [
-        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo]
-    ]
-    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+    assert dm_client.state.box.sales.get_value(first_sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo
+    )
+    assert dm_client.state.box.sales.get_value(second_sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo
+    )
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.public_key) == [
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
         [[second_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
     ]
@@ -220,13 +228,10 @@ def test_pass_repeated_bid(
     """
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
 
-    assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [
-            first_bidder.address,
-            cst.AMOUNT_TO_BID.micro_algo,
-        ]
-    ]
-    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo
+    )
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.public_key) == [
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
     ]
     deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
@@ -239,10 +244,10 @@ def test_pass_repeated_bid(
         send_params=SendParams(populate_app_call_resources=True),
     )
 
-    assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]
-    ]
-    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo + 1
+    )
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.public_key) == [
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo + 1],
     ]
     assert (
@@ -281,13 +286,10 @@ def test_pass_repeated_bid_exact_deposit(
 
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
 
-    assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [
-            first_bidder.address,
-            cst.AMOUNT_TO_BID.micro_algo,
-        ]
-    ]
-    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo
+    )
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.public_key) == [
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
     ]
     assert (
@@ -303,10 +305,10 @@ def test_pass_repeated_bid_exact_deposit(
         send_params=SendParams(populate_app_call_resources=True),
     )
 
-    assert dm_client.state.box.sales.get_value(sale_key).bid == [
-        [first_bidder.address, cst.AMOUNT_TO_BID.micro_algo + 1]
-    ]
-    assert dm_client.state.box.receipt_book.get_value(first_bidder.address) == [
+    assert dm_client.state.box.sales.get_value(sale_key).bid == Bid(
+        bidder=first_bidder.address, amount=cst.AMOUNT_TO_BID.micro_algo + 1
+    )
+    assert dm_client.state.box.receipt_book.get_value(first_bidder.public_key) == [
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo + 1],
     ]
 

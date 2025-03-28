@@ -1,4 +1,4 @@
-from algopy import UInt64, arc4, subroutine, urange
+from algopy import ImmutableArray, UInt64, subroutine, urange
 
 from smart_contracts.digital_marketplace.contract import BidReceipt, SaleKey
 
@@ -12,15 +12,10 @@ def sales_box_mbr(prefix_length: UInt64) -> UInt64:
         # SaleKey
         32 + 8 +
         # Sale
-        # Since the Sale type contains one dynamic type,
-        #  it's got a 2 byte prefix pointing to that dynamic type
-        2 +
         # amount & cost fields
         8 + 8 +
-        # bid field is a dynamic array and so it has got a length prefix
-        2 +
-        # One optional Bid type
-        (32 + 8)
+        # bid field
+        32 + 8
     )
     # fmt: on
 
@@ -40,7 +35,7 @@ def receipt_book_box_mbr() -> UInt64:
 
 @subroutine
 def find_bid_receipt(
-    receipts: arc4.DynamicArray[BidReceipt], key: SaleKey
+    receipts: ImmutableArray[BidReceipt], key: SaleKey
 ) -> tuple[bool, UInt64]:
     for i in urange(receipts.length):
         if receipts[i].sale_key == key:

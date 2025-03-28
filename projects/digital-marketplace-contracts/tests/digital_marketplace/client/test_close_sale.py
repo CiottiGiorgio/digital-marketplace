@@ -56,7 +56,7 @@ def test_pass_noop_close_sale(
     assert (
         algorand_client.account.get_information(dm_client.app_address).min_balance
         - mbr_before_call
-    ).micro_algo == -cst.SALES_BOX_BASE_MBR.micro_algo
+    ).micro_algo == -cst.SALES_BOX_MBR.micro_algo
     assert asa_balance - asa_balance_before_call == -cst.ASA_AMOUNT_TO_SELL
     assert (
         dm_client.state.local_state(first_seller.address).deposited
@@ -108,7 +108,7 @@ def test_pass_opt_in_close_sale(
     assert algorand_client.account.get_information(
         dm_client.app_address
     ).min_balance.micro_algo - mbr_before_call.micro_algo == -(
-        cst.SALES_BOX_BASE_MBR.micro_algo
+        cst.SALES_BOX_MBR.micro_algo
     )
     assert asa_balance - asa_balance_before_call == -cst.ASA_AMOUNT_TO_SELL
     assert (
