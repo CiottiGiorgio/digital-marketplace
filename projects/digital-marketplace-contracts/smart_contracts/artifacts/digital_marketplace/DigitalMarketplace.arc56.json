@@ -301,7 +301,7 @@
                     "prefix": "c2FsZXM="
                 },
                 "receipt_book": {
-                    "keyType": "AVMBytes",
+                    "keyType": "address",
                     "valueType": "((address,uint64),uint64)[]",
                     "prefix": "cmVjZWlwdF9ib29r"
                 }
@@ -510,7 +510,7 @@
         "compiler": "puya",
         "compilerVersion": {
             "major": 4,
-            "minor": 6,
+            "minor": 7,
             "patch": 0
         }
     },
