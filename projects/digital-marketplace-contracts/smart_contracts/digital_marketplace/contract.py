@@ -7,8 +7,6 @@ from algopy import (
     BoxMap,
     Global,
     ImmutableArray,
-    LocalState,
-    OnCompleteAction,
     Txn,
     UInt64,
     arc4,
@@ -21,8 +19,6 @@ from algopy.arc4 import abimethod
 import smart_contracts.digital_marketplace.errors as err
 from smart_contracts.digital_marketplace.subroutines import (
     find_bid_receipt,
-    receipt_book_box_mbr,
-    sales_box_mbr,
 )
 
 
@@ -58,32 +54,30 @@ class UnencumberedBidsReceipt(typing.NamedTuple):
 
 class DigitalMarketplace(ARC4Contract):
     def __init__(self) -> None:
-        self.deposited = LocalState(UInt64)
+        self.deposited = BoxMap(Account, UInt64)
 
         self.sales = BoxMap(SaleKey, Sale)
         self.receipt_book = BoxMap(Account, ImmutableArray[BidReceipt])
 
-    @abimethod(allow_actions=["NoOp", "OptIn"])
+    @abimethod
     def deposit(self, payment: gtxn.PaymentTransaction) -> None:
         assert payment.sender == Txn.sender, err.DIFFERENT_SENDER
         assert (
             payment.receiver == Global.current_application_address
         ), err.WRONG_RECEIVER
 
+        mbr_baseline = Global.current_application_address.min_balance
         self.deposited[Txn.sender] = (
             self.deposited.get(Txn.sender, default=UInt64(0)) + payment.amount
         )
+        mbr_diff = Global.current_application_address.min_balance - mbr_baseline
+        self.deposited[Txn.sender] -= mbr_diff
 
-    @abimethod(allow_actions=["NoOp", "CloseOut"])
+    @abimethod
     def withdraw(self, amount: arc4.UInt64) -> None:
-        if Txn.on_completion == OnCompleteAction.NoOp:
-            self.deposited[Txn.sender] -= amount.native
+        self.deposited[Txn.sender] -= amount.native
 
-            itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
-        else:
-            itxn.Payment(
-                receiver=Txn.sender, amount=self.deposited[Txn.sender]
-            ).submit()
+        itxn.Payment(receiver=Txn.sender, amount=amount.native).submit()
 
     @abimethod
     def sponsor_asset(self, asset: Asset) -> None:
@@ -114,15 +108,17 @@ class DigitalMarketplace(ARC4Contract):
         )
         assert sale_key not in self.sales, err.SALE_ALREADY_EXISTS
 
-        self.deposited[Txn.sender] -= sales_box_mbr(self.sales.key_prefix.length)
-
+        mbr_baseline = Global.current_application_address.min_balance
         self.sales[sale_key] = Sale(
             arc4.UInt64(asset_deposit.asset_amount),
             cost,
             Bid(arc4.Address(), arc4.UInt64()),
         )
+        mbr_diff = Global.current_application_address.min_balance - mbr_baseline
 
-    @abimethod(allow_actions=["NoOp", "OptIn"])
+        self.deposited[Txn.sender] -= mbr_diff
+
+    @abimethod
     def close_sale(self, asset: Asset) -> None:
         sale_key = SaleKey(arc4.Address(Txn.sender), arc4.UInt64(asset.id))
 
@@ -132,28 +128,28 @@ class DigitalMarketplace(ARC4Contract):
             asset_amount=self.sales[sale_key].amount.native,
         ).submit()
 
-        self.deposited[Txn.sender] = self.deposited.get(
-            Txn.sender, default=UInt64(0)
-        ) + sales_box_mbr(self.sales.key_prefix.length)
-
+        mbr_baseline = Global.current_application_address.min_balance
         del self.sales[sale_key]
+        mbr_diff = mbr_baseline - Global.current_application_address.min_balance
+        self.deposited[Txn.sender] += mbr_diff
 
     @abimethod
     def buy(self, sale_key: SaleKey) -> None:
         assert Txn.sender != sale_key.owner.native, err.SELLER_CANT_BE_BUYER
-
-        self.deposited[Txn.sender] -= self.sales[sale_key].cost.native
-        self.deposited[sale_key.owner.native] += self.sales[
-            sale_key
-        ].cost.native + sales_box_mbr(self.sales.key_prefix.length)
+        sale = self.sales[sale_key]
 
         itxn.AssetTransfer(
             xfer_asset=sale_key.asset.native,
             asset_receiver=Txn.sender,
-            asset_amount=self.sales[sale_key].amount.native,
+            asset_amount=sale.amount.native,
         ).submit()
 
+        mbr_baseline = Global.current_application_address.min_balance
         del self.sales[sale_key]
+        mbr_diff = mbr_baseline - Global.current_application_address.min_balance
+
+        self.deposited[Txn.sender] -= sale.cost.native
+        self.deposited[sale_key.owner.native] += sale.cost.native + mbr_diff
 
     @abimethod
     def bid(self, sale_key: SaleKey, new_bid_amount: arc4.UInt64) -> None:
@@ -167,6 +163,7 @@ class DigitalMarketplace(ARC4Contract):
 
         self.sales[sale_key] = sale._replace(bid=new_bid)
 
+        mbr_baseline = Global.current_application_address.min_balance
         new_bid_receipt = BidReceipt(sale_key, new_bid_amount)
         receipt_book, exists = self.receipt_book.maybe(Txn.sender)
         if exists:
@@ -179,33 +176,35 @@ class DigitalMarketplace(ARC4Contract):
             else:
                 self.receipt_book[Txn.sender] = receipt_book.append(new_bid_receipt)
         else:
-            self.deposited[Txn.sender] -= receipt_book_box_mbr()
             self.receipt_book[Txn.sender] = ImmutableArray(new_bid_receipt)
+        mbr_diff = Global.current_application_address.min_balance - mbr_baseline
 
-        self.deposited[Txn.sender] -= new_bid_amount.native
+        self.deposited[Txn.sender] -= new_bid_amount.native + mbr_diff
 
     @subroutine
     def is_encumbered(self, bid: BidReceipt) -> bool:
         sale, exists = self.sales.maybe(bid.sale_key)
         return exists and bool(sale.bid.bidder) and sale.bid.bidder == Txn.sender
 
-    @abimethod(allow_actions=["NoOp", "OptIn"])
+    @abimethod
     def claim_unencumbered_bids(self) -> None:
-        self.deposited[Txn.sender] = self.deposited.get(Txn.sender, UInt64(0))
-
         encumbered_receipts = ImmutableArray[BidReceipt]()
 
+        assert self.receipt_book[Txn.sender], err.NOTHING_TO_CLAIM
         for receipt in self.receipt_book[Txn.sender]:
             if self.is_encumbered(receipt):
                 encumbered_receipts = encumbered_receipts.append(receipt)
             else:
                 self.deposited[Txn.sender] += receipt.amount.native
 
+        mbr_baseline = Global.current_application_address.min_balance
         if encumbered_receipts:
             self.receipt_book[Txn.sender] = encumbered_receipts
         else:
-            self.deposited[Txn.sender] += receipt_book_box_mbr()
             del self.receipt_book[Txn.sender]
+        mbr_diff = mbr_baseline - Global.current_application_address.min_balance
+
+        self.deposited[Txn.sender] += mbr_diff
 
     @abimethod(readonly=True)
     def get_total_and_unencumbered_bids(self) -> UnencumberedBidsReceipt:
@@ -221,12 +220,25 @@ class DigitalMarketplace(ARC4Contract):
 
         return UnencumberedBidsReceipt(total_bids, unencumbered_bids)
 
-    @abimethod(allow_actions=["NoOp", "OptIn"])
+    @abimethod
     def accept_bid(self, asset: arc4.UInt64) -> None:
         sale_key = SaleKey(owner=arc4.Address(Txn.sender), asset=asset)
         sale = self.sales[sale_key]
         current_best_bid = sale.bid
         current_best_bidder = current_best_bid.bidder.native
+
+        seller_mbr_baseline = Global.current_application_address.min_balance
+        del self.sales[sale_key]
+        seller_mbr_diff = (
+            seller_mbr_baseline - Global.current_application_address.min_balance
+        )
+
+        self.deposited[Txn.sender] += current_best_bid.amount.native + seller_mbr_diff
+        itxn.AssetTransfer(
+            xfer_asset=asset.native,
+            asset_receiver=current_best_bidder,
+            asset_amount=sale.amount.native,
+        ).submit()
 
         receipt_book = self.receipt_book[current_best_bidder]
         found, index = find_bid_receipt(receipt_book, sale_key)
@@ -237,21 +249,13 @@ class DigitalMarketplace(ARC4Contract):
             if receipt != receipt_book[index]:
                 encumbered_receipts = encumbered_receipts.append(receipt)
 
+        bidder_mbr_baseline = Global.current_application_address.min_balance
         if encumbered_receipts:
             self.receipt_book[current_best_bidder] = encumbered_receipts
         else:
-            self.deposited[current_best_bidder] += receipt_book_box_mbr()
             del self.receipt_book[current_best_bidder]
-
-        self.deposited[Txn.sender] = (
-            self.deposited.get(Txn.sender, default=UInt64(0))
-            + current_best_bid.amount.native
-            + sales_box_mbr(self.sales.key_prefix.length)
+        bidder_mbr_diff = (
+            bidder_mbr_baseline - Global.current_application_address.min_balance
         )
-        itxn.AssetTransfer(
-            xfer_asset=asset.native,
-            asset_receiver=current_best_bidder,
-            asset_amount=sale.amount.native,
-        ).submit()
 
-        del self.sales[sale_key]
+        self.deposited[current_best_bidder] += bidder_mbr_diff
