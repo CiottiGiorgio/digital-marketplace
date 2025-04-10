@@ -10,6 +10,7 @@ from algokit_utils import (
     CommonAppCallParams,
     LogicError,
     PaymentParams,
+    SendParams,
     SigningAccount,
 )
 
@@ -72,20 +73,24 @@ def test_fail_not_enough_deposited_sponsor_asset(
     """
     Test that sponsoring an asset fails if the caller has not deposited enough funds.
     """
-    dm_client.send.opt_in.deposit(
+    dm_client.send.deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
                     sender=first_seller.address,
                     receiver=dm_client.app_address,
-                    amount=AlgoAmount(algo=0),
+                    amount=cst.DEPOSITED_BOX_MBR,
                 )
             )
-        )
+        ),
+        send_params=SendParams(populate_app_call_resources=True),
     )
 
     with pytest.raises(LogicError, match="- would result negative"):
-        dm_client.send.sponsor_asset(SponsorAssetArgs(asset=asset_to_sell))
+        dm_client.send.sponsor_asset(
+            SponsorAssetArgs(asset=asset_to_sell),
+            send_params=SendParams(populate_app_call_resources=True),
+        )
 
 
 def test_pass_sponsor_asset(
@@ -98,17 +103,20 @@ def test_pass_sponsor_asset(
     """
     Test that sponsoring an asset succeeds and updates the deposited field correctly.
     """
-    deposited_before_call = dm_client.state.local_state(first_seller.address).deposited
+    deposited_before_call = dm_client.state.box.deposited.get_value(
+        first_seller.address
+    )
 
     dm_client.send.sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
         params=CommonAppCallParams(
             sender=first_seller.address, extra_fee=AlgoAmount(micro_algo=1_000)
         ),
+        send_params=SendParams(populate_app_call_resources=True),
     )
 
     assert (
-        dm_client.state.local_state(first_seller.address).deposited
+        dm_client.state.box.deposited.get_value(first_seller.address)
         - deposited_before_call
         == -AlgoAmount(micro_algo=100_000).micro_algo
     )

@@ -21,6 +21,7 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
     SaleKey,
     WithdrawArgs,
 )
+from tests.digital_marketplace.client.helpers import receipt_book_mbr
 
 
 @pytest.fixture(scope="function")
@@ -46,7 +47,9 @@ def test_pass_first_bid(
     )
     with pytest.raises(AlgodHTTPError, match="box not found"):
         _ = dm_client.state.box.receipt_book.get_value(first_bidder.public_key)
-    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
+    deposited_before_call = dm_client.state.box.deposited.get_value(
+        first_bidder.address
+    )
 
     dm_client.send.bid(
         BidArgs(
@@ -66,9 +69,9 @@ def test_pass_first_bid(
         ]
     ]
     assert (
-        dm_client.state.local_state(first_bidder.address).deposited
+        dm_client.state.box.deposited.get_value(first_bidder.address)
         - deposited_before_call
-        == -(cst.RECEIPT_BOOK_BOX_MBR + cst.AMOUNT_TO_BID).micro_algo
+        == -(receipt_book_mbr(1) + cst.AMOUNT_TO_BID).micro_algo
     )
 
 
@@ -90,7 +93,9 @@ def test_pass_second_bid_is_outbid(
     )
     with pytest.raises(AlgodHTTPError, match="box not found"):
         _ = dm_client.state.box.receipt_book.get_value(second_bidder.public_key)
-    deposited_before_call = dm_client.state.local_state(second_bidder.address).deposited
+    deposited_before_call = dm_client.state.box.deposited.get_value(
+        second_bidder.address
+    )
 
     dm_client.clone(default_sender=second_bidder.address).send.bid(
         BidArgs(
@@ -109,10 +114,10 @@ def test_pass_second_bid_is_outbid(
             cst.AMOUNT_TO_OUTBID.micro_algo,
         ]
     ]
-    assert dm_client.state.local_state(
+    assert dm_client.state.box.deposited.get_value(
         second_bidder.address
-    ).deposited - deposited_before_call == -(
-        (cst.RECEIPT_BOOK_BOX_MBR + cst.AMOUNT_TO_OUTBID).micro_algo
+    ) - deposited_before_call == -(
+        (receipt_book_mbr(1) + cst.AMOUNT_TO_OUTBID).micro_algo
     )
 
 
@@ -182,7 +187,9 @@ def test_pass_multiple_bid(
     with pytest.raises(AlgodHTTPError, match="box not found"):
         _ = dm_client.state.box.receipt_book.get_value(first_bidder.public_key)
 
-    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
+    deposited_before_call = dm_client.state.box.deposited.get_value(
+        first_bidder.address
+    )
 
     dm_client.new_group().bid(
         BidArgs(
@@ -208,10 +215,10 @@ def test_pass_multiple_bid(
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
         [[second_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo],
     ]
-    assert dm_client.state.local_state(
+    assert dm_client.state.box.deposited.get_value(
         first_bidder.address
-    ).deposited - deposited_before_call == -(
-        2 * cst.AMOUNT_TO_BID.micro_algo + cst.RECEIPT_BOOK_BOX_MBR.micro_algo
+    ) - deposited_before_call == -(
+        2 * cst.AMOUNT_TO_BID.micro_algo + receipt_book_mbr(2).micro_algo
     )
 
 
@@ -234,7 +241,9 @@ def test_pass_repeated_bid(
     assert dm_client.state.box.receipt_book.get_value(first_bidder.public_key) == [
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
     ]
-    deposited_before_call = dm_client.state.local_state(first_bidder.address).deposited
+    deposited_before_call = dm_client.state.box.deposited.get_value(
+        first_bidder.address
+    )
 
     dm_client.send.bid(
         BidArgs(
@@ -251,7 +260,7 @@ def test_pass_repeated_bid(
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo + 1],
     ]
     assert (
-        dm_client.state.local_state(first_bidder.address).deposited
+        dm_client.state.box.deposited.get_value(first_bidder.address)
         - deposited_before_call
         == -1
     )
@@ -277,11 +286,12 @@ def test_pass_repeated_bid_exact_deposit(
     dm_client.send.withdraw(
         WithdrawArgs(
             amount=(
-                cst.AMOUNT_TO_DEPOSIT - cst.AMOUNT_TO_BID - cst.RECEIPT_BOOK_BOX_MBR
+                cst.RESIDUAL_INITIAL_DEPOSIT - cst.AMOUNT_TO_BID - receipt_book_mbr(1)
             ).micro_algo
             - 1
         ),
         params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
+        send_params=SendParams(populate_app_call_resources=True),
     )
 
     sale_key = SaleKey(owner=first_seller.address, asset=asset_to_sell)
@@ -293,7 +303,7 @@ def test_pass_repeated_bid_exact_deposit(
         [[first_seller.address, asset_to_sell], cst.AMOUNT_TO_BID.micro_algo]
     ]
     assert (
-        dm_client.state.local_state(first_bidder.address).deposited
+        dm_client.state.box.deposited.get_value(first_bidder.address)
         == AlgoAmount(micro_algo=1).micro_algo
     )
 
@@ -313,7 +323,7 @@ def test_pass_repeated_bid_exact_deposit(
     ]
 
     assert (
-        dm_client.state.local_state(first_bidder.address).deposited
+        dm_client.state.box.deposited.get_value(first_bidder.address)
         == AlgoAmount(micro_algo=0).micro_algo
     )
 

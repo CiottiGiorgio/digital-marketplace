@@ -13,5 +13,10 @@ AMOUNT_TO_BID = AlgoAmount(algo=4)
 AMOUNT_TO_OUTBID = AMOUNT_TO_BID + AlgoAmount(micro_algo=1)
 
 # Box MBR
+DEPOSITED_BOX_MBR = AlgoAmount(micro_algo=2_500 + 400 * (9 + 32 + 8))
 SALES_BOX_MBR = AlgoAmount(micro_algo=2_500 + 400 * (5 + 32 + 8 + 8 + 8 + 32 + 8))
-RECEIPT_BOOK_BOX_MBR = AlgoAmount(micro_algo=2_500 + 400 * (64 + 32_768))
+RECEIPT_BOOK_BOX_BASE_MBR = AlgoAmount(micro_algo=2_500 + 400 * (12 + 32 + 2))
+RECEIPT_BOOK_BOX_PER_RECEIPT_MBR = AlgoAmount(micro_algo=400 * (32 + 8 + 8))
+
+# Frequently used expressions
+RESIDUAL_INITIAL_DEPOSIT = AMOUNT_TO_DEPOSIT - DEPOSITED_BOX_MBR

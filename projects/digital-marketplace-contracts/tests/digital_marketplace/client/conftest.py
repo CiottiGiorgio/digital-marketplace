@@ -233,7 +233,7 @@ def scenario_deposit(
     """
     deposit_group = digital_marketplace_client.new_group()
     for account in [first_seller, second_seller, buyer, first_bidder, second_bidder]:
-        deposit_group = deposit_group.opt_in.deposit(
+        deposit_group = deposit_group.deposit(
             DepositArgs(
                 payment=algorand_client.create_transaction.payment(
                     PaymentParams(
@@ -264,6 +264,7 @@ def scenario_sponsor_asset(
         params=CommonAppCallParams(
             extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
         ),
+        send_params=SendParams(populate_app_call_resources=True),
     )
 
 

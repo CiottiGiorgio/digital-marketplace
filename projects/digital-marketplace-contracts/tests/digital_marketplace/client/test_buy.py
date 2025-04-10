@@ -46,7 +46,7 @@ def test_fail_not_enough_deposited_buy(
         algorand_client.create_transaction.asset_opt_in(
             AssetOptInParams(sender=random_account.address, asset_id=asset_to_sell)
         )
-    ).opt_in.deposit(
+    ).deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
@@ -57,7 +57,9 @@ def test_fail_not_enough_deposited_buy(
             )
         ),
         params=CommonAppCallParams(sender=random_account.address),
-    ).send()
+    ).send(
+        send_params=SendParams(populate_app_call_resources=True),
+    )
 
     with pytest.raises(LogicError, match="- would result negative"):
         dm_client.send.buy(
@@ -81,10 +83,10 @@ def test_pass_buy(
     """
     Test that buying an asset succeeds and updates the local state correctly.
     """
-    seller_deposited_before_call = dm_client.state.local_state(
+    seller_deposited_before_call = dm_client.state.box.deposited.get_value(
         first_seller.address
-    ).deposited
-    buyer_deposited_before_call = dm_client.state.local_state(buyer.address).deposited
+    )
+    buyer_deposited_before_call = dm_client.state.box.deposited.get_value(buyer.address)
 
     app_asa_balance = helpers.asa_amount(
         algorand_client, dm_client.app_address, asset_to_sell
@@ -100,12 +102,12 @@ def test_pass_buy(
     )
 
     assert (
-        dm_client.state.local_state(first_seller.address).deposited
+        dm_client.state.box.deposited.get_value(first_seller.address)
         - seller_deposited_before_call
         == cst.COST_TO_BUY.micro_algo + cst.SALES_BOX_MBR.micro_algo
     )
     assert (
-        dm_client.state.local_state(buyer.address).deposited
+        dm_client.state.box.deposited.get_value(buyer.address)
         - buyer_deposited_before_call
         == -cst.COST_TO_BUY.micro_algo
     )

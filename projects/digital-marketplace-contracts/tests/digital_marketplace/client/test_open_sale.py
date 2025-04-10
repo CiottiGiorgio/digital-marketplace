@@ -55,7 +55,8 @@ def test_fail_diff_sender_open_sale(
                     signer=second_seller.signer,
                 ),
                 cost=cst.COST_TO_BUY.micro_algo,
-            )
+            ),
+            send_params=SendParams(populate_app_call_resources=True),
         )
 
 
@@ -86,7 +87,8 @@ def test_fail_wrong_receiver_open_sale(
                     signer=first_seller.signer,
                 ),
                 cost=cst.COST_TO_BUY.micro_algo,
-            )
+            ),
+            send_params=SendParams(populate_app_call_resources=True),
         )
 
 
@@ -99,21 +101,25 @@ def test_fail_not_enough_deposited_open_sale(
     """
     Test that opening a sale fails if the caller has not deposited enough funds.
     """
-    dm_client.new_group().opt_in.deposit(
+    dm_client.new_group().deposit(
         DepositArgs(
             payment=algorand_client.create_transaction.payment(
                 PaymentParams(
                     sender=first_seller.address,
                     receiver=dm_client.app_address,
                     # This is just enough to sponsor an asset but not enough to open a sales box.
-                    amount=AlgoAmount(micro_algo=100_000),
+                    amount=cst.DEPOSITED_BOX_MBR + AlgoAmount(micro_algo=100_000),
                 )
             )
         )
     ).sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
         params=CommonAppCallParams(extra_fee=AlgoAmount(micro_algo=1_000)),
-    ).send()
+    ).send(
+        send_params=SendParams(populate_app_call_resources=True)
+    )
+
+    assert dm_client.state.box.deposited.get_value(first_seller.address) == 0
 
     with pytest.raises(LogicError, match="- would result negative"):
         dm_client.send.open_sale(
@@ -179,7 +185,9 @@ def test_pass_open_sale(
         dm_client.app_address,
         asset_to_sell,
     )
-    deposited_before_call = dm_client.state.local_state(first_seller.address).deposited
+    deposited_before_call = dm_client.state.box.deposited.get_value(
+        first_seller.address
+    )
 
     dm_client.send.open_sale(
         OpenSaleArgs(
@@ -211,7 +219,7 @@ def test_pass_open_sale(
     )
     assert asa_balance - asa_balance_before_call == cst.ASA_AMOUNT_TO_SELL
     assert (
-        dm_client.state.local_state(first_seller.address).deposited
+        dm_client.state.box.deposited.get_value(first_seller.address)
         - deposited_before_call
         == -cst.SALES_BOX_MBR.micro_algo
     )
