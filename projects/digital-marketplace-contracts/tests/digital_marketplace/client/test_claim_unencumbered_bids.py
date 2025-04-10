@@ -176,7 +176,7 @@ def test_fail_bid_was_accepted(
     """
     Test that claiming unencumbered bids fails if the bid was accepted.
     """
-    with pytest.raises(LogicError):
+    with pytest.raises(LogicError, match=f"check self.{cst.RECEIPT_BOOK} entry exists"):
         dm_client.send.claim_unencumbered_bids(
             send_params=SendParams(populate_app_call_resources=True)
         )
@@ -212,3 +212,16 @@ def test_pass_reopened_sale_is_still_unencumbered(
         - deposited_before_call
         == (cst.AMOUNT_TO_BID + receipt_book_mbr(1)).micro_algo
     )
+
+
+def test_fail_empty_receipt_book(
+    asset_to_sell: int,
+    dm_client: DigitalMarketplaceClient,
+    scenario_open_sale: Callable,
+    first_seller: SigningAccount,
+    first_bidder: SigningAccount,
+) -> None:
+    with pytest.raises(LogicError, match=f"check self.{cst.RECEIPT_BOOK} entry exists"):
+        dm_client.send.claim_unencumbered_bids(
+            send_params=SendParams(populate_app_call_resources=True)
+        )

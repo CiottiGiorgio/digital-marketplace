@@ -190,7 +190,6 @@ class DigitalMarketplace(ARC4Contract):
     def claim_unencumbered_bids(self) -> None:
         encumbered_receipts = ImmutableArray[BidReceipt]()
 
-        assert self.receipt_book[Txn.sender], err.NOTHING_TO_CLAIM
         for receipt in self.receipt_book[Txn.sender]:
             if self.is_encumbered(receipt):
                 encumbered_receipts = encumbered_receipts.append(receipt)
