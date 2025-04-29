@@ -38,6 +38,8 @@ from algokit_utils import (
     SendParams,
     SigningAccount,
 )
+from numpy import random
+from numpy.random import Generator
 
 from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client import (
     AcceptBidArgs,
@@ -53,7 +55,12 @@ from smart_contracts.artifacts.digital_marketplace.digital_marketplace_client im
 
 
 @pytest.fixture(scope="session")
-def deployer(algorand_client: AlgorandClient) -> SigningAccount:
+def rng(worker_id: str) -> Generator:
+    return random.default_rng(list(worker_id.encode()))
+
+
+@pytest.fixture(scope="session")
+def deployer(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the deployer account, ensuring it is funded.
     """
@@ -61,12 +68,13 @@ def deployer(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def first_seller(algorand_client: AlgorandClient) -> SigningAccount:
+def first_seller(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the first seller account, ensuring it is funded.
     """
@@ -74,12 +82,13 @@ def first_seller(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def second_seller(algorand_client: AlgorandClient) -> SigningAccount:
+def second_seller(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the second seller account, ensuring it is funded.
     """
@@ -87,12 +96,13 @@ def second_seller(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def buyer(algorand_client: AlgorandClient) -> SigningAccount:
+def buyer(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the buyer account, ensuring it is funded.
     """
@@ -100,12 +110,13 @@ def buyer(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def first_bidder(algorand_client: AlgorandClient) -> SigningAccount:
+def first_bidder(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the first bidder account, ensuring it is funded.
     """
@@ -113,12 +124,13 @@ def first_bidder(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
-def second_bidder(algorand_client: AlgorandClient) -> SigningAccount:
+def second_bidder(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide the second bidder account, ensuring it is funded.
     """
@@ -126,12 +138,13 @@ def second_bidder(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="function")
-def random_account(algorand_client: AlgorandClient) -> SigningAccount:
+def random_account(rng: Generator, algorand_client: AlgorandClient) -> SigningAccount:
     """
     Fixture to provide a random account, ensuring it is funded.
     """
@@ -139,12 +152,14 @@ def random_account(algorand_client: AlgorandClient) -> SigningAccount:
     algorand_client.account.ensure_funded_from_environment(
         account_to_fund=account.address,
         min_spending_balance=cst.AMOUNT_TO_FUND,
+        note=rng.integers(2**32).tobytes(),
     )
     return account
 
 
 @pytest.fixture(scope="session")
 def asset_to_sell(
+    rng: Generator,
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
     second_seller: SigningAccount,
@@ -160,7 +175,8 @@ def asset_to_sell(
             sender=first_seller.address,
             total=2 * cst.ASA_AMOUNT_TO_CREATE,
             decimals=cst.ASA_DECIMALS,
-        )
+            note=rng.integers(2**32).tobytes(),
+        ),
     )
     algorand_client.new_group().add_asset_opt_in(
         AssetOptInParams(sender=second_seller.address, asset_id=result.asset_id)
@@ -170,13 +186,26 @@ def asset_to_sell(
             asset_id=result.asset_id,
             amount=cst.ASA_AMOUNT_TO_CREATE,
             receiver=second_seller.address,
+            note=rng.integers(2**32).tobytes(),
         )
     ).add_asset_opt_in(
-        AssetOptInParams(sender=buyer.address, asset_id=result.asset_id)
+        AssetOptInParams(
+            sender=buyer.address,
+            asset_id=result.asset_id,
+            note=rng.integers(2**32).tobytes(),
+        )
     ).add_asset_opt_in(
-        AssetOptInParams(sender=first_bidder.address, asset_id=result.asset_id)
+        AssetOptInParams(
+            sender=first_bidder.address,
+            asset_id=result.asset_id,
+            note=rng.integers(2**32).tobytes(),
+        )
     ).add_asset_opt_in(
-        AssetOptInParams(sender=second_bidder.address, asset_id=result.asset_id)
+        AssetOptInParams(
+            sender=second_bidder.address,
+            asset_id=result.asset_id,
+            note=rng.integers(2**32).tobytes(),
+        )
     ).send()
 
     return result.asset_id
@@ -184,7 +213,7 @@ def asset_to_sell(
 
 @pytest.fixture(scope="function")
 def digital_marketplace_client(
-    algorand_client: AlgorandClient, deployer: SigningAccount
+    rng: Generator, algorand_client: AlgorandClient, deployer: SigningAccount
 ) -> DigitalMarketplaceClient:
     """
     Fixture providing a fresh DigitalMarketplaceClient instance using .create.bare() to ensure
@@ -194,11 +223,16 @@ def digital_marketplace_client(
         DigitalMarketplaceFactory, default_sender=deployer.address
     )
 
-    client, _ = factory.send.create.bare()
+    client, _ = factory.send.create.bare(
+        params=CommonAppCallParams(
+            note=rng.integers(2**32).tobytes(),
+        )
+    )
     algorand_client.account.ensure_funded(
         client.app_address,
         dispenser_account=algorand_client.account.dispenser_from_environment(),
         min_spending_balance=AlgoAmount(algo=0),
+        note=rng.integers(2**32).tobytes(),
     )
     return client
 
@@ -215,6 +249,7 @@ def dm_client(
 
 @pytest.fixture(scope="function")
 def scenario_deposit(
+    rng: Generator,
     digital_marketplace_client: DigitalMarketplaceClient,
     algorand_client: AlgorandClient,
     first_seller: SigningAccount,
@@ -240,6 +275,7 @@ def scenario_deposit(
                         sender=account.address,
                         receiver=digital_marketplace_client.app_address,
                         amount=cst.AMOUNT_TO_DEPOSIT,
+                        note=rng.integers(2**32).tobytes(),
                     )
                 )
             ),
@@ -250,6 +286,7 @@ def scenario_deposit(
 
 @pytest.fixture(scope="function")
 def scenario_sponsor_asset(
+    rng: Generator,
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_deposit: Callable,
@@ -262,7 +299,9 @@ def scenario_sponsor_asset(
     digital_marketplace_client.send.sponsor_asset(
         SponsorAssetArgs(asset=asset_to_sell),
         params=CommonAppCallParams(
-            extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
+            note=rng.integers(2**32).tobytes(),
+            extra_fee=AlgoAmount(micro_algo=1_000),
+            sender=first_seller.address,
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
@@ -270,6 +309,7 @@ def scenario_sponsor_asset(
 
 @pytest.fixture(scope="function")
 def scenario_open_sale(
+    rng: Generator,
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_sponsor_asset: Callable,
@@ -295,7 +335,10 @@ def scenario_open_sale(
             ),
             cost=cst.COST_TO_BUY.micro_algo,
         ),
-        params=CommonAppCallParams(sender=first_seller.address),
+        params=CommonAppCallParams(
+            sender=first_seller.address,
+            note=rng.integers(2**32).tobytes(),
+        ),
     ).open_sale(
         OpenSaleArgs(
             asset_deposit=algorand_client.create_transaction.asset_transfer(
@@ -308,7 +351,10 @@ def scenario_open_sale(
             ),
             cost=cst.COST_TO_BUY.micro_algo,
         ),
-        params=CommonAppCallParams(sender=second_seller.address),
+        params=CommonAppCallParams(
+            sender=second_seller.address,
+            note=rng.integers(2**32).tobytes(),
+        ),
     ).send(
         send_params=SendParams(populate_app_call_resources=True)
     )
@@ -316,6 +362,7 @@ def scenario_open_sale(
 
 @pytest.fixture(scope="function")
 def scenario_first_seller_first_bidder_bid(
+    rng: Generator,
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_open_sale: Callable,
@@ -333,13 +380,17 @@ def scenario_first_seller_first_bidder_bid(
             sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell),
             new_bid_amount=cst.AMOUNT_TO_BID.micro_algo,
         ),
-        params=CommonAppCallParams(sender=first_bidder.address),
+        params=CommonAppCallParams(
+            sender=first_bidder.address,
+            note=rng.integers(2**32).tobytes(),
+        ),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
 
 @pytest.fixture(scope="function")
 def scenario_first_seller_second_bidder_outbid(
+    rng: Generator,
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
@@ -358,13 +409,17 @@ def scenario_first_seller_second_bidder_outbid(
             sale_key=SaleKey(owner=first_seller.address, asset=asset_to_sell),
             new_bid_amount=cst.AMOUNT_TO_OUTBID.micro_algo,
         ),
-        params=CommonAppCallParams(sender=second_bidder.address),
+        params=CommonAppCallParams(
+            sender=second_bidder.address,
+            note=rng.integers(2**32).tobytes(),
+        ),
         send_params=SendParams(populate_app_call_resources=True),
     )
 
 
 @pytest.fixture(scope="function")
 def scenario_accept_first_bid(
+    rng: Generator,
     asset_to_sell: int,
     digital_marketplace_client: DigitalMarketplaceClient,
     scenario_first_seller_first_bidder_bid: Callable,
@@ -380,7 +435,9 @@ def scenario_accept_first_bid(
     digital_marketplace_client.send.accept_bid(
         AcceptBidArgs(asset=asset_to_sell),
         params=CommonAppCallParams(
-            extra_fee=AlgoAmount(micro_algo=1_000), sender=first_seller.address
+            extra_fee=AlgoAmount(micro_algo=1_000),
+            sender=first_seller.address,
+            note=rng.integers(2**32).tobytes(),
         ),
         send_params=SendParams(populate_app_call_resources=True),
     )
